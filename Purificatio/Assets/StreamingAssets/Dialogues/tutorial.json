@@ -1,0 +1,318 @@
+  {
+    "dialogue": [
+      {
+        "id": "inicio1",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Finalmente você apareceu… tá 20 minutos atrasado!"
+      },
+      {
+        "id": "inicio2",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Essa empresa não vai pra frente se o único funcionário não chega na hora!"
+      },
+      {
+        "id": "inicio3",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "Sabe como é, né? Problemas com fantasmas."
+      },
+      {
+        "id": "inicio4",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Hmm."
+      },
+      {
+        "id": "inicio5",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "Mas, ei. Você tá bem? Tá parecendo meio… cansado. (mais pra acabado)"
+      },
+      {
+        "id": "inicio6",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Hmm Meu avô morreu."
+      },
+      {
+        "id": "inicio7",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "...!!?"
+      },
+      {
+        "id": "inicio_pergunta",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Enfim, lembra ao menos como usar os equipamentos?",
+        "options": [
+          {
+            "optionText": "Sim",
+            "nextId": "pula_tutorial"
+          },
+          {
+            "optionText": "Não",
+            "nextId": "tutorial_começa"
+          }
+        ]
+      },
+      {
+        "id": "pula_tutorial_1",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Então vamos direto ao assunto…"
+      },
+      {
+        "id": "tutorial1",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "..."
+      },
+      {
+        "id": "tutorial2",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "...Não?"
+      },
+      {
+        "id": "tutorial3",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "A gente viu isso ontem..."
+      },
+      {
+        "id": "tutorial4",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "..."
+      },
+      {
+        "id": "tutorial5",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "..."
+      },
+      {
+        "id": "tutorial6",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Ok, parece que eu vou ter que explicar tudo de novo"
+      },
+      {
+        "id": "tutorial7",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Pra realizar os exorcismos você precisa de... Você ainda lembra que é exorcista né?"
+      },
+      {
+        "id": "tutorial8",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Enfim… Pra realizar os exorcismos você vai precisar de alguns equipamentos."
+      },
+      {
+        "id": "tutorial9",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Pegue a câmera na sala de arquivos e volte pra falar comigo. Você pode mudar de cômodo clicando no mapa no canto da tela. Aqui a chave."
+      },
+      {
+        "id": "tutorial10",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "O que é esse cacareco de 1890?"
+      },
+      {
+        "id": "tutorial11",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Cacareco é a sua vovózinha!!"
+      },
+      {
+        "id": "tutorial12",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Continuando... Essa é uma câmera adaptada, com ela você pode ver fantasmas que não costumam aparecer a olho nú."
+      },
+      {
+        "id": "tutorial13",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Para usá-la, você só precisa clicar no ícone dela com o [botão direito do mouse]. Para desativar, só apertar o [botão esquerdo do mouse] a qualquer momento. Tenta aí."
+      },
+      {
+        "id": "tutorial14",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "O QUE É ISSO!?"
+      },
+      {
+        "id": "tutorial15",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Meu avô."
+      },
+      {
+        "id": "tutorial16",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "Desde quando seu avô virou um encosto??"
+      },
+      {
+        "id": "tutorial17",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Desde que ele morreu e, devido aos seus pecados pregressos, agora vagueia incansavelmente… até que encontre refúgio no corpo de uma pessoa viva."
+      },
+      {
+        "id": "tutorial18",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "...Possessão???"
+      },
+      {
+        "id": "tutorial19",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "\r"
+      },
+      {
+        "id": "tutorial20",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Isso. Mas, tá tranquilo. Eu tô blindado."
+      },
+      {
+        "id": "tutorial21",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "...Não vamos ficar nos lamentando. De volta ao tutorial!!"
+      },
+      {
+        "id": "tutorial22",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Além da câmera, eu vou te dar esse celular pra caso tu precise de ajuda durante os trabalhos. Ele é exclusivo de funcionários, então eu vou saber que é você que tá ligando."
+      },
+      {
+        "id": "tutorial23",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "De resto… Acho estúpido ter que explicar como funciona um celular… Você sabe, eu sei, todos sabemos."
+      },
+      {
+        "id": "tutorial24",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Alô"
+      },
+      {
+        "id": "tutorial25",
+        "character": "Nambú",
+        "sprite": "Nambu_sprite",
+        "text": "Moshi moshi! :)"
+      },
+      {
+        "id": "tutorial26",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": " 눈_눈"
+      },
+      {
+        "id": "tutorial27",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Tá aí. Se tiver alguma dúvida, ou ficar preso em algum momento do exorcismo, você pode ligar pra mim."
+      },
+      {
+        "id": "tutorial28",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Tem outros itens que você pode usar também. Tipo esse sal grosso aqui. Ele serve pra eliminar energias negativas."
+      },
+      {
+        "id": "tutorial29",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Nem sempre é eficaz usar sal grosso diretamente contra fantasmas, então a gente vai limitar o uso dele pra purificar objetos amaldiçoados ou possuídos."
+      },
+      {
+        "id": "tutorial30",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Você pode encontrar objetos amaldiçoados com a câmera."
+      },
+      {
+        "id": "tutorial31",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Vamos testar. Olha esse amuleto estranho com a câmera. A aura amaldiçoada dele é bem óbvia."
+      },
+      {
+        "id": "tutorial32",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Ótimo. Agora joga sal, depois olha de novo na câmera."
+      },
+      {
+        "id": "tutorial33",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Considerando que esse sal é produzido por monges tibetanos, transportado até aqui por uma procissão de Nahuales astecas e abençoado por três autoridades religiosas de religiões abraâmicas, nosso orçamento só permite três punhados de sal por exorcismo!"
+      },
+      {
+        "id": "tutorial34",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Por fim, você pode pegar outros itens pela cena. Sim, isso está escrito nos contratos, a gente pode simplesmente pegar coisas dos outros se for útil na identificação e exorcismo dos fantasmas."
+      },
+      {
+        "id": "tutorial35",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Quando estiver pronto pra exorcizar, me liga pra eu dar as orientações."
+      },
+      {
+        "id": "tutorial36",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Alguma dúvida?.",
+        "options": [
+          {
+            "optionText": "Sim",
+            "nextId": "rude1"
+          },
+          {
+            "optionText": "Não",
+            "nextId": "calmo1"
+          }
+        ]
+      },
+      {
+        "id": "rude1",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Uma pena. Eu não vou explicar TUDO ISSO de novo. Você vai pra a primeira cena IMEDIATAMENTE! Eu já fechei o contrato!"
+      },
+      {
+        "id": "calmo1",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Bom saber que você limpou bem os ouvidos dessa vez."
+      },
+      {
+        "id": "calmo2",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": "Agora que você tá pronto: ao trabalho."
+      },
+      {
+        "id": "calmo3",
+        "character": "Timbu",
+        "sprite": "Timbu_sprite",
+        "text": " Contrato assinado. É crime abandonar. Boa sorte."
+      }
+    ]
+  }

@@ -24,22 +24,22 @@ EditorBuildSettings:
     path: Assets/Scenes/05. LevelSelect.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/07. WaitAminute.unity
+    path: Assets/Scenes/04. WaitAminute.unity
     guid: ba613c1733480d942b4411071b7ab4e7
   - enabled: 1
-    path: Assets/Scenes/08. Tutorial.unity
+    path: Assets/Scenes/05. Tutorial.unity
     guid: d387f8fb47f1c924f81d9732ff3b0f4e
   - enabled: 1
-    path: Assets/Scenes/09. Fase1.unity
+    path: Assets/Scenes/06. Fase1.unity
     guid: 16a92d41f976d544d82ecdcaa3112a02
   - enabled: 1
-    path: Assets/Scenes/10. Fase2.unity
+    path: Assets/Scenes/07. Fase2.unity
     guid: f28f3ea180ab5dd47a10538638554e2e
   - enabled: 1
-    path: Assets/Scenes/11. Fase3.unity
+    path: Assets/Scenes/08. Fase3.unity
     guid: ccb161ef67900ff4ea4cd01c71a882cf
   - enabled: 1
-    path: Assets/Scenes/12. Fase4.unity
+    path: Assets/Scenes/09. Fase4.unity
     guid: f4b9fbaf10428014aaf670a2327d9bda
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
