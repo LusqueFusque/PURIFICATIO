@@ -66,9 +66,17 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && currentLine != null)
         {
-            if (!isPaused && currentLine != null && (currentLine.options == null || currentLine.options.Count == 0))
+            if (isPaused)
+            {
+                // Jogador quer continuar -> aí sim esconde diálogo e mostra HUD
+                isPaused = false;
+                uiManager.HideDialoguePanelShowHUD();
+                // Aqui você não chama ShowNextLine porque a ideia é pausar no ponto
+                // E o próximo vai avançar depois que ele fizer a ação (e chamar ContinueDialogue)
+            }
+            else if (currentLine.options == null || currentLine.options.Count == 0)
             {
                 ShowNextLine();
             }
@@ -155,7 +163,9 @@ public class DialogueManager : MonoBehaviour
         if (pausePoints.Contains(id))
         {
             isPaused = true;
-            uiManager.HideDialoguePanelShowHUD();
+            Debug.Log("Diálogo pausado no ponto: " + id);
+            // NÃO chama uiManager.HideDialoguePanelShowHUD() aqui ainda!
+            // Deixa aparecer e espera o jogador apertar espaço
         }
         else
         {
@@ -164,9 +174,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void ContinueDialogue() // Chama do HUD quando quer continuar
+    public void ContinueDialogue()
     {
-        isPaused = false;
+        uiManager.ShowDialoguePanelHideHUD();
         ShowNextLine();
     }
 }
