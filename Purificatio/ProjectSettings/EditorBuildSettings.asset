@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/03. Options.unity
     guid: ab8ddb33fcc2cb948a986e5e96f74dfb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/04. Creditos.unity
     guid: 80feb7f3ef53d2f4dbcce90c816d42d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/05. LevelSelect.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1

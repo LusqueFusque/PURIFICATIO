@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton: garante que só exista um GameManager
         if (Instance == null)
         {
             Instance = this;
@@ -16,21 +16,35 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
-    void Start()
+    private void Start()
     {
-        LoadScene("Splash");
+        if (SceneManager.GetActiveScene().name == "00. Initialization")
+        {
+            LoadSplashSequence();
+        }
+    }
+
+    private void LoadSplashSequence()
+    {
+        StartCoroutine(SplashCoroutine());
+    }
+
+    private System.Collections.IEnumerator SplashCoroutine()
+    {
+        // Carrega a splash screen
+        SceneManager.LoadScene("01. Splash");
+        // Espera 3 segundos
+        yield return new WaitForSeconds(3f);
+        // Carrega o menu
+        SceneManager.LoadScene("02. Menu");
     }
 
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
-
-    void Update()
-    {
-
     }
 }

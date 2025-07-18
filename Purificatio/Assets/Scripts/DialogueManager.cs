@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class DialogueOption
@@ -19,6 +19,7 @@ public class DialogueLine
     public string character;
     public string sprite;
     public string text;
+    public string nextId;
     public List<DialogueOption> options;
 }
 
@@ -31,41 +32,46 @@ public class DialogueData
 public class DialogueManager : MonoBehaviour
 {
     public string dialogueFileName;
-    public TextMeshProUGUI CharNameText;
-    public TextMeshProUGUI dialogueText;
-    public Image CharSprite;
-    public Sprite DefaultSprite;
-
-    public Button optionButtonPrefab;
-    public Transform optionsContainer;
+    public DialogueUIManager uiManager; // Novo: link para UI Manager
 
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
     private DialogueLine currentLine;
 
-   void Start()
-{
-    LoadDialogue();
+    private bool isPaused = false;
 
-    if (dialogueDict != null && dialogueDict.TryGetValue("inicio1", out currentLine))
+    private HashSet<string> pausePoints = new HashSet<string>()
     {
-        ShowLine(currentLine);
-    }
-    else
-    {
-        Debug.LogError("dialogueDict não foi inicializado ou ID inicio1 não encontrado.");
-    }
-}
+        "tutorial9", "tutorial13", "tutorial23", "tutorial25", "tutorial31", "tutorial32"
+    };
 
+    private HashSet<string> goToMenuPoints = new HashSet<string>()
+    {
+        "pula_tutorial", "rude1", "calmo3"
+    };
+
+    void Start()
+    {
+        LoadDialogue();
+
+        if (dialogueDict != null && dialogueDict.TryGetValue("inicio1", out currentLine))
+        {
+            ShowLine(currentLine);
+        }
+        else
+        {
+            Debug.LogError("dialogueDict não inicializado ou ID inicio1 não encontrado.");
+        }
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (currentLine != null && (currentLine.options == null || currentLine.options.Count == 0))
+            if (!isPaused && currentLine != null && (currentLine.options == null || currentLine.options.Count == 0))
             {
                 ShowNextLine();
-            }            
+            }
         }
     }
 
@@ -85,46 +91,43 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Arquivo JSON não encontrado em: " + path);
+            Debug.LogError("Arquivo JSON não encontrado: " + path);
         }
     }
 
     void ShowLine(DialogueLine line)
     {
-        CharNameText.text = line.character;
-        dialogueText.text = line.text;
+        currentLine = line;
 
-        Sprite newSprite = Resources.Load<Sprite>(line.sprite);
-        CharSprite.sprite = newSprite != null ? newSprite : DefaultSprite;
+        // Atualiza UI
+        uiManager.UpdateDialogueUI(line);
 
-        ClearOptions();
+        HandleSpecialDialogue(line.id);
 
+        // Se tiver opções, cria na UI
+        uiManager.ClearOptions();
         if (line.options != null && line.options.Count > 0)
         {
             foreach (var option in line.options)
             {
-                Button btn = Instantiate(optionButtonPrefab, optionsContainer);
-                btn.GetComponentInChildren<TextMeshProUGUI>().text = option.optionText;
-
-
-                string nextId = option.nextId;
-                btn.onClick.AddListener(() => OnOptionSelected(nextId));
+                uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
             }
         }
-
     }
 
     void ShowNextLine()
     {
-        string nextId = CalcularProximoId(currentLine.id);
-        if (nextId != null && dialogueDict.TryGetValue(nextId, out var nextLine))
+        if (currentLine == null) return;
+
+        string nextId = currentLine.nextId;
+
+        if (!string.IsNullOrEmpty(nextId) && dialogueDict.TryGetValue(nextId, out var nextLine))
         {
-            currentLine = nextLine;
-            ShowLine(currentLine);
+            ShowLine(nextLine);
         }
         else
         {
-            dialogueText.text = "Fim do diálogo.";
+            uiManager.ShowEndText("Fim do diálogo.");
             currentLine = null;
         }
     }
@@ -133,8 +136,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueDict.TryGetValue(nextId, out var nextLine))
         {
-            currentLine = nextLine;
-            ShowLine(currentLine);
+            ShowLine(nextLine);
         }
         else
         {
@@ -142,34 +144,29 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void ClearOptions()
+    void HandleSpecialDialogue(string id)
     {
-        foreach (Transform child in optionsContainer)
+        if (goToMenuPoints.Contains(id))
         {
-            Destroy(child.gameObject);
+            SceneManager.LoadScene("02. Menu");
+            return;
+        }
+
+        if (pausePoints.Contains(id))
+        {
+            isPaused = true;
+            uiManager.HideDialoguePanelShowHUD();
+        }
+        else
+        {
+            isPaused = false;
+            uiManager.ShowDialoguePanelHideHUD();
         }
     }
 
-    string CalcularProximoId(string atualId)
+    public void ContinueDialogue() // Chama do HUD quando quer continuar
     {
-        for (int i = atualId.Length - 1; i >= 0; i--)
-        {
-            if (char.IsDigit(atualId[i]))
-            {
-                int j = i;
-                while (j >= 0 && char.IsDigit(atualId[i])) j--;
-
-                string prefixo = atualId.Substring(0, j + 1);
-                string numeroStr = atualId.Substring(j + 1);
-                if (int.TryParse(numeroStr, out int numero))
-                {
-                    string proximoId = prefixo + (numero + 1);
-                    return proximoId;
-                }
-                break;
-            }
-        }
-        return null;
+        isPaused = false;
+        ShowNextLine();
     }
-
 }
