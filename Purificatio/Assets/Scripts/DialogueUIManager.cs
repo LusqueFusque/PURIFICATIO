@@ -4,14 +4,13 @@ using TMPro;
 
 public class DialogueUIManager : MonoBehaviour
 {
-    public GameObject panelDialogue;    // Painel da caixa de diálogo
-    public GameObject panelHUD;         // HUD (inventário, mapa etc.)
+    public GameObject panelDialogue;
+    public GameObject panelHUD;
 
     public TextMeshProUGUI charNameText;
     public TextMeshProUGUI dialogueText;
 
-    public Image centerCharacterImage;
-    public Image sideCharacterImage;
+    public Image characterImage; // só um espaço de imagem agora
 
     public Transform optionsContainer;
     public Button optionButtonPrefab;
@@ -23,17 +22,7 @@ public class DialogueUIManager : MonoBehaviour
         charNameText.text = line.character;
         dialogueText.text = line.text;
 
-        // Decide se é centro ou lado
-        if (line.character == "Timbu") // Timbu sempre no centro
-        {
-            ShowCenterImage(line.sprite);
-            HideSideImage();
-        }
-        else
-        {
-            ShowSideImage(line.sprite);
-            HideCenterImage();
-        }
+        ShowImage(line.sprite);
     }
 
     public void CreateOptionButton(string text, UnityEngine.Events.UnityAction action)
@@ -51,44 +40,27 @@ public class DialogueUIManager : MonoBehaviour
         }
     }
 
-    public void ShowEndText(string message)
+    public void ShowEndText(string msg)
     {
-        dialogueText.text = message;
+        dialogueText.text = msg;
     }
 
-    public void HideDialoguePanelShowHUD()
+    public void HideDialogueShowHUD()
     {
         panelDialogue.SetActive(false);
         panelHUD.SetActive(true);
     }
 
-    public void ShowDialoguePanelHideHUD()
+    public void ShowDialogueHideHUD()
     {
         panelDialogue.SetActive(true);
         panelHUD.SetActive(false);
     }
 
-    void ShowCenterImage(string spriteName)
+    private void ShowImage(string spriteName)
     {
         Sprite s = Resources.Load<Sprite>(spriteName);
-        centerCharacterImage.sprite = s != null ? s : defaultSprite;
-        centerCharacterImage.gameObject.SetActive(true);
-    }
-
-    void ShowSideImage(string spriteName)
-    {
-        Sprite s = Resources.Load<Sprite>(spriteName);
-        sideCharacterImage.sprite = s != null ? s : defaultSprite;
-        sideCharacterImage.gameObject.SetActive(true);
-    }
-
-    void HideCenterImage()
-    {
-        centerCharacterImage.gameObject.SetActive(false);
-    }
-
-    void HideSideImage()
-    {
-        sideCharacterImage.gameObject.SetActive(false);
+        characterImage.sprite = s != null ? s : defaultSprite;
+        characterImage.gameObject.SetActive(true);
     }
 }

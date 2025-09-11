@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System;
 
 [System.Serializable]
 public class DialogueOption
@@ -21,6 +22,7 @@ public class DialogueLine
     public string text;
     public string nextId;
     public List<DialogueOption> options;
+    public string mission; // Novo campo para missões
 }
 
 [System.Serializable]
@@ -32,18 +34,12 @@ public class DialogueData
 public class DialogueManager : MonoBehaviour
 {
     public string dialogueFileName;
-    public DialogueUIManager uiManager; // Novo: link para UI Manager
-
+    public DialogueUIManager uiManager; // Link para a UI
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
     private DialogueLine currentLine;
 
-    private bool isPaused = false;
-
-    private HashSet<string> pausePoints = new HashSet<string>()
-    {
-        "tutorial9", "tutorial13", "tutorial23", "tutorial25", "tutorial31", "tutorial32"
-    };
+    private bool waitingMission = false;
 
     private HashSet<string> goToMenuPoints = new HashSet<string>()
     {
@@ -66,17 +62,11 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
+        if (waitingMission) return; // trava o diálogo até missão ser completada
+
         if (Input.GetKeyDown(KeyCode.Space) && currentLine != null)
         {
-            if (isPaused)
-            {
-                // Jogador quer continuar -> aí sim esconde diálogo e mostra HUD
-                isPaused = false;
-                uiManager.HideDialoguePanelShowHUD();
-                // Aqui você não chama ShowNextLine porque a ideia é pausar no ponto
-                // E o próximo vai avançar depois que ele fizer a ação (e chamar ContinueDialogue)
-            }
-            else if (currentLine.options == null || currentLine.options.Count == 0)
+            if (currentLine.options == null || currentLine.options.Count == 0)
             {
                 ShowNextLine();
             }
@@ -94,7 +84,10 @@ public class DialogueManager : MonoBehaviour
             dialogueDict = new Dictionary<string, DialogueLine>();
             foreach (var line in dialogueData.dialogue)
             {
-                dialogueDict[line.id] = line;
+                if (!dialogueDict.ContainsKey(line.id))
+                    dialogueDict[line.id] = line;
+                else
+                    Debug.LogWarning($"ID duplicado no JSON: {line.id}");
             }
         }
         else
@@ -110,9 +103,25 @@ public class DialogueManager : MonoBehaviour
         // Atualiza UI
         uiManager.UpdateDialogueUI(line);
 
-        HandleSpecialDialogue(line.id);
+        // Trata diálogos especiais de menu
+        if (goToMenuPoints.Contains(line.id))
+        {
+            SceneManager.LoadScene("02. Menu");
+            return;
+        }
 
-        // Se tiver opções, cria na UI
+        // Se tiver missão, trava o diálogo
+        if (!string.IsNullOrEmpty(line.mission))
+        {
+            waitingMission = true;
+            MissionChecker.Instance.StartMission(line.mission, OnMissionComplete);
+        }
+        else
+        {
+            waitingMission = false;
+        }
+
+        // Cria opções na UI se houver
         uiManager.ClearOptions();
         if (line.options != null && line.options.Count > 0)
         {
@@ -152,31 +161,20 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void HandleSpecialDialogue(string id)
+    void OnMissionComplete()
     {
-        if (goToMenuPoints.Contains(id))
-        {
-            SceneManager.LoadScene("02. Menu");
-            return;
-        }
+        waitingMission = false;
 
-        if (pausePoints.Contains(id))
-        {
-            isPaused = true;
-            Debug.Log("Diálogo pausado no ponto: " + id);
-            // NÃO chama uiManager.HideDialoguePanelShowHUD() aqui ainda!
-            // Deixa aparecer e espera o jogador apertar espaço
-        }
+        if (!string.IsNullOrEmpty(currentLine.nextId))
+            ShowNextLine();
         else
-        {
-            isPaused = false;
-            uiManager.ShowDialoguePanelHideHUD();
-        }
+            uiManager.ShowEndText("Fim do diálogo.");
     }
 
+    // Chamado por UI ou por triggers externos para continuar diálogos travados
     public void ContinueDialogue()
     {
-        uiManager.ShowDialoguePanelHideHUD();
-        ShowNextLine();
+        if (!waitingMission)
+            ShowNextLine();
     }
 }
