@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nambu_sprite_0: -4258561937375156299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

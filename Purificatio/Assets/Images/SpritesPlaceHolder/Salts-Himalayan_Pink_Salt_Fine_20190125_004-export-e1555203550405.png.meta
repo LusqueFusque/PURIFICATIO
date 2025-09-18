@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Salts-Himalayan_Pink_Salt_Fine_20190125_004-export-e1555203550405_0: -917358097663392999
+      Salts-Himalayan_Pink_Salt_Fine_20190125_004-export-e1555203550405_1: 3700538996391805577
+      Salts-Himalayan_Pink_Salt_Fine_20190125_004-export-e1555203550405_2: -4305114028958271999
+      Salts-Himalayan_Pink_Salt_Fine_20190125_004-export-e1555203550405_3: 2975821384316190002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

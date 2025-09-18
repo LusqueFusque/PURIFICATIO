@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Timbu_sprite_0: -7823381928077443594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
