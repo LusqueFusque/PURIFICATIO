@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using UnityEngine.SceneManagement;
-using System;
 
 [System.Serializable]
 public class DialogueOption
@@ -21,8 +20,8 @@ public class DialogueLine
     public string sprite;
     public string text;
     public string nextId;
+    public string mission;                    // <<=== novo campo
     public List<DialogueOption> options;
-    public string mission; // Novo campo para missões
 }
 
 [System.Serializable]
@@ -34,42 +33,32 @@ public class DialogueData
 public class DialogueManager : MonoBehaviour
 {
     public string dialogueFileName;
-    public DialogueUIManager uiManager; // Link para a UI
+    public DialogueUIManager uiManager;
+
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
     private DialogueLine currentLine;
 
-    private bool waitingMission = false;
-
-    private HashSet<string> goToMenuPoints = new HashSet<string>()
-    {
-        "pula_tutorial", "rude1", "calmo3"
-    };
+    private bool isPausedForMission = false;
 
     void Start()
     {
         LoadDialogue();
-
         if (dialogueDict != null && dialogueDict.TryGetValue("inicio1", out currentLine))
-        {
             ShowLine(currentLine);
-        }
         else
-        {
-            Debug.LogError("dialogueDict não inicializado ou ID inicio1 não encontrado.");
-        }
+            Debug.LogError("ID inicio1 não encontrado.");
     }
 
     void Update()
     {
-        if (waitingMission) return; // trava o diálogo até missão ser completada
+        // não avança se estiver pausado aguardando missão
+        if (isPausedForMission) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && currentLine != null)
         {
             if (currentLine.options == null || currentLine.options.Count == 0)
-            {
                 ShowNextLine();
-            }
         }
     }
 
@@ -80,15 +69,9 @@ public class DialogueManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             dialogueData = JsonUtility.FromJson<DialogueData>(json);
-
             dialogueDict = new Dictionary<string, DialogueLine>();
             foreach (var line in dialogueData.dialogue)
-            {
-                if (!dialogueDict.ContainsKey(line.id))
-                    dialogueDict[line.id] = line;
-                else
-                    Debug.LogWarning($"ID duplicado no JSON: {line.id}");
-            }
+                dialogueDict[line.id] = line;
         }
         else
         {
@@ -99,82 +82,58 @@ public class DialogueManager : MonoBehaviour
     void ShowLine(DialogueLine line)
     {
         currentLine = line;
-
-        // Atualiza UI
         uiManager.UpdateDialogueUI(line);
-
-        // Trata diálogos especiais de menu
-        if (goToMenuPoints.Contains(line.id))
-        {
-            SceneManager.LoadScene("02. Menu");
-            return;
-        }
-
-        // Se tiver missão, trava o diálogo
-        if (!string.IsNullOrEmpty(line.mission))
-        {
-            waitingMission = true;
-            MissionChecker.Instance.StartMission(line.mission, OnMissionComplete);
-        }
-        else
-        {
-            waitingMission = false;
-        }
-
-        // Cria opções na UI se houver
         uiManager.ClearOptions();
+
         if (line.options != null && line.options.Count > 0)
         {
-            foreach (var option in line.options)
-            {
-                uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
-            }
+            foreach (var opt in line.options)
+                uiManager.CreateOptionButton(opt.optionText, () => OnOptionSelected(opt.nextId));
+        }
+
+        // Se essa fala iniciar uma missão
+        if (!string.IsNullOrEmpty(line.mission))
+        {
+            StartMissionPause(line.mission);
         }
     }
 
     void ShowNextLine()
     {
         if (currentLine == null) return;
-
-        string nextId = currentLine.nextId;
-
-        if (!string.IsNullOrEmpty(nextId) && dialogueDict.TryGetValue(nextId, out var nextLine))
-        {
-            ShowLine(nextLine);
-        }
-        else
+        if (string.IsNullOrEmpty(currentLine.nextId))
         {
             uiManager.ShowEndText("Fim do diálogo.");
             currentLine = null;
+            return;
         }
+
+        if (dialogueDict.TryGetValue(currentLine.nextId, out var next))
+            ShowLine(next);
+        else
+            Debug.LogWarning("Próximo ID não encontrado: " + currentLine.nextId);
     }
 
     void OnOptionSelected(string nextId)
     {
-        if (dialogueDict.TryGetValue(nextId, out var nextLine))
-        {
-            ShowLine(nextLine);
-        }
+        if (dialogueDict.TryGetValue(nextId, out var next))
+            ShowLine(next);
         else
-        {
             Debug.LogWarning("Próximo ID não encontrado: " + nextId);
-        }
+    }
+
+    // --- MISSÃO ---
+    void StartMissionPause(string missionName)
+    {
+        isPausedForMission = true;
+        uiManager.HideDialogueShowHUD(); // fecha o HUD de diálogo
+        MissionChecker.Instance.StartMission(missionName, OnMissionComplete);
     }
 
     void OnMissionComplete()
     {
-        waitingMission = false;
-
-        if (!string.IsNullOrEmpty(currentLine.nextId))
-            ShowNextLine();
-        else
-            uiManager.ShowEndText("Fim do diálogo.");
-    }
-
-    // Chamado por UI ou por triggers externos para continuar diálogos travados
-    public void ContinueDialogue()
-    {
-        if (!waitingMission)
-            ShowNextLine();
+        isPausedForMission = false;
+        uiManager.ShowDialogueHideHUD(); // reabre HUD de diálogo
+        ShowNextLine();                  // segue para o próximo diálogo
     }
 }

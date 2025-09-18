@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dba707672568f44e8537982d9e9c291, type: 3}
-  m_Name: CamItem
+  m_Name: Camera
   m_EditorClassIdentifier: 
   itemName: Camera
   icon: {fileID: 7472871400083780910, guid: 1d07b4b4bed073f418580d4c74967ec3, type: 3}
-  maxUses: 1
-  isConsumable: 0
-  prefab: {fileID: 869517347774702109, guid: 466a6c297ed8c70439ff54158da9ea99, type: 3}
+  itemLogicScript: {fileID: 0}
