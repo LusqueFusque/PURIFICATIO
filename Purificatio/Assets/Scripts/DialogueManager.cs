@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
-[Serializable]
+[System.Serializable]
 public class DialogueOption
 {
     public string optionText;
     public string nextId;
 }
 
-[Serializable]
+[System.Serializable]
 public class DialogueLine
 {
     public string id;
@@ -21,11 +19,11 @@ public class DialogueLine
     public string sprite;
     public string text;
     public string nextId;
+    public string mission; // Opcional, se houver missão associada
     public List<DialogueOption> options;
-    public string mission; // campo novo no JSON
 }
 
-[Serializable]
+[System.Serializable]
 public class DialogueData
 {
     public List<DialogueLine> dialogue;
@@ -39,6 +37,8 @@ public class DialogueManager : MonoBehaviour
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
     private DialogueLine currentLine;
+
+    public DialogueLine CurrentLine => currentLine; // Exposto para PhoneItem
 
     private bool isPaused = false;
 
@@ -59,12 +59,10 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        // não avança se estiver pausado aguardando missão
         if (isPaused) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && currentLine != null)
         {
-            // se não tem opções, avança; se tem, deixa os botões resolverem
             if (currentLine.options == null || currentLine.options.Count == 0)
                 ShowNextLine();
         }
@@ -100,12 +98,15 @@ public class DialogueManager : MonoBehaviour
         // Atualiza UI
         uiManager.UpdateDialogueUI(line);
 
-        // Remove opções antigas e cria as novas
+        // Remove opções antigas e cria novas
         uiManager.ClearOptions();
         if (line.options != null && line.options.Count > 0)
         {
             foreach (var opt in line.options)
-                uiManager.CreateOptionButton(opt.optionText, () => OnOptionSelected(opt.nextId));
+            {
+                var localOpt = opt;
+                uiManager.CreateOptionButton(localOpt.optionText, () => OnOptionSelected(localOpt.nextId));
+            }
         }
 
         // atalhos de menu
@@ -115,14 +116,13 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Se houver missão associada, pausa e escuta a conclusão
+        // Se houver missão, pausa e escuta a conclusão
         if (!string.IsNullOrEmpty(line.mission))
         {
             PauseForMission(line.mission);
         }
         else
         {
-            // linha normal: mostra diálogo e permite avançar com espaço
             isPaused = false;
             uiManager.ShowDialogueHideHUD();
         }
@@ -153,16 +153,12 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Próximo ID não encontrado: " + nextId);
     }
 
-    // -------- MISSÃO / PAUSA ----------
     void PauseForMission(string missionId)
     {
-        // Se MissionManager (o novo com eventos) existe — usa ele (melhor opção)
         if (MissionManager.Instance != null)
         {
-            // Se já foi completada antes, não pausar
             if (MissionManager.Instance.IsCompleted(missionId))
             {
-                Debug.Log($"[DialogueManager] Missão '{missionId}' já completada anteriormente -> não pausar.");
                 isPaused = false;
                 uiManager.ShowDialogueHideHUD();
                 return;
@@ -171,7 +167,6 @@ public class DialogueManager : MonoBehaviour
             isPaused = true;
             uiManager.HideDialogueShowHUD();
 
-            // Handler local que se remove após disparar
             Action<string> onComplete = null;
             onComplete = (completedId) =>
             {
@@ -184,33 +179,21 @@ public class DialogueManager : MonoBehaviour
 
             MissionManager.Instance.OnMissionCompleted += onComplete;
             MissionManager.Instance.StartMission(missionId);
-
-            Debug.Log($"[DialogueManager] Missão iniciada (MissionManager): {missionId}");
             return;
         }
 
-        // Fallback: se existir o MissionChecker antigo (callback style)
         if (MissionChecker.Instance != null)
         {
             isPaused = true;
             uiManager.HideDialogueShowHUD();
-
-            MissionChecker.Instance.StartMission(missionId, () =>
-            {
-                ResumeDialogue();
-            });
-
-            Debug.Log($"[DialogueManager] Missão iniciada (MissionChecker): {missionId}");
+            MissionChecker.Instance.StartMission(missionId, () => { ResumeDialogue(); });
             return;
         }
 
-        // Se não tem manager nenhum, continua normalmente (debug)
-        Debug.LogWarning("[DialogueManager] Nenhum MissionManager ou MissionChecker encontrado; não foi possível pausar por missão.");
         isPaused = false;
         uiManager.ShowDialogueHideHUD();
     }
 
-    // Chamado quando a missão é completada (por evento ou callback)
     void ResumeDialogue()
     {
         isPaused = false;
@@ -218,16 +201,36 @@ public class DialogueManager : MonoBehaviour
         ShowNextLine();
     }
 
-    // Mantive ContinueDialogue pública para compatibilidade com UI buttons
     public void ContinueDialogue()
     {
         if (isPaused)
-        {
-            Debug.Log("[DialogueManager] ContinueDialogue chamado, mas estamos pausados aguardando missão.");
             return;
-        }
 
         uiManager.ShowDialogueHideHUD();
         ShowNextLine();
+    }
+
+    public void GoToNode(string nodeId)
+    {
+        if (dialogueDict.TryGetValue(nodeId, out var line))
+            ShowLine(line);
+        else
+            Debug.LogWarning("ID de diálogo não encontrado: " + nodeId);
+    }
+
+    public static DialogueManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    public void ShowDialogueById(string id)
+    {
+        if (dialogueDict.TryGetValue(id, out var line))
+            ShowLine(line);
+        else
+            Debug.LogWarning("ID de diálogo não encontrado: " + id);
     }
 }

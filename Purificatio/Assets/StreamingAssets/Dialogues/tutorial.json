@@ -231,7 +231,14 @@
       "character": "Timbu",
       "sprite": "Timbu_sprite",
       "text": "Além da câmera, eu vou te dar esse celular pra caso tu precise de ajuda durante os trabalhos. Ele é exclusivo de funcionários, então eu vou saber que é você que tá ligando.",
-      "nextId": "tutorial25"
+      "nextId": "tutorial25a"
+    },
+    {
+    "id": "tutorial25a",
+    "character": "Timbu",
+    "sprite": "Timbu_sprite",
+    "text": "As vezes fantasmas podem interferir nas ligações se eles estiverem no mesmo ambiente que você, o celular pode ser útil pra encontrá-los.",
+    "nextId": "tutorial25"
     },
     {
       "id": "tutorial25",
@@ -239,24 +246,55 @@
       "sprite": "Timbu_sprite",
       "text": "De resto… Acho estúpido ter que explicar como funciona um celular… Você sabe, eu sei, todos sabemos. Você aperta aí pra ligar pra mim e eu atendo.",
       "mission": "usePhone",
-      "nextId": "tutorial26"
+      "nextId": "tutorial25_phone"
     },
     {
-      "id": "tutorial26",
+      "id": "tutorial25_phone",
+      "type": "phoneOptions",
+      "character": "Timbu",
+      "sprite": "Timbu_sprite",
+      "text": "Piririm piririm piririm!",
+      "options": [
+        {
+          "label": "Olá normal",
+          "nextId": "tutorial26a"
+        },
+        {
+          "label": "Olá vexatório",
+          "nextId": "tutorial26b"
+        }
+      ]
+    },
+    {
+      "id": "tutorial26a",
       "character": "Timbu",
       "sprite": "Timbu_sprite",
       "text": "Alô",
-      "nextId": "tutorial27"
+      "nextId": "tutorial27a"
     },
     {
-      "id": "tutorial27",
+      "id": "tutorial27a",
+      "character": "Nambú",
+      "sprite": "Nambu_sprite",
+      "text": "Opa",
+      "nextId": "tutorial29"
+    },
+    {
+      "id": "tutorial26b",
+      "character": "Timbu",
+      "sprite": "Timbu_sprite",
+      "text": "Alô",
+      "nextId": "tutorial27b"
+    },
+    {
+      "id": "tutorial27b",
       "character": "Nambú",
       "sprite": "Nambu_sprite",
       "text": "Moshi moshi! :)",
-      "nextId": "tutorial28"
+      "nextId": "tutorial28b"
     },
     {
-      "id": "tutorial28",
+      "id": "tutorial28b",
       "character": "Timbu",
       "sprite": "Timbu_sprite",
       "text": "...",
@@ -266,14 +304,14 @@
       "id": "tutorial29",
       "character": "Timbu",
       "sprite": "Timbu_sprite",
-      "text": "Tá aí. Se tiver alguma dúvida, ou ficar preso em algum momento do exorcismo, você pode ligar pra mim.",
+      "text": "É isso aí... E se tiver alguma dúvida, ou ficar preso em algum momento do exorcismo, você também pode ligar pra mim.",
       "nextId": "tutorial30"
     },
     {
       "id": "tutorial30",
       "character": "Timbu",
       "sprite": "Timbu_sprite",
-      "text": "Tem outros itens que você pode usar também. Tipo esse sal grosso aqui. Ele serve pra eliminar energias negativas.",
+      "text": "Tem mais uns itens que você pode usar também. Tipo esse sal grosso aqui. Ele serve pra eliminar energias negativas.",
       "nextId": "tutorial31"
     },
     {
