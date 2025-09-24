@@ -4,60 +4,56 @@ using UnityEngine.UI;
 
 public class PhoneUI : MonoBehaviour
 {
-    public GameObject phonePanel;           // Panel do telefone
-    public GameObject optionButtonPrefab;   // Prefab do botão de opção
-    public Transform optionContainer;       // Onde os botões serão instanciados
+    [Header("UI Elements")]
+    public GameObject phonePanel;           // Container do celular
+    public Transform optionsParent;         // Parent dos botões
+    public GameObject optionButtonPrefab;   // Prefab do botão
 
-    private List<Button> currentButtons = new List<Button>();
+    private List<GameObject> currentButtons = new List<GameObject>();
 
+    // Mostra as opções do JSON para o diálogo atual
     public void ShowPhoneOptions(List<DialogueOption> options)
     {
-        phonePanel.SetActive(true);
+        if (options == null || options.Count == 0)
+        {
+            Debug.LogWarning("Nenhuma opção para mostrar no celular.");
+            return;
+        }
+
         ClearOptions();
+        phonePanel.SetActive(true);
 
         foreach (var opt in options)
         {
-            GameObject btnObj = Instantiate(optionButtonPrefab, optionContainer);
-            Button btn = btnObj.GetComponent<Button>();
-            Text btnText = btnObj.GetComponentInChildren<Text>();
-            btnText.text = opt.optionText;
-
+            GameObject btnGO = Instantiate(optionButtonPrefab, optionsParent);
+            Button btn = btnGO.GetComponent<Button>();
+            btn.GetComponentInChildren<Text>().text = opt.optionText;
             btn.onClick.AddListener(() =>
             {
-                OnOptionSelected(opt.nextId);
+                DialogueManager.Instance.GoToNode(opt.nextId);
+                HidePhoneOptions();
             });
-
-            currentButtons.Add(btn);
+            currentButtons.Add(btnGO);
         }
 
-        // Botão de fechar
-        GameObject closeBtnObj = Instantiate(optionButtonPrefab, optionContainer);
-        Button closeBtn = closeBtnObj.GetComponent<Button>();
-        closeBtn.GetComponentInChildren<Text>().text = "Fechar";
-        closeBtn.onClick.AddListener(ClosePhone);
+        // Sempre adiciona botão de fechar celular
+        GameObject closeBtn = Instantiate(optionButtonPrefab, optionsParent);
+        Button closeButton = closeBtn.GetComponent<Button>();
+        closeButton.GetComponentInChildren<Text>().text = "Fechar";
+        closeButton.onClick.AddListener(HidePhoneOptions);
         currentButtons.Add(closeBtn);
     }
 
-    private void OnOptionSelected(string nextId)
+    public void HidePhoneOptions()
     {
-        ClosePhone();
-
-        // Chama o DialogueManager para continuar o diálogo
-        DialogueManager.Instance.ShowDialogueById(nextId);
+        phonePanel.SetActive(false);
+        ClearOptions();
     }
 
     private void ClearOptions()
     {
         foreach (var btn in currentButtons)
-        {
-            Destroy(btn.gameObject);
-        }
+            Destroy(btn);
         currentButtons.Clear();
-    }
-
-    private void ClosePhone()
-    {
-        phonePanel.SetActive(false);
-        ClearOptions();
     }
 }

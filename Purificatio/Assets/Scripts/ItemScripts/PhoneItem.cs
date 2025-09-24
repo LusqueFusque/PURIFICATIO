@@ -4,20 +4,21 @@ public class PhoneItem : MonoBehaviour
 {
     public PhoneUI phoneUI;
 
+    // Chamado ao clicar no botão do item celular
     public void OnPhoneButtonClicked()
     {
         // Marca a missão como completa
-        MissionManager.Instance.CompleteMission("usePhone");
+        if (MissionManager.Instance != null)
+            MissionManager.Instance.CompleteMission("usePhone");
 
-        // Pega as opções da linha de diálogo atual do DialogueManager
-        var currentLine = DialogueManager.Instance.CurrentLine;
-        if (currentLine != null && currentLine.options != null && currentLine.options.Count > 0)
+        // Mostra as opções do JSON associadas ao diálogo atual
+        if (DialogueManager.Instance != null && DialogueManager.Instance.CurrentLine != null)
         {
-            phoneUI.ShowPhoneOptions(currentLine.options);
+            phoneUI.ShowPhoneOptions(DialogueManager.Instance.CurrentLine.options);
         }
         else
         {
-            Debug.LogWarning("Não há opções para mostrar no telefone.");
+            Debug.LogWarning("[PhoneItem] Não há diálogo atual para mostrar opções.");
         }
     }
 }
