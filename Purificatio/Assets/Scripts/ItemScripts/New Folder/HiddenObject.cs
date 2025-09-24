@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class HiddenObject : MonoBehaviour
 {
+    [Header("Sprites")]
+    public Sprite normalSprite;
+    public Sprite cursedSprite;
+
     private SpriteRenderer sr;
 
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        sr.enabled = false; // Começa invisível
+        sr.sprite = normalSprite;   // comeÃ§a normal
     }
 
-    public void Reveal()
+    public void ShowCursed()
     {
-        sr.enabled = true; // Torna visível quando dentro da câmera
+        sr.sprite = cursedSprite;
+    }
+
+    public void ShowNormal()
+    {
+        sr.sprite = normalSprite;
     }
 }

@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
     public Button ButtonFaseTutorial;
     public Button ButtonVoltar_Fases;
 
-    //!!!!!Ainda não usado:
+    //!!!!!Ainda nï¿½o usado:
     //public Button ButtonFase1;
     //public Button ButtonFase2;
     //public Button ButtonFase3;
@@ -28,22 +28,20 @@ public class MenuManager : MonoBehaviour
     //Botoes - Panel_MenuOptions:
     public Button ButtonVoltar_Options;
 
-    //!!!!!Ainda não usado:
+    //!!!!!Ainda nï¿½o usado:
     //public Button ButtonSom;
     //Slider de audio??;
-    //public Button Idioma (não faz nada, é só meme);
-
 
     void Start()
     {
         // - MENU PRINCIPAL -
         ButtonLevelSelect.onClick.AddListener(MostraLevelSelect);
-        ButtonOptions.onClick.AddListener(MostraMenuOpções);
-       // ButtonCredits.onClick.AddListener(MostraCréditos); - TO DO
+        ButtonOptions.onClick.AddListener(MostraMenuOp);
+       // ButtonCredits.onClick.AddListener(MostraCrÃ©ditos); - TO DO
         ButtonExit.onClick.AddListener(OnQuitClick);
 
 
-        // - SELEÇÃO DE FASES -
+        // - SELEÃ‡AO DE FASES -
         ButtonFaseTutorial.onClick.AddListener(IrTutorial);
         ButtonVoltar_Fases.onClick.AddListener(MostraMenuPrincipal);
         //public Button ButtonFase1;
@@ -52,11 +50,11 @@ public class MenuManager : MonoBehaviour
         //public Button ButtonFase4;
 
 
-        // - MENU DE OPÇÕES -
+        // - MENU DE OPï¿½ï¿½ES -
         ButtonVoltar_Options.onClick.AddListener(MostraMenuPrincipal);
         //public Button ButtonSom;
         //Slider de audio??;
-        //public Button Idioma (não faz nada, é só meme);
+        //public Button Idioma (nï¿½o faz nada, ï¿½ sï¿½ meme);
 
     }
 
@@ -65,7 +63,7 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    //Aqui pra a administração dos PANELS
+    //Aqui pra a administraï¿½ï¿½o dos PANELS
 
     public void MostraMenuPrincipal()
     {
@@ -79,7 +77,7 @@ public class MenuManager : MonoBehaviour
         Panel_LevelSelect.SetActive(true);
         Panel_MenuOptions.SetActive(false);
     }
-    public void MostraMenuOpções()
+    public void MostraMenuOp()
     {
         Panel_MenuPrincipal.SetActive(false);
         Panel_LevelSelect.SetActive(false);
