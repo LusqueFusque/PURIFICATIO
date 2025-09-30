@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HiddenObject : MonoBehaviour
 {
@@ -6,11 +7,11 @@ public class HiddenObject : MonoBehaviour
     public Sprite normalSprite;
     public Sprite cursedSprite;
 
-    private SpriteRenderer sr;
+    private Image sr;
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponent<Image>();
         sr.sprite = normalSprite;   // começa normal
     }
 
