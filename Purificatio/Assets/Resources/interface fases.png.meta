@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: bfb6c4a80c3923846bdddfd763a26f71
+guid: 1486b7f4785ed4544ace29b49be1d2cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8189890935351774962
-    second: Nambu_neutro_0
+      213: -5564627221732271004
+    second: interface fases_0
+  - first:
+      213: -1531005071735477220
+    second: interface fases_1
+  - first:
+      213: -967484431170746435
+    second: interface fases_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nambu_neutro_0
+      name: interface fases_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 614
-        height: 1059
+        y: 1006
+        width: 75
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e017a211699a75e80800000000000000
-      internalID: -8189890935351774962
+      spriteID: 46cdd25460976c2b0800000000000000
+      internalID: -5564627221732271004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interface fases_1
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 0
+        width: 205
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1ca2e5bff6c0cae0800000000000000
+      internalID: -1531005071735477220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interface fases_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 380
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7c85a290ec292f0800000000000000
+      internalID: -967484431170746435
       vertices: []
       indices: 
       edges: []
@@ -134,8 +184,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Nambu_neutro_0: -8189890935351774962
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
