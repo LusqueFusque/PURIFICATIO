@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: af96c68d16286f04ca681e01fcc777c7
+guid: f62562d508d5e7046bdac75b9b72e668
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1264913809697064311
-    second: Nambu_dorme_0
+      213: -5773833241380138179
+    second: Timbu_hm_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nambu_dorme_0
+      name: Timbu_hm_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 614
-        height: 1059
+        width: 627
+        height: 1030
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98a3585879f127ee0800000000000000
-      internalID: -1264913809697064311
+      spriteID: d33d13f02493fdfa0800000000000000
+      internalID: -5773833241380138179
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Timbu_hm_0: -5773833241380138179
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

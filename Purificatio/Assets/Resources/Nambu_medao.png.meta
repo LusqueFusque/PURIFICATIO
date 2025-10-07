@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3146723bf148d5545be1f5b69ecd05b3
+guid: 9856ef37f5a068249b8a300ba8d32005
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7281329233496572048
-    second: Timbu_palma_0
+      213: -4869708689688009697
+    second: Nambu_medao_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Timbu_palma_0
+      name: Nambu_medao_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 627
-        height: 1030
+        width: 614
+        height: 1059
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 07ff4c8e3a583fa90800000000000000
-      internalID: -7281329233496572048
+      spriteID: f14638f5fb15b6cb0800000000000000
+      internalID: -4869708689688009697
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nambu_medao_0: -4869708689688009697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,80 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class CamController : MonoBehaviour
+public class PhotoCameraController : MonoBehaviour
 {
-    public Camera mainCamera;
-    public float followSpeed = 10f;
-    public Button cameraButton;
-    public GameObject camObject; // objeto que tem o sprite mask, etc.
+    [Header("Referências")]
+    public GameObject cameraMaskObject; // O objeto que contém a câmera + Sprite Mask
 
-    private bool isFollowing = false;
-
-    void Start()
-    {
-        if (mainCamera == null)
-        {
-            mainCamera = Camera.main;
-        }
-
-        if (cameraButton != null)
-        {
-            cameraButton.onClick.AddListener(EnterCameraMode);
-        }
-
-        if (camObject != null)
-        {
-            camObject.SetActive(false); // começa desativado
-        }
-    }
+    private bool isActive = false;
 
     void Update()
     {
-        if (isFollowing)
-        {
-            FollowMouse();
+        if (!isActive)
+            return;
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                ExitCameraMode();
-            }
+        // Desativa a câmera com botão direito
+        if (Input.GetMouseButtonDown(1))
+        {
+            DeactivateCamera();
         }
     }
 
-    void FollowMouse()
+    // Chamado pelo botão de inventário para ativar a câmera
+    public void ActivateCamera()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = Mathf.Abs(mainCamera.transform.position.z);
-
-        Vector3 targetPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-        targetPosition.z = transform.position.z;
-
-        transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        isActive = true;
+        cameraMaskObject.SetActive(true);
     }
 
-    public void EnterCameraMode()
+    private void DeactivateCamera()
     {
-        isFollowing = true;
-
-        if (camObject != null)
-        {
-            camObject.SetActive(true);
-        }
-
-        Debug.Log("Modo câmera ativado");
-    }
-
-    public void ExitCameraMode()
-    {
-        isFollowing = false;
-
-        if (camObject != null)
-        {
-            camObject.SetActive(false);
-        }
-
-        Debug.Log("Modo câmera desativado");
+        isActive = false;
+        cameraMaskObject.SetActive(false);
     }
 }

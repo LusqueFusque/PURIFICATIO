@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a50c4be96ba12d94094badc833dce180
+guid: 5fc1392caa4813847b4c4eec29b0c6e4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8189890935351774962
-    second: Nambu_neutro_0
+      213: -3640708838912008242
+    second: oie_DfrhTVb8LeIw_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nambu_neutro_0
+      name: oie_DfrhTVb8LeIw_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 614
-        height: 1059
+        x: 7
+        y: 5
+        width: 654
+        height: 528
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e017a211699a75e80800000000000000
-      internalID: -8189890935351774962
+      spriteID: ecf560ea99a997dc0800000000000000
+      internalID: -3640708838912008242
       vertices: []
       indices: 
       edges: []

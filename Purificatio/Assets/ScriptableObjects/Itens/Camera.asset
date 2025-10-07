@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Camera
   icon: {fileID: 7472871400083780910, guid: 1d07b4b4bed073f418580d4c74967ec3, type: 3}
-  itemLogicScript: {fileID: 0}
+  itemLogicScript: {fileID: 11500000, guid: 6d6d1abd602210741873631f091d6852, type: 3}
