@@ -3,7 +3,7 @@ using UnityEngine;
 public class PhotoCameraController : MonoBehaviour
 {
     [Header("Referências")]
-    public GameObject cameraMaskObject; // O objeto que contém a câmera + Sprite Mask
+    public GameObject camerafantarma; // O objeto que contém a câmera + Sprite Mask
 
     private bool isActive = false;
 
@@ -23,12 +23,12 @@ public class PhotoCameraController : MonoBehaviour
     public void ActivateCamera()
     {
         isActive = true;
-        cameraMaskObject.SetActive(true);
+        camerafantarma.SetActive(true);
     }
 
     private void DeactivateCamera()
     {
         isActive = false;
-        cameraMaskObject.SetActive(false);
+        camerafantarma.SetActive(false);
     }
 }
