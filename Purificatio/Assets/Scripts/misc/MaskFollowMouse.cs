@@ -2,33 +2,26 @@ using UnityEngine;
 
 public class MaskFollowMouse : MonoBehaviour
 {
-    public Camera hiddenItemsCamera;
-
+    public Camera hiddenItemsCamera; // A câmera que renderiza os itens ocultos
     private Transform maskTransform;
 
-    void Awake()
+    void Start()
     {
-        maskTransform = transform;
         if (hiddenItemsCamera == null)
-        {
-            Debug.LogError("O campo 'hiddenItemsCamera' n�o est� definido! Arraste sua c�mera para o Inspector.");
-        }
+            hiddenItemsCamera = Camera.main;
+
+        maskTransform = transform;
     }
 
     void Update()
     {
-        if (hiddenItemsCamera == null) return;
+        // Pega a posição do mouse no mundo 2D (sem depender de Z)
+        Vector3 mouseWorldPos = hiddenItemsCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 mousePosScreen = Input.mousePosition;
-        
-        float zDistance = Mathf.Abs(hiddenItemsCamera.transform.position.z - maskTransform.position.z);
-       
-        mousePosScreen.z = zDistance;
-       
-        Vector3 worldPosition = hiddenItemsCamera.ScreenToWorldPoint(mousePosScreen);
-      
-        worldPosition.z = maskTransform.position.z;
-       
-        maskTransform.position = worldPosition;
+        // Força Z = 0 para 2D (ou o mesmo Z da máscara)
+        mouseWorldPos.z = maskTransform.position.z;
+
+        // Centraliza a máscara no ponteiro
+        maskTransform.position = mouseWorldPos;
     }
 }

@@ -1030,7 +1030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 769078967}
   - component: {fileID: 769078966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dybbuk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,8 +1101,8 @@ Transform:
   m_GameObject: {fileID: 769078965}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -94.200005, y: 130.1, z: 0}
-  m_LocalScale: {x: 6.6091595, y: 6.6091595, z: 6.6091595}
+  m_LocalPosition: {x: -19.79, y: 102.270004, z: 0}
+  m_LocalScale: {x: 1.37, y: 1.37, z: 1.37}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1217,7 +1217,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 257
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 02474cf8e12ec8841835a694bdc2f72f, type: 2}
   m_TargetDisplay: 0
@@ -1238,7 +1238,7 @@ Transform:
   m_GameObject: {fileID: 779517811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: -20, y: 102, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3424,7 +3424,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.122641504, g: 0.059585262, b: 0.059585262, a: 0.92941177}
+  m_Color: {r: 0.122641504, g: 0.059585262, b: 0.059585262, a: 0.74509805}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3443,7 +3443,7 @@ Transform:
   m_GameObject: {fileID: 1940157688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -20.2, y: 102.4, z: 0}
   m_LocalScale: {x: 14, y: 8.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4302,5 +4302,5 @@ SceneRoots:
   - {fileID: 1703302337}
   - {fileID: 174117021}
   - {fileID: 779517815}
-  - {fileID: 769078967}
   - {fileID: 1940157691}
+  - {fileID: 769078967}
