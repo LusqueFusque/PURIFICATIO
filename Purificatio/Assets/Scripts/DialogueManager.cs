@@ -188,7 +188,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void OnOptionSelected(string nextId)
+    public void OnOptionSelected(string nextId)
     {
         if (dialogueDict.TryGetValue(nextId, out var nextLine))
             ShowLine(nextLine);

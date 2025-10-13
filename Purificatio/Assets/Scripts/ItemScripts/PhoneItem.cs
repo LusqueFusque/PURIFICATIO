@@ -2,23 +2,37 @@ using UnityEngine;
 
 public class PhoneItem : MonoBehaviour
 {
-    public PhoneUI phoneUI;
-
     // Chamado ao clicar no botão do item celular
     public void OnPhoneButtonClicked()
     {
-        // Marca a missão como completa
-        if (MissionManager.Instance != null)
-            MissionManager.Instance.CompleteMission("usePhone");
+        var dialogueManager = DialogueManager.Instance;
+        var missionManager = MissionManager.Instance;
 
-        // Mostra as opções do JSON associadas ao diálogo atual
-        if (DialogueManager.Instance != null && DialogueManager.Instance.CurrentLine != null)
+        if (missionManager != null)
+            missionManager.CompleteMission("usePhone");
+
+        if (dialogueManager == null || dialogueManager.CurrentLine == null)
         {
-            phoneUI.ShowPhoneOptions(DialogueManager.Instance.CurrentLine.options);
+            Debug.LogWarning("[PhoneItem] Nenhum diálogo ativo para o telefone.");
+            return;
         }
-        else
+
+        var currentLine = dialogueManager.CurrentLine;
+
+        if (currentLine.options == null || currentLine.options.Count == 0)
         {
-            Debug.LogWarning("[PhoneItem] Não há diálogo atual para mostrar opções.");
+            Debug.LogWarning("[PhoneItem] O diálogo atual não possui opções de telefone.");
+            return;
+        }
+
+        // Mostra as opções usando o DialogueUIManager
+        dialogueManager.uiManager.ClearOptions(); // Limpa opções antigas
+        foreach (var option in currentLine.options)
+        {
+            dialogueManager.uiManager.CreateOptionButton(option.optionText, () =>
+            {
+                dialogueManager.OnOptionSelected(option.nextId);
+            });
         }
     }
 }

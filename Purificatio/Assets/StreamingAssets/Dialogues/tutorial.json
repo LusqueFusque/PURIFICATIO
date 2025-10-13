@@ -256,11 +256,11 @@
       "text": "Piririm piririm piririm!",
       "options": [
         {
-          "label": "Olá normal",
+          "optionText": "Olá normal",
           "nextId": "tutorial26a"
         },
         {
-          "label": "Olá vexatório",
+          "optionText": "Olá vexatório",
           "nextId": "tutorial26b"
         }
       ]
@@ -317,7 +317,7 @@
     {
       "id": "tutorial31",
       "character": "Timbu",
-      "sprite": "Timbu_sprite",
+      "sprite": "Timbu_aiai",
       "text": "Nem sempre é eficaz usar sal grosso diretamente contra fantasmas, então a gente vai limitar o uso dele pra purificar objetos amaldiçoados ou possuídos.",
       "nextId": "tutorial32"
     },

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1d07b4b4bed073f418580d4c74967ec3
+guid: e8c67876363f9be499f5724fa0d0fefa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7472871400083780910
-    second: camerinha_0
+      213: 1349180431371488363
+    second: Camera_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: camerinha_0
+      name: Camera_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 168
-        height: 141
+        x: 30
+        y: 48
+        width: 146
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e257b2602f8f4b760800000000000000
-      internalID: 7472871400083780910
+      spriteID: b6c4ecd347049b210800000000000000
+      internalID: 1349180431371488363
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      camerinha_0: 7472871400083780910
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

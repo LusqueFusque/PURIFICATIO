@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a9053719b320e044d8247041607d8fa0
+guid: 0e61189468db01b41ac9a493302b1a33
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -357019107704300755
-    second: depositphotos_37198341-stock-photo-storage-room-with-boxes-and_0
+      213: 2595021922240562737
+    second: oie_transparent_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: depositphotos_37198341-stock-photo-storage-room-with-boxes-and_0
+      name: oie_transparent_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 768
+        x: 87
+        y: 10
+        width: 359
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2b124b530d9b0bf0800000000000000
-      internalID: -357019107704300755
+      spriteID: 136008370be530420800000000000000
+      internalID: 2595021922240562737
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      depositphotos_37198341-stock-photo-storage-room-with-boxes-and_0: -357019107704300755
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

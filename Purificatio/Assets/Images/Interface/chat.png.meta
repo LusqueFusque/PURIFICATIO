@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ce4966cd58b1c234cba72305540fe267
+guid: bf6014ec08edc784fa40aac32be1724e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8238068814985535704
-    second: "montar-escrito\u0301rio-em-casa-2_0"
+      213: 3899264874753553345
+    second: chat_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "montar-escrito\u0301rio-em-casa-2_0"
+      name: chat_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2121
-        height: 1414
+        width: 1712
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82f50975f008cad80800000000000000
-      internalID: -8238068814985535704
+      spriteID: 1c3f7d09eb8fc1630800000000000000
+      internalID: 3899264874753553345
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "montar-escrito\u0301rio-em-casa-2_0": -8238068814985535704
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
