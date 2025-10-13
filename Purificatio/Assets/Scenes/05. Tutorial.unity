@@ -3817,7 +3817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2065705482
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3949,8 +3949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40e25d1124b23341be19cea8bb8addc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursedItem: {fileID: 2065705484}
-  missionId: saltCursedObject
+  cursedSprite: {fileID: 2065705484}
+  cameraItem: {fileID: 430496209}
 --- !u!1 &2065850940
 GameObject:
   m_ObjectHideFlags: 0
