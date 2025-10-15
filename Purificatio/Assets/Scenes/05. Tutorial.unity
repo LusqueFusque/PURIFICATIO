@@ -119,6 +119,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &79957088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79957090}
+  - component: {fileID: 79957089}
+  m_Layer: 0
+  m_Name: SaltMissionCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &79957089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79957088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40e25d1124b23341be19cea8bb8addc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursedSprite: {fileID: 2065705484}
+--- !u!4 &79957090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79957088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1190.819, y: 494.53415, z: -103.453316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111732854
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +388,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1720805606}
   - {fileID: 1968846983}
   - {fileID: 480705530}
   - {fileID: 313811915}
@@ -2890,53 +2934,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1720805604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1720805606}
-  - component: {fileID: 1720805605}
-  m_Layer: 0
-  m_Name: PhoneUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1720805605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720805604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7026ee2a1f26cb94d8db51be4c3b16b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phonePanel: {fileID: 818890335}
-  optionsParent: {fileID: 920254261}
-  optionButtonPrefab: {fileID: 7185487587369940698, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
---- !u!4 &1720805606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720805604}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.440094, y: 99.32297, z: 3.1390843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 174117021}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1798781485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,7 +3807,6 @@ GameObject:
   - component: {fileID: 2065705482}
   - component: {fileID: 2065705485}
   - component: {fileID: 2065705484}
-  - component: {fileID: 2065705486}
   m_Layer: 10
   m_Name: amuletoaura
   m_TagString: Untagged
@@ -3937,20 +3933,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.51
---- !u!114 &2065705486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065705481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b40e25d1124b23341be19cea8bb8addc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursedSprite: {fileID: 2065705484}
-  cameraItem: {fileID: 430496209}
 --- !u!1 &2065850940
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,3 +4369,4 @@ SceneRoots:
   - {fileID: 769078967}
   - {fileID: 1940157691}
   - {fileID: 2065705483}
+  - {fileID: 79957090}

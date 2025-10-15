@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class SaltItem : MonoBehaviour
 {
-    [Header("ConfiguraÁıes do sal")]
+    [Header("Configura√ß√µes do sal")]
     public int maxUses = 3;
-    public LayerMask cursedLayer; // layer dos sprites amaldiÁoados
-    public Camera targetCamera;   // c‚mera que vÍ os sprites amaldiÁoados (pode ser a principal)
+    public LayerMask cursedLayer;
+    public Camera targetCamera;
 
     private bool isActive = false;
     private int remainingUses;
@@ -13,8 +13,21 @@ public class SaltItem : MonoBehaviour
     private void Start()
     {
         remainingUses = maxUses;
+
+        // MELHORADO: Valida√ß√£o robusta de c√¢mera
         if (targetCamera == null)
+        {
             targetCamera = Camera.main;
+            
+            if (targetCamera == null)
+            {
+                Debug.LogError("[SaltItem] Nenhuma c√¢mera encontrada! Item desativado.");
+                enabled = false;
+                return;
+            }
+            
+            Debug.LogWarning("[SaltItem] targetCamera n√£o atribu√≠da. Usando Camera.main.");
+        }
     }
 
     public void OnSaltButtonClicked()
@@ -39,7 +52,7 @@ public class SaltItem : MonoBehaviour
         }
 
         isActive = true;
-        Debug.Log("[SaltItem] Equipado. Usos restantes: " + remainingUses);
+        Debug.Log($"[SaltItem] Equipado. Usos restantes: {remainingUses}");
     }
 
     private void Unequip()
@@ -67,17 +80,24 @@ public class SaltItem : MonoBehaviour
 
     private void TryUseSalt()
     {
+        // Null check da c√¢mera
+        if (targetCamera == null)
+        {
+            Debug.LogError("[SaltItem] C√¢mera inv√°lida!");
+            return;
+        }
+
         Vector2 worldPos = targetCamera.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, cursedLayer);
 
         if (hit.collider != null)
         {
             var cursed = hit.collider.GetComponent<CursedItem>();
+            
             if (cursed != null && cursed.isCursed)
             {
                 cursed.Purify();
                 remainingUses--;
-
                 Debug.Log($"[SaltItem] Purificou {hit.collider.name}. Restam {remainingUses} usos.");
 
                 if (MissionManager.Instance != null)
@@ -91,7 +111,7 @@ public class SaltItem : MonoBehaviour
             }
             else
             {
-                Debug.Log("[SaltItem] O alvo clicado n„o È amaldiÁoado.");
+                Debug.Log("[SaltItem] O alvo clicado n√£o √© amaldi√ßoado.");
             }
         }
         else

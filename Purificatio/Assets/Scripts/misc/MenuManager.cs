@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,74 +8,50 @@ public class MenuManager : MonoBehaviour
     public GameObject Panel_LevelSelect;
     public GameObject Panel_MenuOptions;
 
-    //Botoes - Panel_MenuPrincipal:
+    // Botoes - Panel_MenuPrincipal:
     public Button ButtonLevelSelect;
     public Button ButtonOptions;
     public Button ButtonCredits;
     public Button ButtonExit;
 
-    //Botoes - Panel_LevelSelect:
+    // Botoes - Panel_LevelSelect:
     public Button ButtonFaseTutorial;
     public Button ButtonVoltar_Fases;
 
-    //!!!!!Ainda n�o usado:
-    //public Button ButtonFase1;
-    //public Button ButtonFase2;
-    //public Button ButtonFase3;
-    //public Button ButtonFase4;
-
-    //Botoes - Panel_MenuOptions:
+    // Botoes - Panel_MenuOptions:
     public Button ButtonVoltar_Options;
-
-    //!!!!!Ainda n�o usado:
-    //public Button ButtonSom;
-    //Slider de audio??;
 
     void Start()
     {
         // - MENU PRINCIPAL -
         ButtonLevelSelect.onClick.AddListener(MostraLevelSelect);
         ButtonOptions.onClick.AddListener(MostraMenuOp);
-       // ButtonCredits.onClick.AddListener(MostraCréditos); - TO DO
+        // ButtonCredits.onClick.AddListener(MostraCreditos); - TO DO
         ButtonExit.onClick.AddListener(OnQuitClick);
 
-
-        // - SELEÇAO DE FASES -
+        // - SELEÇÃO DE FASES
         ButtonFaseTutorial.onClick.AddListener(IrTutorial);
         ButtonVoltar_Fases.onClick.AddListener(MostraMenuPrincipal);
-        //public Button ButtonFase1;
-        //public Button ButtonFase2;
-        //public Button ButtonFase3;
-        //public Button ButtonFase4;
 
-
-        // - MENU DE OP��ES -
+        // - MENU DE OPÇÕES -
         ButtonVoltar_Options.onClick.AddListener(MostraMenuPrincipal);
-        //public Button ButtonSom;
-        //Slider de audio??;
-        //public Button Idioma (n�o faz nada, � s� meme);
-
     }
 
-    void Update()
-    {
-        
-    }
-
-    //Aqui pra a administra��o dos PANELS
-
+    // Aqui pra a administração dos PANELS
     public void MostraMenuPrincipal()
     {
         Panel_MenuPrincipal.SetActive(true);
         Panel_LevelSelect.SetActive(false);
         Panel_MenuOptions.SetActive(false);
     }
+
     public void MostraLevelSelect()
     {
         Panel_MenuPrincipal.SetActive(false);
         Panel_LevelSelect.SetActive(true);
         Panel_MenuOptions.SetActive(false);
     }
+
     public void MostraMenuOp()
     {
         Panel_MenuPrincipal.SetActive(false);
@@ -85,16 +60,26 @@ public class MenuManager : MonoBehaviour
     }
 
     // Aqui TODO O RESTO
-
     public void OnQuitClick()
     {
         Application.Quit();
+        
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 
     public void IrTutorial()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        gameManager.LoadScene("05. Tutorial");
+        // Null check
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadScene("05. Tutorial");
+        }
+        else
+        {
+            Debug.LogError("[MenuManager] GameManager não encontrado!");
+            SceneManager.LoadScene("05. Tutorial"); // Fallback
+        }
     }
-
 }

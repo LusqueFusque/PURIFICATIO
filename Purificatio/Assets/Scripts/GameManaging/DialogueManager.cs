@@ -33,8 +33,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
-    [Header("Configuração de diálogo")]
-    public string dialogueFileName;
+    [Header("Configuração de diálogo")] public string dialogueFileName;
     public DialogueUIManager uiManager;
 
     private DialogueData dialogueData;
@@ -214,6 +213,7 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("[DialogueManager] ContinueDialogue chamado, mas aguardando missão.");
             return;
         }
+
         ShowNextLine();
     }
 
@@ -224,8 +224,26 @@ public class DialogueManager : MonoBehaviour
         else
             Debug.LogWarning("ID de diálogo não encontrado: " + nodeId);
     }
-    
+
     public DialogueLine CurrentLine => currentLine;
 
-    
+    private void OnDestroy()
+    {
+        // Remove listener para evitar memory leak
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+        }
+
+        Debug.Log("[DialogueManager] Listeners removidos ao destruir.");
+    }
+
+    // OnDisable por segurança
+    private void OnDisable()
+    {
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+        }
+    }
 }

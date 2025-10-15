@@ -11,6 +11,6 @@ public class CursedItem : MonoBehaviour
 
         isCursed = false;
         gameObject.SetActive(false); // ou troque o sprite
-        Debug.Log($"[CursedSprite] {name} purificado!");
+        Debug.Log($"[CursedItem] {name} purificado!");
     }
 }
