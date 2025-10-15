@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CursedItem))]
-public class CursedItemMissionChecker : MonoBehaviour
+public class CursedItemMission : MonoBehaviour
 {
-    [Header("Câmera usada para ver o item")]
+    [Header("Cï¿½mera usada para ver o item")]
     public Camera hiddenItemsCamera;
 
     private CursedItem cursedItem;
@@ -14,10 +14,10 @@ public class CursedItemMissionChecker : MonoBehaviour
         cursedItem = GetComponent<CursedItem>();
 
         if (cursedItem == null)
-            Debug.LogError("[CursedItemMissionChecker] CursedItem não encontrado!");
+            Debug.LogError("[CursedItemMissionChecker] CursedItem nï¿½o encontrado!");
 
         if (hiddenItemsCamera == null)
-            Debug.LogError("[CursedItemMissionChecker] HiddenItemsCamera não atribuída!");
+            Debug.LogError("[CursedItemMissionChecker] HiddenItemsCamera nï¿½o atribuï¿½da!");
     }
 
     void Update()
@@ -32,11 +32,11 @@ public class CursedItemMissionChecker : MonoBehaviour
             Collider2D hit = Physics2D.OverlapPoint(worldPos, LayerMask.GetMask("CursedItem"));
             if (hit != null && hit.gameObject == gameObject)
             {
-                Debug.Log("[CursedItemMissionChecker] Item purificado observado. Missão completada!");
+                Debug.Log("[CursedItemMissionChecker] Item purificado observado. Missï¿½o completada!");
                 MissionManager.Instance?.CompleteMission("saltCursedObject");
                 missionCompleted = true;
 
-                // Desativa o script para não disparar de novo
+                // Desativa o script para nï¿½o disparar de novo
                 enabled = false;
             }
         }

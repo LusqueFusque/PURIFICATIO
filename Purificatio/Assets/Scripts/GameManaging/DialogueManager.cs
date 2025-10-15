@@ -227,4 +227,5 @@ public class DialogueManager : MonoBehaviour
     
     public DialogueLine CurrentLine => currentLine;
 
+    
 }

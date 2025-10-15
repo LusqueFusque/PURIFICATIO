@@ -1,0 +1,26 @@
+{
+  "slot1": {
+    "ultima_atualizacao": "N/A",
+    "progresso": {
+      "fases_concluidas": [],
+      "fases_desbloqueadas": [0],
+      "decisoes": {      }
+    }
+  },
+  "slot2": {
+    "ultima_atualizacao": "N/A",
+    "progresso": {
+      "fases_concluidas": [],
+      "fases_desbloqueadas": [0],
+      "decisoes": {      }
+    }
+      },
+  "slot3": {
+    "ultima_atualizacao": "N/A",
+    "progresso": {
+      "fases_concluidas": [],
+      "fases_desbloqueadas": [0],
+      "decisoes": {      }
+    }
+  }
+}
