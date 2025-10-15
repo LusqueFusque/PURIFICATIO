@@ -19,7 +19,7 @@ public class DialogueLine
     public string sprite;
     public string text;
     public string nextId;
-    public string mission; // Se houver missão associada
+    public string mission;
     public List<DialogueOption> options;
 }
 
@@ -33,14 +33,18 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
-    [Header("Configuração de diálogo")] public string dialogueFileName;
+    [Header("Configuração de diálogo")]
+    public string dialogueFileName;
     public DialogueUIManager uiManager;
 
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
     private DialogueLine currentLine;
-
     private bool isPausedForMission = false;
+    
+    // NOVO: Flag para indicar que está aguardando input antes de mudar cena
+    private bool waitingForSceneChange = false;
+    private string sceneToLoad = "";
 
     private HashSet<string> goToMenuPoints = new HashSet<string>()
     {
@@ -56,7 +60,6 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         LoadDialogue();
-
         if (dialogueDict != null && dialogueDict.TryGetValue("inicio1", out currentLine))
             ShowLine(currentLine);
         else
@@ -67,11 +70,34 @@ public class DialogueManager : MonoBehaviour
     {
         if (isPausedForMission || currentLine == null) return;
 
+        // NOVO: Se está aguardando mudança de cena
+        if (waitingForSceneChange)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log($"[DialogueManager] Jogador pressionou ESPAÇO. Carregando cena: {sceneToLoad}");
+                SceneManager.LoadScene(sceneToLoad);
+                return;
+            }
+            // Não processa mais nada enquanto aguarda
+            return;
+        }
+
         // Avança diálogo com Espaço, apenas se não houver opções
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // NOVO: Se o texto está sendo digitado, pula a animação primeiro
+            if (uiManager.IsTextTyping())
+            {
+                uiManager.SkipTyping();
+                return; // Não avança ainda, só pula a animação
+            }
+
+            // Se não tem opções, avança para o próximo diálogo
             if (currentLine.options == null || currentLine.options.Count == 0)
+            {
                 ShowNextLine();
+            }
         }
     }
 
@@ -86,8 +112,8 @@ public class DialogueManager : MonoBehaviour
 
         string json = File.ReadAllText(path);
         dialogueData = JsonUtility.FromJson<DialogueData>(json);
-
         dialogueDict = new Dictionary<string, DialogueLine>();
+
         foreach (var line in dialogueData.dialogue)
         {
             if (!dialogueDict.ContainsKey(line.id))
@@ -112,11 +138,18 @@ public class DialogueManager : MonoBehaviour
                 uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
         }
 
-        // Se linha for menu especial, muda de cena
+        // MODIFICADO: Se for ponto de menu especial, AGUARDA input
         if (goToMenuPoints.Contains(line.id))
         {
-            SceneManager.LoadScene("02. Menu");
-            return;
+            Debug.Log($"[DialogueManager] Diálogo final detectado ('{line.id}'). Aguardando ESPAÇO para ir ao menu...");
+            
+            waitingForSceneChange = true;
+            sceneToLoad = "02. Menu";
+            
+            // NOVO: Mostra indicador visual (opcional)
+            uiManager.ShowContinuePrompt("Pressione ESPAÇO para continuar...");
+            
+            return; // Não continua o diálogo
         }
 
         // Se houver missão, pausa diálogo até completar
@@ -133,7 +166,6 @@ public class DialogueManager : MonoBehaviour
 
     private void OnMissionCompletedHandler(string completedId)
     {
-        // Evita nulls e continua o diálogo se for a missão certa
         if (MissionManager.Instance != null &&
             MissionManager.Instance.IsCompleted(completedId))
         {
@@ -166,10 +198,8 @@ public class DialogueManager : MonoBehaviour
 
         // Remove possíveis listeners duplicados
         MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
-
         // Adiciona o listener novo
         MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-
 
         // Garante que a missão começa ativa
         MissionManager.Instance.StartMission(missionId);
@@ -186,7 +216,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentLine == null) return;
 
-        if (!string.IsNullOrEmpty(currentLine.nextId) && dialogueDict.TryGetValue(currentLine.nextId, out var nextLine))
+        if (!string.IsNullOrEmpty(currentLine.nextId) &&
+            dialogueDict.TryGetValue(currentLine.nextId, out var nextLine))
         {
             ShowLine(nextLine);
         }
@@ -205,7 +236,6 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Próximo ID não encontrado: " + nextId);
     }
 
-    // Chamado externamente (UI buttons, triggers, PhoneItem, etc.)
     public void ContinueDialogue()
     {
         if (isPausedForMission)
@@ -227,19 +257,8 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueLine CurrentLine => currentLine;
 
+    // NOVO: Cleanup ao destruir
     private void OnDestroy()
-    {
-        // Remove listener para evitar memory leak
-        if (MissionManager.Instance != null)
-        {
-            MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
-        }
-
-        Debug.Log("[DialogueManager] Listeners removidos ao destruir.");
-    }
-
-    // OnDisable por segurança
-    private void OnDisable()
     {
         if (MissionManager.Instance != null)
         {

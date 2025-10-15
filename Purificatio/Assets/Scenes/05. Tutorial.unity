@@ -157,12 +157,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79957088}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1190.819, y: 494.53415, z: -103.453316}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 687.819, y: 211.53415, z: -103.453316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 174117021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111732854
 GameObject:
@@ -398,6 +398,7 @@ Transform:
   - {fileID: 430496210}
   - {fileID: 1940962869}
   - {fileID: 2039061922}
+  - {fileID: 79957090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252382405
@@ -635,6 +636,7 @@ MonoBehaviour:
   optionsContainer: {fileID: 920254261}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
   defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
+  continuePrompt: {fileID: 1842642958}
 --- !u!4 &480705530
 Transform:
   m_ObjectHideFlags: 0
@@ -1302,6 +1304,7 @@ GameObject:
   - component: {fileID: 780832767}
   - component: {fileID: 780832769}
   - component: {fileID: 780832768}
+  - component: {fileID: 780832770}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -1427,6 +1430,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780832766}
   m_CullTransparentMesh: 1
+--- !u!114 &780832770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780832766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbffed2b891b97418655938b336fab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typingSpeed: 20
+  canSkipTyping: 1
+  typingSound: {fileID: 0}
+  soundEveryNChars: 1
 --- !u!1 &788487528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,7 +3110,7 @@ GameObject:
   - component: {fileID: 1842642961}
   - component: {fileID: 1842642960}
   m_Layer: 5
-  m_Name: espacorsrs
+  m_Name: SpaceSkip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4022,7 +4041,7 @@ GameObject:
   - component: {fileID: 2075253702}
   - component: {fileID: 2075253701}
   m_Layer: 5
-  m_Name: TextoFundo
+  m_Name: DialogueGradient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4369,4 +4388,3 @@ SceneRoots:
   - {fileID: 769078967}
   - {fileID: 1940157691}
   - {fileID: 2065705483}
-  - {fileID: 79957090}
