@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a1e683bf96be4e24d8e113d59aa3f442
+guid: d9defdd602d64994395cf7b3faa5d9e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4090566265743676153
-    second: ArquivoBG 1_0
+      213: 3532084628486684417
+    second: Fase1 Sala2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ArquivoBG 1_0
+      name: Fase1 Sala2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f219df885c94c830800000000000000
-      internalID: 4090566265743676153
+      spriteID: 10ff09d714c740130800000000000000
+      internalID: 3532084628486684417
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ArquivoBG 1_0: 4090566265743676153
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

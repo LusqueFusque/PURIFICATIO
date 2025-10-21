@@ -12,33 +12,46 @@ public class DialogueUIManager : MonoBehaviour
     public Transform optionsContainer;
     public Button optionButtonPrefab;
     public Sprite defaultSprite;
-    
+
     [Header("Continue Prompt")]
     public GameObject continuePrompt;
 
-    // NOVO: Componente de efeito typewriter
+    // Componente de efeito typewriter
     private TypewriterEffect typewriterEffect;
 
     void Awake()
     {
-        // NOVO: Obtém ou adiciona o componente TypewriterEffect
+        // IMPORTANTE: Obtém referência ao TypewriterEffect
         if (dialogueText != null)
         {
             typewriterEffect = dialogueText.GetComponent<TypewriterEffect>();
-            
+
             if (typewriterEffect == null)
             {
+                Debug.LogWarning("[DialogueUIManager] TypewriterEffect não encontrado no dialogueText. Adicionando automaticamente...");
                 typewriterEffect = dialogueText.gameObject.AddComponent<TypewriterEffect>();
-                Debug.Log("[DialogueUIManager] TypewriterEffect adicionado automaticamente.");
             }
+        }
+        else
+        {
+            Debug.LogError("[DialogueUIManager] dialogueText não está atribuído!");
+        }
+    }
+
+    void Start()
+    {
+        // NOVO: Garante que o texto está limpo ao iniciar
+        if (dialogueText != null)
+        {
+            dialogueText.text = "";
         }
     }
 
     public void UpdateDialogueUI(DialogueLine line)
     {
         charNameText.text = line.character;
-        
-        // MODIFICADO: Usa o efeito typewriter ao invés de atribuir diretamente
+
+        // Usa o efeito typewriter
         if (typewriterEffect != null)
         {
             typewriterEffect.ShowText(line.text);
@@ -47,8 +60,9 @@ public class DialogueUIManager : MonoBehaviour
         {
             // Fallback se não houver typewriter
             dialogueText.text = line.text;
+            Debug.LogWarning("[DialogueUIManager] TypewriterEffect não disponível. Mostrando texto instantaneamente.");
         }
-        
+
         ShowImage(line.sprite);
         HideContinuePrompt();
     }
@@ -100,27 +114,23 @@ public class DialogueUIManager : MonoBehaviour
         characterImage.gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Mostra o prompt "Pressione ESPAÇO para continuar..."
-    /// </summary>
     public void ShowContinuePrompt(string message = "Pressione ESPAÇO para continuar...")
     {
         if (continuePrompt != null)
         {
             continuePrompt.SetActive(true);
-            
+
             var tmp = continuePrompt.GetComponent<TextMeshProUGUI>();
             if (tmp != null)
                 tmp.text = message;
-            
+
             var text = continuePrompt.GetComponent<Text>();
             if (text != null)
                 text.text = message;
         }
         else
         {
-            // Fallback: adiciona ao texto de diálogo
-            // Mas espera o typewriter terminar
+            // Fallback: aguarda typewriter terminar
             if (typewriterEffect != null && typewriterEffect.IsTyping())
             {
                 StartCoroutine(WaitForTypingThenShowPrompt(message));
@@ -132,22 +142,16 @@ public class DialogueUIManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Aguarda o typewriter terminar antes de mostrar o prompt
-    /// </summary>
     private System.Collections.IEnumerator WaitForTypingThenShowPrompt(string message)
     {
         while (typewriterEffect != null && typewriterEffect.IsTyping())
         {
             yield return null;
         }
-        
+
         dialogueText.text += $"\n\n<color=yellow>{message}</color>";
     }
 
-    /// <summary>
-    /// Esconde o prompt de continuar
-    /// </summary>
     public void HideContinuePrompt()
     {
         if (continuePrompt != null)
@@ -156,18 +160,11 @@ public class DialogueUIManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// NOVO: Verifica se o texto está sendo digitado
-    /// Útil para o DialogueManager saber se deve aguardar
-    /// </summary>
     public bool IsTextTyping()
     {
         return typewriterEffect != null && typewriterEffect.IsTyping();
     }
 
-    /// <summary>
-    /// NOVO: Pula a animação de digitação
-    /// </summary>
     public void SkipTyping()
     {
         if (typewriterEffect != null)

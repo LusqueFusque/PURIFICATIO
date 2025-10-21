@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: a1e683bf96be4e24d8e113d59aa3f442
+guid: b7e2c3ad91ad4f74c8ffd5a95c852202
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4090566265743676153
-    second: ArquivoBG 1_0
+      213: -901389565684655161
+    second: Aura_amuleto_0
+  - first:
+      213: 8716045608211358880
+    second: Aura_amuleto_1
+  - first:
+      213: -8449114180511628245
+    second: Aura_amuleto_2
+  - first:
+      213: 7296473710628116128
+    second: Aura_amuleto_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ArquivoBG 1_0
+      name: Aura_amuleto_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 13
+        y: 111
+        width: 19
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f219df885c94c830800000000000000
-      internalID: 4090566265743676153
+      spriteID: 7cb5f1d37fe9d73f0800000000000000
+      internalID: -901389565684655161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aura_amuleto_1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 134
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a4aa831d4d95f870800000000000000
+      internalID: 8716045608211358880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aura_amuleto_2
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 0
+        width: 229
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2483eb0b67beba80800000000000000
+      internalID: -8449114180511628245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aura_amuleto_3
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 105
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a617f27e28424560800000000000000
+      internalID: 7296473710628116128
       vertices: []
       indices: 
       edges: []
@@ -134,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ArquivoBG 1_0: 4090566265743676153
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,7 +18,7 @@ public class TypewriterEffect : MonoBehaviour
     [Header("Configurações de Som (Opcional)")]
     [Tooltip("Som de digitação (deixe vazio se não quiser)")]
     public AudioClip typingSound;
-    
+
     [Tooltip("Tocar som a cada N caracteres (1 = todo caractere)")]
     public int soundEveryNChars = 2;
 
@@ -32,7 +32,7 @@ public class TypewriterEffect : MonoBehaviour
     void Awake()
     {
         textComponent = GetComponent<TextMeshProUGUI>();
-        
+
         if (textComponent == null)
         {
             Debug.LogError("[TypewriterEffect] TextMeshProUGUI não encontrado!");
@@ -40,13 +40,16 @@ public class TypewriterEffect : MonoBehaviour
             return;
         }
 
+        // NOVO: Limpa o texto placeholder imediatamente
+        textComponent.text = "";
+
         // Configura AudioSource se tiver som
         if (typingSound != null)
         {
             audioSource = gameObject.GetComponent<AudioSource>();
             if (audioSource == null)
                 audioSource = gameObject.AddComponent<AudioSource>();
-            
+
             audioSource.clip = typingSound;
             audioSource.playOnAwake = false;
         }
@@ -57,7 +60,7 @@ public class TypewriterEffect : MonoBehaviour
         // Permite pular a animação clicando
         if (isTyping && canSkipTyping)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 SkipTyping();
             }
@@ -71,7 +74,9 @@ public class TypewriterEffect : MonoBehaviour
     {
         // Para qualquer animação anterior
         if (typingCoroutine != null)
+        {
             StopCoroutine(typingCoroutine);
+        }
 
         currentFullText = text;
         typingCoroutine = StartCoroutine(TypeText(text));
@@ -83,7 +88,9 @@ public class TypewriterEffect : MonoBehaviour
     public void SkipTyping()
     {
         if (typingCoroutine != null)
+        {
             StopCoroutine(typingCoroutine);
+        }
 
         textComponent.text = currentFullText;
         isTyping = false;
@@ -153,5 +160,19 @@ public class TypewriterEffect : MonoBehaviour
     public void SetTypingSpeed(float newSpeed)
     {
         typingSpeed = newSpeed;
+    }
+
+    /// <summary>
+    /// Limpa o texto imediatamente.
+    /// </summary>
+    public void ClearText()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+
+        textComponent.text = "";
+        isTyping = false;
     }
 }
