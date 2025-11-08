@@ -36,6 +36,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Configuração de diálogo")]
     public string dialogueFileName;
     public DialogueUIManager uiManager;
+    
+    [Header("Mission Handler da Fase")]
+    public MissionHandlerBase missionHandler; // ← NOVO: Configurável por fase
 
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
@@ -60,10 +63,39 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         LoadDialogue();
-        if (dialogueDict != null && dialogueDict.TryGetValue("inicio1", out currentLine))
-            ShowLine(currentLine);
+        
+        // MELHORADO: Usa Invoke para dar tempo do UI ativar completamente
+        if (dialogueDict != null && dialogueDict.ContainsKey("inicio1"))
+        {
+            StartCoroutine(StartDialogueDelayed());
+        }
         else
+        {
             Debug.LogError("ID 'inicio1' não encontrado no JSON.");
+        }
+    }
+
+    // NOVO: Inicia o diálogo com um pequeno delay
+    private System.Collections.IEnumerator StartDialogueDelayed()
+    {
+        Debug.Log("[DialogueManager] StartDialogueDelayed iniciado.");
+        
+        // Garante que o painel está ativo
+        if (uiManager != null)
+        {
+            uiManager.ShowDialogueHideHUD();
+            Debug.Log("[DialogueManager] Painel de diálogo ativado.");
+        }
+        
+        // Aguarda 1 frame para garantir que tudo está ativo
+        yield return null;
+        
+        // Agora mostra a primeira linha
+        if (dialogueDict.TryGetValue("inicio1", out currentLine))
+        {
+            Debug.Log($"[DialogueManager] Mostrando primeira linha: '{currentLine.text}'");
+            ShowLine(currentLine);
+        }
     }
 
     private void Update()
@@ -126,6 +158,12 @@ public class DialogueManager : MonoBehaviour
     private void ShowLine(DialogueLine line)
     {
         currentLine = line;
+
+        // NOVO: Garante que o painel está ativo ANTES de mostrar texto
+        uiManager.ShowDialogueHideHUD();
+
+        // NOVO: Controla visibilidade do fantasma na cena
+        HandleGhostVisibility(line.character);
 
         // Atualiza a UI do diálogo
         uiManager.UpdateDialogueUI(line);
@@ -253,6 +291,69 @@ public class DialogueManager : MonoBehaviour
             ShowLine(line);
         else
             Debug.LogWarning("ID de diálogo não encontrado: " + nodeId);
+    }
+
+    /// <summary>
+    /// NOVO: Controla a visibilidade do sprite do fantasma na cena
+    /// </summary>
+    private void HandleGhostVisibility(string characterName)
+    {
+        // Lista de personagens fantasmas (deve bater com DialogueUIManager)
+        string[] ghostCharacters = { "Eveline", "Djinn", "Mazikkin" };
+        
+        bool isGhost = false;
+        foreach (string ghost in ghostCharacters)
+        {
+            if (characterName.Equals(ghost, System.StringComparison.OrdinalIgnoreCase))
+            {
+                isGhost = true;
+                break;
+            }
+        }
+
+        // Se é fantasma, tenta encontrar e mostrar o sprite na cena
+        if (isGhost)
+        {
+            // Procura o GameObject do fantasma na cena
+            GameObject ghostObject = GameObject.Find(characterName);
+            
+            if (ghostObject != null)
+            {
+                GhostSpriteManager ghostManager = ghostObject.GetComponent<GhostSpriteManager>();
+                
+                if (ghostManager != null)
+                {
+                    ghostManager.Show();
+                    Debug.Log($"[DialogueManager] Mostrando sprite de {characterName} na cena.");
+                }
+                else
+                {
+                    Debug.LogWarning($"[DialogueManager] {characterName} não tem GhostSpriteManager!");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[DialogueManager] GameObject '{characterName}' não encontrado na cena!");
+            }
+        }
+        else
+        {
+            // Se não é fantasma, esconde todos os fantasmas
+            HideAllGhosts();
+        }
+    }
+
+    /// <summary>
+    /// Esconde todos os fantasmas da cena
+    /// </summary>
+    private void HideAllGhosts()
+    {
+        GhostSpriteManager[] allGhosts = FindObjectsOfType<GhostSpriteManager>();
+        
+        foreach (var ghost in allGhosts)
+        {
+            ghost.Hide();
+        }
     }
 
     public DialogueLine CurrentLine => currentLine;

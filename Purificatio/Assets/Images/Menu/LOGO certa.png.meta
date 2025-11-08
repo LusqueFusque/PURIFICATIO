@@ -1,0 +1,1192 @@
+fileFormatVersion: 2
+guid: f0b2f934ce69cfe418982f55817ccd8b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8261767493536264141
+    second: LOGO certa_0
+  - first:
+      213: 6797852614059900220
+    second: LOGO certa_1
+  - first:
+      213: 3519840917501947712
+    second: LOGO certa_2
+  - first:
+      213: -8581615594649460239
+    second: LOGO certa_3
+  - first:
+      213: -7493075781344090414
+    second: LOGO certa_4
+  - first:
+      213: 1776633328035206475
+    second: LOGO certa_5
+  - first:
+      213: 2743550751149627843
+    second: LOGO certa_6
+  - first:
+      213: -7825233049011501115
+    second: LOGO certa_7
+  - first:
+      213: 2141622064562866093
+    second: LOGO certa_8
+  - first:
+      213: -6738048846888886719
+    second: LOGO certa_9
+  - first:
+      213: 8394295477357644465
+    second: LOGO certa_10
+  - first:
+      213: -2743850815045777581
+    second: LOGO certa_11
+  - first:
+      213: 5037515668220680405
+    second: LOGO certa_12
+  - first:
+      213: 4233485021278001882
+    second: LOGO certa_13
+  - first:
+      213: 3862403351776233232
+    second: LOGO certa_14
+  - first:
+      213: -1907028213778041721
+    second: LOGO certa_15
+  - first:
+      213: -7280782762852625784
+    second: LOGO certa_16
+  - first:
+      213: 4355994648150345222
+    second: LOGO certa_17
+  - first:
+      213: -785128717866230670
+    second: LOGO certa_18
+  - first:
+      213: 703789904396526979
+    second: LOGO certa_19
+  - first:
+      213: 5947566033528782374
+    second: LOGO certa_20
+  - first:
+      213: -8846978512564454873
+    second: LOGO certa_21
+  - first:
+      213: -6386328770122418763
+    second: LOGO certa_22
+  - first:
+      213: -11504909275418093
+    second: LOGO certa_23
+  - first:
+      213: -1046133673229773022
+    second: LOGO certa_24
+  - first:
+      213: -7111631341416987048
+    second: LOGO certa_25
+  - first:
+      213: -8738017461225889774
+    second: LOGO certa_26
+  - first:
+      213: 2914143275828420746
+    second: LOGO certa_27
+  - first:
+      213: -7993841804832632037
+    second: LOGO certa_28
+  - first:
+      213: 3029856574392168726
+    second: LOGO certa_29
+  - first:
+      213: -6752548563995054969
+    second: LOGO certa_30
+  - first:
+      213: -334406141890874140
+    second: LOGO certa_31
+  - first:
+      213: -3421000400085603581
+    second: LOGO certa_32
+  - first:
+      213: 7522806554253652332
+    second: LOGO certa_33
+  - first:
+      213: -1092401179494641922
+    second: LOGO certa_34
+  - first:
+      213: 7557007593904831214
+    second: LOGO certa_35
+  - first:
+      213: 6556552433682573202
+    second: LOGO certa_36
+  - first:
+      213: 6093926400206328896
+    second: LOGO certa_37
+  - first:
+      213: -6834844888690280327
+    second: LOGO certa_38
+  - first:
+      213: 9008935753271853743
+    second: LOGO certa_39
+  - first:
+      213: -7015637159620025491
+    second: LOGO certa_40
+  - first:
+      213: -1760728070801724556
+    second: LOGO certa_41
+  - first:
+      213: -9107249098340159655
+    second: LOGO certa_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LOGO certa_0
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 519
+        width: 100
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 330d6e2cc3e485d80800000000000000
+      internalID: -8261767493536264141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_1
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 586
+        width: 108
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d30889fe2d65e50800000000000000
+      internalID: 6797852614059900220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_2
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 549
+        width: 170
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04fa6916aacf8d030800000000000000
+      internalID: 3519840917501947712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_3
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 552
+        width: 101
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f167f1851af7e880800000000000000
+      internalID: -8581615594649460239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_4
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 586
+        width: 58
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d627e1e64f330890800000000000000
+      internalID: -7493075781344090414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_5
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 555
+        width: 259
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4598ad499ed7a810800000000000000
+      internalID: 1776633328035206475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_6
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 554
+        width: 124
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c997894fdc031620800000000000000
+      internalID: 2743550751149627843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_7
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 586
+        width: 58
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c7c5057000376390800000000000000
+      internalID: -7825233049011501115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_8
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 589
+        width: 142
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da78861cbe198bd10800000000000000
+      internalID: 2141622064562866093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_9
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 507
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e15f10644ad72a0800000000000000
+      internalID: -6738048846888886719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_10
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 507
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba029303478e7470800000000000000
+      internalID: 8394295477357644465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_11
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 507
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357c784a832ebe9d0800000000000000
+      internalID: -2743850815045777581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_12
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 507
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d812c27fc9d8e540800000000000000
+      internalID: 5037515668220680405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_13
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 507
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada5637623c50ca30800000000000000
+      internalID: 4233485021278001882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_14
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 507
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01786e172630a9530800000000000000
+      internalID: 3862403351776233232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_15
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 531
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784bc1581ffd885e0800000000000000
+      internalID: -1907028213778041721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_16
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 506
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 882d16507a675fa90800000000000000
+      internalID: -7280782762852625784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_17
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 499
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606018ead0a937c30800000000000000
+      internalID: 4355994648150345222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_18
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 506
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c10a44799aa15f0800000000000000
+      internalID: -785128717866230670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_19
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385af00703d54c900800000000000000
+      internalID: 703789904396526979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_20
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 507
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e79a2cbcff98250800000000000000
+      internalID: 5947566033528782374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_21
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 507
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72af4178ae7393580800000000000000
+      internalID: -8846978512564454873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_22
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b5fefdd1d33f57a0800000000000000
+      internalID: -6386328770122418763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_23
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 507
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3123771985027dff0800000000000000
+      internalID: -11504909275418093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_24
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 507
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 227909387f26b71f0800000000000000
+      internalID: -1046133673229773022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_25
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8564e4959f86e4d90800000000000000
+      internalID: -7111631341416987048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_26
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 210687e3a635cb680800000000000000
+      internalID: -8738017461225889774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_27
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 499
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80a85c9edd117820800000000000000
+      internalID: 2914143275828420746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_28
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 507
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1398405b3b201190800000000000000
+      internalID: -7993841804832632037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_29
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611f60560863c0a20800000000000000
+      internalID: 3029856574392168726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_30
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 507
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78c208a8bd02a42a0800000000000000
+      internalID: -6752548563995054969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_31
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e4b2edb263fb5bf0800000000000000
+      internalID: -334406141890874140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_32
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 507
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30bad68e24a2680d0800000000000000
+      internalID: -3421000400085603581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_33
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 507
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c61f44c14b0666860800000000000000
+      internalID: 7522806554253652332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_34
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe01004ae207d0f0800000000000000
+      internalID: -1092401179494641922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_35
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea70af2e52efd860800000000000000
+      internalID: 7557007593904831214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_36
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 507
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2976fd843bd8dfa50800000000000000
+      internalID: 6556552433682573202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_37
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 507
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0445ca326c9f19450800000000000000
+      internalID: 6093926400206328896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_38
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 507
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 978b8ba49c0c521a0800000000000000
+      internalID: -6834844888690280327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_39
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 507
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2c512165b260d70800000000000000
+      internalID: 9008935753271853743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_40
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 507
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6361db7c2373ae90800000000000000
+      internalID: -7015637159620025491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_41
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 507
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47bedc9f523a097e0800000000000000
+      internalID: -1760728070801724556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO certa_42
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 519
+        width: 22
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f2074823d8c9180800000000000000
+      internalID: -9107249098340159655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

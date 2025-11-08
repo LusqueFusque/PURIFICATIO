@@ -1,0 +1,470 @@
+{
+  "dialogue": [
+    {
+      "id": "inicio_fase1",
+      "character": "Timbu",
+      "sprite": "Timbu_palma",
+      "text": "Muito bem! Nosso primeiro contratante é o Sr. Florentino. Ele compra e reforma casas para alugar, mas em uma de suas reformas recentes, os operários alegaram ter presenciado atividades paranormais. Dá um jeito nisso.",
+      "nextId": "nambu_responde"
+    },
+    {
+      "id": "nambu_responde",
+      "character": "Nambú",
+      "sprite": "Nambu_sorriso",
+      "text": "Sim, senhor, senhor!",
+      "nextId": "florentino1",
+      "mission": "FadeIn"
+    },
+    {
+      "id": "florentino1",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_preocupado",
+      "text": "Você que é o exorcista?",
+      "nextId": "florentino2"
+    },
+    {
+      "id": "florentino2",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "Eu mesmo.",
+      "nextId": "florentino3"
+    },
+    {
+      "id": "florentino3",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "(Esquisito...)",
+      "nextId": "florentino4"
+    },
+    {
+      "id": "florentino4",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_preocupado",
+      "text": "Vamos direto ao assunto. Meus funcionários estão dizendo que tem fantasma nessa casa e agora estão com medo de vir trabalhar.",
+      "nextId": "florentino5"
+    },
+    {
+      "id": "florentino5",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_triste",
+      "text": "Isso é ruim pros negócios, sabe? Essa reforma não pode atrasar mais. Já tivemos muitos imprevistos por causa desse tal fantasma. Eu quero que você ache e exorcize ele pra mim.",
+      "nextId": "florentino6"
+    },
+    {
+      "id": "florentino6",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "Claro, senhor. E tem alguma informação sobre esse tal fantasma que ajude na investigação?",
+      "nextId": "florentino7"
+    },
+    {
+      "id": "florentino7",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "E eu sei lá! Eu mesmo nunca vi essa alma penada, aí. Só te chamei pra dar um efeito placebo nos funcionários.",
+      "nextId": "florentino8"
+    },
+    {
+      "id": "florentino8",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Ah... Entendi... Legal.",
+      "nextId": "florentino9"
+    },
+    {
+      "id": "florentino9",
+      "character": "Nambú",
+      "sprite": "Nambu_raiva",
+      "text": "Eu dou meus pulos...",
+      "mission": "findGhost"
+    },
+    {
+      "id": "encontrou_fantasma",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "O que é que você tá fazendo? O que é esse cacareco de 1890?",
+      "nextId": "nambu_explica1"
+    },
+    {
+      "id": "nambu_explica1",
+      "character": "Nambú",
+      "sprite": "Nambu_raiva",
+      "text": "(Cacareco é sua... Hum!!)",
+      "nextId": "nambu_explica2"
+    },
+    {
+      "id": "nambu_explica2",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "É uma câmera que vê fantasmas.",
+      "nextId": "Flor_pega_camera1"
+    },
+    {
+      "id": "Flor_pega_camera1",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "Passa isso pra cá.",
+      "nextId": "Flor_pega_camera2"
+    },
+    {
+      "id": "Flor_pega_camera2",
+      "character": "Nambú",
+      "sprite": "Nambu_raiva",
+      "text": "Ei! Isso é meu!",
+      "nextId": "Flor_ve_fantasma1"
+    },
+    {
+      "id": "Flor_ve_fantasma1",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "Só quero ver esse tal fantasma... Um fantasma aterrorizante, gigante! Um fantasma...",
+      "nextId": "Flor_ve_fantasma2"
+    },
+    {
+      "id": "Flor_ve_fantasma2",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_triste",
+      "text": "Criancinha?",
+      "nextId": "Flor_ve_fantasma3"
+    },
+    {
+      "id": "Flor_ve_fantasma3",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "Na verdade, isso é bem decepcionante.",
+      "nextId": "Flor_ve_fantasma4"
+    },
+    {
+      "id": "Flor_ve_fantasma4",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_preocupado",
+      "text": "É dessa pintora de rodapé que os funcionários estão com medo?",
+      "nextId": "eveline_aparece1",
+      "mission": "GhostSpriteAppear"
+    },
+    {
+      "id": "eveline_aparece1",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Eu... não pinto... rodapés...",
+      "nextId": "eveline_aparece2"
+    },
+    {
+      "id": "eveline_aparece2",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Mas eu... pintei a... parede do quarto...",
+      "nextId": "Flor_manda_exorcizar"
+    },
+    {
+      "id": "Flor_manda_exorcizar",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Aí o fantasma, exorcista. Faz o que tem que fazer.",
+      "nextId": "nambu_investiga1"
+    },
+    {
+      "id": "nambu_investiga1",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Hmm. Beleza, deixa eu ver...",
+      "nextId": "nambu_investiga2"
+    },
+    {
+      "id": "nambu_investiga2",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "Menininha, por que você assombra essa casa?",
+      "nextId": "eveline_responde1"
+    },
+    {
+      "id": "eveline_responde1",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Minha... casa... Eu não... assombro... Eu moro...",
+      "nextId": "nambu_percebe"
+    },
+    {
+      "id": "nambu_percebe",
+      "character": "Nambú",
+      "sprite": "Nambu_eheh",
+      "text": "Ah... Vixe.",
+      "nextId": "nambu_tenta_negociar"
+    },
+    {
+      "id": "nambu_tenta_negociar",
+      "character": "Nambú",
+      "sprite": "Nambu_sorriso",
+      "text": "Que tal se a gente negociasse, então? Eu faço algo que você quer, e em troca eu faço algo que você quer. O que me diz, hm? Hm? Hm?",
+      "nextId": "eveline_insiste"
+    },
+    {
+      "id": "eveline_insiste",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Casa... minha...",
+      "nextId": "Flor_interrompe"
+    },
+    {
+      "id": "Flor_interrompe",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Que sua o que, menina! Essa casa estava abandonada desde 1902!",
+      "nextId": "nambu_desiste_negociar"
+    },
+    {
+      "id": "nambu_desiste_negociar",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "É, talvez negociar diretamente não funcione...",
+      "nextId": "nambu_raciona"
+    },
+    {
+      "id": "nambu_raciona",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "Deixa eu ver... Fantasmas costumam permanecer na terra por causa de apegos...",
+      "mission": "findDoll"
+    },
+    {
+      "id": "encontrou_boneca",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Minha... boneca... Você consertou...",
+      "nextId": "eveline_pergunta"
+    },
+    {
+      "id": "eveline_pergunta",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Posso... ficar... com ela?",
+      "options": [
+        {
+          "optionText": "Mentir (Exorcizar)",
+          "nextId": "rota_mentir1"
+        },
+        {
+          "optionText": "Ser honesto (Não exorcizar)",
+          "nextId": "rota_honesto1"
+        }
+      ]
+    },
+    {
+      "id": "rota_mentir1",
+      "character": "Nambú",
+      "sprite": "Nambu_eheh",
+      "text": "Claro... Claro... (Ela se distraiu! É minha chance!)",
+      "mission": "exorcismoDaBoneca"
+    },
+    {
+      "id": "exorcismo_completo",
+      "character": "Nambú",
+      "sprite": "Nambu_medo",
+      "text": "...Cristo.",
+      "nextId": "Flor_silencio"
+    },
+    {
+      "id": "Flor_silencio",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_chocado",
+      "text": "...",
+      "nextId": "Flor_gorjeta"
+    },
+    {
+      "id": "Flor_gorjeta",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_feliz",
+      "text": "Vou dar uma gorjeta pelo serviço bem feito...",
+      "nextId": "timbu_parabeniza1",
+      "mission": "fadeOut"
+    },
+    {
+      "id": "timbu_parabeniza1",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "Boa, meu chapa. Fez tudo direitinho!",
+      "nextId": "timbu_parabeniza2"
+    },
+    {
+      "id": "timbu_parabeniza2",
+      "character": "Timbu",
+      "sprite": "Timbu_aiai",
+      "text": "Agora o fantasma daquela pobre menininha pode finalmente partir pra a próxima e descansar...",
+      "nextId": "timbu_parabeniza3"
+    },
+    {
+      "id": "timbu_parabeniza3",
+      "character": "Timbu",
+      "sprite": "Timbu_ladin",
+      "text": "...",
+      "nextId": "timbu_parabeniza4"
+    },
+    {
+      "id": "timbu_parabeniza4",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "E melhor ainda... O dinheiro do serviço já caiu na conta!",
+      "nextId": "fim_fase1_exorcismo"
+    },
+    {
+      "id": "fim_fase1_exorcismo",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 1 - Exorcismo realizado"
+    },
+    {
+      "id": "rota_honesto1",
+      "character": "Nambú",
+      "sprite": "Nambu_sorriso",
+      "text": "É, pode ficar com ela.",
+      "nextId": "eveline_feliz"
+    },
+    {
+      "id": "eveline_feliz",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Minha... boneca... Vou brincar... tanto... com você...",
+      "nextId": "Flor_silencio2"
+    },
+    {
+      "id": "Flor_silencio2",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "...",
+      "nextId": "Flor_questiona"
+    },
+    {
+      "id": "Flor_questiona",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_neutro",
+      "text": "Tá, mas e o exorcismo?",
+      "nextId": "nambu_recusa1"
+    },
+    {
+      "id": "nambu_recusa1",
+      "character": "Nambú",
+      "sprite": "Nambu_eheh",
+      "text": "Foi mal, cara, não vai rolar. A casa é da boyzinha aí.",
+      "nextId": "Flor_revolta1"
+    },
+    {
+      "id": "Flor_revolta1",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Tá me tirando!? Eu paguei caro por esse serviço!",
+      "nextId": "nambu_recusa2"
+    },
+    {
+      "id": "nambu_recusa2",
+      "character": "Nambú",
+      "sprite": "Nambu_eheh",
+      "text": "Pois é... Mas é aquela história... Sabe como é, né? Complicado, mesmo...",
+      "nextId": "Flor_revolta2"
+    },
+    {
+      "id": "Flor_revolta2",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Ah, não! Nana-nina-não!",
+      "nextId": "Flor_revolta3"
+    },
+    {
+      "id": "Flor_revolta3",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Eu vou continuar as obras, com ou sem fantasmas!",
+      "nextId": "eveline_brava1"
+    },
+    {
+      "id": "eveline_brava1",
+      "character": "Seta",
+      "sprite": "Seta",
+      "text": "Minha... Minha casa... Minha!",
+      "nextId": "Flor_revolta4"
+    },
+    {
+      "id": "Flor_revolta4",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Pode ser sua, da sua tia ou da sua avó! Eu não ligo!",
+      "nextId": "nambu_tenta_avisar"
+    },
+    {
+      "id": "nambu_tenta_avisar",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Aí, cara, se eu fosse você, eu...",
+      "nextId": "Flor_insiste"
+    },
+    {
+      "id": "Flor_insiste",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Eu vou continuar essa reforma de um jeito ou de outro!",
+      "mission": "poltergeistTransformation"
+    },
+    {
+      "id": "pos_poltergeist1",
+      "character": "Nambú",
+      "sprite": "Nambu_medo",
+      "text": "Oh, céus.",
+      "nextId": "pos_poltergeist2"
+    },
+    {
+      "id": "pos_poltergeist2",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_raiva",
+      "text": "Ei! Ei! O que é isso!? Me larga!",
+      "nextId": "pos_poltergeist3"
+    },
+    {
+      "id": "pos_poltergeist3",
+      "character": "Nambú",
+      "sprite": "Nambu_medao",
+      "text": "(Sebo nas canelas!)",
+      "nextId": "pos_poltergeist4"
+    },
+    {
+      "id": "pos_poltergeist4",
+      "character": "Sr. Florentino",
+      "sprite": "Flor_desespero",
+      "text": "Socorro! Socorro!",
+      "nextId": "timbu_bronca1",
+      "mission": "FadeOut"
+    },
+    {
+      "id": "timbu_bronca1",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "O que? Você fez o quê?",
+      "nextId": "timbu_bronca2"
+    },
+    {
+      "id": "timbu_bronca2",
+      "character": "Timbu",
+      "sprite": "Timbu_raiva",
+      "text": "Você FORTALECEU o laço de um fantasma com o plano físico... E DEIXOU ELE VIRAR UM POLTERGEIST?",
+      "nextId": "timbu_bronca3"
+    },
+    {
+      "id": "timbu_bronca3",
+      "character": "Timbu",
+      "sprite": "Timbu_furioso",
+      "text": "VOCÊ É MALUCO?",
+      "nextId": "timbu_bronca4"
+    },
+    {
+      "id": "timbu_bronca4",
+      "character": "Timbu",
+      "sprite": "Timbu_aiai",
+      "text": "Ugh... Agora já era... Virou problema do departamento de GRANDES exorcismos...",
+      "nextId": "fim_fase1_poltergeist"
+    },
+    {
+      "id": "fim_fase1_poltergeist",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 1 - Poltergeist criado"
+    }
+  ]
+}
