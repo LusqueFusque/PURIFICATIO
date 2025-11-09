@@ -54,8 +54,6 @@ public class MenuManager : MonoBehaviour
 
     public void MostraMenuOp()
     {
-        Panel_MenuPrincipal.SetActive(false);
-        Panel_LevelSelect.SetActive(false);
         Panel_MenuOptions.SetActive(true);
     }
 
