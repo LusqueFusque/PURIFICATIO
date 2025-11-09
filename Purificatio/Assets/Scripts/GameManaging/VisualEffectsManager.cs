@@ -42,7 +42,7 @@ public class VisualEffectsManager : MonoBehaviour
         if (blackScreen != null)
         {
             Color c = blackScreen.color;
-            c.a = 0f;
+            c.a = 1f;
             blackScreen.color = c;
             blackScreen.gameObject.SetActive(true);
         }

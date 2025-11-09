@@ -38,14 +38,14 @@ public class DialogueManager : MonoBehaviour
     public DialogueUIManager uiManager;
     
     [Header("Mission Handler da Fase")]
-    public MissionHandlerBase missionHandler; // ← NOVO: Configurável por fase
+    public MissionHandlerBase missionHandler; // Configurável por fase
 
     private DialogueData dialogueData;
     private Dictionary<string, DialogueLine> dialogueDict;
     private DialogueLine currentLine;
     private bool isPausedForMission = false;
     
-    // NOVO: Flag para indicar que está aguardando input antes de mudar cena
+    // Flag para indicar que está aguardando input antes de mudar cena
     private bool waitingForSceneChange = false;
     private string sceneToLoad = "";
 
@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour
     {
         LoadDialogue();
         
-        // MELHORADO: Usa Invoke para dar tempo do UI ativar completamente
+        // Usa coroutine para dar tempo do UI ativar completamente
         if (dialogueDict != null && dialogueDict.ContainsKey("inicio1"))
         {
             StartCoroutine(StartDialogueDelayed());
@@ -75,7 +75,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // NOVO: Inicia o diálogo com um pequeno delay
+    // Inicia o diálogo com um pequeno delay
     private System.Collections.IEnumerator StartDialogueDelayed()
     {
         Debug.Log("[DialogueManager] StartDialogueDelayed iniciado.");
@@ -102,7 +102,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (isPausedForMission || currentLine == null) return;
 
-        // NOVO: Se está aguardando mudança de cena
+        // Se está aguardando mudança de cena
         if (waitingForSceneChange)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -118,7 +118,7 @@ public class DialogueManager : MonoBehaviour
         // Avança diálogo com Espaço, apenas se não houver opções
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // NOVO: Se o texto está sendo digitado, pula a animação primeiro
+            // Se o texto está sendo digitado, pula a animação primeiro
             if (uiManager.IsTextTyping())
             {
                 uiManager.SkipTyping();
@@ -159,10 +159,10 @@ public class DialogueManager : MonoBehaviour
     {
         currentLine = line;
 
-        // NOVO: Garante que o painel está ativo ANTES de mostrar texto
+        // Garante que o painel está ativo ANTES de mostrar texto
         uiManager.ShowDialogueHideHUD();
 
-        // NOVO: Controla visibilidade do fantasma na cena
+        // Controla visibilidade do fantasma na cena
         HandleGhostVisibility(line.character);
 
         // Atualiza a UI do diálogo
@@ -176,50 +176,71 @@ public class DialogueManager : MonoBehaviour
                 uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
         }
 
-        // MODIFICADO: Se for ponto de menu especial, AGUARDA input
+        // Se for ponto de menu especial, AGUARDA input
         if (goToMenuPoints.Contains(line.id))
         {
             Debug.Log($"[DialogueManager] Diálogo final detectado ('{line.id}'). Aguardando ESPAÇO para ir ao menu...");
-            
             waitingForSceneChange = true;
             sceneToLoad = "02. Menu";
-            
-            // NOVO: Mostra indicador visual (opcional)
             uiManager.ShowContinuePrompt("Pressione ESPAÇO para continuar...");
-            
-            return; // Não continua o diálogo
+            return;
         }
 
-        // Se houver missão, pausa diálogo até completar
+        // ==================== PROCESSAMENTO DE MISSÕES ====================
         if (!string.IsNullOrEmpty(line.mission))
         {
+            Debug.Log($"[DialogueManager] Linha tem missão: '{line.mission}'");
             StartMission(line.mission);
         }
         else
         {
+            // Sem missão, diálogo continua normalmente
             isPausedForMission = false;
             uiManager.ShowDialogueHideHUD();
         }
     }
 
-    private void OnMissionCompletedHandler(string completedId)
-    {
-        if (MissionManager.Instance != null &&
-            MissionManager.Instance.IsCompleted(completedId))
-        {
-            Debug.Log($"[DialogueManager] Missão {completedId} completada, retomando diálogo!");
-            OnMissionComplete();
-        }
-    }
-
     private void StartMission(string missionId)
     {
+        Debug.Log($"[DialogueManager] ========== INICIANDO MISSÃO: {missionId} ==========");
+        
+        // Pausa o diálogo até a missão terminar
         isPausedForMission = true;
+        
+        // CASO 1: Se tem MissionHandler da fase, usa ele (PRIORIDADE)
+        if (missionHandler != null)
+        {
+            Debug.Log($"[DialogueManager] Chamando MissionHandler da fase para '{missionId}'");
+            
+            // Decide se esconde o diálogo ou não
+            // FadeIn: Mantém diálogo visível durante o fade
+            if (missionId.ToLower() == "fadein")
+            {
+                Debug.Log("[DialogueManager] FadeIn detectado - mantendo diálogo visível");
+                // Não esconde o diálogo
+            }
+            else
+            {
+                // Para outras missões, esconde o diálogo
+                uiManager.HideDialogueShowHUD();
+            }
+            
+            // Chama o handler
+            missionHandler.HandleMission(missionId);
+            return;
+        }
+
+        // CASO 2: Fallback para MissionManager (missões antigas)
+        Debug.LogWarning($"[DialogueManager] MissionHandler não configurado! Usando MissionManager para '{missionId}'");
+        
         uiManager.HideDialogueShowHUD();
 
         if (MissionManager.Instance == null)
         {
-            Debug.LogWarning("[DialogueManager] Nenhum MissionManager encontrado para missão: " + missionId);
+            Debug.LogError($"[DialogueManager] Nenhum sistema de missão encontrado para: {missionId}");
+            // Desbloqueia o diálogo para não travar
+            isPausedForMission = false;
+            uiManager.ShowDialogueHideHUD();
             return;
         }
 
@@ -232,10 +253,11 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[DialogueManager] Iniciando missão {missionId}");
+        Debug.Log($"[DialogueManager] Registrando missão '{missionId}' no MissionManager");
 
         // Remove possíveis listeners duplicados
         MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+
         // Adiciona o listener novo
         MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
 
@@ -243,10 +265,27 @@ public class DialogueManager : MonoBehaviour
         MissionManager.Instance.StartMission(missionId);
     }
 
-    private void OnMissionComplete()
+    // Chamado automaticamente quando MissionManager.CompleteMission() é executado
+    private void OnMissionCompletedHandler(string completedId)
     {
+        Debug.Log($"[DialogueManager] OnMissionCompletedHandler recebido para: {completedId}");
+        
+        if (MissionManager.Instance != null && MissionManager.Instance.IsCompleted(completedId))
+        {
+            Debug.Log($"[DialogueManager] Missão {completedId} confirmada como completa!");
+            OnMissionComplete();
+        }
+    }
+
+    // Chamado pelo MissionHandler quando uma missão termina
+    public void OnMissionComplete()
+    {
+        Debug.Log("[DialogueManager] ========== MISSÃO COMPLETA - RETOMANDO DIÁLOGO ==========");
+        
         isPausedForMission = false;
         uiManager.ShowDialogueHideHUD();
+        
+        // Avança para próxima linha automaticamente
         ShowNextLine();
     }
 
@@ -276,9 +315,11 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue()
     {
+        Debug.Log("[DialogueManager] ContinueDialogue() chamado");
+        
         if (isPausedForMission)
         {
-            Debug.Log("[DialogueManager] ContinueDialogue chamado, mas aguardando missão.");
+            Debug.Log("[DialogueManager] Ainda pausado para missão, ignorando...");
             return;
         }
 
@@ -294,7 +335,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// NOVO: Controla a visibilidade do sprite do fantasma na cena
+    /// Controla a visibilidade do sprite do fantasma na cena
     /// </summary>
     private void HandleGhostVisibility(string characterName)
     {
@@ -358,7 +399,7 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueLine CurrentLine => currentLine;
 
-    // NOVO: Cleanup ao destruir
+    // Cleanup ao destruir
     private void OnDestroy()
     {
         if (MissionManager.Instance != null)

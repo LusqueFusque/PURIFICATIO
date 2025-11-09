@@ -23,6 +23,7 @@ public class Fase1MissionHandler : MissionHandlerBase
         switch (missionId)
         {
             case "FadeIn":
+            case "fadeIn":
                 StartCoroutine(FadeInSequence());
                 break;
 
@@ -35,7 +36,7 @@ public class Fase1MissionHandler : MissionHandlerBase
             case "GhostSpriteAppear":
                 // Faz Eveline aparecer visível (sem câmera)
                 ShowGhostSprite();
-                CompleteMission(missionId);
+                CompleteMissionAndContinue(missionId);
                 break;
 
             case "findDoll":
@@ -66,19 +67,26 @@ public class Fase1MissionHandler : MissionHandlerBase
     // ==================== FADE IN ====================
     private IEnumerator FadeInSequence()
     {
-        Debug.Log("[Fase1] Iniciando Fade In...");
-
+        Debug.Log("[Fase1] ========== INICIANDO FADE IN ==========");
+        
         VisualEffectsManager vfx = GetEffectsManager();
-        if (vfx != null)
+        
+        if (vfx == null)
         {
-            yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
+            Debug.LogError("[Fase1] VisualEffectsManager não encontrado na cena!");
+            yield return new WaitForSeconds(fadeDuration);
         }
         else
         {
-            yield return new WaitForSeconds(fadeDuration);
+            Debug.Log("[Fase1] Executando FadeFromBlack...");
+            yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
+            Debug.Log("[Fase1] FadeFromBlack completo!");
         }
-
-        CompleteMission("FadeIn");
+    
+        Debug.Log("[Fase1] ========== FADE IN COMPLETO ==========");
+        
+        // Completa a missão e continua o diálogo
+        CompleteMissionAndContinue("FadeIn");
     }
 
     // ==================== MOSTRAR FANTASMA ====================
@@ -155,8 +163,8 @@ public class Fase1MissionHandler : MissionHandlerBase
             music.Play();
         }
 
-        CompleteMission("exorcismoDaBoneca");
         Debug.Log("[Fase1] Exorcismo completo!");
+        CompleteMissionAndContinue("exorcismoDaBoneca");
     }
 
     // ==================== POLTERGEIST ====================
@@ -182,7 +190,6 @@ public class Fase1MissionHandler : MissionHandlerBase
         yield return new WaitForSeconds(0.5f);
 
         // 3. Som de lâmpada explodindo
-        // (Use um AudioClip diferente se tiver)
         if (screamSound != null)
         {
             AudioSource.PlayClipAtPoint(screamSound, Camera.main.transform.position, 0.5f);
@@ -212,8 +219,8 @@ public class Fase1MissionHandler : MissionHandlerBase
             vfx.ClearRedScreen();
         }
 
-        CompleteMission("poltergeistTransformation");
         Debug.Log("[Fase1] Poltergeist criado!");
+        CompleteMissionAndContinue("poltergeistTransformation");
     }
 
     // ==================== FADE OUT ====================
@@ -231,6 +238,28 @@ public class Fase1MissionHandler : MissionHandlerBase
             yield return new WaitForSeconds(fadeDuration);
         }
 
-        CompleteMission("FadeOut");
+        Debug.Log("[Fase1] Fade Out completo!");
+        CompleteMissionAndContinue("FadeOut");
+    }
+    
+    // ==================== HELPER: COMPLETA E CONTINUA ====================
+    /// <summary>
+    /// Completa a missão E retoma o diálogo automaticamente
+    /// </summary>
+    private void CompleteMissionAndContinue(string missionId)
+    {
+        // 1. Marca missão como completa
+        CompleteMission(missionId);
+        
+        // 2. Retoma o diálogo
+        if (DialogueManager.Instance != null)
+        {
+            Debug.Log($"[Fase1] Retomando diálogo após missão '{missionId}'");
+            DialogueManager.Instance.OnMissionComplete();
+        }
+        else
+        {
+            Debug.LogError("[Fase1] DialogueManager.Instance é nulo!");
+        }
     }
 }

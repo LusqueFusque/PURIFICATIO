@@ -1,7 +1,7 @@
 {
   "dialogue": [
     {
-      "id": "inicio_fase1",
+      "id": "inicio1",
       "character": "Timbu",
       "sprite": "Timbu_palma",
       "text": "Muito bem! Nosso primeiro contratante é o Sr. Florentino. Ele compra e reforma casas para alugar, mas em uma de suas reformas recentes, os operários alegaram ter presenciado atividades paranormais. Dá um jeito nisso.",
