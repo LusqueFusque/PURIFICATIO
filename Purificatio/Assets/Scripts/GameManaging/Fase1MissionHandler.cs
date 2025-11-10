@@ -11,7 +11,6 @@ public class Fase1MissionHandler : MissionHandlerBase
     [Header("Referências da Fase 1")]
     public GameObject evelineGhostSprite; // Sprite do fantasma Eveline na cena (NÃO USADO)
     public UnityEngine.UI.Image evelineImage; // Image UI da Eveline (USAR ESTE)
-    public GameObject photoCameraItem; // Item da câmera fotográfica
     public AudioClip screamSound; // Som de choro/grito
     public AudioClip poltergeistSound; // Som do poltergeist
 
@@ -25,15 +24,16 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         switch (missionId)
         {
-            case "FadeIn":
+            case "faseIn":
             case "fadeIn":
                 StartCoroutine(FadeInSequence());
                 break;
 
             case "findGhost":
-                // Missão: Usar câmera para ver Eveline
-                // Ativa a câmera para o jogador, completa imediatamente
-                StartCoroutine(FindGhostSequence());
+                // Missão: Jogador deve usar a câmera manualmente
+                // O item da câmera completa essa missão quando for usado
+                Debug.Log("[Fase1] Aguardando jogador usar a câmera fotográfica...");
+                // NÃO completa aqui - o PhotoCameraItem vai chamar CompleteMission("findGhost")
                 break;
 
             case "GhostSpriteAppear":
@@ -91,38 +91,6 @@ public class Fase1MissionHandler : MissionHandlerBase
         CompleteMissionAndContinue("FadeIn");
     }
 
-    // ==================== FIND GHOST (CÂMERA) ====================
-    private IEnumerator FindGhostSequence()
-    {
-        Debug.Log("[Fase1] ========== INICIANDO FIND GHOST ==========");
-        
-        // Ativa o item da câmera
-        if (photoCameraItem != null)
-        {
-            photoCameraItem.SetActive(true);
-            Debug.Log("[Fase1] Câmera fotográfica ativada!");
-        }
-        else
-        {
-            Debug.LogWarning("[Fase1] photoCameraItem não atribuído no Inspector!");
-        }
-        
-        // Aguarda um curto momento (simulando jogador "usando" a câmera)
-        yield return new WaitForSeconds(0.5f);
-        
-        // Desativa a câmera
-        if (photoCameraItem != null)
-        {
-            photoCameraItem.SetActive(false);
-            Debug.Log("[Fase1] Câmera fotográfica desativada!");
-        }
-        
-        Debug.Log("[Fase1] ========== FIND GHOST COMPLETO ==========");
-        
-        // Completa missão e vai pro próximo diálogo
-        CompleteMissionAndContinue("findGhost");
-    }
-
     // ==================== GHOST APPEAR (FADE IN GRADUAL) ====================
     private IEnumerator GhostAppearSequence()
     {
@@ -172,30 +140,6 @@ public class Fase1MissionHandler : MissionHandlerBase
         
         // Completa missão e continua diálogo
         CompleteMissionAndContinue("GhostSpriteAppear");
-    }
-
-    // ==================== MOSTRAR FANTASMA (ANTIGO - NÃO USADO) ====================
-    private void ShowGhostSprite()
-    {
-        if (evelineGhostSprite != null)
-        {
-            evelineGhostSprite.SetActive(true);
-            
-            // Fade in do sprite
-            SpriteRenderer sr = evelineGhostSprite.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                Color c = sr.color;
-                c.a = 1f;
-                sr.color = c;
-            }
-
-            Debug.Log("[Fase1] Eveline agora está visível!");
-        }
-        else
-        {
-            Debug.LogWarning("[Fase1] evelineGhostSprite não atribuído!");
-        }
     }
 
     // ==================== EXORCISMO ====================
