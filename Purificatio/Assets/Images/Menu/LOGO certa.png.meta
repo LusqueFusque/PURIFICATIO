@@ -222,6 +222,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1184,7 +1210,50 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LOGO certa_0: -8261767493536264141
+      LOGO certa_1: 6797852614059900220
+      LOGO certa_10: 8394295477357644465
+      LOGO certa_11: -2743850815045777581
+      LOGO certa_12: 5037515668220680405
+      LOGO certa_13: 4233485021278001882
+      LOGO certa_14: 3862403351776233232
+      LOGO certa_15: -1907028213778041721
+      LOGO certa_16: -7280782762852625784
+      LOGO certa_17: 4355994648150345222
+      LOGO certa_18: -785128717866230670
+      LOGO certa_19: 703789904396526979
+      LOGO certa_2: 3519840917501947712
+      LOGO certa_20: 5947566033528782374
+      LOGO certa_21: -8846978512564454873
+      LOGO certa_22: -6386328770122418763
+      LOGO certa_23: -11504909275418093
+      LOGO certa_24: -1046133673229773022
+      LOGO certa_25: -7111631341416987048
+      LOGO certa_26: -8738017461225889774
+      LOGO certa_27: 2914143275828420746
+      LOGO certa_28: -7993841804832632037
+      LOGO certa_29: 3029856574392168726
+      LOGO certa_3: -8581615594649460239
+      LOGO certa_30: -6752548563995054969
+      LOGO certa_31: -334406141890874140
+      LOGO certa_32: -3421000400085603581
+      LOGO certa_33: 7522806554253652332
+      LOGO certa_34: -1092401179494641922
+      LOGO certa_35: 7557007593904831214
+      LOGO certa_36: 6556552433682573202
+      LOGO certa_37: 6093926400206328896
+      LOGO certa_38: -6834844888690280327
+      LOGO certa_39: 9008935753271853743
+      LOGO certa_4: -7493075781344090414
+      LOGO certa_40: -7015637159620025491
+      LOGO certa_41: -1760728070801724556
+      LOGO certa_42: -9107249098340159655
+      LOGO certa_5: 1776633328035206475
+      LOGO certa_6: 2743550751149627843
+      LOGO certa_7: -7825233049011501115
+      LOGO certa_8: 2141622064562866093
+      LOGO certa_9: -6738048846888886719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

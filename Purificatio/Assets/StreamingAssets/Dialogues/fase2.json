@@ -1,0 +1,520 @@
+{
+  "dialogue": [
+    {
+      "id": "inicio1",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "Belezinha, nosso próximo serviço é num museu!",
+      "nextId": "inicio2"
+    },
+    {
+      "id": "inicio2",
+      "character": "Timbu",
+      "sprite": "Timbu_palma",
+      "text": "Senhorita Niède Papadakis alega ter um espírito maligno destruindo objetos do museu e atacando visitantes.",
+      "nextId": "inicio3"
+    },
+    {
+      "id": "inicio3",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "Vai lá e faz o que você faz de melhor.",
+      "nextId": "niedeinicio1",
+      "mission": "fadeIn"
+    },
+    {
+      "id": "niedeinicio1",
+      "character": "Niède",
+      "sprite": "Niede_nervo",
+      "text": "Ah! Exorcista! Finalmente!",
+      "nextId": "niedeinicio2"
+    },
+    {
+      "id": "niedeinicio2",
+      "character": "Niède",
+      "sprite": "Niede_choro",
+      "text": "Por aqui! O fantasma deve estar no salão principal. Por favor, dê um jeito nele! O prejuízo já tá chegando nos milhões!",
+      "nextId": "niedeinicio3"
+    },
+    {
+      "id": "niedeinicio3",
+      "character": "Niède",
+      "sprite": "Niede_nhe",
+      "text": "Ele até quebrou a estátua da princesa Doshfari! Agora não dá pra passar pra o próximo salão até que a equipe de restauração apareça.",
+      "nextId": "niedeinicio4"
+    },
+    {
+      "id": "niedeinicio4",
+      "character": "Nambu",
+      "sprite": "Nambu_eheh",
+      "text": "Calma, calma. Eu sou profissional nisso.",
+      "mission": "FindLamp"
+    },
+    {
+      "id": "nambulampada1",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Que prezepada... Uma lâmpada...",
+      "nextId": "nambulampada2"
+    },
+    {
+      "id": "nambulampada2",
+      "character": "Nambu",
+      "sprite": "Nambu_dorme",
+      "text": "Hm-Hm! Não sei não, acho que é melhor pedir ajuda...",
+      "options": [
+        {
+          "optionText": "Esfregar a lâmpada",
+          "nextId": "djinn1"
+        },
+        {
+          "optionText": "Ligar para Timbu",
+          "nextId": "ligar_timbu1"
+        },
+        {
+          "optionText": "Ler a carta (Rota secreta)",
+          "nextId": "carta1"
+        }
+      ]
+    },
+    {
+      "id": "djinn1",
+      "character": "Djinn",
+      "sprite": "Djinn_raiva",
+      "text": "QUEM OUSA ME INVOCAR!",
+      "nextId": "djinn2"
+    },
+    {
+      "id": "djinn2",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "...eu.",
+      "nextId": "djinn3"
+    },
+    {
+      "id": "djinn3",
+      "character": "Djinn",
+      "sprite": "Djinn_confuso",
+      "text": "...o que em nome de Allah é você?",
+      "nextId": "djinn4"
+    },
+    {
+      "id": "djinn4",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "um nambu",
+      "nextId": "djinn5"
+    },
+    {
+      "id": "djinn5",
+      "character": "Djinn",
+      "sprite": "Djinn_raiva",
+      "text": "O que é um... NÃO IMPORTA!",
+      "nextId": "djinn6"
+    },
+    {
+      "id": "djinn6",
+      "character": "Djinn",
+      "sprite": "Djinn_furioso",
+      "text": "DIGA-ME, POR QUE VÓS, MORTAL, ROUBASTES A MINHA LÂMPADA E TROUXE-A PARA ESTE LUGAR INFERNAL!?",
+      "nextId": "djinn7"
+    },
+    {
+      "id": "djinn7",
+      "character": "Nambu",
+      "sprite": "Nambu_eheh",
+      "text": "Eu? Roubar? Eu mesmo não. Você tá me confundindo com outro aí.",
+      "nextId": "djinn8"
+    },
+    {
+      "id": "djinn8",
+      "character": "Djinn",
+      "sprite": "Djinn_raiva",
+      "text": "ENTÃO QUEM É O RESPONSÁVEL POR ESSA... RAPOSICE!?",
+      "nextId": "djinn9"
+    },
+    {
+      "id": "djinn9",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Aquela menina ali?",
+      "nextId": "djinn10"
+    },
+    {
+      "id": "djinn10",
+      "character": "Niède",
+      "sprite": "Niede_neutro",
+      "text": "...",
+      "nextId": "djinn11"
+    },
+    {
+      "id": "djinn11",
+      "character": "Niède",
+      "sprite": "Niede_chocada",
+      "text": "O QUE!?",
+      "nextId": "djinn12"
+    },
+    {
+      "id": "djinn12",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Tu.",
+      "nextId": "djinn13"
+    },
+    {
+      "id": "djinn13",
+      "character": "Niède",
+      "sprite": "Niede_medo",
+      "text": "E-e-e-e-eu-eu-e-eu? Eu não fiz nada! Eu sou inocente! Por favor, não me mate!",
+      "nextId": "djinn14"
+    },
+    {
+      "id": "djinn14",
+      "character": "Djinn",
+      "sprite": "Djinn_furioso",
+      "text": "SER HUMANO FRACO DE ESPÍRITO! COVARDE, COMO TODOS OS OUTROS! VOCÊS TODOS IRÃO PAGAR!",
+      "nextId": "djinn15"
+    },
+    {
+      "id": "djinn15",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Nossa.",
+      "nextId": "escolha_djinn"
+    },
+    {
+      "id": "escolha_djinn",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
+      "options": [
+        {
+          "optionText": "Exorcizar agora",
+          "nextId": "rota_a1"
+        },
+        {
+          "optionText": "Não exorcizar",
+          "nextId": "rota_b1"
+        }
+      ]
+    },
+    {
+      "id": "ligar_timbu1",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Que é que foi?",
+      "nextId": "ligar_timbu2"
+    },
+    {
+      "id": "ligar_timbu2",
+      "character": "Nambu",
+      "sprite": "Nambu_eheh",
+      "text": "Eh... Então...",
+      "nextId": "ligar_timbu3"
+    },
+    {
+      "id": "ligar_timbu3",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Tem uma lâmpada mágica aqui.",
+      "nextId": "ligar_timbu4"
+    },
+    {
+      "id": "ligar_timbu4",
+      "character": "Timbu",
+      "sprite": "Timbu_hm",
+      "text": "Um... Djinn? Um gênio da lâmpada? Hmmmmm?",
+      "nextId": "ligar_timbu5"
+    },
+    {
+      "id": "ligar_timbu5",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Eu esfrego? Vai que eu ganho 3 desejos, né?",
+      "nextId": "ligar_timbu6"
+    },
+    {
+      "id": "ligar_timbu6",
+      "character": "Timbu",
+      "sprite": "Timbu_dorme",
+      "text": "Ah... As coisas que eu poderia pedir...",
+      "nextId": "ligar_timbu7"
+    },
+    {
+      "id": "ligar_timbu7",
+      "character": "Timbu",
+      "sprite": "Timbu_raiva",
+      "text": "EXCETO que gênios da lâmpada fazem de tudo pra ERRAR o seu pedido se você não tiver 5 advogados elaborando todas as especificações e a cláusula de rescisão do seu desejo!",
+      "nextId": "ligar_timbu8"
+    },
+    {
+      "id": "ligar_timbu8",
+      "character": "Timbu",
+      "sprite": "Timbu_aiai",
+      "text": "Minha tia, uma vez, pediu a um gênio da lâmpada que o fizesse tão rica que chovesse dinheiro. Momentos depois caiu um temporal de moedas...",
+      "nextId": "ligar_timbu9"
+    },
+    {
+      "id": "ligar_timbu9",
+      "character": "Timbu",
+      "sprite": "Timbu_nojo",
+      "text": "Também teve meu avô que pediu um corpo jovem e saudável...",
+      "nextId": "ligar_timbu10"
+    },
+    {
+      "id": "ligar_timbu10",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": ".........",
+      "nextId": "ligar_timbu11"
+    },
+    {
+      "id": "ligar_timbu11",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Espera ---",
+      "nextId": "ligar_timbu12"
+    },
+    {
+      "id": "ligar_timbu12",
+      "character": "Timbu",
+      "sprite": "Timbu_ladin",
+      "text": "Enfim. Moral da história: não esfrega a lâmpada. Vai dar errado. Arranja outro jeito de se livrar dele.",
+      "nextId": "escolha_timbu"
+    },
+    {
+      "id": "escolha_timbu",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
+      "options": [
+        {
+          "optionText": "Exorcizar agora",
+          "nextId": "rota_a1"
+        },
+        {
+          "optionText": "Não exorcizar",
+          "nextId": "rota_b1"
+        }
+      ]
+    },
+    {
+      "id": "carta1",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Ih... Niède, chega aqui. Espia só.",
+      "nextId": "carta2"
+    },
+    {
+      "id": "carta2",
+      "character": "Niède",
+      "sprite": "Niede_neutro",
+      "text": "Sim? Uma carta?",
+      "nextId": "carta3"
+    },
+    {
+      "id": "carta3",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Lê só essa patifaria.",
+      "nextId": "carta4"
+    },
+    {
+      "id": "carta4",
+      "character": "Niède",
+      "sprite": "Niede_dorme",
+      "text": "Um-hum... sim... certo...",
+      "nextId": "carta5"
+    },
+    {
+      "id": "carta5",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "E aí?",
+      "nextId": "carta6"
+    },
+    {
+      "id": "carta6",
+      "character": "Niède",
+      "sprite": "Niede_nervo",
+      "text": "Ah... Não sei... Acho que... Primeiramente eu não tenho nada a ver!",
+      "nextId": "carta7"
+    },
+    {
+      "id": "carta7",
+      "character": "Niède",
+      "sprite": "Niede_nhe",
+      "text": "Segundamente... Eu vou supor que isso desencadeou a fúria do fantasma.",
+      "nextId": "carta8"
+    },
+    {
+      "id": "carta8",
+      "character": "Nambu",
+      "sprite": "Nambu_eheh",
+      "text": "Segundo minha opinião como profissional na área... Está corretíssima.",
+      "nextId": "carta9"
+    },
+    {
+      "id": "carta9",
+      "character": "Niède",
+      "sprite": "Niede_dorme",
+      "text": "Bom, nesse caso... Sei lá, talvez...",
+      "nextId": "carta10"
+    },
+    {
+      "id": "carta10",
+      "character": "Niède",
+      "sprite": "Niede_neutro",
+      "text": "Acho que o fantasma tem direito de ter raiva... É... Faz sentido...",
+      "nextId": "carta11"
+    },
+    {
+      "id": "carta11",
+      "character": "Niède",
+      "sprite": "Niede_nhe",
+      "text": "Talvez seja melhor deixá-lo em paz? Nós que o perturbamos primeiro, certo?",
+      "nextId": "carta12"
+    },
+    {
+      "id": "carta12",
+      "character": "Niède",
+      "sprite": "Niede_aiai",
+      "text": "Ah, cara, quer saber, eu me demito, eu acho. Se quiser podemos discutir o cancelamento do serviço.",
+      "nextId": "carta13"
+    },
+    {
+      "id": "carta13",
+      "character": "Nambu",
+      "sprite": "Nambu_medo",
+      "text": "(M-m-ma-mas, meu pagamento! Não!!)",
+      "nextId": "escolha_carta"
+    },
+    {
+      "id": "escolha_carta",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
+      "options": [
+        {
+          "optionText": "Exorcizar agora",
+          "nextId": "rota_a1"
+        },
+        {
+          "optionText": "Não exorcizar",
+          "nextId": "rota_b1"
+        }
+      ]
+    },
+    {
+      "id": "rota_a1",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Beleza, né. Não dá pra exorcizar exatamente, então... Eu vou só pegar aqui essa lâmpada e...",
+      "nextId": "rota_a2"
+    },
+    {
+      "id": "rota_a2",
+      "character": "Djinn",
+      "sprite": "Djinn_raiva",
+      "text": "O QUE VOCÊ ESTÁ FAZENDO? LARGUE A LÂMPADA AGORA!",
+      "nextId": "rota_a3"
+    },
+    {
+      "id": "rota_a3",
+      "character": "Nambu",
+      "sprite": "Nambu_eheh",
+      "text": "Pela janela! Voa, passarinho!",
+      "mission": "throwLamp",
+      "nextId": "rota_a4"
+    },
+    {
+      "id": "rota_a4",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Resolvido.",
+      "nextId": "fim_rota_a"
+    },
+    {
+      "id": "fim_rota_a",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 2 - Rota A: Exorcismo realizado"
+    },
+    {
+      "id": "rota_b1",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Beleza, né. Não vai rolar.",
+      "nextId": "rota_b2"
+    },
+    {
+      "id": "rota_b2",
+      "character": "Niède",
+      "sprite": "Niede_neutro",
+      "text": "Não vai exorcizar?",
+      "nextId": "rota_b3"
+    },
+    {
+      "id": "rota_b3",
+      "character": "Nambu",
+      "sprite": "Nambu_dorme",
+      "text": "Nah.",
+      "nextId": "rota_b4"
+    },
+    {
+      "id": "rota_b4",
+      "character": "Niède",
+      "sprite": "Niede_aiai",
+      "text": "(Suspiro)",
+      "nextId": "rota_b5"
+    },
+    {
+      "id": "rota_b5",
+      "character": "Nambu",
+      "sprite": "Nambu_eheh",
+      "text": "Pois é, a vida é complicada.",
+      "nextId": "rota_b6"
+    },
+    {
+      "id": "rota_b6",
+      "character": "Niède",
+      "sprite": "Niede_nhe",
+      "text": "Eu me demito.",
+      "nextId": "rota_b7"
+    },
+    {
+      "id": "rota_b7",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Ah, eu queria poder falar isso.",
+      "nextId": "rota_b8"
+    },
+    {
+      "id": "rota_b8",
+      "character": "Niède",
+      "sprite": "Niede_cansada",
+      "text": "Eu preciso de café...",
+      "nextId": "rota_b9"
+    },
+    {
+      "id": "rota_b9",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Ah! Eu sei de uma padaria perto daqui que tem uns pãezinhos doces INCRÍVEIS, eles ficam ÓTIMOS com café! Vamos dar uma passada lá.",
+      "nextId": "rota_b10"
+    },
+    {
+      "id": "rota_b10",
+      "character": "Niède",
+      "sprite": "Niede_neutro",
+      "text": "É uma boa...",
+      "nextId": "fim_rota_b"
+    },
+    {
+      "id": "fim_rota_b",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 2 - Rota B: Não exorcizou"
+    }
+  ]
+}
