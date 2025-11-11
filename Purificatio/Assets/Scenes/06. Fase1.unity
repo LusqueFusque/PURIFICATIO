@@ -222,7 +222,55 @@ Transform:
   - {fileID: 1496535421}
   - {fileID: 1500757608}
   - {fileID: 426267276}
+  - {fileID: 112614905}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &112614903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112614905}
+  - component: {fileID: 112614904}
+  m_Layer: 0
+  m_Name: MapButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &112614904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112614903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087285315a9540d42b1a1db8e491e4a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms: []
+  startingRoom: 
+  spriteRules: []
+--- !u!4 &112614905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112614903}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 362.90533, y: 264.9405, z: -0.49627456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43278355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &120400581
 GameObject:
@@ -732,16 +780,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324727307}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4646343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1855224093}
+  m_Father: {fileID: 1072191151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 229, y: 377}
+  m_AnchoredPosition: {x: 269.4259, y: 406.98846}
   m_SizeDelta: {x: 541.6083, y: 959.6697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324727309
@@ -2094,6 +2142,40 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1072191150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072191151}
+  m_Layer: 0
+  m_Name: ImagesItensAndGhosts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072191151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072191150}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -40.425903, y: -29.988464, z: -0.4646343}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1472850236}
+  - {fileID: 1766453535}
+  - {fileID: 324727308}
+  m_Father: {fileID: 1855224093}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098897911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,16 +2751,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472850235}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4646343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1855224093}
+  m_Father: {fileID: 1072191151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -248, y: 8}
+  m_AnchoredPosition: {x: -207.5741, y: 37.988464}
   m_SizeDelta: {x: 180, y: 207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1472850237
@@ -3019,9 +3101,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1992956038}
-        m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
-        m_MethodName: ChangeRoom
+      - m_Target: {fileID: 11500000, guid: f9166ee6209f0a344955f452018c651b, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3328,16 +3410,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766453534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4646343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1855224093}
+  m_Father: {fileID: 1072191151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 539, y: -340}
+  m_AnchoredPosition: {x: 579.4259, y: -310.01154}
   m_SizeDelta: {x: 199, y: 133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766453536
@@ -3513,7 +3595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Escrit\xF3rio"
+  m_text: Sala
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3624,14 +3706,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2109908884}
-  - {fileID: 324727308}
+  - {fileID: 1072191151}
   - {fileID: 1667000195}
   - {fileID: 1602834506}
   - {fileID: 1417386010}
   - {fileID: 1342000224}
   - {fileID: 2140966714}
-  - {fileID: 1472850236}
-  - {fileID: 1766453535}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3773,7 +3853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1992956039}
-  - component: {fileID: 1992956038}
+  - component: {fileID: 1992956040}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -3781,37 +3861,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1992956038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992956037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087285315a9540d42b1a1db8e491e4a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rooms:
-  - {fileID: 1797200442}
-  - {fileID: 120400581}
-  startingRoom: Sala
-  spriteRules:
-  - roomName: Sala
-    spritesToEnable:
-    - {fileID: 2119037247}
-    - {fileID: 324727307}
-    spritesToDisable:
-    - {fileID: 1766453534}
-    - {fileID: 1472850235}
-  - roomName: Quarto
-    spritesToEnable:
-    - {fileID: 1766453534}
-    - {fileID: 1472850235}
-    spritesToDisable:
-    - {fileID: 2119037247}
-    - {fileID: 324727307}
 --- !u!4 &1992956039
 Transform:
   m_ObjectHideFlags: 0
@@ -3827,6 +3876,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 43278355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1992956040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992956037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9166ee6209f0a344955f452018c651b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms:
+  - roomName: Quarto
+    roomObject: {fileID: 1797200442}
+    alwaysActiveObjects:
+    - {fileID: 1472850235}
+    - {fileID: 1766453534}
+    alwaysInactiveObjects:
+    - {fileID: 324727307}
+    - {fileID: 2119037247}
+    conditionalObjects: []
+    objectExceptions: []
+  - roomName: Sala
+    roomObject: {fileID: 120400581}
+    alwaysActiveObjects: []
+    alwaysInactiveObjects:
+    - {fileID: 1472850235}
+    - {fileID: 1766453534}
+    conditionalObjects:
+    - targetObject: {fileID: 324727307}
+      condition:
+        conditionType: 2
+        missionId: GhostSpriteAppear
+        flagName: 
+        logicOperator: 0
+        multipleConditions:
+        - conditionType: 5
+          missionId: 
+          flagName: 
+          logicOperator: 0
+          multipleConditions: []
+      showInRooms: []
+      hideInRooms: []
+    - targetObject: {fileID: 0}
+      condition:
+        conditionType: 0
+        missionId: 
+        flagName: 
+        logicOperator: 0
+        multipleConditions: []
+      showInRooms: []
+      hideInRooms: []
+    objectExceptions: []
+  startingRoomName: Sala
+  conditionalObjects: []
+  currentRoomName: 
+  showDebugLogs: 0
 --- !u!1 &2024509007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4266,7 +4373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Arquivo
+  m_text: 'Quarto
 
 '
   m_isRightToLeft: 0
@@ -4551,9 +4658,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1992956038}
-        m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
-        m_MethodName: ChangeRoom
+      - m_Target: {fileID: 11500000, guid: 087285315a9540d42b1a1db8e491e4a7, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
