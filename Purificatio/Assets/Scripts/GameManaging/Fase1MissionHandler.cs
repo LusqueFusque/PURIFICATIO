@@ -30,7 +30,7 @@ public class Fase1MissionHandler : MissionHandlerBase
                 // Missão: Usar câmera para ver Eveline
                 // Completada por PhotoCameraItem quando detectar Eveline
                 Debug.Log("[Fase1] Aguardando jogador usar câmera...");
-                break;
+                break; // ❌ NÃO CHAMA StartMission!
 
             case "GhostSpriteAppear":
                 // Faz Eveline aparecer visível (sem câmera)

@@ -12,6 +12,13 @@
       "character": "Nambú",
       "sprite": "Nambu_sorriso",
       "text": "Sim, senhor, senhor!",
+      "nextId": "fade_transition"
+    },
+    {
+      "id": "fade_transition",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "florentino1",
       "mission": "FadeIn"
     },
@@ -76,6 +83,7 @@
       "character": "Nambú",
       "sprite": "Nambu_raiva",
       "text": "Eu dou meus pulos...",
+      "nextId": "encontrou_fantasma",
       "mission": "findGhost"
     },
     {
@@ -139,13 +147,20 @@
       "character": "Sr. Florentino",
       "sprite": "Flor_preocupado",
       "text": "É dessa pintora de rodapé que os funcionários estão com medo?",
+      "nextId": "fantasma_fadeIn"
+    },
+    {
+      "id": "fantasma_fadeIn",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "eveline_aparece1",
       "mission": "GhostSpriteAppear"
     },
     {
       "id": "eveline_aparece1",
-      "character": "Seta",
-      "sprite": "Seta",
+      "character": "",
+      "sprite": "",
       "text": "Eu... não pinto... rodapés...",
       "nextId": "eveline_aparece2"
     },

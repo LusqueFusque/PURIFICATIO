@@ -241,33 +241,25 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // MODIFICADO: Se já foi completada, segue normalmente
+        // Se já foi completada, segue normalmente
         if (MissionManager.Instance.IsCompleted(missionId))
         {
-            Debug.Log($"[DialogueManager] Missão {missionId} já completa. Continuando diálogo.");
-            isPausedForMission = false;
-            uiManager.ShowDialogueHideHUD();
-            return;
+            // ...
         }
 
         Debug.Log($"[DialogueManager] Iniciando missão {missionId}");
-
+    
         // Remove possíveis listeners duplicados
         MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
-        // Adiciona o listener novo
         MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-
+    
         // Garante que a missão começa ativa
-        MissionManager.Instance.StartMission(missionId);
-
+        MissionManager.Instance.StartMission(missionId); // ✅ Chama StartMission
+    
         // NOVO: Delega ao MissionHandler específico da fase
         if (missionHandler != null)
         {
-            missionHandler.HandleMission(missionId);
-        }
-        else
-        {
-            Debug.LogError("[DialogueManager] Nenhum MissionHandler atribuído para esta fase!");
+            missionHandler.HandleMission(missionId); // ✅ Chama HandleMission
         }
     }
 
