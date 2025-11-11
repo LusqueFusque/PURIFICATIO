@@ -159,14 +159,14 @@
     },
     {
       "id": "eveline_aparece1",
-      "character": "",
+      "character": "Eveline",
       "sprite": "",
       "text": "Eu... não pinto... rodapés...",
       "nextId": "eveline_aparece2"
     },
     {
       "id": "eveline_aparece2",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Mas eu... pintei a... parede do quarto...",
       "nextId": "Flor_manda_exorcizar"
@@ -194,7 +194,7 @@
     },
     {
       "id": "eveline_responde1",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Minha... casa... Eu não... assombro... Eu moro...",
       "nextId": "nambu_percebe"
@@ -215,7 +215,7 @@
     },
     {
       "id": "eveline_insiste",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Casa... minha...",
       "nextId": "Flor_interrompe"
@@ -243,14 +243,14 @@
     },
     {
       "id": "encontrou_boneca",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Minha... boneca... Você consertou...",
       "nextId": "eveline_pergunta"
     },
     {
       "id": "eveline_pergunta",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Posso... ficar... com ela?",
       "options": [
@@ -336,7 +336,7 @@
     },
     {
       "id": "eveline_feliz",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Minha... boneca... Vou brincar... tanto... com você...",
       "nextId": "Flor_silencio2"
@@ -392,7 +392,7 @@
     },
     {
       "id": "eveline_brava1",
-      "character": "Seta",
+      "character": "Eveline",
       "sprite": "Seta",
       "text": "Minha... Minha casa... Minha!",
       "nextId": "Flor_revolta4"

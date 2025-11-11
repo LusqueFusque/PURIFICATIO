@@ -724,7 +724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &324727308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1751,7 +1751,7 @@ MonoBehaviour:
   characterImage: {fileID: 311834593}
   dialogueBackground: {fileID: 831283035}
   gradientOverlay: {fileID: 831283035}
-  ghostArrowSprite: {fileID: 0}
+  ghostArrowSprite: {fileID: -8449114180511628245, guid: b7e2c3ad91ad4f74c8ffd5a95c852202, type: 3}
   humanDialogueColor: {r: 1, g: 1, b: 1, a: 1}
   ghostDialogueColor: {r: 0.604, g: 0.173, b: 0.149, a: 1}
   panelHUD: {fileID: 1417386009}
@@ -2767,12 +2767,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   evelineGhostSprite: {fileID: 2119037247}
-  evelineImage: {fileID: 324727309}
-  photoCameraItem: {fileID: 2024509007}
+  evelineUIImage: {fileID: 324727309}
   screamSound: {fileID: 0}
   poltergeistSound: {fileID: 0}
   fadeDuration: 2
-  ghostFadeInDuration: 1.5
 --- !u!4 &1500757608
 Transform:
   m_ObjectHideFlags: 0
@@ -3906,6 +3904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFileName: fase1.json
+  startDialogueId: inicio1
   uiManager: {fileID: 676286747}
   missionHandler: {fileID: 1500757607}
 --- !u!1 &2080073228

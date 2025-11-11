@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handler específico para as missões da Fase 1.
@@ -9,11 +10,18 @@ using System.Collections;
 public class Fase1MissionHandler : MissionHandlerBase
 {
     [Header("Referências da Fase 1")]
-    public GameObject evelineGhostSprite; // Sprite do fantasma Eveline na cena
-    public AudioClip screamSound; // Som de choro/grito
-    public AudioClip poltergeistSound; // Som do poltergeist
+    [Tooltip("Sprite do fantasma Eveline na cena (objeto 2D do cenário)")]
+    public GameObject evelineGhostSprite;
+
+    [Tooltip("Imagem UI da Eveline (por exemplo, 'EvelineImage' no Canvas)")]
+    public Image evelineUIImage;
+
+    [Header("Áudio da Fase 1")]
+    public AudioClip screamSound;
+    public AudioClip poltergeistSound;
 
     [Header("Efeitos")]
+    [Tooltip("Duração dos fades (em segundos)")]
     public float fadeDuration = 2f;
 
     public override void HandleMission(string missionId)
@@ -28,18 +36,14 @@ public class Fase1MissionHandler : MissionHandlerBase
 
             case "findGhost":
                 // Missão: Usar câmera para ver Eveline
-                // Completada por PhotoCameraItem quando detectar Eveline
                 Debug.Log("[Fase1] Aguardando jogador usar câmera...");
-                break; // ❌ NÃO CHAMA StartMission!
+                break;
 
             case "GhostSpriteAppear":
-                // Faz Eveline aparecer visível (sem câmera)
-                ShowGhostSprite();
-                CompleteMission(missionId);
+                StartCoroutine(GhostSpriteAppearSequence());
                 break;
 
             case "findDoll":
-                // CORRIGIDO: Registra a missão como ativa no MissionManager
                 if (MissionManager.Instance != null)
                 {
                     MissionManager.Instance.StartMission("findDoll");
@@ -49,8 +53,6 @@ public class Fase1MissionHandler : MissionHandlerBase
                 {
                     Debug.LogError("[Fase1] MissionManager não encontrado!");
                 }
-                
-                // Completada por outros scripts quando jogador entregar boneca
                 break;
 
             case "exorcismoDaBoneca":
@@ -90,28 +92,63 @@ public class Fase1MissionHandler : MissionHandlerBase
         CompleteMission("FadeIn");
     }
 
-    // ==================== MOSTRAR FANTASMA ====================
-    private void ShowGhostSprite()
+    // ==================== MOSTRAR FANTASMA (FADE-IN DE EVELINE) ====================
+    private IEnumerator GhostSpriteAppearSequence()
     {
+        Debug.Log("[Fase1] Iniciando GhostSpriteAppearSequence (fade-in de Eveline)...");
+
+        // 1. Garante que o sprite 2D (no mundo) comece invisível
         if (evelineGhostSprite != null)
         {
             evelineGhostSprite.SetActive(true);
-            
-            // Fade in do sprite
             SpriteRenderer sr = evelineGhostSprite.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                Color c = sr.color;
-                c.a = 1f;
-                sr.color = c;
+                Color startColor = sr.color;
+                startColor.a = 0f;
+                sr.color = startColor;
             }
+        }
 
-            Debug.Log("[Fase1] Eveline agora está visível!");
-        }
-        else
+        // 2. Garante que a imagem da UI está configurada
+        if (evelineUIImage == null)
         {
-            Debug.LogWarning("[Fase1] evelineGhostSprite não atribuído!");
+            Debug.LogWarning("[Fase1] ⚠️ Nenhuma referência UI da Eveline atribuída no Inspector!");
+            CompleteMission("GhostSpriteAppear");
+            DialogueManager.Instance.ContinueDialogue();
+            yield break;
         }
+
+        // 3. Inicia invisível
+        Color color = evelineUIImage.color;
+        color.a = 0f;
+        evelineUIImage.color = color;
+        evelineUIImage.gameObject.SetActive(true);
+
+        // 4. Fade in gradual (0 → 1)
+        float elapsed = 0f;
+        float duration = fadeDuration > 0 ? fadeDuration : 2f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            color.a = Mathf.Lerp(0f, 1f, t);
+            evelineUIImage.color = color;
+            yield return null;
+        }
+
+        // 5. Garante visibilidade total ao final
+        color.a = 1f;
+        evelineUIImage.color = color;
+
+        Debug.Log("[Fase1] Fade-in de EvelineImage concluído!");
+
+        // 6. Pequena pausa pra impacto visual
+        yield return new WaitForSeconds(0.5f);
+
+        // 7. Marca missão concluída e prossegue diálogo
+        CompleteMission("GhostSpriteAppear");
+        DialogueManager.Instance.ContinueDialogue();
     }
 
     // ==================== EXORCISMO ====================
@@ -175,14 +212,12 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         VisualEffectsManager vfx = GetEffectsManager();
 
-        // 1. Para música
         AudioSource music = FindObjectOfType<AudioSource>();
         if (music != null && music.isPlaying)
         {
             music.Stop();
         }
 
-        // 2. Tela vermelha
         if (vfx != null)
         {
             vfx.RedScreenEffect(2f);
@@ -190,8 +225,6 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(0.5f);
 
-        // 3. Som de lâmpada explodindo
-        // (Use um AudioClip diferente se tiver)
         if (screamSound != null)
         {
             AudioSource.PlayClipAtPoint(screamSound, Camera.main.transform.position, 0.5f);
@@ -199,7 +232,6 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(0.5f);
 
-        // 4. Fade to black
         if (vfx != null)
         {
             yield return StartCoroutine(vfx.FadeToBlack(1f));
@@ -207,7 +239,6 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(1f);
 
-        // 5. Sons de objetos batendo
         if (poltergeistSound != null)
         {
             AudioSource.PlayClipAtPoint(poltergeistSound, Camera.main.transform.position, 0.6f);
@@ -215,7 +246,6 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(2f);
 
-        // 6. Limpa efeitos
         if (vfx != null)
         {
             vfx.ClearRedScreen();
