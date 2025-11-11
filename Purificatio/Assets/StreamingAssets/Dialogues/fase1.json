@@ -161,14 +161,14 @@
       "id": "eveline_aparece1",
       "character": "Eveline",
       "sprite": "",
-      "text": "Eu... não pinto... rodapés...",
+      "text": "...",
       "nextId": "eveline_aparece2"
     },
     {
       "id": "eveline_aparece2",
       "character": "Eveline",
       "sprite": "Seta",
-      "text": "Mas eu... pintei a... parede do quarto...",
+      "text": "Eu... não pinto... rodapés... Mas eu... pintei a... parede do quarto...",
       "nextId": "Flor_manda_exorcizar"
     },
     {
