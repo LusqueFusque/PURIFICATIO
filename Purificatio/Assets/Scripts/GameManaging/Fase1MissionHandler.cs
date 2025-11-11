@@ -9,14 +9,12 @@ using System.Collections;
 public class Fase1MissionHandler : MissionHandlerBase
 {
     [Header("Referências da Fase 1")]
-    public GameObject evelineGhostSprite; // Sprite do fantasma Eveline na cena (NÃO USADO)
-    public UnityEngine.UI.Image evelineImage; // Image UI da Eveline (USAR ESTE)
+    public GameObject evelineGhostSprite; // Sprite do fantasma Eveline na cena
     public AudioClip screamSound; // Som de choro/grito
     public AudioClip poltergeistSound; // Som do poltergeist
 
     [Header("Efeitos")]
     public float fadeDuration = 2f;
-    public float ghostFadeInDuration = 1.5f; // Tempo do fade in do fantasma
 
     public override void HandleMission(string missionId)
     {
@@ -24,27 +22,35 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         switch (missionId)
         {
-            case "faseIn":
-            case "fadeIn":
+            case "FadeIn":
                 StartCoroutine(FadeInSequence());
                 break;
 
             case "findGhost":
-                // Missão: Jogador deve usar a câmera manualmente
-                // O item da câmera completa essa missão quando for usado
-                Debug.Log("[Fase1] Aguardando jogador usar a câmera fotográfica...");
-                // NÃO completa aqui - o PhotoCameraItem vai chamar CompleteMission("findGhost")
+                // Missão: Usar câmera para ver Eveline
+                // Completada por PhotoCameraItem quando detectar Eveline
+                Debug.Log("[Fase1] Aguardando jogador usar câmera...");
                 break;
 
             case "GhostSpriteAppear":
-                // Faz Eveline aparecer visível (fade in gradual na UI)
-                StartCoroutine(GhostAppearSequence());
+                // Faz Eveline aparecer visível (sem câmera)
+                ShowGhostSprite();
+                CompleteMission(missionId);
                 break;
 
             case "findDoll":
-                // Missão: Encontrar e consertar boneca
+                // CORRIGIDO: Registra a missão como ativa no MissionManager
+                if (MissionManager.Instance != null)
+                {
+                    MissionManager.Instance.StartMission("findDoll");
+                    Debug.Log("[Fase1] Missão 'findDoll' registrada. Aguardando jogador encontrar boneca...");
+                }
+                else
+                {
+                    Debug.LogError("[Fase1] MissionManager não encontrado!");
+                }
+                
                 // Completada por outros scripts quando jogador entregar boneca
-                Debug.Log("[Fase1] Aguardando jogador encontrar boneca...");
                 break;
 
             case "exorcismoDaBoneca":
@@ -69,77 +75,43 @@ public class Fase1MissionHandler : MissionHandlerBase
     // ==================== FADE IN ====================
     private IEnumerator FadeInSequence()
     {
-        Debug.Log("[Fase1] ========== INICIANDO FADE IN ==========");
-        
+        Debug.Log("[Fase1] Iniciando Fade In...");
+
         VisualEffectsManager vfx = GetEffectsManager();
-        
-        if (vfx == null)
+        if (vfx != null)
         {
-            Debug.LogError("[Fase1] VisualEffectsManager não encontrado na cena!");
+            yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
+        }
+        else
+        {
             yield return new WaitForSeconds(fadeDuration);
         }
-        else
-        {
-            Debug.Log("[Fase1] Executando FadeFromBlack...");
-            yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
-            Debug.Log("[Fase1] FadeFromBlack completo!");
-        }
-    
-        Debug.Log("[Fase1] ========== FADE IN COMPLETO ==========");
-        
-        // Completa a missão e continua o diálogo
-        CompleteMissionAndContinue("FadeIn");
+
+        CompleteMission("FadeIn");
     }
 
-    // ==================== GHOST APPEAR (FADE IN GRADUAL) ====================
-    private IEnumerator GhostAppearSequence()
+    // ==================== MOSTRAR FANTASMA ====================
+    private void ShowGhostSprite()
     {
-        Debug.Log("[Fase1] ========== INICIANDO GHOST APPEAR ==========");
-        
-        // Desativa o sprite (SpriteRenderer) se estiver ativo
         if (evelineGhostSprite != null)
         {
-            evelineGhostSprite.SetActive(false);
-            Debug.Log("[Fase1] Sprite do fantasma desativado.");
-        }
-        
-        // Ativa a Image UI e faz fade in
-        if (evelineImage != null)
-        {
-            evelineImage.gameObject.SetActive(true);
+            evelineGhostSprite.SetActive(true);
             
-            // Começa transparente
-            Color c = evelineImage.color;
-            c.a = 0f;
-            evelineImage.color = c;
-            
-            Debug.Log("[Fase1] Iniciando fade in da EvelineImage...");
-            
-            // Fade in gradual
-            float elapsed = 0f;
-            while (elapsed < ghostFadeInDuration)
+            // Fade in do sprite
+            SpriteRenderer sr = evelineGhostSprite.GetComponent<SpriteRenderer>();
+            if (sr != null)
             {
-                elapsed += Time.deltaTime;
-                c.a = Mathf.Lerp(0f, 1f, elapsed / ghostFadeInDuration);
-                evelineImage.color = c;
-                yield return null;
+                Color c = sr.color;
+                c.a = 1f;
+                sr.color = c;
             }
-            
-            // Garante que ficou totalmente visível
-            c.a = 1f;
-            evelineImage.color = c;
-            
-            Debug.Log("[Fase1] Eveline agora está visível na UI!");
+
+            Debug.Log("[Fase1] Eveline agora está visível!");
         }
         else
         {
-            Debug.LogWarning("[Fase1] evelineImage não atribuído no Inspector!");
+            Debug.LogWarning("[Fase1] evelineGhostSprite não atribuído!");
         }
-        
-        Debug.Log("[Fase1] ========== GHOST APPEAR COMPLETO ==========");
-        
-        // Completa missão e continua diálogo
-        CompleteMissionAndContinue("GhostSpriteAppear");
     }
 
     // ==================== EXORCISMO ====================
@@ -192,8 +164,8 @@ public class Fase1MissionHandler : MissionHandlerBase
             music.Play();
         }
 
+        CompleteMission("exorcismoDaBoneca");
         Debug.Log("[Fase1] Exorcismo completo!");
-        CompleteMissionAndContinue("exorcismoDaBoneca");
     }
 
     // ==================== POLTERGEIST ====================
@@ -219,6 +191,7 @@ public class Fase1MissionHandler : MissionHandlerBase
         yield return new WaitForSeconds(0.5f);
 
         // 3. Som de lâmpada explodindo
+        // (Use um AudioClip diferente se tiver)
         if (screamSound != null)
         {
             AudioSource.PlayClipAtPoint(screamSound, Camera.main.transform.position, 0.5f);
@@ -248,8 +221,8 @@ public class Fase1MissionHandler : MissionHandlerBase
             vfx.ClearRedScreen();
         }
 
+        CompleteMission("poltergeistTransformation");
         Debug.Log("[Fase1] Poltergeist criado!");
-        CompleteMissionAndContinue("poltergeistTransformation");
     }
 
     // ==================== FADE OUT ====================
@@ -267,28 +240,6 @@ public class Fase1MissionHandler : MissionHandlerBase
             yield return new WaitForSeconds(fadeDuration);
         }
 
-        Debug.Log("[Fase1] Fade Out completo!");
-        CompleteMissionAndContinue("FadeOut");
-    }
-    
-    // ==================== HELPER: COMPLETA E CONTINUA ====================
-    /// <summary>
-    /// Completa a missão E retoma o diálogo automaticamente
-    /// </summary>
-    private void CompleteMissionAndContinue(string missionId)
-    {
-        // 1. Marca missão como completa
-        CompleteMission(missionId);
-        
-        // 2. Retoma o diálogo
-        if (DialogueManager.Instance != null)
-        {
-            Debug.Log($"[Fase1] Retomando diálogo após missão '{missionId}'");
-            DialogueManager.Instance.OnMissionComplete();
-        }
-        else
-        {
-            Debug.LogError("[Fase1] DialogueManager.Instance é nulo!");
-        }
+        CompleteMission("FadeOut");
     }
 }
