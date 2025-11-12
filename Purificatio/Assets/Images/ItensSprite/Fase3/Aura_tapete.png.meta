@@ -610,7 +610,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Aura_tapete_0: 6187118035801010195
+      Aura_tapete_1: 6786572684610871894
+      Aura_tapete_10: 8832020422546470201
+      Aura_tapete_11: 2606866379295903675
+      Aura_tapete_12: -6316239349278062677
+      Aura_tapete_13: 2373071894148693582
+      Aura_tapete_14: 2451485772606146725
+      Aura_tapete_15: -1211743168570368404
+      Aura_tapete_16: 7363643984745744978
+      Aura_tapete_17: 6407401043279113747
+      Aura_tapete_18: 8312640263566649313
+      Aura_tapete_2: -4190422766639100679
+      Aura_tapete_3: -5203323964047622166
+      Aura_tapete_4: -3375483672515248257
+      Aura_tapete_5: 7730493690134079020
+      Aura_tapete_6: -3992218396187619739
+      Aura_tapete_7: 8336637910718555442
+      Aura_tapete_8: 2820406170867959158
+      Aura_tapete_9: -1785246837195108337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

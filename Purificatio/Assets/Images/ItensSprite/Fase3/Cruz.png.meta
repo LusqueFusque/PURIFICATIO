@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cruz_0: -5212694408611640228
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

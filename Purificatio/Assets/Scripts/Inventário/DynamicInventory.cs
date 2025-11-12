@@ -1,33 +1,60 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DynamicInventory : MonoBehaviour
 {
-    [Header("Slots din�micos")]
-    public int maxSlots = 3;
-    public List<ItemData> freeItems = new List<ItemData>();
+    [Header("Slots fixos do inventário (arraste os 3 botões)")]
+    public List<Button> slots = new List<Button>();
+
+    [Header("Itens no inventário")]
+    public List<ItemData> items = new List<ItemData>();
 
     public bool AddItem(ItemData item)
     {
-        if (freeItems.Count >= maxSlots)
+        // se inventário cheio
+        if (items.Count >= slots.Count)
         {
-            Debug.Log("Invent�rio cheio!");
+            Debug.Log("Inventário cheio!");
             return false;
         }
-        freeItems.Add(item);
-        Debug.Log($"Adicionado {item.itemName}");
-        return true;
-    }
 
-    public bool RemoveItem(ItemData item)
-    {
-        return freeItems.Remove(item);
-    }
+        // encontra o primeiro slot inativo
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (!slots[i].gameObject.activeSelf)
+            {
+                ActivateSlot(slots[i], item);
+                items.Add(item);
+                Debug.Log($"Item {item.itemName} adicionado ao slot {i}");
+                return true;
+            }
+        }
 
-    public bool HasItem(string itemName)
-    {
-        foreach (var i in freeItems)
-            if (i.itemName == itemName) return true;
         return false;
+    }
+
+    private void ActivateSlot(Button slot, ItemData item)
+    {
+        slot.gameObject.SetActive(true);
+
+        Image icon = slot.GetComponent<Image>();
+        if (icon != null && item.icon != null)
+            icon.sprite = item.icon;
+
+        slot.onClick.RemoveAllListeners();
+        slot.onClick.AddListener(() => item.Use());
+    }
+
+    public void ClearInventory()
+    {
+        items.Clear();
+        foreach (var s in slots)
+        {
+            s.gameObject.SetActive(false);
+            Image img = s.GetComponent<Image>();
+            if (img != null) img.sprite = null;
+            s.onClick.RemoveAllListeners();
+        }
     }
 }

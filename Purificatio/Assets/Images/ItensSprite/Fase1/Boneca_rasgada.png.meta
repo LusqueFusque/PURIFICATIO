@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Boneca_rasgada_0: 4281110400334656211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

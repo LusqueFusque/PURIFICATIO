@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        // Desliga todas as salas no início
+        // Desliga todas as salas no inï¿½cio
         foreach (GameObject r in rooms)
             r.SetActive(false);
 
@@ -63,7 +63,7 @@ public class MapManager : MonoBehaviour
 
         if (!found)
         {
-            Debug.LogWarning("Room " + roomName + " não encontrada!");
+            Debug.LogWarning("Room " + roomName + " nï¿½o encontrada!");
             return;
         }
 
@@ -87,7 +87,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        // Se nenhuma regra for encontrada, não faz nada
+        // Se nenhuma regra for encontrada, nï¿½o faz nada
         Debug.Log($"[MapManager] Nenhuma regra de sprite para '{roomName}'.");
     }
 

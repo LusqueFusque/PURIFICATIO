@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Boneca_grampeada_0: 922788936667924710
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
