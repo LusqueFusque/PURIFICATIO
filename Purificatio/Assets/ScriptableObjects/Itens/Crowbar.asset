@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Crowbar
   icon: {fileID: 740581211652146370, guid: e605f4826e4be9b45877e36e19045846, type: 3}
-  itemLogicScript: {fileID: 0}
+  itemLogicScript: {fileID: 11500000, guid: 6f9ca213eee4be545ba4cfd844bc9ef9, type: 3}
