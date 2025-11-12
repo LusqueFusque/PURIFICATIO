@@ -3677,7 +3677,8 @@ MonoBehaviour:
     objectExceptions: []
   - roomName: Sala
     roomObject: {fileID: 120400581}
-    alwaysActiveObjects: []
+    alwaysActiveObjects:
+    - {fileID: 2119037247}
     alwaysInactiveObjects:
     - {fileID: 1472850235}
     - {fileID: 1766453534}

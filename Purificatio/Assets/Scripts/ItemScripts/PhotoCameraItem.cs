@@ -26,12 +26,20 @@ public class PhotoCameraItem : MonoBehaviour
             return;
         }
 
+        // === BLOQUEIO SE A SALA NÃO ESTIVER ATIVA ===
+        GameObject salaPanel = GameObject.Find("Sala");
+        if (salaPanel == null || !salaPanel.activeInHierarchy)
+        {
+            Debug.LogWarning("[PhotoCameraItem] ❌ Câmera não pode ser usada: painel 'Sala' não está ativo!");
+            return;
+        }
+        // =============================================
+
         isActive = true;
         photoMask.SetActive(true);
-        
+
         Debug.Log("[PhotoCameraItem] Câmera ativada.");
-        
-        // ===== DEBUG: Verifica MissionManager =====
+
         if (MissionManager.Instance == null)
         {
             Debug.LogError("[PhotoCameraItem] ❌ MissionManager.Instance é NULL!");
@@ -39,10 +47,10 @@ public class PhotoCameraItem : MonoBehaviour
         else
         {
             Debug.Log($"[PhotoCameraItem] MissionManager encontrado. Verificando missão 'findGhost'...");
-            
+
             bool isFindGhostActive = MissionManager.Instance.IsActive("findGhost");
             Debug.Log($"[PhotoCameraItem] Missão 'findGhost' está ativa? {isFindGhostActive}");
-            
+
             if (isFindGhostActive)
             {
                 wasActivatedDuringMission = true;
@@ -54,6 +62,7 @@ public class PhotoCameraItem : MonoBehaviour
             }
         }
     }
+
 
     private void Update()
     {
