@@ -43,7 +43,21 @@ public class DynamicInventory : MonoBehaviour
             icon.sprite = item.icon;
 
         slot.onClick.RemoveAllListeners();
-        slot.onClick.AddListener(() => item.Use());
+
+// Se o item for o crowbar, liga o botão ao script na cena
+        if (item.itemName == "Crowbar")
+        {
+            CrowbarItem crowbar = FindObjectOfType<CrowbarItem>();
+            if (crowbar != null)
+                slot.onClick.AddListener(() => crowbar.OnItemClicked());
+            else
+                Debug.LogWarning("Nenhum ItemCrowbar encontrado na cena!");
+        }
+        else
+        {
+            slot.onClick.AddListener(() => item.Use());
+        }
+
     }
 
     public void ClearInventory()

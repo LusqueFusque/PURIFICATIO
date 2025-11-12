@@ -1,51 +1,72 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemCrowbar : MonoBehaviour
+public class CrowbarItem : MonoBehaviour
 {
-    public bool isActive = false; // se o item está "selecionado"
-    public Image salaPanel; // imagem principal da sala
-    public Sprite madeiraRemovidaSprite; // sprite com a madeira já removida
-    private Sprite madeiraOriginalSprite;
+    public static CrowbarItem Instance;
 
-    void Start()
+    public bool isActive = false;
+    public Image salaPanel;
+    public Sprite madeiraRemovidaSprite;
+    public GameObject bonecaImage;
+    private bool madeiraRemovida = false;
+
+    void Awake()
     {
-        // guarda sprite original pra restaurar se quiser
-        if (salaPanel != null)
-            madeiraOriginalSprite = salaPanel.sprite;
+        Instance = this;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     void Update()
     {
-        // desativar com botão direito do mouse
         if (isActive && Input.GetMouseButtonDown(1))
         {
             isActive = false;
-            Debug.Log("Crowbar desativado.");
+            Debug.Log("[ItemCrowbar] Crowbar desativado (right click).");
         }
     }
 
-    // chamado quando o botão do inventário é clicado
     public void OnItemClicked()
     {
         isActive = !isActive;
-        Debug.Log(isActive ? "Crowbar ativado." : "Crowbar desativado.");
+        Debug.Log("[ItemCrowbar] Crowbar " + (isActive ? "ATIVADO" : "DESATIVADO") + " via OnItemClicked.");
     }
 
-    // este método será chamado quando clicar em algo interativo no cenário
     public void TryUseOn(GameObject target)
     {
-        if (!isActive) return;
+        Debug.Log("[ItemCrowbar] TryUseOn chamado. isActive=" + isActive + " target=" + (target? target.name : "null"));
 
-        if (target.CompareTag("WoodLoose"))
+        if (!isActive)
         {
-            Debug.Log("Madeira removida com o pé de cabra!");
-            salaPanel.sprite = madeiraRemovidaSprite;
-            isActive = false; // desativa após uso
+            Debug.Log("[ItemCrowbar] Ignorando: crowbar nÃ£o ativo.");
+            return;
+        }
+
+        if (target.CompareTag("WoodLoose") && !madeiraRemovida)
+        {
+            if (salaPanel != null && madeiraRemovidaSprite != null)
+                salaPanel.sprite = madeiraRemovidaSprite;
+
+            madeiraRemovida = true;
+            isActive = false;
+            Debug.Log("[ItemCrowbar] Madeira removida.");
+
+            // desativa clickareas
+            var clickables = GameObject.FindGameObjectsWithTag("WoodLoose");
+            foreach (var go in clickables) go.SetActive(false);
+
+            if (bonecaImage != null) bonecaImage.SetActive(true);
+
+            if (AdvancedMapManager.Instance != null)
+                AdvancedMapManager.Instance.SetGlobalFlag("WoodRemoved", true);
         }
         else
         {
-            Debug.Log("Nada a fazer com o pé de cabra aqui.");
+            Debug.Log("[ItemCrowbar] Nada a fazer aqui.");
         }
     }
 }

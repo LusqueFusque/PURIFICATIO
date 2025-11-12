@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grampeador
   icon: {fileID: 5423428500023800737, guid: 7f44b8ad8c4e48742a52f48d83e85d26, type: 3}
-  itemLogicScript: {fileID: 0}
+  itemLogicScript: {fileID: 11500000, guid: bf7da5ab7df6e63448e280fc808e481d, type: 3}
