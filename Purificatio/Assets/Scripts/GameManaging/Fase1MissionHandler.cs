@@ -187,6 +187,12 @@ public class Fase1MissionHandler : MissionHandlerBase
             evelineGhostSprite.SetActive(false);
         }
 
+        // Desativa também a UI da Eveline
+        if (evelineUIImage != null)
+        {
+            evelineUIImage.gameObject.SetActive(false);
+        }
+
         yield return new WaitForSeconds(0.5f);
 
         // 5. Volta ao normal
@@ -201,8 +207,18 @@ public class Fase1MissionHandler : MissionHandlerBase
             music.Play();
         }
 
+        // ✅ MARCA MISSÃO COMPLETA
         CompleteMission("exorcismoDaBoneca");
         Debug.Log("[Fase1] Exorcismo completo!");
+
+        // ✅ Vai para o diálogo pós-exorcismo
+        yield return new WaitForSeconds(0.5f);
+        
+        if (DialogueManager.Instance != null)
+        {
+            Debug.Log("[Fase1] Indo para diálogo 'exorcismo_completo'");
+            DialogueManager.Instance.GoToNode("exorcismo_completo");
+        }
     }
 
     // ==================== POLTERGEIST ====================

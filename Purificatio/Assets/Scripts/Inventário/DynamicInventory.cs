@@ -44,20 +44,53 @@ public class DynamicInventory : MonoBehaviour
 
         slot.onClick.RemoveAllListeners();
 
-// Se o item for o crowbar, liga o botão ao script na cena
+        // ============================================
+        // ITENS ESPECIAIS COM LÓGICA NA CENA
+        // ============================================
+        
+        // CROWBAR: Usa CrowbarItem na cena
         if (item.itemName == "Crowbar")
         {
+            Debug.Log("[DynamicInventory] Configurando botão para Crowbar (usando CrowbarItem na cena)");
             CrowbarItem crowbar = FindObjectOfType<CrowbarItem>();
             if (crowbar != null)
-                slot.onClick.AddListener(() => crowbar.OnItemClicked());
+            {
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Crowbar clicado! Chamando CrowbarItem.Toggle()");
+                    crowbar.Toggle();
+                });
+            }
             else
-                Debug.LogWarning("Nenhum ItemCrowbar encontrado na cena!");
+            {
+                Debug.LogWarning("[DynamicInventory] Nenhum CrowbarItem encontrado na cena!");
+            }
         }
+        // GRAMPEADOR: Usa StaplerItem na cena
+        else if (item.itemName == "Grampeador")
+        {
+            Debug.Log("[DynamicInventory] Configurando botão para Grampeador (usando StaplerItem na cena)");
+            StaplerItem stapler = FindObjectOfType<StaplerItem>();
+            if (stapler != null)
+            {
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Grampeador clicado! Chamando StaplerItem.Toggle()");
+                    stapler.Toggle();
+                });
+            }
+            else
+            {
+                Debug.LogWarning("[DynamicInventory] Nenhum StaplerItem encontrado na cena!");
+            }
+        }
+        // OUTROS ITENS: Usa o método Use() do ScriptableObject
         else
         {
-            slot.onClick.AddListener(() => item.Use());
+            Debug.Log($"[DynamicInventory] Configurando botão para {item.itemName} (usando ItemData.Use())");
+            slot.onClick.AddListener(() => {
+                Debug.Log($"[DynamicInventory] Botão {item.itemName} clicado! Chamando ItemData.Use()");
+                item.Use();
+            });
         }
-
     }
 
     public void ClearInventory()
