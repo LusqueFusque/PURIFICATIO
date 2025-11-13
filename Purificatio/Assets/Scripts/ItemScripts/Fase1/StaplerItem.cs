@@ -6,12 +6,14 @@ public class StaplerItem : MonoBehaviour
     public static StaplerItem Instance;
     public bool isActive = false;
 
-    public Image bonecaImage; // imagem da boneca na cena
-    public Sprite bonecaGrampeadaSprite; // sprite da boneca grampeada
+    public Image bonecaImage;
+    public Sprite bonecaGrampeadaSprite;
+
+    private float activationTime = 0f;  // ← NOVO: controla quando foi ativado
+    private const float ACTIVATION_DELAY = 0.2f;  // ← NOVO: delay em segundos
 
     void Awake()
     {
-        // Garante que Instance está sempre atualizado
         if (Instance != null && Instance != this)
         {
             Debug.LogWarning("[StaplerItem] Já existe uma instância! Destruindo duplicata.");
@@ -38,15 +40,18 @@ public class StaplerItem : MonoBehaviour
 
     void Update()
     {
-        // Desativar com botão direito do mouse
+        // ← MODIFICADO: só permite desativar após o delay
         if (isActive && Input.GetMouseButtonDown(1))
         {
-            isActive = false;
-            Debug.Log("[StaplerItem] Grampeador desativado (botão direito).");
+            // Verifica se já passou tempo suficiente desde a ativação
+            if (Time.time - activationTime > ACTIVATION_DELAY)
+            {
+                isActive = false;
+                Debug.Log("[StaplerItem] Grampeador desativado (botão direito).");
+            }
         }
     }
 
-    // Chamado quando o botão do inventário é clicado
     public void OnItemClicked()
     {
         Debug.Log($"[StaplerItem] OnItemClicked CHAMADO! Estado ANTES: isActive={isActive}");
@@ -61,11 +66,16 @@ public class StaplerItem : MonoBehaviour
         // Toggle do estado
         isActive = !isActive;
         
+        // ← NOVO: registra o momento da ativação
+        if (isActive)
+        {
+            activationTime = Time.time;
+        }
+        
         Debug.Log($"[StaplerItem] Estado DEPOIS: isActive={isActive}");
         Debug.Log(isActive ? "[StaplerItem] ✓ GRAMPEADOR ATIVADO!" : "[StaplerItem] ✗ Grampeador desativado.");
     }
 
-    // Chamado ao clicar em algo interativo no cenário
     public void TryUseOn(GameObject target)
     {
         Debug.Log($"[StaplerItem] ===== TryUseOn CHAMADO =====");
@@ -74,12 +84,11 @@ public class StaplerItem : MonoBehaviour
 
         if (!isActive)
         {
-            Debug.LogWarning("[StaplerItem] ❌ IGNORADO: Grampeador NÃO está ativo!");
-            Debug.LogWarning("[StaplerItem] Você clicou no botão do inventário para ativar o grampeador?");
+            Debug.LogWarning("[StaplerItem] ✖ IGNORADO: Grampeador NÃO está ativo!");
             return;
         }
 
-        if (target.CompareTag("Boneca")) // ou "BonecaImage" dependendo da sua tag
+        if (target.CompareTag("Boneca"))
         {
             Debug.Log("[StaplerItem] ✓ Tag correta detectada!");
             
@@ -90,17 +99,16 @@ public class StaplerItem : MonoBehaviour
             }
             else
             {
-                Debug.LogError("[StaplerItem] ❌ ERRO: bonecaImage ou bonecaGrampeadaSprite não atribuídos no Inspector!");
+                Debug.LogError("[StaplerItem] ✖ ERRO: bonecaImage ou bonecaGrampeadaSprite não atribuídos no Inspector!");
                 Debug.LogError($"[StaplerItem] bonecaImage={bonecaImage}, bonecaGrampeadaSprite={bonecaGrampeadaSprite}");
             }
 
-            // Desativa após o uso
             isActive = false;
             Debug.Log("[StaplerItem] Grampeador desativado após uso.");
         }
         else
         {
-            Debug.Log($"[StaplerItem] ❌ Tag '{target.tag}' não corresponde a 'Boneca'. Nada a grampear aqui.");
+            Debug.Log($"[StaplerItem] ✖ Tag '{target.tag}' não corresponde a 'Boneca'. Nada a grampear aqui.");
         }
     }
 }
