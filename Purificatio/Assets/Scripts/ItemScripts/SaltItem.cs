@@ -7,9 +7,6 @@ public class SaltItem : MonoBehaviour
     public LayerMask cursedLayer;
     public Camera targetCamera;
 
-    [Header("Tag da boneca")]
-    public string bonecaTag = "Boneca"; // ✅ NOVO
-
     private bool isActive = false;
     private int remainingUses;
 
@@ -88,18 +85,11 @@ public class SaltItem : MonoBehaviour
 
         if (hit.collider != null)
         {
-            // ✅ VERIFICA SE É A BONECA
-            if (hit.collider.CompareTag(bonecaTag))
-            {
-                CheckDollExorcism(hit.collider.gameObject);
-                return;
-            }
-
-            // Comportamento normal para outros objetos amaldiçoados
+            // Comportamento padrão: purificar objetos amaldiçoados
             var cursed = hit.collider.GetComponent<CursedItem>();
             if (cursed != null && cursed.isCursed)
             {
-                cursed.Purify();
+                cursed.Purify(); // Isso desativa o GameObject automaticamente
                 remainingUses--;
                 Debug.Log($"[SaltItem] Purificou {hit.collider.name}. Restam {remainingUses} usos.");
 
@@ -121,65 +111,5 @@ public class SaltItem : MonoBehaviour
         {
             Debug.Log("[SaltItem] Nenhum alvo atingido.");
         }
-    }
-
-    // ✅ NOVO MÉTODO: Verifica se deve exorcizar a boneca diretamente
-    private void CheckDollExorcism(GameObject doll)
-    {
-        Debug.Log("========================================");
-        Debug.Log("[SaltItem] 🧂 SAL USADO NA BONECA!");
-
-        if (MissionManager.Instance == null)
-        {
-            Debug.LogError("[SaltItem] ❌ MissionManager não encontrado!");
-            return;
-        }
-
-        // Verifica se a missão findDoll foi completada (boneca consertada)
-        bool dollWasFixed = MissionManager.Instance.IsCompleted("findDoll");
-
-        Debug.Log($"[SaltItem] Boneca foi consertada? {dollWasFixed}");
-
-        if (!dollWasFixed)
-        {
-            // ✅ BONECA NÃO FOI CONSERTADA - EXORCISMO DIRETO
-            Debug.Log("[SaltItem] ⚡ Boneca NÃO consertada! Iniciando exorcismo imediato!");
-
-            // Desativa a boneca visualmente
-            doll.SetActive(false);
-
-            // Usa o sal
-            remainingUses--;
-            Debug.Log($"[SaltItem] Sal usado. Restam {remainingUses} usos.");
-
-            // ✅ DISPARA O EXORCISMO VIA FASE1MISSIONHANDLER
-            var missionHandler = FindObjectOfType<Fase1MissionHandler>();
-            if (missionHandler != null)
-            {
-                Debug.Log("[SaltItem] 🔥 Chamando HandleMission('exorcismoDaBoneca')");
-                missionHandler.HandleMission("exorcismoDaBoneca");
-            }
-            else
-            {
-                Debug.LogError("[SaltItem] ❌ Fase1MissionHandler não encontrado!");
-            }
-
-            // Desequipa o sal
-            Unequip();
-        }
-        else
-        {
-            // Boneca já foi consertada - comportamento normal
-            Debug.Log("[SaltItem] ℹ️ Boneca já foi consertada. Usando sal normalmente.");
-            
-            var cursed = doll.GetComponent<CursedItem>();
-            if (cursed != null && cursed.isCursed)
-            {
-                cursed.Purify();
-                remainingUses--;
-            }
-        }
-
-        Debug.Log("========================================");
     }
 }

@@ -239,6 +239,7 @@
       "character": "Nambú",
       "sprite": "Nambu_dorme",
       "text": "Deixa eu ver... Fantasmas costumam permanecer na terra por causa de apegos...",
+      "nextId": "encontrou_boneca",
       "mission": "findDoll"
     },
     {
@@ -268,7 +269,7 @@
       "id": "rota_mentir1",
       "character": "Nambú",
       "sprite": "Nambu_eheh",
-      "text": "Claro... Claro... (Ela se distraiu! É minha chance!)",
+      "text": "Claro... Claro... (Ela se distraiu! É minha chance! Toma sal!)",
       "mission": "exorcismoDaBoneca"
     },
     {
@@ -290,6 +291,13 @@
       "character": "Sr. Florentino",
       "sprite": "Flor_feliz",
       "text": "Vou dar uma gorjeta pelo serviço bem feito...",
+      "nextId": "Fade"
+    },
+    {
+      "id": "Fade",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "timbu_parabeniza1",
       "mission": "fadeOut"
     },
@@ -304,7 +312,7 @@
       "id": "timbu_parabeniza2",
       "character": "Timbu",
       "sprite": "Timbu_aiai",
-      "text": "Agora o fantasma daquela pobre menininha pode finalmente partir pra a próxima e descansar...",
+      "text": "Agora o pobre fantasminha pode finalmente partir pra a próxima e descansar...",
       "nextId": "timbu_parabeniza3"
     },
     {
@@ -416,6 +424,7 @@
       "character": "Sr. Florentino",
       "sprite": "Flor_raiva",
       "text": "Eu vou continuar essa reforma de um jeito ou de outro!",
+      "nextId": "pos_poltergeist2",
       "mission": "poltergeistTransformation"
     },
     {
@@ -444,8 +453,7 @@
       "character": "Sr. Florentino",
       "sprite": "Flor_desespero",
       "text": "Socorro! Socorro!",
-      "nextId": "timbu_bronca1",
-      "mission": "FadeOut"
+      "nextId": "timbu_bronca1"
     },
     {
       "id": "timbu_bronca1",
@@ -464,7 +472,7 @@
     {
       "id": "timbu_bronca3",
       "character": "Timbu",
-      "sprite": "Timbu_furioso",
+      "sprite": "Timbu_nojo",
       "text": "VOCÊ É MALUCO?",
       "nextId": "timbu_bronca4"
     },

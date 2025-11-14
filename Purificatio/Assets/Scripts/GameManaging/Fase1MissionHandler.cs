@@ -24,6 +24,45 @@ public class Fase1MissionHandler : MissionHandlerBase
     [Tooltip("Duração dos fades (em segundos)")]
     public float fadeDuration = 2f;
 
+    void OnEnable()
+    {
+        // ✅ Registra listener para detectar quando findDoll é completada
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        }
+    }
+
+    void OnDisable()
+    {
+        // Remove listener ao desabilitar
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+        }
+    }
+
+    // ✅ Handler que escuta todas as missões completadas
+    private void OnMissionCompletedHandler(string completedMissionId)
+    {
+        Debug.Log($"[Fase1MissionHandler] Missão completada detectada: {completedMissionId}");
+
+        // Quando findDoll é completada, dispara o diálogo
+        if (completedMissionId == "findDoll")
+        {
+            Debug.Log("[Fase1MissionHandler] ✅ findDoll completada! Disparando diálogo 'encontrou_boneca'");
+            
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.GoToNode("encontrou_boneca");
+            }
+            else
+            {
+                Debug.LogError("[Fase1MissionHandler] DialogueManager não encontrado!");
+            }
+        }
+    }
+
     public override void HandleMission(string missionId)
     {
         Debug.Log($"[Fase1MissionHandler] Processando missão: {missionId}");
@@ -89,7 +128,19 @@ public class Fase1MissionHandler : MissionHandlerBase
             yield return new WaitForSeconds(fadeDuration);
         }
 
+        // ✅ Completa a missão
         CompleteMission("FadeIn");
+        
+        // ✅ Aguarda 1 frame
+        yield return null;
+        
+        // ✅ Continua o diálogo
+        Debug.Log("[Fase1] Fade In completo. Continuando diálogo...");
+        
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.ShowNextLine();
+        }
     }
 
     // ==================== MOSTRAR FANTASMA (FADE-IN DE EVELINE) ====================
@@ -115,7 +166,12 @@ public class Fase1MissionHandler : MissionHandlerBase
         {
             Debug.LogWarning("[Fase1] ⚠️ Nenhuma referência UI da Eveline atribuída no Inspector!");
             CompleteMission("GhostSpriteAppear");
-            DialogueManager.Instance.ContinueDialogue();
+            yield return null;
+            
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.ShowNextLine();
+            }
             yield break;
         }
 
@@ -146,9 +202,16 @@ public class Fase1MissionHandler : MissionHandlerBase
         // 6. Pequena pausa pra impacto visual
         yield return new WaitForSeconds(0.5f);
 
-        // 7. Marca missão concluída e prossegue diálogo
+        // 7. Marca missão concluída
         CompleteMission("GhostSpriteAppear");
-        DialogueManager.Instance.ContinueDialogue();
+        
+        // 8. Aguarda 1 frame e continua
+        yield return null;
+        
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.ShowNextLine();
+        }
     }
 
     // ==================== EXORCISMO ====================
@@ -168,7 +231,7 @@ public class Fase1MissionHandler : MissionHandlerBase
         // 2. Tela vermelha
         if (vfx != null)
         {
-            vfx.RedScreenEffect(3f);
+            vfx.RedScreenEffect(10f);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -267,8 +330,20 @@ public class Fase1MissionHandler : MissionHandlerBase
             vfx.ClearRedScreen();
         }
 
+        // ✅ Completa a missão
         CompleteMission("poltergeistTransformation");
         Debug.Log("[Fase1] Poltergeist criado!");
+        
+        // ✅ Aguarda 1 frame
+        yield return null;
+        
+        // ✅ Continua o diálogo
+        Debug.Log("[Fase1] Poltergeist completo. Continuando diálogo...");
+        
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.ShowNextLine();
+        }
     }
 
     // ==================== FADE OUT ====================
@@ -286,6 +361,18 @@ public class Fase1MissionHandler : MissionHandlerBase
             yield return new WaitForSeconds(fadeDuration);
         }
 
+        // ✅ Completa a missão
         CompleteMission("FadeOut");
+        
+        // ✅ Aguarda 1 frame
+        yield return null;
+        
+        // ✅ Continua o diálogo
+        Debug.Log("[Fase1] Fade Out completo. Continuando diálogo...");
+        
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.ShowNextLine();
+        }
     }
 }
