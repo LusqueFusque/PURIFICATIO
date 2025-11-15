@@ -4993,7 +4993,7 @@ MonoBehaviour:
   dialogueFileName: fase1.json
   startDialogueId: inicio1
   uiManager: {fileID: 676286747}
-  missionHandler: {fileID: 1500757607}
+  missionHandler: {fileID: 0}
 --- !u!1 &2080073228
 GameObject:
   m_ObjectHideFlags: 0
