@@ -2,210 +2,136 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Martelo usado para quebrar o vidro de proteção.
-/// Segue o padrão de CrowbarItem da Fase 1.
+/// Lógica do MARTELO - Quebra vidro de proteção para revelar chave
 /// </summary>
 public class HammerItem : MonoBehaviour
 {
     public static HammerItem Instance;
 
-    [Header("Painel da Cena")]
-    [Tooltip("Image do painel do depósito (troca apenas o sprite)")]
+    [Header("Painel da Cena - Vidro de Proteção")]
+    [Tooltip("Image do painel do depósito (troca sprite)")]
     public Image depositoPanelImage;
 
     [Header("Sprites do Painel")]
-    [Tooltip("Sprite com vidro INTACTO")]
     public Sprite spriteGlassIntact;
-    
-    [Tooltip("Sprite com vidro QUEBRADO e chave visível")]
     public Sprite spriteGlassBroken;
 
-    [Header("ClickAreas Condicionais")]
-    [Tooltip("ClickArea do vidro (desativa após quebrar)")]
-    public GameObject glassClickArea;
-    
-    [Tooltip("ClickArea da chave (ativa após quebrar)")]
-    public GameObject keyClickArea;
+    [Header("Objetos Condicionais")]
+    [Tooltip("Image da chave (ativa após quebrar vidro)")]
+    public GameObject keyCollectibleImage;
 
     [Header("Áudio")]
     public AudioClip glassBreakSound;
 
     private bool isActive = false;
     private bool glassIsBroken = false;
-    private float activationTime = 0f;
-    private const float ACTIVATION_DELAY = 0.2f;
 
     void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("[HammerItem] Destruindo duplicata.");
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
-        Debug.Log($"[HammerItem] Instance configurado. ID: {GetInstanceID()}");
     }
 
     void OnDestroy()
     {
         if (Instance == this)
-        {
             Instance = null;
-        }
     }
 
     void Start()
     {
-        // Garante estado inicial correto
+        // Estado inicial: vidro intacto, chave invisível
         if (depositoPanelImage != null && spriteGlassIntact != null)
-        {
             depositoPanelImage.sprite = spriteGlassIntact;
-        }
 
-        if (glassClickArea != null)
-            glassClickArea.SetActive(true);
-            
-        if (keyClickArea != null)
-            keyClickArea.SetActive(false);
+        if (keyCollectibleImage != null)
+            keyCollectibleImage.SetActive(false);
     }
 
     void Update()
     {
-        // Botão direito desativa (com proteção de delay)
-        if (isActive && Input.GetMouseButtonDown(1) && Time.time - activationTime > ACTIVATION_DELAY)
+        if (isActive && Input.GetMouseButtonDown(1))
         {
             Deactivate();
         }
     }
-
     // ============================================
-    // MÉTODOS PÚBLICOS
+    // CONTROLE DE ATIVAÇÃO
     // ============================================
-
     public void Activate()
     {
-        Debug.Log("[HammerItem] ===== ACTIVATE CHAMADO =====");
+        Debug.Log("[HammerItem] Martelo ATIVADO");
         isActive = true;
-        activationTime = Time.time;
-        Debug.Log($"[HammerItem] ✓ MARTELO ATIVADO! (ID: {GetInstanceID()})");
     }
 
     public void Deactivate()
     {
-        Debug.Log("[HammerItem] ===== DEACTIVATE CHAMADO =====");
+        Debug.Log("[HammerItem] Martelo DESATIVADO");
         isActive = false;
-        Debug.Log("[HammerItem] ✗ Martelo desativado.");
     }
 
     public void Toggle()
     {
-        Debug.Log("[HammerItem] ===== TOGGLE CHAMADO =====");
-        Debug.Log($"[HammerItem] Estado ANTES: isActive={isActive}");
-
         if (isActive)
-        {
             Deactivate();
-        }
         else
-        {
             Activate();
-        }
     }
 
-    public bool IsActive()
-    {
-        return isActive;
-    }
-
-    public void OnItemClicked()
-    {
-        Debug.Log("[HammerItem] OnItemClicked → Chamando Toggle()");
-        Toggle();
-    }
+    public bool IsActive() => isActive;
 
     // ============================================
-    // USO DO ITEM
+    // USO DO MARTELO
     // ============================================
-
-    public void TryUseOn(GameObject target)
+    public void UseHammer()
     {
-        Debug.Log("[HammerItem] ========================================");
-        Debug.Log("[HammerItem] TryUseOn chamado.");
-        Debug.Log($"[HammerItem] isActive={isActive}, target={(target ? target.name : "null")}");
+        Debug.Log("[HammerItem] UseHammer chamado!");
 
         if (!isActive)
         {
-            Debug.Log("[HammerItem] Ignorando: martelo não ativo.");
-            Debug.Log("[HammerItem] ========================================");
+            Debug.Log("[HammerItem] Martelo não está ativo!");
             return;
         }
 
-        // Quebra o vidro de proteção
-        if (target.CompareTag("ProtectionGlass") && !glassIsBroken)
+        if (glassIsBroken)
         {
-            Debug.Log("[HammerItem] ✓ Quebrando vidro de proteção...");
-            BreakGlass();
-        }
-        else if (glassIsBroken)
-        {
-            Debug.Log("[HammerItem] Vidro já foi quebrado.");
-        }
-        else
-        {
-            Debug.Log("[HammerItem] Nada a fazer aqui.");
+            Debug.Log("[HammerItem] Vidro já foi quebrado!");
+            return;
         }
 
-        Debug.Log("[HammerItem] ========================================");
+        BreakGlass();
     }
 
     private void BreakGlass()
     {
         glassIsBroken = true;
 
-        // Som de vidro quebrando
+        // Som
         if (glassBreakSound != null)
-        {
             AudioSource.PlayClipAtPoint(glassBreakSound, Camera.main.transform.position, 0.6f);
-        }
 
-        // ============================================
-        // TROCA APENAS O SPRITE DA IMAGE
-        // ============================================
+        // Troca sprite do painel
         if (depositoPanelImage != null && spriteGlassBroken != null)
         {
-            Debug.Log("[HammerItem] 🔄 Trocando sprite: Vidro Intacto → Vidro Quebrado");
             depositoPanelImage.sprite = spriteGlassBroken;
-            Debug.Log("[HammerItem] ✓ Sprite do painel atualizado!");
-        }
-        else
-        {
-            Debug.LogWarning("[HammerItem] ⚠️ Referências não atribuídas no Inspector!");
+            Debug.Log("[HammerItem] ✓ Sprite trocado: vidro quebrado");
         }
 
-        // Desativa ClickArea do vidro
-        if (glassClickArea != null)
+        // Mostra a chave coletável
+        if (keyCollectibleImage != null)
         {
-            glassClickArea.SetActive(false);
-            Debug.Log("[HammerItem] ✓ ClickArea do vidro desativada.");
+            keyCollectibleImage.SetActive(true);
+            Debug.Log("[HammerItem] ✓ Chave agora visível para coleta");
         }
 
-        // Ativa ClickArea da chave
-        if (keyClickArea != null)
-        {
-            keyClickArea.SetActive(true);
-            Debug.Log("[HammerItem] ✓ ClickArea da chave ativada.");
-        }
-
-        // Seta flag global
+        // Flag global (opcional)
         if (AdvancedMapManager.Instance != null)
-        {
             AdvancedMapManager.Instance.SetGlobalFlag("GlassBroken", true);
-        }
 
-        Debug.Log("[HammerItem] ✓✓✓ Vidro quebrado com sucesso! Chave agora está visível!");
-        
-        // Martelo permanece ativo
+        Debug.Log("[HammerItem] ✓✓ Vidro quebrado com sucesso!");
     }
 }

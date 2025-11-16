@@ -129,7 +129,7 @@ public class Fase1MissionHandler : MissionHandlerBase
         }
 
         // ✅ Completa a missão
-        CompleteMission("FadeIn");
+        CompleteMission("fadeIn");
         
         // ✅ Aguarda 1 frame
         yield return null;

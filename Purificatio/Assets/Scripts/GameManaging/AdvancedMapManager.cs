@@ -185,20 +185,21 @@ public class AdvancedMapManager : MonoBehaviour
         roomDict.Clear();
         foreach (var room in rooms)
         {
-            if (!string.IsNullOrEmpty(room.roomName))
+            // ✅ Usa o nome do GameObject se roomName estiver vazio
+            string key = string.IsNullOrEmpty(room.roomName) 
+                ? room.roomObject.name 
+                : room.roomName;
+        
+            if (!roomDict.ContainsKey(key))
             {
-                if (!roomDict.ContainsKey(room.roomName))
-                {
-                    roomDict[room.roomName] = room;
-                }
-                else
-                {
-                    Debug.LogWarning($"[AdvancedMapManager] Cômodo duplicado: {room.roomName}");
-                }
+                roomDict[key] = room;
+            }
+            else
+            {
+                Debug.LogWarning($"[AdvancedMapManager] Cômodo duplicado: {key}");
             }
         }
     }
-
     public void ChangeRoom(string roomName)
     {
         if (showDebugLogs)

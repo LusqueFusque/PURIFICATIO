@@ -19,6 +19,13 @@
       "character": "Timbu",
       "sprite": "Timbu_sorriso",
       "text": "Vai lá e faz o que você faz de melhor.",
+      "nextId": "fadein_aa"
+    },
+    {
+      "id": "fadein_aa",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "niedeinicio1",
       "mission": "fadeIn"
     },
@@ -48,6 +55,14 @@
       "character": "Nambu",
       "sprite": "Nambu_eheh",
       "text": "Calma, calma. Eu sou profissional nisso.",
+      "mission": "FindLamp"
+    },
+    {
+      "id": "missaoLampada",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "niedeinicio1",
       "mission": "FindLamp"
     },
     {

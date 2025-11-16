@@ -45,49 +45,131 @@ public class DynamicInventory : MonoBehaviour
         slot.onClick.RemoveAllListeners();
 
         // ============================================
-        // ITENS ESPECIAIS COM LÓGICA NA CENA
+        // FASE 1
         // ============================================
         
-        // CROWBAR: Usa CrowbarItem na cena
+        // CROWBAR
         if (item.itemName == "Crowbar")
         {
-            Debug.Log("[DynamicInventory] Configurando botão para Crowbar (usando CrowbarItem na cena)");
+            Debug.Log("[DynamicInventory] Configurando botão para Crowbar");
             CrowbarItem crowbar = FindObjectOfType<CrowbarItem>();
             if (crowbar != null)
             {
                 slot.onClick.AddListener(() => {
-                    Debug.Log("[DynamicInventory] Botão Crowbar clicado! Chamando CrowbarItem.Toggle()");
+                    Debug.Log("[DynamicInventory] Botão Crowbar clicado!");
                     crowbar.Toggle();
                 });
             }
             else
             {
-                Debug.LogWarning("[DynamicInventory] Nenhum CrowbarItem encontrado na cena!");
+                Debug.LogWarning("[DynamicInventory] CrowbarItem não encontrado!");
             }
         }
-        // GRAMPEADOR: Usa StaplerItem na cena
+        
+        // GRAMPEADOR
         else if (item.itemName == "Grampeador")
         {
-            Debug.Log("[DynamicInventory] Configurando botão para Grampeador (usando StaplerItem na cena)");
+            Debug.Log("[DynamicInventory] Configurando botão para Grampeador");
             StaplerItem stapler = FindObjectOfType<StaplerItem>();
             if (stapler != null)
             {
                 slot.onClick.AddListener(() => {
-                    Debug.Log("[DynamicInventory] Botão Grampeador clicado! Chamando StaplerItem.Toggle()");
+                    Debug.Log("[DynamicInventory] Botão Grampeador clicado!");
                     stapler.Toggle();
                 });
             }
             else
             {
-                Debug.LogWarning("[DynamicInventory] Nenhum StaplerItem encontrado na cena!");
+                Debug.LogWarning("[DynamicInventory] StaplerItem não encontrado!");
             }
         }
-        // OUTROS ITENS: Usa o método Use() do ScriptableObject
+        
+        // ============================================
+        // FASE 2
+        // ============================================
+        
+        // MARTELO
+        else if (item.itemName == "Martelo" || item.itemName == "Hammer")
+        {
+            Debug.Log("[DynamicInventory] Configurando botão para Martelo");
+            HammerItem hammer = FindObjectOfType<HammerItem>();
+            if (hammer != null)
+            {
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Martelo clicado!");
+                    hammer.Toggle();
+                });
+            }
+            else
+            {
+                Debug.LogWarning("[DynamicInventory] HammerItem não encontrado!");
+            }
+        }
+        
+        // CHAVE
+        else if (item.itemName == "Chave" || item.itemName == "Key")
+        {
+            Debug.Log("[DynamicInventory] Configurando botão para Chave");
+            KeyItem key = FindObjectOfType<KeyItem>();
+            if (key != null)
+            {
+                // Notifica KeyItem que foi coletada
+                key.OnKeyCollected();
+                
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Chave clicado!");
+                    key.Toggle();
+                });
+            }
+            else
+            {
+                Debug.LogWarning("[DynamicInventory] KeyItem não encontrado!");
+            }
+        }
+        
+        // CHICLETE
+        else if (item.itemName == "Chiclete" || item.itemName == "Gum")
+        {
+            Debug.Log("[DynamicInventory] Configurando botão para Chiclete");
+            GumItem gum = FindObjectOfType<GumItem>();
+            if (gum != null)
+            {
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Chiclete clicado!");
+                    gum.UseGum(); // Usa diretamente ao clicar
+                });
+            }
+            else
+            {
+                Debug.LogWarning("[DynamicInventory] GumItem não encontrado!");
+            }
+        }
+        
+        // LÂMPADA
+        else if (item.itemName == "Lâmpada" || item.itemName == "Lamp")
+        {
+            Debug.Log("[DynamicInventory] Configurando botão para Lâmpada");
+            LampItem lamp = FindObjectOfType<LampItem>();
+            if (lamp != null)
+            {
+                // Notifica LampItem que foi coletada
+                lamp.OnLampCollected();
+                // Lâmpada não tem ação de clique (não é item usável)
+            }
+            else
+            {
+                Debug.LogWarning("[DynamicInventory] LampItem não encontrado!");
+            }
+        }
+        
+        // ============================================
+        // OUTROS ITENS
+        // ============================================
         else
         {
-            Debug.Log($"[DynamicInventory] Configurando botão para {item.itemName} (usando ItemData.Use())");
+            Debug.Log($"[DynamicInventory] Configurando botão para {item.itemName} (ItemData.Use())");
             slot.onClick.AddListener(() => {
-                Debug.Log($"[DynamicInventory] Botão {item.itemName} clicado! Chamando ItemData.Use()");
+                Debug.Log($"[DynamicInventory] Botão {item.itemName} clicado!");
                 item.Use();
             });
         }
