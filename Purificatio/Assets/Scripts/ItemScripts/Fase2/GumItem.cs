@@ -1,16 +1,16 @@
 using UnityEngine;
 
 /// <summary>
-/// Lógica do CHICLETE - Usa diretamente no cenário para consertar chave e abrir baú
+/// Lógica do CHICLETE - Conserta chave quebrada no baú
 /// </summary>
 public class GumItem : MonoBehaviour
 {
     public static GumItem Instance;
 
     [Header("Áudio")]
-    public AudioClip useGumSound;
+    public AudioClip gumUseSound;
 
-    private bool gumUsed = false;
+    private bool isActive = false;
 
     void Awake()
     {
@@ -28,62 +28,68 @@ public class GumItem : MonoBehaviour
             Instance = null;
     }
 
-    // Chamado ao clicar no botão do chiclete no inventário
+    void Update()
+    {
+        // ✅ Botão direito desativa
+        if (isActive && Input.GetMouseButtonDown(1))
+        {
+            Deactivate();
+        }
+    }
+
+    // ============================================
+    // CONTROLE DE ATIVAÇÃO
+    // ============================================
+    public void Activate()
+    {
+        Debug.Log("[GumItem] Chiclete ATIVADO");
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        Debug.Log("[GumItem] Chiclete DESATIVADO");
+        isActive = false;
+    }
+
+    public void Toggle()
+    {
+        if (isActive)
+            Deactivate();
+        else
+            Activate();
+    }
+
+    public bool IsActive() => isActive;
+
+    // ============================================
+    // USO DO CHICLETE
+    // ============================================
     public void UseGum()
     {
         Debug.Log("[GumItem] UseGum chamado!");
 
-        if (gumUsed)
+        if (!isActive)
         {
-            Debug.Log("[GumItem] ⚠️ Chiclete já foi usado!");
+            Debug.Log("[GumItem] Chiclete não está ativo!");
             return;
         }
-
-        // Verifica se a chave está quebrada NO BAÚ (no cenário)
-        if (KeyItem.Instance == null || !KeyItem.Instance.IsBrokenInChest())
-        {
-            Debug.Log("[GumItem] ⚠️ A chave não está quebrada no baú!");
-            return;
-        }
-
-        gumUsed = true;
 
         // Som
-        if (useGumSound != null)
-            AudioSource.PlayClipAtPoint(useGumSound, Camera.main.transform.position, 0.5f);
+        if (gumUseSound != null)
+            AudioSource.PlayClipAtPoint(gumUseSound, Camera.main.transform.position, 0.5f);
 
-        // Conserta a chave E abre o baú
-        KeyItem.Instance.RepairWithGum();
-
-        // Remove chiclete do inventário
-        RemoveFromInventory();
-
-        Debug.Log("[GumItem] ✓✓ Chiclete usado! Baú aberto!");
-    }
-
-    private void RemoveFromInventory()
-    {
-        DynamicInventory inventory = FindObjectOfType<DynamicInventory>();
-        if (inventory == null) return;
-
-        foreach (var slot in inventory.slots)
+        // Chama KeyItem para consertar
+        if (KeyItem.Instance != null)
         {
-            if (!slot.gameObject.activeSelf) continue;
-
-            var tmpText = slot.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            if (tmpText != null && (tmpText.text.Contains("Chiclete") || tmpText.text.Contains("Gum")))
-            {
-                slot.gameObject.SetActive(false);
-                slot.onClick.RemoveAllListeners();
-                
-                inventory.items.RemoveAll(item => 
-                    item.itemName == "Chiclete" || item.itemName == "Gum");
-                
-                Debug.Log("[GumItem] ✓ Chiclete removido do inventário");
-                break;
-            }
+            KeyItem.Instance.RepairWithGum();
+            Debug.Log("[GumItem] ✓ Chiclete usado para consertar chave!");
         }
-    }
+        else
+        {
+            Debug.LogWarning("[GumItem] KeyItem não encontrado!");
+        }
 
-    public bool IsUsed() => gumUsed;
+        Deactivate();
+    }
 }

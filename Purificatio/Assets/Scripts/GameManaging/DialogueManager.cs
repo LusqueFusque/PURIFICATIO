@@ -35,7 +35,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Configuração de diálogo")]
     public string dialogueFileName; // Ex: "fase1.json"
-    public string startDialogueId = "inicio1"; // ← NOVO: Configurável no Inspector
+    public string startDialogueId = "inicio1";
     public DialogueUIManager uiManager;
     
     [Header("Mission Handler da Fase")]
@@ -46,7 +46,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueLine currentLine;
     private bool isPausedForMission = false;
     
-    // NOVO: Flag para indicar que está aguardando input antes de mudar cena
+    // Flag para indicar que está aguardando input antes de mudar cena
     private bool waitingForSceneChange = false;
     private string sceneToLoad = "";
 
@@ -65,7 +65,6 @@ public class DialogueManager : MonoBehaviour
     {
         LoadDialogue();
         
-        // CORRIGIDO: Usa startDialogueId configurável ao invés de "inicio1" fixo
         if (dialogueDict != null && dialogueDict.ContainsKey(startDialogueId))
         {
             StartCoroutine(StartDialogueDelayed());
@@ -91,7 +90,6 @@ public class DialogueManager : MonoBehaviour
         // Aguarda 1 frame para garantir que tudo está ativo
         yield return null;
         
-        // CORRIGIDO: Usa startDialogueId configurável
         if (dialogueDict.TryGetValue(startDialogueId, out currentLine))
         {
             Debug.Log($"[DialogueManager] Mostrando primeira linha: '{currentLine.text}'");
@@ -102,8 +100,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         if (isPausedForMission || currentLine == null) return;
-
-        // NOVO: Se está aguardando mudança de cena
+        
         if (waitingForSceneChange)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -112,14 +109,13 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene(sceneToLoad);
                 return;
             }
-            // Não processa mais nada enquanto aguarda
             return;
         }
 
         // Avança diálogo com Espaço, apenas se não houver opções
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // NOVO: Se o texto está sendo digitado, pula a animação primeiro
+            // Se o texto está sendo digitado, pula a animação primeiro
             if (uiManager.IsTextTyping())
             {
                 uiManager.SkipTyping();
@@ -136,7 +132,7 @@ public class DialogueManager : MonoBehaviour
 
     private void LoadDialogue()
     {
-        // CORRIGIDO: Adiciona extensão .json se não tiver
+        //Adiciona extensão .json se não tiver
         string fileName = dialogueFileName;
         if (!fileName.EndsWith(".json"))
         {
@@ -177,10 +173,10 @@ public class DialogueManager : MonoBehaviour
     {
         currentLine = line;
 
-        // NOVO: Garante que o painel está ativo ANTES de mostrar texto
+        // Garante que o painel está ativo ANTES de mostrar texto
         uiManager.ShowDialogueHideHUD();
 
-        // NOVO: Controla visibilidade do fantasma na cena
+        // Controla visibilidade do fantasma na cena
         HandleGhostVisibility(line.character);
 
         // Atualiza a UI do diálogo
@@ -194,7 +190,7 @@ public class DialogueManager : MonoBehaviour
                 uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
         }
 
-        // MODIFICADO: Se for ponto de menu especial, AGUARDA input
+        // Se for ponto de menu especial, AGUARDA input
         if (goToMenuPoints.Contains(line.id))
         {
             Debug.Log($"[DialogueManager] Diálogo final detectado ('{line.id}'). Aguardando ESPAÇO para ir ao menu...");
@@ -202,7 +198,7 @@ public class DialogueManager : MonoBehaviour
             waitingForSceneChange = true;
             sceneToLoad = "02. Menu";
             
-            // NOVO: Mostra indicador visual (opcional)
+            // Mostra indicador visual (opcional)
             uiManager.ShowContinuePrompt("Pressione ESPAÇO para continuar...");
             
             return; // Não continua o diálogo
@@ -254,12 +250,12 @@ public class DialogueManager : MonoBehaviour
         MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
     
         // Garante que a missão começa ativa
-        MissionManager.Instance.StartMission(missionId); // ✅ Chama StartMission
+        MissionManager.Instance.StartMission(missionId); // Chama StartMission
     
         // NOVO: Delega ao MissionHandler específico da fase
         if (missionHandler != null)
         {
-            missionHandler.HandleMission(missionId); // ✅ Chama HandleMission
+            missionHandler.HandleMission(missionId); // Chama HandleMission
         }
     }
 
@@ -312,10 +308,8 @@ public class DialogueManager : MonoBehaviour
         else
             Debug.LogWarning("ID de diálogo não encontrado: " + nodeId);
     }
-
-    /// <summary>
-    /// NOVO: Controla a visibilidade do sprite do fantasma na cena
-    /// </summary>
+    
+    /// Controla a visibilidade do sprite do fantasma na cena
     private void HandleGhostVisibility(string characterName)
     {
         // Lista de personagens fantasmas (deve bater com DialogueUIManager)
@@ -362,10 +356,8 @@ public class DialogueManager : MonoBehaviour
             HideAllGhosts();
         }
     }
-
-    /// <summary>
+    
     /// Esconde todos os fantasmas da cena
-    /// </summary>
     private void HideAllGhosts()
     {
         GhostSpriteManager[] allGhosts = FindObjectsOfType<GhostSpriteManager>();
@@ -378,7 +370,7 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueLine CurrentLine => currentLine;
 
-    // NOVO: Cleanup ao destruir
+    // Cleanup ao destruir
     private void OnDestroy()
     {
         if (MissionManager.Instance != null)

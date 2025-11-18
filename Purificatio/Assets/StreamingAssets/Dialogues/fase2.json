@@ -55,7 +55,7 @@
       "character": "Nambu",
       "sprite": "Nambu_eheh",
       "text": "Calma, calma. Eu sou profissional nisso.",
-      "mission": "FindLamp"
+      "nextId": "missaoLampada"
     },
     {
       "id": "missaoLampada",
@@ -76,7 +76,7 @@
       "id": "nambulampada2",
       "character": "Nambu",
       "sprite": "Nambu_dorme",
-      "text": "Hm-Hm! Não sei não, acho que é melhor pedir ajuda...",
+      "text": "Que prezepada... Uma lâmpada... Hm-Hm! Não sei não, acho que é melhor pedir ajuda...",
       "options": [
         {
           "optionText": "Esfregar a lâmpada",
@@ -251,7 +251,7 @@
     {
       "id": "ligar_timbu6",
       "character": "Timbu",
-      "sprite": "Timbu_dorme",
+      "sprite": "Nambu_dorme",
       "text": "Ah... As coisas que eu poderia pedir...",
       "nextId": "ligar_timbu7"
     },
@@ -300,7 +300,7 @@
     {
       "id": "escolha_timbu",
       "character": "Sistema",
-      "sprite": "",
+      "sprite": "Sistema",
       "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
       "options": [
         {

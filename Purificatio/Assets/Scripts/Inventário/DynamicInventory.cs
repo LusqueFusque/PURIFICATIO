@@ -46,7 +46,6 @@ public class DynamicInventory : MonoBehaviour
 
         // ============================================
         // FASE 1
-        // ============================================
         
         // CROWBAR
         if (item.itemName == "Crowbar")
@@ -86,7 +85,6 @@ public class DynamicInventory : MonoBehaviour
         
         // ============================================
         // FASE 2
-        // ============================================
         
         // MARTELO
         else if (item.itemName == "Martelo" || item.itemName == "Hammer")
@@ -136,7 +134,7 @@ public class DynamicInventory : MonoBehaviour
             {
                 slot.onClick.AddListener(() => {
                     Debug.Log("[DynamicInventory] Botão Chiclete clicado!");
-                    gum.UseGum(); // Usa diretamente ao clicar
+                    gum.Toggle(); // ← MUDOU AQUI: de UseGum() para Toggle()
                 });
             }
             else
@@ -164,7 +162,6 @@ public class DynamicInventory : MonoBehaviour
         
         // ============================================
         // OUTROS ITENS
-        // ============================================
         else
         {
             Debug.Log($"[DynamicInventory] Configurando botão para {item.itemName} (ItemData.Use())");
