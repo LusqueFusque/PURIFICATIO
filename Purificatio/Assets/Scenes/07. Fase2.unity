@@ -3600,7 +3600,7 @@ MonoBehaviour:
   requiredItemName: Key
   backgroundPanel: {fileID: 408908363}
   newBackgroundSprite: {fileID: -8737599192855033473, guid: 79b9300ab2eefde44b7ea5a055f57abb, type: 3}
-  missionToComplete: chestOpen
+  missionToComplete: 
   requiredPreviousItem: 
   destroyAfterUse: 1
   consumeItem: 1
@@ -4783,7 +4783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1899857507
 RectTransform:
   m_ObjectHideFlags: 0
