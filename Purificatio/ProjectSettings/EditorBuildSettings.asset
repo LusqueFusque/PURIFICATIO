@@ -25,17 +25,17 @@ EditorBuildSettings:
     guid: 16a92d41f976d544d82ecdcaa3112a02
   - enabled: 1
     path: Assets/Scenes/07. Fase2.unity
-    guid: f28f3ea180ab5dd47a10538638554e2e
+    guid: c83fd26dc5a60434082eaff8241dbb1c
   - enabled: 1
     path: Assets/Scenes/08. Fase3.unity
-    guid: ccb161ef67900ff4ea4cd01c71a882cf
+    guid: 09edabedfc7eca740a3031270dea6f08
   - enabled: 1
     path: Assets/Scenes/09. Fase4.unity
-    guid: f4b9fbaf10428014aaf670a2327d9bda
+    guid: 23d73c1173d34474384ba35253f97cb7
   - enabled: 1
     path: Assets/Scenes/05. Tutorial.unity
     guid: 29bd3699cfce21a49b87cd8eedaf3816
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/New Folder/05. Tutorial 1.unity
     guid: 6c54e4b8c43db274c945df356ea0f5ac
   m_configObjects:

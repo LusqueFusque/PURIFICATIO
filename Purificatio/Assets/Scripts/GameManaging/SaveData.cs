@@ -1,9 +1,7 @@
-// SaveData.cs
 using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-// Classe auxiliar para serializar o "Dictionary" de decisões
 [System.Serializable]
 public class DecisionEntry
 {

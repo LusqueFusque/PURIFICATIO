@@ -2622,6 +2622,7 @@ MonoBehaviour:
   requiredPreviousItem: 
   destroyAfterUse: 0
   consumeItem: 0
+  objectToActivate: {fileID: 0}
 --- !u!4 &1255142254
 Transform:
   m_ObjectHideFlags: 0
@@ -2892,6 +2893,7 @@ MonoBehaviour:
   requiredPreviousItem: 
   destroyAfterUse: 1
   consumeItem: 1
+  objectToActivate: {fileID: 1899857506}
 --- !u!114 &1410922334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3338,6 +3340,7 @@ MonoBehaviour:
   djinnScreamSound: {fileID: 0}
   lampThrowSound: {fileID: 0}
   fadeDuration: 1.2
+  KeyImage: {fileID: 1899857506}
 --- !u!1 &1534995224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,6 +3607,7 @@ MonoBehaviour:
   requiredPreviousItem: 
   destroyAfterUse: 1
   consumeItem: 1
+  objectToActivate: {fileID: 0}
 --- !u!114 &1554704456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3829,6 +3833,7 @@ MonoBehaviour:
   requiredPreviousItem: 
   destroyAfterUse: 1
   consumeItem: 1
+  objectToActivate: {fileID: 1766453534}
 --- !u!114 &1618843202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4442,8 +4447,10 @@ MonoBehaviour:
         flagName: 
         logicOperator: 0
         multipleConditions: []
-      showInRooms: []
-      hideInRooms: []
+      showInRooms:
+      - "Armaz\xE9m"
+      hideInRooms:
+      - "Sal\xE3o"
     objectExceptions: []
   - roomName: "Sal\xE3o"
     roomObject: {fileID: 120400581}
@@ -4463,8 +4470,10 @@ MonoBehaviour:
         flagName: 
         logicOperator: 0
         multipleConditions: []
-      showInRooms: []
-      hideInRooms: []
+      showInRooms:
+      - "Sal\xE3o"
+      hideInRooms:
+      - "Armaz\xE9m"
     objectExceptions: []
   startingRoomName: "Sal\xE3o"
   conditionalObjects: []
@@ -4783,7 +4792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1899857507
 RectTransform:
   m_ObjectHideFlags: 0

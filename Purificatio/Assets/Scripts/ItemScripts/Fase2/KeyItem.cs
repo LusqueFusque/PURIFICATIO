@@ -197,13 +197,6 @@ public class KeyItem : MonoBehaviour
             Debug.Log("[KeyItem] ✓ Sprite trocado: baú aberto");
         }
 
-        // Ativa lâmpada coletável
-        if (lampCollectibleImage != null)
-        {
-            lampCollectibleImage.SetActive(true);
-            Debug.Log("[KeyItem] ✓ Lâmpada agora visível para coleta");
-        }
-
         if (AdvancedMapManager.Instance != null)
             AdvancedMapManager.Instance.SetGlobalFlag("ChestOpened", true);
 

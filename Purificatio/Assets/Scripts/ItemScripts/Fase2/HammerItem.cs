@@ -121,13 +121,6 @@ public class HammerItem : MonoBehaviour
             Debug.Log("[HammerItem] ✓ Sprite trocado: vidro quebrado");
         }
 
-        // Mostra a chave coletável
-        if (keyCollectibleImage != null)
-        {
-            keyCollectibleImage.SetActive(true);
-            Debug.Log("[HammerItem] ✓ Chave agora visível para coleta");
-        }
-
         // Flag global (opcional)
         if (AdvancedMapManager.Instance != null)
             AdvancedMapManager.Instance.SetGlobalFlag("GlassBroken", true);

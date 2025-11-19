@@ -19,6 +19,9 @@ public class Fase2MissionHandler : MissionHandlerBase
     [Header("Efeitos")]
     public float fadeDuration = 2f;
 
+    [Header("Referências Extras")]
+    public GameObject KeyImage;
+    
     void OnEnable()
     {
         if (MissionManager.Instance != null)
@@ -49,6 +52,22 @@ public class Fase2MissionHandler : MissionHandlerBase
                 DialogueManager.Instance.GoToNode("nambulampada1");
             }
         }
+        // Quando o vidro quebra, ativa a imagem da chave
+        if (completedMissionId == "glassBreak")
+        {
+            Debug.Log("[Fase2] 🔑 Vidro quebrado! Ativando KeyImage...");
+        
+            if (KeyImage != null)
+            {
+                KeyImage.SetActive(true); // ← Agora funciona!
+                Debug.Log("[Fase2] ✓ KeyImage ativada com sucesso!");
+            }
+            else
+            {
+                Debug.LogWarning("[Fase2] ⚠️ KeyImage não está atribuída no inspetor!");
+            }
+        }
+        
     }
 
     public override void HandleMission(string missionId)

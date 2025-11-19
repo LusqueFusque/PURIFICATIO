@@ -165,7 +165,7 @@
     {
       "id": "djinn11",
       "character": "Niède",
-      "sprite": "Niede_chocada",
+      "sprite": "Niede_choro",
       "text": "O QUE!?",
       "nextId": "djinn12"
     },
@@ -179,7 +179,7 @@
     {
       "id": "djinn13",
       "character": "Niède",
-      "sprite": "Niede_medo",
+      "sprite": "Niede_choro",
       "text": "E-e-e-e-eu-eu-e-eu? Eu não fiz nada! Eu sou inocente! Por favor, não me mate!",
       "nextId": "djinn14"
     },
@@ -337,7 +337,7 @@
     {
       "id": "carta4",
       "character": "Niède",
-      "sprite": "Niede_dorme",
+      "sprite": "Niede_neutro",
       "text": "Um-hum... sim... certo...",
       "nextId": "carta5"
     },
@@ -351,14 +351,14 @@
     {
       "id": "carta6",
       "character": "Niède",
-      "sprite": "Niede_nervo",
+      "sprite": "Niede_choro",
       "text": "Ah... Não sei... Acho que... Primeiramente eu não tenho nada a ver!",
       "nextId": "carta7"
     },
     {
       "id": "carta7",
       "character": "Niède",
-      "sprite": "Niede_nhe",
+      "sprite": "Niede_neutro",
       "text": "Segundamente... Eu vou supor que isso desencadeou a fúria do fantasma.",
       "nextId": "carta8"
     },
@@ -372,28 +372,28 @@
     {
       "id": "carta9",
       "character": "Niède",
-      "sprite": "Niede_dorme",
+      "sprite": "Niede_nhe",
       "text": "Bom, nesse caso... Sei lá, talvez...",
       "nextId": "carta10"
     },
     {
       "id": "carta10",
       "character": "Niède",
-      "sprite": "Niede_neutro",
+      "sprite": "Niede_nervo",
       "text": "Acho que o fantasma tem direito de ter raiva... É... Faz sentido...",
       "nextId": "carta11"
     },
     {
       "id": "carta11",
       "character": "Niède",
-      "sprite": "Niede_nhe",
+      "sprite": "Niede_nervo",
       "text": "Talvez seja melhor deixá-lo em paz? Nós que o perturbamos primeiro, certo?",
       "nextId": "carta12"
     },
     {
       "id": "carta12",
       "character": "Niède",
-      "sprite": "Niede_aiai",
+      "sprite": "Niede_nhe",
       "text": "Ah, cara, quer saber, eu me demito, eu acho. Se quiser podemos discutir o cancelamento do serviço.",
       "nextId": "carta13"
     },
@@ -465,7 +465,7 @@
     {
       "id": "rota_b2",
       "character": "Niède",
-      "sprite": "Niede_neutro",
+      "sprite": "Niede_choro",
       "text": "Não vai exorcizar?",
       "nextId": "rota_b3"
     },
@@ -479,7 +479,7 @@
     {
       "id": "rota_b4",
       "character": "Niède",
-      "sprite": "Niede_aiai",
+      "sprite": "Niede_neutro",
       "text": "(Suspiro)",
       "nextId": "rota_b5"
     },
@@ -507,7 +507,7 @@
     {
       "id": "rota_b8",
       "character": "Niède",
-      "sprite": "Niede_cansada",
+      "sprite": "Niede_neutro",
       "text": "Eu preciso de café...",
       "nextId": "rota_b9"
     },
@@ -521,7 +521,7 @@
     {
       "id": "rota_b10",
       "character": "Niède",
-      "sprite": "Niede_neutro",
+      "sprite": "Niede_nervo",
       "text": "É uma boa...",
       "nextId": "fim_rota_b"
     },

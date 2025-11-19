@@ -37,6 +37,10 @@ public class ClickableAreaHandler : MonoBehaviour, IPointerClickHandler
     [Tooltip("Remover item do inventário após uso?")]
     public bool consumeItem = false;
     
+    [Header("Objetos a Ativar (Opcional)")]
+    [Tooltip("GameObject a ativar após usar (ex: KeyImage, LampImage)")]
+    public GameObject objectToActivate;
+    
     private DynamicInventory inventory;
     
     void Start()
@@ -52,7 +56,7 @@ public class ClickableAreaHandler : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log($"🔵 [ClickArea] Clicou em {areaId}");
     
-        // ✅ Verifica se tem o item necessário no inventário
+        // ✅ Verifica se tem o item necessário
         if (!HasRequiredItem())
         {
             Debug.Log($"[ClickArea] Você precisa do item '{requiredItemName}' para interagir com {areaId}");
@@ -62,31 +66,18 @@ public class ClickableAreaHandler : MonoBehaviour, IPointerClickHandler
         Debug.Log($"🟢 [ClickArea] Item '{requiredItemName}' encontrado!");
     
         // ✅ Para chest: verifica se precisa de item anterior primeiro
-        // ✅ Completa missão (se houver)
-        if (!string.IsNullOrEmpty(missionToComplete) && MissionManager.Instance != null)
+        if (!string.IsNullOrEmpty(requiredPreviousItem))
         {
-            MissionManager.Instance.CompleteMission(missionToComplete);
-    
-            Debug.Log($"[ClickArea] ✅ Missão '{missionToComplete}' completada!");
-    
-            // ✅ FORÇA atualização dos condicionais
-            if (AdvancedMapManager.Instance != null)
+            if (!WasItemUsedBefore(requiredPreviousItem))
             {
-                Debug.Log("[ClickArea] Chamando RefreshAllConditionals...");
-                AdvancedMapManager.Instance.RefreshAllConditionals();
-                Debug.Log("[ClickArea] RefreshAllConditionals concluído!");
-            }
-            else
-            {
-                Debug.LogError("[ClickArea] AdvancedMapManager.Instance é NULL!");
+                Debug.Log($"[ClickArea] Você precisa usar '{requiredPreviousItem}' antes do '{requiredItemName}'!");
+                return;
             }
         }
     
         // ✅ Muda o background
         Debug.Log($"🟡 [ClickArea] Tentando trocar sprite...");
-        Debug.Log($"🟡 [ClickArea] backgroundPanel null? {backgroundPanel == null}");
-        Debug.Log($"🟡 [ClickArea] newBackgroundSprite null? {newBackgroundSprite == null}");
-    
+        
         if (backgroundPanel != null && newBackgroundSprite != null)
         {
             backgroundPanel.sprite = newBackgroundSprite;
@@ -97,23 +88,22 @@ public class ClickableAreaHandler : MonoBehaviour, IPointerClickHandler
             Debug.LogError("❌ [ClickArea] Panel ou Sprite não configurados no Inspector!");
         }
     
-        // ✅ Marca que esse item foi usado
-        MarkItemAsUsed(requiredItemName);
-    
-        // ✅ NOVO: Remove item do inventário se necessário
-        if (consumeItem)
+        // ✅ Completa missão (se houver)
+        if (!string.IsNullOrEmpty(missionToComplete) && MissionManager.Instance != null)
         {
-            RemoveItemFromInventory(requiredItemName);
+            MissionManager.Instance.CompleteMission(missionToComplete);
+            Debug.Log($"[ClickArea] ✅ Missão '{missionToComplete}' completada!");
+    
+            if (AdvancedMapManager.Instance != null)
+            {
+                Debug.Log("[ClickArea] Chamando RefreshAllConditionals...");
+                AdvancedMapManager.Instance.RefreshAllConditionals();
+                Debug.Log("[ClickArea] RefreshAllConditionals concluído!");
+            }
         }
     
-        // ✅ NOVO: Destrói esta ClickArea após uso
-        if (destroyAfterUse)
-        {
-            Debug.Log($"[ClickArea] Destruindo {areaId}");
-            Destroy(gameObject);
-        }
-        // ✅ Marca flag para ativar a lâmpada
-        if (areaId == "ClickAreaGum") // ou o nome que você deu
+        // ✅ Marca flag para lâmpada (se for chiclete)
+        if (areaId == "ClickAreaGum")
         {
             if (AdvancedMapManager.Instance != null)
             {
@@ -122,9 +112,79 @@ public class ClickableAreaHandler : MonoBehaviour, IPointerClickHandler
                 Debug.Log("[ClickArea] Flag 'ChestOpened' ativada! Lâmpada liberada.");
             }
         }
+    
+        // ✅ Marca que esse item foi usado
+        MarkItemAsUsed(requiredItemName);
+    
+        // ✅ Remove item do inventário se necessário
+        if (consumeItem)
+        {
+            RemoveItemFromInventory(requiredItemName);
+        }
+    
+        // ✅ Chama métodos específicos dos itens
+        CallItemMethod();
+    
+        // ✅ Destrói esta ClickArea após uso
+        if (destroyAfterUse)
+        {
+            Debug.Log($"[ClickArea] Destruindo {areaId}");
+            Destroy(gameObject);
+        }
+        
+        // ✅ Ativa objeto se configurado
+        if (objectToActivate != null)
+        {
+            objectToActivate.SetActive(true);
+            Debug.Log($"[ClickArea] ✓ Ativou {objectToActivate.name}");
+        }
+        
+        // ✅ Destrói esta ClickArea após uso
+        if (destroyAfterUse)
+        {
+            Debug.Log($"[ClickArea] Destruindo {areaId}");
+            Destroy(gameObject);
+        }
     }
 
-// ✅ NOVO: Método para remover item do inventário
+    // ✅ Chama a lógica específica de cada item
+    private void CallItemMethod()
+    {
+        // MARTELO: Quebra vidro e ativa chave
+        if (areaId.Equals("ClickAreaGlass", System.StringComparison.OrdinalIgnoreCase))
+        {
+            HammerItem hammer = FindObjectOfType<HammerItem>();
+            if (hammer != null)
+            {
+                hammer.UseHammer();
+                Debug.Log("[ClickArea] ✓ HammerItem.UseHammer() chamado!");
+            }
+        }
+        
+        // CHAVE: Quebra no baú
+        else if (areaId.Equals("ClickAreaChest", System.StringComparison.OrdinalIgnoreCase))
+        {
+            KeyItem key = FindObjectOfType<KeyItem>();
+            if (key != null)
+            {
+                key.UseKey();
+                Debug.Log("[ClickArea] ✓ KeyItem.UseKey() chamado!");
+            }
+        }
+        
+        // CHICLETE: Conserta chave e abre baú
+        else if (areaId.Equals("ClickAreaGum", System.StringComparison.OrdinalIgnoreCase))
+        {
+            GumItem gum = FindObjectOfType<GumItem>();
+            if (gum != null)
+            {
+                gum.UseGum();
+                Debug.Log("[ClickArea] ✓ GumItem.UseGum() chamado!");
+            }
+        }
+    }
+
+    // ✅ Remove item do inventário
     private void RemoveItemFromInventory(string itemName)
     {
         if (inventory == null) return;
@@ -200,20 +260,16 @@ public class ClickableAreaHandler : MonoBehaviour, IPointerClickHandler
             }
         }
     
-        // ✅ Verifica se o CHICLETE está no inventário (não precisa ativar)
+        // ✅ Verifica se o CHICLETE está ativo
         else if (requiredItemName.Equals("Chiclete", System.StringComparison.OrdinalIgnoreCase) ||
                  requiredItemName.Equals("Gum", System.StringComparison.OrdinalIgnoreCase))
         {
-            if (inventory != null)
+            GumItem gum = FindObjectOfType<GumItem>();
+            if (gum != null)
             {
-                foreach (var item in inventory.items)
-                {
-                    if (item.itemName.Equals("Chiclete", System.StringComparison.OrdinalIgnoreCase) ||
-                        item.itemName.Equals("Gum", System.StringComparison.OrdinalIgnoreCase))
-                    {
-                        return true;
-                    }
-                }
+                bool isActive = gum.IsActive();
+                Debug.Log($"[ClickArea] Chiclete ativo? {isActive}");
+                return isActive;
             }
         }
     
