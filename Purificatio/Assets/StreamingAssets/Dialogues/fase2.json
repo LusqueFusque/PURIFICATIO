@@ -87,8 +87,7 @@
           "nextId": "ligar_timbu1"
         },
         {
-          "optionText": "Ler a carta (Rota secreta)",
-          "nextId": "carta1"
+          "optionText": "Decidir daqui a pouco"
         }
       ]
     },
@@ -210,6 +209,9 @@
         {
           "optionText": "Não exorcizar",
           "nextId": "rota_b1"
+        },
+        {
+          "optionText": "Decidir daqui a pouco"
         }
       ]
     },
@@ -298,18 +300,28 @@
       "nextId": "escolha_timbu"
     },
     {
-      "id": "escolha_timbu",
-      "character": "Sistema",
-      "sprite": "Sistema",
-      "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
+      "id": "ligar_timbu12",
+      "character": "Timbu",
+      "sprite": "Timbu_ladin",
+      "text": "Enfim. Moral da história: não esfrega a lâmpada. Vai dar errado. Arranja outro jeito de se livrar dele.",
+      "nextId": "volta_lampada"
+    },
+    {
+      "id": "volta_lampada",
+      "character": "Nambu",
+      "sprite": "Nambu_dorme",
+      "text": "Hm... Entendi...",
       "options": [
+        {
+          "optionText": "Esfregar a lâmpada mesmo assim",
+          "nextId": "djinn1"
+        },
         {
           "optionText": "Exorcizar agora",
           "nextId": "rota_a1"
         },
         {
-          "optionText": "Não exorcizar",
-          "nextId": "rota_b1"
+          "optionText": "Decidir daqui a pouco"
         }
       ]
     },
@@ -406,9 +418,9 @@
     },
     {
       "id": "escolha_carta",
-      "character": "Sistema",
-      "sprite": "",
-      "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
+      "character": "Nambu",
+      "sprite": "Nambu_dorme",
+      "text": "(Hm... O que eu faço?)",
       "options": [
         {
           "optionText": "Exorcizar agora",
@@ -417,6 +429,9 @@
         {
           "optionText": "Não exorcizar",
           "nextId": "rota_b1"
+        },
+        {
+          "optionText": "Decidir daqui a pouco"
         }
       ]
     },

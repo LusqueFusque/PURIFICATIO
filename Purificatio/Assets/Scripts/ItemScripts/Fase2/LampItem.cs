@@ -1,12 +1,15 @@
 using UnityEngine;
 
 /// <summary>
-/// Lógica da LÂMPADA - Apenas dispara missão quando coletada
-/// NÃO TEM Toggle/Activate (não é item usável)
+/// Lógica da LÂMPADA - Coletável que abre diálogo ao coletar
 /// </summary>
 public class LampItem : MonoBehaviour
 {
     public static LampItem Instance;
+
+    [Header("Configuração do Diálogo")]
+    [Tooltip("ID do diálogo a abrir ao coletar (ex: 'nambulampada2')")]
+    public string dialogueNodeId = "nambulampada2";
 
     private bool lampFound = false;
 
@@ -27,7 +30,7 @@ public class LampItem : MonoBehaviour
     }
 
     // ============================================
-    // ENCONTRAR LÂMPADA (Chamado por CollectibleItem)
+    // COLETAR LÂMPADA
     // ============================================
     public void OnLampCollected()
     {
@@ -45,11 +48,14 @@ public class LampItem : MonoBehaviour
         if (MissionManager.Instance != null)
         {
             MissionManager.Instance.CompleteMission("FindLamp");
-            Debug.Log("[LampItem] ✓✓ Missão 'FindLamp' completada!");
+            Debug.Log("[LampItem] ✓ Missão 'FindLamp' completada!");
         }
-        else
+
+        // ✅ Abre o diálogo de opções
+        if (DialogueManager.Instance != null)
         {
-            Debug.LogError("[LampItem] ❌ MissionManager não encontrado!");
+            Debug.Log($"[LampItem] Abrindo diálogo '{dialogueNodeId}'");
+            DialogueManager.Instance.GoToNode(dialogueNodeId);
         }
     }
 

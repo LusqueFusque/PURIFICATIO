@@ -14,7 +14,9 @@ public class Fase2MissionHandler : MissionHandlerBase
     
     [Header("Áudio")]
     public AudioClip djinnScreamSound;
-    public AudioClip lampThrowSound;
+    public AudioClip lampThrowSound;      // Som 1: Whoosh/arremesso
+    public AudioClip glassShatterSound;   // Som 2: Vidro quebrando
+    public AudioClip metalImpactSound;    // Som 3: Impacto metálico
     
     [Header("Efeitos")]
     public float fadeDuration = 2f;
@@ -201,7 +203,6 @@ public class Fase2MissionHandler : MissionHandlerBase
     private IEnumerator ThrowLampSequence()
     {
         Debug.Log("[Fase2] Iniciando sequência de jogar lâmpada...");
-        VisualEffectsManager vfx = GetEffectsManager();
 
         // Para música
         AudioSource music = FindObjectOfType<AudioSource>();
@@ -218,18 +219,26 @@ public class Fase2MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(0.5f);
 
-        // Efeito vermelho rápido
-        if (vfx != null)
-        {
-            vfx.RedScreenEffect(1f);
-        }
-
-        yield return new WaitForSeconds(0.3f);
-
-        // Som da lâmpada quebrando
+        // ✅ SOM 1: Algo sendo jogado (whoosh)
         if (lampThrowSound != null)
         {
             AudioSource.PlayClipAtPoint(lampThrowSound, Camera.main.transform.position, 0.5f);
+        }
+
+        yield return new WaitForSeconds(0.4f); // Tempo de voo
+
+        // ✅ SOM 2: Vidro estilhaçando
+        if (glassShatterSound != null)
+        {
+            AudioSource.PlayClipAtPoint(glassShatterSound, Camera.main.transform.position, 0.6f);
+        }
+
+        yield return new WaitForSeconds(0.2f); // Breve pausa
+
+        // ✅ SOM 3: Impacto metálico
+        if (metalImpactSound != null)
+        {
+            AudioSource.PlayClipAtPoint(metalImpactSound, Camera.main.transform.position, 0.5f);
         }
 
         // Remove Djinn
@@ -244,12 +253,6 @@ public class Fase2MissionHandler : MissionHandlerBase
         }
 
         yield return new WaitForSeconds(0.5f);
-
-        // Limpa efeito
-        if (vfx != null)
-        {
-            vfx.ClearRedScreen();
-        }
 
         // Volta música
         if (music != null)

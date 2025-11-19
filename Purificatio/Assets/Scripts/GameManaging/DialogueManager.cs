@@ -230,6 +230,11 @@ public class DialogueManager : MonoBehaviour
     {
         isPausedForMission = true;
         uiManager.HideDialogueShowHUD();
+        
+        if (missionId != "FindLamp")
+        {
+            uiManager.HideDialogueShowHUD();
+        }
 
         if (MissionManager.Instance == null)
         {
@@ -284,6 +289,14 @@ public class DialogueManager : MonoBehaviour
 
     public void OnOptionSelected(string nextId)
     {
+        if (string.IsNullOrEmpty(nextId))
+        {
+            Debug.Log("[DialogueManager] Opção sem nextId - fechando diálogo");
+            uiManager.HideDialogueShowHUD();
+            currentLine = null;
+            return;
+        }
+    
         if (dialogueDict.TryGetValue(nextId, out var nextLine))
             ShowLine(nextLine);
         else

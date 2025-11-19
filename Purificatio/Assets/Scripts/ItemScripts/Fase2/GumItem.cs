@@ -11,6 +11,7 @@ public class GumItem : MonoBehaviour
     public AudioClip gumUseSound;
 
     private bool isActive = false;
+    private bool gumWasUsed = false; // ← Previne uso múltiplo
 
     void Awake()
     {
@@ -75,11 +76,26 @@ public class GumItem : MonoBehaviour
             return;
         }
 
-        // Som
-        if (gumUseSound != null)
-            AudioSource.PlayClipAtPoint(gumUseSound, Camera.main.transform.position, 0.5f);
+        if (gumWasUsed)
+        {
+            Debug.Log("[GumItem] Chiclete já foi usado!");
+            return;
+        }
 
-        // Chama KeyItem para consertar
+        ApplyGum();
+    }
+
+    private void ApplyGum()
+    {
+        gumWasUsed = true;
+
+        // ✅ Som
+        if (gumUseSound != null)
+        {
+            AudioSource.PlayClipAtPoint(gumUseSound, Camera.main.transform.position, 0.5f);
+        }
+
+        // ✅ Chama KeyItem para consertar
         if (KeyItem.Instance != null)
         {
             KeyItem.Instance.RepairWithGum();

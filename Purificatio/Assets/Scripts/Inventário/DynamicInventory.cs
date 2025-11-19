@@ -144,15 +144,25 @@ public class DynamicInventory : MonoBehaviour
         }
         
         // LÂMPADA
+        // LÂMPADA
         else if (item.itemName == "Lâmpada" || item.itemName == "Lamp")
         {
             Debug.Log("[DynamicInventory] Configurando botão para Lâmpada");
             LampItem lamp = FindObjectOfType<LampItem>();
             if (lamp != null)
             {
-                // Notifica LampItem que foi coletada
+                // Notifica que foi coletada
                 lamp.OnLampCollected();
-                // Lâmpada não tem ação de clique (não é item usável)
+        
+                // ✅ Configura clique no inventário para abrir diálogo
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Lâmpada clicado!");
+            
+                    if (DialogueManager.Instance != null)
+                    {
+                        DialogueManager.Instance.GoToNode("nambulampada2");
+                    }
+                });
             }
             else
             {
