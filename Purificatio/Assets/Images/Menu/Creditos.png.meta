@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 84081a258753bde468de593ff3773378
+guid: fcb735ab4c2bd4843a4876686ef80f5e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6866105754467657959
-    second: Seletor de fases_0
+      213: 7175261627662145010
+    second: Creditos_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Seletor de fases_0
+      name: Creditos_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e86f453ece494f50800000000000000
-      internalID: 6866105754467657959
+      spriteID: 2f51b472f66a39360800000000000000
+      internalID: 7175261627662145010
       vertices: []
       indices: 
       edges: []
