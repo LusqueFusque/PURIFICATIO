@@ -198,8 +198,8 @@
     },
     {
       "id": "escolha_djinn",
-      "character": "Sistema",
-      "sprite": "",
+      "character": "Nambu",
+      "sprite": "Nambu_dorme",
       "text": "Usa a lâmpada mágica pra ver suas opções quando estiver pronto.",
       "options": [
         {
