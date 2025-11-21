@@ -1836,6 +1836,7 @@ GameObject:
   - component: {fileID: 750648812}
   - component: {fileID: 750648811}
   - component: {fileID: 750648814}
+  - component: {fileID: 750648815}
   m_Layer: 5
   m_Name: BonecaImage
   m_TagString: Boneca
@@ -1958,6 +1959,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   woodTag: WoodLoose
   dollTag: Boneca
+--- !u!114 &750648815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750648809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44767875ba029f4f80a801ee07aa8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
 --- !u!1 &831283032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,6 +2258,7 @@ GameObject:
   - component: {fileID: 998451456}
   - component: {fileID: 998451455}
   - component: {fileID: 998451454}
+  - component: {fileID: 998451457}
   m_Layer: 5
   m_Name: ClickArea
   m_TagString: WoodLoose
@@ -2322,6 +2337,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998451452}
   m_CullTransparentMesh: 1
+--- !u!114 &998451457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998451452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44767875ba029f4f80a801ee07aa8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
 --- !u!1 &1072191150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,6 +3180,7 @@ GameObject:
   - component: {fileID: 1472850237}
   - component: {fileID: 1472850240}
   - component: {fileID: 1472850239}
+  - component: {fileID: 1472850241}
   m_Layer: 5
   m_Name: CrowbarImage
   m_TagString: Untagged
@@ -3274,6 +3303,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1472850241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472850235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44767875ba029f4f80a801ee07aa8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
 --- !u!1 &1495196046
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,6 +3912,7 @@ GameObject:
   - component: {fileID: 1766453536}
   - component: {fileID: 1766453539}
   - component: {fileID: 1766453538}
+  - component: {fileID: 1766453540}
   m_Layer: 5
   m_Name: GrampeadorImage
   m_TagString: Untagged
@@ -3992,6 +4035,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1766453540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766453534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44767875ba029f4f80a801ee07aa8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
 --- !u!1 &1782408303
 GameObject:
   m_ObjectHideFlags: 0

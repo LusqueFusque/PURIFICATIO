@@ -200,7 +200,7 @@
       "id": "escolha_djinn",
       "character": "Sistema",
       "sprite": "",
-      "text": "Usa o telefone pra ver suas opções quando estiver pronto.",
+      "text": "Usa a lâmpada mágica pra ver suas opções quando estiver pronto.",
       "options": [
         {
           "optionText": "Exorcizar agora",
