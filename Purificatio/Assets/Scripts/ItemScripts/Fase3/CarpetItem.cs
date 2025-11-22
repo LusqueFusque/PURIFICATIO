@@ -1,60 +1,32 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-
-/// <summary>
-/// Lógica do TAPETE - Muda de PNG ao clicar
-/// </summary>
-public class CarpetItem : MonoBehaviour, IPointerClickHandler
+public class CarpetItem : MonoBehaviour
 {
     [Header("Sprites do Tapete")]
-    [Tooltip("Sprite inicial (com pentagrama oculto)")]
-    public Sprite spriteInitial;
-    
-    [Tooltip("Sprite após revelar (pentagrama visível)")]
     public Sprite spriteRevealed;
 
-    [Header("Referência")]
-    [Tooltip("Image do tapete que será alterada")]
-    public Image carpetImage;
+    [Header("Referências")]
+    public Button carpetButton;                 // TapeteImage (botão clicável)
+    public Image carpetCopy;                    // Cópia fora do HUD
+    public RectTransform carpetCopyRectTransform;
+
+    [Header("Movimento")]
+    public Vector3 targetPosition = new Vector3(263, -335, 0);
 
     private bool pentagramRevealed = false;
-    private CanvasGroup canvasGroup; // ← Para controlar visibilidade
 
     void Start()
     {
-        // Estado inicial: pentagrama oculto
-        if (carpetImage != null && spriteInitial != null)
-        {
-            carpetImage.sprite = spriteInitial;
-        }
-
-        // ✅ Garante que tem CanvasGroup para controlar alpha
-        canvasGroup = GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-        {
-            canvasGroup = gameObject.AddComponent<CanvasGroup>();
-        }
+        if (carpetButton != null)
+            carpetButton.onClick.AddListener(OnCarpetClicked);
+        else
+            Debug.LogError("[CarpetItem] Botão não atribuído!");
     }
 
-    void Update()
+    private void OnCarpetClicked()
     {
-        // ✅ Se DialogueManager está mostrando diálogo, mantém o tapete visível
-        if (DialogueManager.Instance != null && DialogueManager.Instance.CurrentLine != null)
-        {
-            canvasGroup.alpha = 1f; // Sempre visível durante diálogo
-        }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("[CarpetItem] Tapete clicado!");
-
         if (pentagramRevealed)
-        {
-            Debug.Log("[CarpetItem] Pentágrama já foi revelado!");
             return;
-        }
 
         RevealPentagram();
     }
@@ -63,24 +35,29 @@ public class CarpetItem : MonoBehaviour, IPointerClickHandler
     {
         pentagramRevealed = true;
 
-        // Troca sprite
-        if (carpetImage != null && spriteRevealed != null)
+        // Troca o sprite do TapeteImage
+        Image btnImg = carpetButton.GetComponent<Image>();
+        if (btnImg != null && spriteRevealed != null)
+            btnImg.sprite = spriteRevealed;
+
+        // Move o próprio TapeteImage (o botão)
+        RectTransform buttonRect = carpetButton.GetComponent<RectTransform>();
+        if (buttonRect != null)
         {
-            carpetImage.sprite = spriteRevealed;
-            Debug.Log("[CarpetItem] ✓ Pentágrama revelado!");
+            buttonRect.localPosition = targetPosition;
+            Debug.Log("[CarpetItem] TapeteImage movido para posição final!");
         }
 
-        // Completa missão
-        if (MissionManager.Instance != null)
+        // Destrói a cópia que estava fora do painel
+        if (carpetCopy != null)
         {
-            MissionManager.Instance.CompleteMission("RevealPentagram");
+            Destroy(carpetCopy.gameObject);
+            Debug.Log("[CarpetItem] Cópia destruída!");
         }
 
-        // Atualiza condicionais
-        if (AdvancedMapManager.Instance != null)
-        {
-            AdvancedMapManager.Instance.RefreshAllConditionals();
-        }
+        // Atualiza sistemas externos (caso existam)
+        MissionManager.Instance?.CompleteMission("RevealPentagram");
+        AdvancedMapManager.Instance?.RefreshAllConditionals();
     }
 
     public bool IsPentagramRevealed() => pentagramRevealed;
