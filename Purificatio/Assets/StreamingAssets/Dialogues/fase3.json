@@ -1,0 +1,540 @@
+{
+  "dialogue": [
+    {
+      "id": "inicio1",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Espero que esteja pronto. Tem mais um trabalho pra você.",
+      "nextId": "inicio2"
+    },
+    {
+      "id": "inicio2",
+      "character": "Timbu",
+      "sprite": "Timbu_palma",
+      "text": "Nosso mais novo contratante se chama Zacarias Saca... Sacarose??",
+      "nextId": "inicio3"
+    },
+    {
+      "id": "inicio3",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "Se livre do espírito que está infernizando ele.",
+      "nextId": "fadein_zacarias",
+      "mission": "fadeIn"
+    },
+    {
+      "id": "fadein_zacarias",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "zacarias1"
+    },
+    {
+      "id": "zacarias1",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Oie... Alguém em casa?",
+      "nextId": "zacarias2"
+    },
+    {
+      "id": "zacarias2",
+      "character": "Zacarias",
+      "sprite": "Zacarias_choro",
+      "text": "Ah, desculpa. Não tive tempo de arrumar, a casa tá uma baderna e tá me dando nos nervos!",
+      "nextId": "zacarias3"
+    },
+    {
+      "id": "zacarias3",
+      "character": "Zacarias",
+      "sprite": "Zacarias_neutro",
+      "text": "Você que é o exorcista, não é?",
+      "nextId": "zacarias4"
+    },
+    {
+      "id": "zacarias4",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "É Nambu o nome.",
+      "nextId": "zacarias5"
+    },
+    {
+      "id": "zacarias5",
+      "character": "Zacarias",
+      "sprite": "Zacarias_choro",
+      "text": "Eu PRECISO de ajuda. Essa coisa que fez tudo isso, não aguento mais.",
+      "nextId": "zacarias6"
+    },
+    {
+      "id": "zacarias6",
+      "character": "Zacarias",
+      "sprite": "Zacarias_choro",
+      "text": "Não consigo cozinhar direito, me arrumar, sair de casa em paz. Trabalhar na academia virou uma sentença de morte...",
+      "nextId": "zacarias7"
+    },
+    {
+      "id": "zacarias7",
+      "character": "Zacarias",
+      "sprite": "Zacarias_choro",
+      "text": "Eles até me deram um tempo pra descansar... Eu vou perder meu emprego com certeza.",
+      "nextId": "zacarias8"
+    },
+    {
+      "id": "zacarias8",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Não se preocupe, eu vou investigar.",
+      "nextId": "zacarias9"
+    },
+    {
+      "id": "zacarias9",
+      "character": "Zacarias",
+      "sprite": "Zacarias_triste",
+      "text": "Tudo bem. Fique à vontade, eu... vou me trancar no banheiro... até você... acabar.",
+      "nextId": "zacarias10"
+    },
+    {
+      "id": "zacarias10",
+      "character": "Zacarias",
+      "sprite": "Zacarias_neutro",
+      "text": "Ha ha.",
+      "nextId": "missao_tapete",
+      "mission": "FindCarpet"
+    },
+    {
+      "id": "missao_tapete",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "zacarias10"
+    },
+    {
+      "id": "encontrou_tapete",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Hm... O que temos aqui?",
+      "nextId": "pentagrama_missao",
+      "mission": "RevealPentagram"
+    },
+    {
+      "id": "pentagrama_missao",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "encontrou_tapete"
+    },
+    {
+      "id": "sal_grosso_missao",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "mazzi_aparece",
+      "mission": "SaltMazzi"
+    },
+    {
+      "id": "mazzi_aparece",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "ARGH!",
+      "nextId": "nambu_confuso1"
+    },
+    {
+      "id": "nambu_confuso1",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Espera... Não é um fantasma...?",
+      "nextId": "mazzi_responde1"
+    },
+    {
+      "id": "mazzi_responde1",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Não. E eu não sou uma coisa. Eu tenho sentimentos também.",
+      "nextId": "nambu_confuso2"
+    },
+    {
+      "id": "nambu_confuso2",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Ok, isso saiu um pouco do roteiro... Mas o que não saiu até agora não é?",
+      "nextId": "nambu_confuso3"
+    },
+    {
+      "id": "nambu_confuso3",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Tudo bem, vamos logo com isso. O que você quer... Demônio?",
+      "nextId": "mazzi_chocolate"
+    },
+    {
+      "id": "mazzi_chocolate",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Um chocolate pra começar.",
+      "nextId": "nambu_pergunta1"
+    },
+    {
+      "id": "nambu_pergunta1",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Não... O que você quer com Zacarias. Por que você tá no pé dele?",
+      "nextId": "mazzi_trabalho"
+    },
+    {
+      "id": "mazzi_trabalho",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "É meu emprego.",
+      "nextId": "nambu_confuso4"
+    },
+    {
+      "id": "nambu_confuso4",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Como é?",
+      "nextId": "mazzi_explica"
+    },
+    {
+      "id": "mazzi_explica",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Eu trabalho como entidade causadora do caos no Departamento de Pequenas Inconveniências.",
+      "nextId": "mazzi_explica2"
+    },
+    {
+      "id": "mazzi_explica2",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Basicamente isso me torna seu arqui inimigo.",
+      "nextId": "nambu_explica"
+    },
+    {
+      "id": "nambu_explica",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Só explica como isso deveria funcionar.",
+      "nextId": "mazzi_cringe"
+    },
+    {
+      "id": "mazzi_cringe",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Seu chefe é cringe.",
+      "nextId": "nambu_reacao"
+    },
+    {
+      "id": "nambu_reacao",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Ei!... Espera, como isso era pra me ofender?",
+      "nextId": "mazzi_responde2"
+    },
+    {
+      "id": "mazzi_responde2",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Não era, mas agora toda vez que você olhar pra ele, vai lembrar disso.",
+      "nextId": "nambu_frustrado"
+    },
+    {
+      "id": "nambu_frustrado",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "...",
+      "nextId": "nambu_pergunta2"
+    },
+    {
+      "id": "nambu_pergunta2",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Mas diz ai, como eu me livro de você?",
+      "nextId": "mazzi_exorcismo"
+    },
+    {
+      "id": "mazzi_exorcismo",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Bem, para me exorcizar você precisa de três objetos de religiões abraâmicas unidos em uma super arma e ungidos com água benta.",
+      "nextId": "mazzi_castigo"
+    },
+    {
+      "id": "mazzi_castigo",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Mas seria um fim tão triste...",
+      "nextId": "nambu_pergunta3"
+    },
+    {
+      "id": "nambu_pergunta3",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Como assim \"fim triste?\"",
+      "nextId": "mazzi_explica3"
+    },
+    {
+      "id": "mazzi_explica3",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "É que se você me exorcizar, quer dizer que eu fracassei no meu trabalho e o castigo para isso são 7.000 chibatadas.",
+      "nextId": "mazzi_decision"
+    },
+    {
+      "id": "mazzi_decision",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Mas é você quem decide, exorcista. Eu tô de boa com isso, afinal, é seu trabalho.",
+      "nextId": "escolha_mazzi",
+      "options": [
+        {
+          "optionText": "Exorcizar",
+          "nextId": "rota_a1"
+        },
+        {
+          "optionText": "Não exorcizar",
+          "nextId": "rota_b1"
+        },
+        {
+          "optionText": "Decidir daqui a pouco"
+        }
+      ]
+    },
+    {
+      "id": "escolha_mazzi",
+      "character": "Nambu",
+      "sprite": "Nambu_dorme",
+      "text": "Hm... Deixa eu pensar sobre isso.",
+      "options": [
+        {
+          "optionText": "Exorcizar",
+          "nextId": "rota_a1"
+        },
+        {
+          "optionText": "Não exorcizar",
+          "nextId": "rota_b1"
+        },
+        {
+          "optionText": "Decidir daqui a pouco"
+        }
+      ]
+    },
+    {
+      "id": "rota_a1",
+      "character": "Nambu",
+      "sprite": "Nambu_medo",
+      "text": "Minha nossa...",
+      "nextId": "rota_a2"
+    },
+    {
+      "id": "rota_a2",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Tenho que começar a me acostumar com isso.",
+      "nextId": "rota_a3",
+      "mission": "exorcismoMazzi"
+    },
+    {
+      "id": "rota_a3",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Zacarias? Já pode sair daí.",
+      "nextId": "rota_a4"
+    },
+    {
+      "id": "rota_a4",
+      "character": "Zacarias",
+      "sprite": "Zacarias_neutro",
+      "text": "Já acabou? Eu to livre?",
+      "nextId": "rota_a5"
+    },
+    {
+      "id": "rota_a5",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "É, ta sim...",
+      "nextId": "rota_a6"
+    },
+    {
+      "id": "rota_a6",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "...",
+      "nextId": "timbu_sucesso1",
+      "mission": "fadeOut"
+    },
+    {
+      "id": "timbu_sucesso1",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "Ótimo! Mais um caso fechado. Se continuar assim, nós vamos ter sucesso logo.",
+      "nextId": "timbu_sucesso2"
+    },
+    {
+      "id": "timbu_sucesso2",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": ".....",
+      "nextId": "timbu_sucesso3"
+    },
+    {
+      "id": "timbu_sucesso3",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Que foi?",
+      "nextId": "timbu_sucesso4"
+    },
+    {
+      "id": "timbu_sucesso4",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Nada não...",
+      "nextId": "fim_rota_a"
+    },
+    {
+      "id": "fim_rota_a",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 3 - Rota A: Exorcismo realizado"
+    },
+    {
+      "id": "rota_b1",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Boas notícias carinha, eu decidi não te exorcizar.",
+      "nextId": "rota_b2"
+    },
+    {
+      "id": "rota_b2",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Timbu vai me odiar por isso, mas vai contra meus instintos de proletariado te prejudicar.",
+      "nextId": "rota_b3"
+    },
+    {
+      "id": "rota_b3",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Então... Aproveita.",
+      "nextId": "rota_b4"
+    },
+    {
+      "id": "rota_b4",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Me oculta.",
+      "nextId": "rota_b5"
+    },
+    {
+      "id": "rota_b5",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Que?",
+      "nextId": "rota_b6"
+    },
+    {
+      "id": "rota_b6",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Me oculta de novo. Joga água benta em mim.",
+      "nextId": "rota_b7"
+    },
+    {
+      "id": "rota_b7",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Eu não posso trabalhar estando visível né.",
+      "nextId": "rota_b8",
+      "mission": "holyWaterMazzi"
+    },
+    {
+      "id": "rota_b8",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "...Ok, né.",
+      "nextId": "rota_b9"
+    },
+    {
+      "id": "rota_b9",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Agora só falta...",
+      "nextId": "rota_b10"
+    },
+    {
+      "id": "rota_b10",
+      "character": "Nambu",
+      "sprite": "Nambu_grito",
+      "text": "Ô, do açúcar! Sacarose!",
+      "nextId": "rota_b11"
+    },
+    {
+      "id": "rota_b11",
+      "character": "Zacarias",
+      "sprite": "Zacarias_neutro",
+      "text": "S-Sim? Já acabou?",
+      "nextId": "rota_b12"
+    },
+    {
+      "id": "rota_b12",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Já sim! Pode sair.",
+      "nextId": "rota_b13"
+    },
+    {
+      "id": "rota_b13",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "Então... Pra você eu tenho más notícias.",
+      "nextId": "rota_b14"
+    },
+    {
+      "id": "rota_b14",
+      "character": "Nambu",
+      "sprite": "Nambu_que",
+      "text": "Como eu te digo isso... Não rolou exorcismo.",
+      "nextId": "rota_b15"
+    },
+    {
+      "id": "rota_b15",
+      "character": "Zacarias",
+      "sprite": "Zacarias_neutro",
+      "text": "Que?",
+      "nextId": "rota_b16"
+    },
+    {
+      "id": "rota_b16",
+      "character": "Nambu",
+      "sprite": "Nambu_neutro",
+      "text": "É que não achei entidade nenhuma, cara.",
+      "nextId": "rota_b17"
+    },
+    {
+      "id": "rota_b17",
+      "character": "Zacarias",
+      "sprite": "Zacarias_neutro",
+      "text": "C-Como assim? Mas, e essa bagunça!? O que é que...",
+      "nextId": "rota_b18"
+    },
+    {
+      "id": "rota_b18",
+      "character": "Nambu",
+      "sprite": "Nambu_sorriso",
+      "text": "Sei lá, tipo, vai ver é algum fenômeno metafísico e... Tchauzinho, adorei a casa!",
+      "nextId": "fim_rota_b",
+      "mission": "fadeOut"
+    },
+    {
+      "id": "fim_rota_b",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Mais um contrato cancelado e pode falir antes do sucesso!!",
+      "nextId": "fim_rota_b_final"
+    },
+    {
+      "id": "fim_rota_b_final",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 3 - Rota B: Não exorcizou"
+    }
+  ]
+}
+

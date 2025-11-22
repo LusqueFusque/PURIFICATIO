@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dba707672568f44e8537982d9e9c291, type: 3}
+  m_Name: Estrela
+  m_EditorClassIdentifier: 
+  itemName: Estrela
+  icon: {fileID: 7052917935746743901, guid: b764e5d1963ee344190dd03f717534ce, type: 3}
+  itemLogicScript: {fileID: 11500000, guid: 6a26dc9fcba3db1488ddb1c94f7fa97f, type: 3}

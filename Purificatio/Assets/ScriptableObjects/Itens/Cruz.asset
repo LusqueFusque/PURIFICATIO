@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dba707672568f44e8537982d9e9c291, type: 3}
+  m_Name: Cruz
+  m_EditorClassIdentifier: 
+  itemName: Cruz
+  icon: {fileID: 4538487077629296143, guid: c420e8140d4b6e24988c74cecff393d0, type: 3}
+  itemLogicScript: {fileID: 11500000, guid: 84d61d087e260404ca72b4595dde864b, type: 3}

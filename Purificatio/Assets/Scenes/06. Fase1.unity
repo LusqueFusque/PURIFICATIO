@@ -1751,7 +1751,7 @@ MonoBehaviour:
   characterImage: {fileID: 311834593}
   dialogueBackground: {fileID: 831283035}
   gradientOverlay: {fileID: 831283035}
-  ghostArrowSprite: {fileID: -8449114180511628245, guid: b7e2c3ad91ad4f74c8ffd5a95c852202, type: 3}
+  ghostArrowSprite: {fileID: 0}
   humanDialogueColor: {r: 1, g: 1, b: 1, a: 1}
   ghostDialogueColor: {r: 0.604, g: 0.173, b: 0.149, a: 1}
   panelHUD: {fileID: 1417386009}
@@ -1759,10 +1759,7 @@ MonoBehaviour:
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
   defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
   continuePrompt: {fileID: 2080073228}
-  ghostCharacters:
-  - Eveline
-  - Djinn
-  - Mazikkin
+  ghostCharacters: []
 --- !u!4 &676286748
 Transform:
   m_ObjectHideFlags: 0
