@@ -285,6 +285,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122897094}
   m_CullTransparentMesh: 1
+--- !u!1 &124245179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124245181}
+  - component: {fileID: 124245180}
+  m_Layer: 0
+  m_Name: TutorialMission
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &124245180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124245179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394013fba491a764ea153b70b2a0566c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1995905330}
+  hudPanel: {fileID: 1971503200}
+--- !u!4 &124245181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124245179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 741.52014, y: 525.78784, z: 3.8877907}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164915555
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +555,7 @@ MonoBehaviour:
   dialogueFileName: tutorial.json
   startDialogueId: inicio1
   uiManager: {fileID: 480705529}
-  missionHandler: {fileID: 0}
+  missionHandler: {fileID: 124245180}
 --- !u!4 &313811915
 Transform:
   m_ObjectHideFlags: 0
@@ -566,7 +612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430496210}
-  - component: {fileID: 430496209}
+  - component: {fileID: 430496211}
   m_Layer: 0
   m_Name: PhotoCameraItem
   m_TagString: Untagged
@@ -574,19 +620,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &430496209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430496208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfb321ab5920e8244805f29a95228cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photoMask: {fileID: 1940157688}
 --- !u!4 &430496210
 Transform:
   m_ObjectHideFlags: 0
@@ -602,6 +635,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 174117021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &430496211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430496208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f30df904846774a83dc69d3010743c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photoMask: {fileID: 1940157688}
 --- !u!1 &480705528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraItem: {fileID: 11400000, guid: c2c77109124ef1b4181c58f3c661c5b5, type: 2}
   phoneItem: {fileID: 11400000, guid: 353013fcb08f6ff4ab0fa1c69fb6d502, type: 2}
-  saltItem: {fileID: 0}
+  saltItem: {fileID: 11400000, guid: 7035408404afb2244896dc87254e976c, type: 2}
 --- !u!1 &813997290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2562,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 779517814}
+  saltUseSound: {fileID: 0}
+  audioSource2D: {fileID: 0}
 --- !u!1 &1698011158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,7 +2660,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 430496209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PhotoCameraItem, Assembly-CSharp
         m_MethodName: OnCameraButtonClicked
         m_Mode: 1
@@ -2972,6 +3020,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneDefaultSound: {fileID: 0}
+  phoneSpecialSound: {fileID: 0}
+  specialRooms: []
+  audioSource2D: {fileID: 0}
 --- !u!1 &1842642958
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,6 +3346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
+  phoneSpecialSound: {fileID: 0}
+  specialRooms: []
+  audioSource2D: {fileID: 0}
 --- !u!4 &1940962869
 Transform:
   m_ObjectHideFlags: 0
@@ -3673,6 +3729,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 779517814}
+  saltUseSound: {fileID: 0}
+  audioSource2D: {fileID: 0}
 --- !u!4 &2039061922
 Transform:
   m_ObjectHideFlags: 0
@@ -3791,6 +3849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCursed: 1
+  isMazziItem: 0
 --- !u!58 &2065705485
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4137,3 +4196,4 @@ SceneRoots:
   - {fileID: 769078967}
   - {fileID: 1940157691}
   - {fileID: 2065705483}
+  - {fileID: 124245181}

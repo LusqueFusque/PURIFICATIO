@@ -14,7 +14,7 @@ public class SaltMissionChecker : MonoBehaviour
 
     void OnEnable()
     {
-        PhotoCameraItem.OnCameraClosed += OnCameraClosedHandler;
+        CamItemTut.OnCameraClosed += OnCameraClosedHandler;
         Debug.Log("========================================");
         Debug.Log("[SaltMissionChecker] 🟢 HABILITADO - Listener registrado.");
         Debug.Log($"[SaltMissionChecker] CursedSprite atribuído? {cursedSprite != null}");
@@ -25,7 +25,7 @@ public class SaltMissionChecker : MonoBehaviour
 
     void OnDisable()
     {
-        PhotoCameraItem.OnCameraClosed -= OnCameraClosedHandler;
+        CamItemTut.OnCameraClosed -= OnCameraClosedHandler;
         
         Debug.Log("========================================");
         Debug.Log("[SaltMissionChecker] 🔴 DESABILITADO - Resetando estados.");
