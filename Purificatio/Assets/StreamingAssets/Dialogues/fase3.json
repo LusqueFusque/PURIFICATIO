@@ -19,15 +19,15 @@
       "character": "Timbu",
       "sprite": "Timbu_sorriso",
       "text": "Se livre do espírito que está infernizando ele.",
-      "nextId": "fadein_zacarias",
-      "mission": "fadeIn"
+      "nextId": "fadein_zacarias"
     },
     {
       "id": "fadein_zacarias",
       "character": "Sistema",
       "sprite": "",
       "text": "",
-      "nextId": "zacarias1"
+      "nextId": "zacarias1",
+      "mission": "fadeIn"
     },
     {
       "id": "zacarias1",
@@ -97,33 +97,25 @@
       "character": "Zacarias",
       "sprite": "Zacarias_neutro",
       "text": "Ha ha.",
-      "nextId": "missao_tapete",
-      "mission": "FindCarpet"
+      "nextId": "missao_tapete"
     },
     {
       "id": "missao_tapete",
       "character": "Sistema",
       "sprite": "",
       "text": "",
-      "nextId": "zacarias10"
+      "nextId": "encontrou_tapete",
+      "mission": "RevealPentagram"
     },
     {
       "id": "encontrou_tapete",
       "character": "Nambu",
       "sprite": "Nambu_que",
       "text": "Hm... O que temos aqui?",
-      "nextId": "pentagrama_missao",
-      "mission": "RevealPentagram"
+      "nextId": "pentagrama_missao"
     },
     {
       "id": "pentagrama_missao",
-      "character": "Sistema",
-      "sprite": "",
-      "text": "",
-      "nextId": "encontrou_tapete"
-    },
-    {
-      "id": "sal_grosso_missao",
       "character": "Sistema",
       "sprite": "",
       "text": "",
@@ -315,6 +307,14 @@
           "optionText": "Decidir daqui a pouco"
         }
       ]
+    },
+    {
+      "id": "rota_aa1",
+      "character": "Sistema",
+      "sprite": "Nambu_medo",
+      "text": "Minha nossa...",
+      "nextId": "rota_a1",
+      "mission": "exorcismo"
     },
     {
       "id": "rota_a1",

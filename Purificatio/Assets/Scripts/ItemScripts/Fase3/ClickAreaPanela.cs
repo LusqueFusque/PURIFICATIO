@@ -1,11 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
-/// <summary>
-/// ClickArea que requer 3 itens para ser usado
-/// Similar ao ClickableAreaHandler mas com validação de múltiplos itens
-/// </summary>
 public class ClickAreaPanela : MonoBehaviour, IPointerClickHandler
 {
     [Header("Configuração")]

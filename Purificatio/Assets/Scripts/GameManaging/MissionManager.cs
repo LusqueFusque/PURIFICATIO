@@ -34,6 +34,8 @@ public class MissionManager : MonoBehaviour
             _missions[missionId] = MissionState.Completed;
             Debug.Log($"[MissionManager] Mission completed: {missionId}");
             OnMissionCompleted?.Invoke(missionId);
+            
+            
         }
     }
 

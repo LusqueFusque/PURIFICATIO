@@ -2,349 +2,236 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-/// <summary>
-/// Handler de missões da Fase 3
-/// Missões: fadeIn, FindCarpet, RevealPentagram, SaltMazzi, exorcismoMazzi, holyWaterMazzi, fadeOut
-/// </summary>
 public class Fase3MissionHandler : MissionHandlerBase
 {
-    [Header("Referências da Fase 3")]
-    public GameObject mazziGhostSprite;
-    public Image mazziUIImage;
+    [Header("UI da Fase 3")]
+    public Image pentagramImage;       // UI Image
+    public Image cursedItemGlow;       // UI Image (aura UI, se houver)
+    public Image mazzikinImage;        // UI Image do Mazzi que vai aparecer
     
-    [Header("Áudio")]
-    public AudioClip mazziScreamSound;
+    [Header("Sprite (única exceção)")]
+    public GameObject tapeteAuraSprite; // SpriteRenderer já existente
+
+    [Header("Entidade")]
+    public GameObject demonMazzi;       // GameObject comum
+
+    [Header("Sons")]
+    public AudioClip revealSound;
     public AudioClip saltSound;
-    public AudioClip holyWaterSound;
-    public AudioClip exorcismSound;
-    
-    [Header("Efeitos")]
-    public float fadeDuration = 2f;
+    public AudioClip demonAppearSound;
+
+    [Header("Configurações de Fade")]
+    public float mazziFadeDuration = 1.5f;
 
     void OnEnable()
     {
         if (MissionManager.Instance != null)
-        {
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-        }
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
-        {
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
-        }
     }
 
-    private void OnMissionCompletedHandler(string completedMissionId)
+    private void OnMissionCompletedHandler(string missionId)
     {
-        Debug.Log($"[Fase3MissionHandler] Missão completada: {completedMissionId}");
-
-        // Quando tapete é encontrado, dispara diálogo
-        if (completedMissionId == "FindCarpet")
-        {
-            Debug.Log("[Fase3] ✅ Tapete encontrado! Disparando diálogo 'encontrou_tapete'");
-            
-            if (DialogueManager.Instance != null)
-            {
-                DialogueManager.Instance.GoToNode("encontrou_tapete");
-            }
-        }
-    }
-
-    public override void HandleMission(string missionId)
-    {
-        Debug.Log($"[Fase3MissionHandler] Processando missão: {missionId}");
+        Debug.Log($"[Fase3] Missão completa: {missionId}");
 
         switch (missionId)
         {
-            case "fadeIn":
-                StartCoroutine(FadeInSequence());
-                break;
-
-            case "FindCarpet":
-                if (MissionManager.Instance != null)
-                {
-                    MissionManager.Instance.StartMission("FindCarpet");
-                    Debug.Log("[Fase3] Missão 'FindCarpet' iniciada. Aguardando coleta...");
-                }
-                break;
-
             case "RevealPentagram":
                 StartCoroutine(RevealPentagramSequence());
+                break;
+
+            case "useSalt":
+                StartCoroutine(SaltSequence());
                 break;
 
             case "SaltMazzi":
                 StartCoroutine(SaltMazziSequence());
                 break;
 
-            case "exorcismoMazzi":
-                StartCoroutine(ExorcismoMazziSequence());
+            case "SummonMazzi":
+                StartCoroutine(SummonMazziSequence());
+                break;
+        }
+    }
+
+    public override void HandleMission(string missionId)
+    {
+        switch (missionId)
+        {
+            case "RevealPentagram":
+                MissionManager.Instance.StartMission("RevealPentagram");
                 break;
 
-            case "holyWaterMazzi":
-                StartCoroutine(HolyWaterMazziSequence());
+            case "SaltMazzi":
+                MissionManager.Instance.StartMission("SaltMazzi");
                 break;
 
-            case "fadeOut":
-                StartCoroutine(FadeOutSequence());
+            case "SummonMazzi":
+                MissionManager.Instance.StartMission("SummonMazzi");
+                break;
+
+            case "fadeIn":  
+                StartCoroutine(FadeInSequence());
                 break;
 
             default:
-                Debug.LogWarning($"[Fase3MissionHandler] Missão desconhecida: {missionId}");
+                Debug.LogWarning($"[Fase3] Missão desconhecida: {missionId}");
                 break;
         }
     }
 
-    // ==================== FADE IN ====================
+    // ============================================================
+    // FADE IN — NÃO ALTERADO — COMPATÍVEL COM TODA A FASE
+    // ============================================================
     private IEnumerator FadeInSequence()
     {
-        Debug.Log("🟢 [Fase3] FadeInSequence INICIOU!");
-
         VisualEffectsManager vfx = GetEffectsManager();
-        Debug.Log($"🟢 [Fase3] VFX Manager encontrado? {vfx != null}");
-    
-        if (vfx != null)
-        {
-            Debug.Log("🟢 [Fase3] Iniciando FadeFromBlack...");
-            yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
-            Debug.Log("🟢 [Fase3] FadeFromBlack CONCLUÍDO!");
-        }
-        else
-        {
-            Debug.Log("⚠️ [Fase3] VFX não encontrado, aguardando tempo...");
-            yield return new WaitForSeconds(fadeDuration);
-        }
 
-        Debug.Log("🟢 [Fase3] Completando missão fadeIn...");
-        CompleteMission("fadeIn");
-    
-        Debug.Log("🟢 [Fase3] Aguardando 1 frame...");
-        yield return null;
-    
-        Debug.Log("🟢 [Fase3] Chamando ShowNextLine...");
-    
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-            Debug.Log("🟢 [Fase3] ShowNextLine chamado!");
-        }
+        if (vfx != null)
+            yield return vfx.FadeFromBlack(2f);
         else
-        {
-            Debug.LogError("❌ [Fase3] DialogueManager não encontrado!");
-        }
+            yield return new WaitForSeconds(2f);
+
+        CompleteMission("fadeIn");
+
+        yield return null;
+
+        DialogueManager.Instance.ShowNextLine();
     }
 
-    // ==================== REVELAR PENTÁGRAMA ====================
+    // ============================================================
+    // REVELAR PENTAGRAMA
+    // ============================================================
     private IEnumerator RevealPentagramSequence()
     {
-        Debug.Log("[Fase3] Iniciando sequência de revelar pentágrama...");
-        VisualEffectsManager vfx = GetEffectsManager();
+        if (revealSound != null)
+            AudioSource.PlayClipAtPoint(revealSound, Camera.main.transform.position, 0.5f);
 
-        yield return new WaitForSeconds(0.5f);
+        // UI Image
+        if (pentagramImage != null)
+            pentagramImage.gameObject.SetActive(true);
 
-        Debug.Log("[Fase3] ✓ Pentágrama revelado!");
+        // UI aura (se existir)
+        if (cursedItemGlow != null)
+            cursedItemGlow.gameObject.SetActive(true);
 
-        CompleteMission("RevealPentagram");
+        // SpriteRenderer (única exceção)
+        if (tapeteAuraSprite != null)
+            tapeteAuraSprite.SetActive(true);
+
         yield return null;
 
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-        }
+        DialogueManager.Instance.ShowNextLine();
     }
 
-    // ==================== SAL GROSSO - INVOCAR MAZZI ====================
+    // ============================================================
+    // SAL NO ITEM AMALDIÇOADO GENÉRICO
+    // ============================================================
+    private IEnumerator SaltSequence()
+    {
+        if (saltSound != null)
+            AudioSource.PlayClipAtPoint(saltSound, Camera.main.transform.position, 0.5f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        // UI Image
+        if (cursedItemGlow != null)
+            cursedItemGlow.gameObject.SetActive(false);
+
+        // SpriteRenderer
+        if (tapeteAuraSprite != null)
+            tapeteAuraSprite.SetActive(false);
+
+        yield return null;
+
+        DialogueManager.Instance.ShowNextLine();
+    }
+
+    // ============================================================
+    // SAL NO MAZZI - NOVA SEQUÊNCIA
+    // ============================================================
     private IEnumerator SaltMazziSequence()
     {
-        Debug.Log("[Fase3] Iniciando sequência de sal grosso (invocar Mazzi)...");
-        VisualEffectsManager vfx = GetEffectsManager();
-
-        // Som de sal
         if (saltSound != null)
+            AudioSource.PlayClipAtPoint(saltSound, Camera.main.transform.position, 0.5f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        // Remove auras/glows do item amaldiçoado
+        if (cursedItemGlow != null)
+            cursedItemGlow.gameObject.SetActive(false);
+
+        if (tapeteAuraSprite != null)
+            tapeteAuraSprite.SetActive(false);
+
+        // Fade in gradual do Mazzi
+        if (mazzikinImage != null)
         {
-            AudioSource.PlayClipAtPoint(saltSound, Camera.main.transform.position, 0.6f);
+            mazzikinImage.gameObject.SetActive(true);
+            yield return StartCoroutine(FadeInMazzi());
         }
 
-        yield return new WaitForSeconds(0.5f);
+        // Toca som de aparição do demônio (opcional)
+        if (demonAppearSound != null)
+            AudioSource.PlayClipAtPoint(demonAppearSound, Camera.main.transform.position, 0.6f);
 
-        // Efeito vermelho
-        if (vfx != null)
-        {
-            vfx.RedScreenEffect(1f);
-        }
+        yield return new WaitForSeconds(0.3f);
 
-        yield return new WaitForSeconds(0.5f);
-
-        // Som de invocação
-        if (mazziScreamSound != null)
-        {
-            AudioSource.PlayClipAtPoint(mazziScreamSound, Camera.main.transform.position, 0.7f);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        // Mostra Mazzi
-        if (mazziGhostSprite != null)
-        {
-            mazziGhostSprite.SetActive(true);
-        }
-
-        if (mazziUIImage != null)
-        {
-            mazziUIImage.gameObject.SetActive(true);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        if (vfx != null)
-        {
-            vfx.ClearRedScreen();
-        }
-
-        CompleteMission("SaltMazzi");
-        Debug.Log("[Fase3] ✓ Mazzi invocado!");
-
-        yield return null;
-
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-        }
+        // Avança para próxima linha de diálogo
+        DialogueManager.Instance.ShowNextLine();
     }
 
-    // ==================== EXORCISMO MAZZI ====================
-    private IEnumerator ExorcismoMazziSequence()
+    // ============================================================
+    // FADE IN DO MAZZI
+    // ============================================================
+    private IEnumerator FadeInMazzi()
     {
-        Debug.Log("[Fase3] Iniciando sequência de exorcismo Mazzi...");
-        VisualEffectsManager vfx = GetEffectsManager();
+        if (mazzikinImage == null) yield break;
 
-        // Para música
-        AudioSource music = FindObjectOfType<AudioSource>();
-        if (music != null && music.isPlaying)
+        CanvasGroup canvasGroup = mazzikinImage.GetComponent<CanvasGroup>();
+        
+        // Se não houver CanvasGroup, adiciona um
+        if (canvasGroup == null)
         {
-            music.Stop();
+            canvasGroup = mazzikinImage.gameObject.AddComponent<CanvasGroup>();
         }
 
-        // Grito de Mazzi
-        if (mazziScreamSound != null)
+        // Começa invisível
+        canvasGroup.alpha = 0f;
+
+        float elapsed = 0f;
+        
+        while (elapsed < mazziFadeDuration)
         {
-            AudioSource.PlayClipAtPoint(mazziScreamSound, Camera.main.transform.position, 0.7f);
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / mazziFadeDuration);
+            yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
-
-        // Efeito vermelho
-        if (vfx != null)
-        {
-            vfx.RedScreenEffect(1.5f);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        // Som de exorcismo
-        if (exorcismSound != null)
-        {
-            AudioSource.PlayClipAtPoint(exorcismSound, Camera.main.transform.position, 0.6f);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        // Remove Mazzi
-        if (mazziGhostSprite != null)
-        {
-            mazziGhostSprite.SetActive(false);
-        }
-
-        if (mazziUIImage != null)
-        {
-            mazziUIImage.gameObject.SetActive(false);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        // Limpa efeito
-        if (vfx != null)
-        {
-            vfx.ClearRedScreen();
-        }
-
-        // Volta música
-        if (music != null)
-        {
-            music.Play();
-        }
-
-        CompleteMission("exorcismoMazzi");
-        Debug.Log("[Fase3] ✓ Mazzi exorcizado!");
-
-        yield return null;
-
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-        }
+        // Garante que termina com alpha 1
+        canvasGroup.alpha = 1f;
     }
 
-    // ==================== ÁGUA BENTA - MAZZI OCULTO ====================
-    private IEnumerator HolyWaterMazziSequence()
+    // ============================================================
+    // INVOCAR MAZZI (mantido para compatibilidade)
+    // ============================================================
+    private IEnumerator SummonMazziSequence()
     {
-        Debug.Log("[Fase3] Iniciando sequência de água benta...");
+        if (demonAppearSound != null)
+            AudioSource.PlayClipAtPoint(demonAppearSound, Camera.main.transform.position, 0.8f);
 
-        // Som de água benta
-        if (holyWaterSound != null)
-        {
-            AudioSource.PlayClipAtPoint(holyWaterSound, Camera.main.transform.position, 0.6f);
-        }
+        yield return new WaitForSeconds(0.4f);
 
-        yield return new WaitForSeconds(0.5f);
-
-        // Remove Mazzi (fica oculto)
-        if (mazziGhostSprite != null)
-        {
-            mazziGhostSprite.SetActive(false);
-        }
-
-        if (mazziUIImage != null)
-        {
-            mazziUIImage.gameObject.SetActive(false);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        CompleteMission("holyWaterMazzi");
-        Debug.Log("[Fase3] ✓ Água benta lançada! Mazzi ocultado!");
+        if (demonMazzi != null)
+            demonMazzi.SetActive(true);
 
         yield return null;
 
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-        }
-    }
-
-    // ==================== FADE OUT ====================
-    private IEnumerator FadeOutSequence()
-    {
-        Debug.Log("[Fase3] Iniciando Fade Out...");
-        VisualEffectsManager vfx = GetEffectsManager();
-
-        if (vfx != null)
-        {
-            yield return StartCoroutine(vfx.FadeToBlack(fadeDuration));
-        }
-        else
-        {
-            yield return new WaitForSeconds(fadeDuration);
-        }
-
-        CompleteMission("fadeOut");
-        yield return null;
-
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-        }
+        DialogueManager.Instance.ShowNextLine();
     }
 }

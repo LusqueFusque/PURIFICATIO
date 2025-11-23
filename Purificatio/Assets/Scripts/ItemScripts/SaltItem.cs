@@ -83,18 +83,47 @@ public class SaltItem : MonoBehaviour
         Vector2 worldPos = targetCamera.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, cursedLayer);
 
+        Debug.Log($"[SaltItem] Tentando usar sal em: {worldPos}");
+
         if (hit.collider != null)
         {
-            // Comportamento padrão: purificar objetos amaldiçoados
+            Debug.Log($"[SaltItem] Hit detectado: {hit.collider.name}");
+            
             var cursed = hit.collider.GetComponent<CursedItem>();
             if (cursed != null && cursed.isCursed)
             {
-                cursed.Purify(); // Isso desativa o GameObject automaticamente
+                Debug.Log($"[SaltItem] CursedItem encontrado: {cursed.gameObject.name}");
+                
+                // Verifica se é o item Mazzi durante a missão SaltMazzi
+                bool isMazziMission = MissionManager.Instance != null && 
+                                     MissionManager.Instance.IsActive("SaltMazzi");
+                
+                Debug.Log($"[SaltItem] Missão SaltMazzi ativa? {isMazziMission}");
+                Debug.Log($"[SaltItem] Nome do objeto contém 'Mazzi'? {cursed.gameObject.name.Contains("Mazzi")}");
+                
+                // NÃO purifica ainda - só depois de verificar
                 remainingUses--;
                 Debug.Log($"[SaltItem] Purificou {hit.collider.name}. Restam {remainingUses} usos.");
 
+                // Completa a missão apropriada
                 if (MissionManager.Instance != null)
-                    MissionManager.Instance.CompleteMission("useSalt");
+                {
+                    if (isMazziMission && cursed.gameObject.name.Contains("Mazzi"))
+                    {
+                        // Completa a missão específica do Mazzi
+                        Debug.Log("[SaltItem] ✓ Completando missão SaltMazzi!");
+                        MissionManager.Instance.CompleteMission("SaltMazzi");
+                    }
+                    else
+                    {
+                        // Completa missão genérica de uso de sal
+                        Debug.Log("[SaltItem] Completando missão useSalt");
+                        MissionManager.Instance.CompleteMission("useSalt");
+                    }
+                }
+
+                // Purifica DEPOIS de completar a missão
+                cursed.Purify();
 
                 if (remainingUses <= 0)
                 {
@@ -104,12 +133,12 @@ public class SaltItem : MonoBehaviour
             }
             else
             {
-                Debug.Log("[SaltItem] O alvo clicado não é amaldiçoado.");
+                Debug.Log("[SaltItem] O alvo clicado não é amaldiçoado ou CursedItem não encontrado.");
             }
         }
         else
         {
-            Debug.Log("[SaltItem] Nenhum alvo atingido.");
+            Debug.Log("[SaltItem] Nenhum alvo atingido no raycast.");
         }
     }
 }
