@@ -222,7 +222,7 @@ Transform:
   - {fileID: 1500757608}
   - {fileID: 426267276}
   - {fileID: 1824545376}
-  - {fileID: 1255142254}
+  - {fileID: 1011272891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &120400581
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   characterImage: {fileID: 311834593}
   dialogueBackground: {fileID: 831283035}
   gradientOverlay: {fileID: 831283035}
-  ghostArrowSprite: {fileID: -8449114180511628245, guid: b7e2c3ad91ad4f74c8ffd5a95c852202, type: 3}
+  ghostArrowSprite: {fileID: -7293216438622169516, guid: e39407da42b286c41ae4dedfcc5ed319, type: 3}
   humanDialogueColor: {r: 1, g: 1, b: 1, a: 1}
   ghostDialogueColor: {r: 0.604, g: 0.173, b: 0.149, a: 1}
   panelHUD: {fileID: 1417386009}
@@ -1764,6 +1764,7 @@ MonoBehaviour:
   - Eveline
   - Djinn
   - Mazikkin
+  - Jarvis
 --- !u!4 &676286748
 Transform:
   m_ObjectHideFlags: 0
@@ -2260,6 +2261,50 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1011272889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011272891}
+  - component: {fileID: 1011272890}
+  m_Layer: 0
+  m_Name: GhostHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1011272890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011272889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f85c6a3acf8734683ac1201963a6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1011272891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011272889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 538.26, y: 214.34125, z: 4.591616}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43278355}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072191150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,59 +2819,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1255142252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1255142254}
-  - component: {fileID: 1255142253}
-  m_Layer: 0
-  m_Name: ClickableArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1255142253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255142252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e378da781c95bca4fa1d1b5e88c30dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  areaId: 
-  requiredItemName: 
-  backgroundPanel: {fileID: 0}
-  newBackgroundSprite: {fileID: 0}
-  missionToComplete: 
-  requiredPreviousItem: 
-  destroyAfterUse: 0
-  consumeItem: 0
-  objectToActivate: {fileID: 0}
---- !u!4 &1255142254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255142252}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 534.152, y: 251.25995, z: 4.600968}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 43278355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342000223
 GameObject:
@@ -3719,10 +3711,11 @@ MonoBehaviour:
   requiredItem1: Cruz
   requiredItem2: Estrela
   requiredItem3: Crescente
+  requiredItem4: AguaBenta
   backgroundPanel: {fileID: 0}
   newBackgroundSprite: {fileID: 0}
   missionToComplete: 
-  useSound: {fileID: 0}
+  useSound: {fileID: 8300000, guid: 18fe8c45fc973a744a38a41dfa1f90e6, type: 3}
 --- !u!114 &1554704460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3753,7 +3746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1602834506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4600,7 +4593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: e004a8aac1b0f484395641f1ff2615df, type: 2}
   inventory: {fileID: 1782408305}
 --- !u!1 &1797200442
 GameObject:

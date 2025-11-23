@@ -1,39 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+
 public class ClickAreaPanela : MonoBehaviour, IPointerClickHandler
 {
     [Header("Configuração")]
-    [Tooltip("ID da área (ex: 'ClickAreaPanela')")]
     public string areaId;
-    
-    [Header("Itens Necessários (3)")]
-    [Tooltip("Primeiro item necessário (ex: 'Estrela')")]
-    public string requiredItem1;
-    
-    [Tooltip("Segundo item necessário (ex: 'Crescente')")]
-    public string requiredItem2;
-    
-    [Tooltip("Terceiro item necessário (ex: 'Cruz')")]
-    public string requiredItem3;
-    
-    [Header("Mudança de Background")]
-    [Tooltip("Panel do background a ser alterado")]
-    public Image backgroundPanel;
-    
-    [Tooltip("Nova sprite para o background")]
-    public Sprite newBackgroundSprite;
-    
-    [Header("Missão (Opcional)")]
-    [Tooltip("Missão a completar quando clicar")]
-    public string missionToComplete;
-    
+
+    [Header("Itens Necessários (4)")]
+    public string requiredItem1; // Estrela
+    public string requiredItem2; // Crescente
+    public string requiredItem3; // Cruz
+    public string requiredItem4; // AguaBenta
+
     [Header("Áudio (Opcional)")]
-    [Tooltip("Som a tocar ao usar")]
     public AudioClip useSound;
-    
+    public AudioClip completeSound;
+
     private DynamicInventory inventory;
-    
+    private HashSet<string> itemsUsed = new HashSet<string>(); // Rastreia quais itens foram usados
+
     void Start()
     {
         inventory = FindObjectOfType<DynamicInventory>();
@@ -42,129 +29,137 @@ public class ClickAreaPanela : MonoBehaviour, IPointerClickHandler
             Debug.LogError("[ClickAreaPanela] DynamicInventory não encontrado!");
         }
     }
-    
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log($"🔵 [ClickAreaPanela] Clicou em {areaId}");
+
+        // Verifica qual item o jogador tem que ainda não foi usado
+        string nextItem = GetNextRequiredItem();
         
-        // ✅ Verifica se tem os 3 itens necessários
-        if (!HasAllRequiredItems())
+        if (string.IsNullOrEmpty(nextItem))
         {
-            Debug.Log($"[ClickAreaPanela] Você precisa dos itens: '{requiredItem1}', '{requiredItem2}' e '{requiredItem3}'");
+            Debug.Log($"[ClickAreaPanela] Todos os 4 itens já foram usados!");
             return;
         }
-        
-        Debug.Log($"🟢 [ClickAreaPanela] Todos os 3 itens encontrados!");
-        
-        // ✅ Toca som se configurado
-        if (useSound != null)
+
+        if (!HasItem(nextItem))
         {
-            AudioSource.PlayClipAtPoint(useSound, Camera.main.transform.position, 0.5f);
+            Debug.Log($"[ClickAreaPanela] Você precisa do item: '{nextItem}'");
+            return;
         }
 
-        // ✅ Muda o background
-        if (backgroundPanel != null && newBackgroundSprite != null)
+        Debug.Log($"🟢 [ClickAreaPanela] Item '{nextItem}' encontrado!");
+
+        if (useSound != null)
+            AudioSource.PlayClipAtPoint(useSound, Camera.main.transform.position, 0.5f);
+
+        // ✅ Remove o item
+        RemoveItemFromInventory(nextItem);
+        itemsUsed.Add(nextItem); // Marca como usado
+
+        Debug.Log($"[ClickAreaPanela] {itemsUsed.Count}/4 itens usados");
+
+        // ✅ Se todos os 4 itens foram usados, cria ArmaSanta
+        if (itemsUsed.Count >= 4)
         {
-            backgroundPanel.sprite = newBackgroundSprite;
-            Debug.Log($"✅ [ClickAreaPanela] Background alterado para: {newBackgroundSprite.name}");
-        }
-        
-        // ✅ Completa missão (se houver)
-        if (!string.IsNullOrEmpty(missionToComplete) && MissionManager.Instance != null)
-        {
-            MissionManager.Instance.CompleteMission(missionToComplete);
+            Debug.Log("[ClickAreaPanela] ✅ Todos os 4 itens usados! Criando ArmaSanta...");
             
-            if (AdvancedMapManager.Instance != null)
-            {
-                AdvancedMapManager.Instance.RefreshAllConditionals();
-            }
+            if (completeSound != null)
+                AudioSource.PlayClipAtPoint(completeSound, Camera.main.transform.position, 0.7f);
             
-            Debug.Log($"[ClickAreaPanela] Missão '{missionToComplete}' completada!");
+            GiveArmaSanta();
+            Destroy(gameObject);
         }
-        
-        // ✅ Remove os 3 itens do inventário
-        RemoveItemsFromInventory(requiredItem1, requiredItem2, requiredItem3);
-        
-        // ✅ Destrói esta ClickArea após uso
-        Destroy(gameObject);
     }
-    
-    private bool HasAllRequiredItems()
+
+    private string GetNextRequiredItem()
     {
-        if (string.IsNullOrEmpty(requiredItem1) || 
-            string.IsNullOrEmpty(requiredItem2) || 
-            string.IsNullOrEmpty(requiredItem3))
-        {
-            Debug.LogError("[ClickAreaPanela] Itens não configurados no Inspector!");
-            return false;
-        }
+        // Retorna um item que ainda não foi usado e que o jogador tem
+        if (!itemsUsed.Contains(requiredItem1) && HasItem(requiredItem1)) 
+            return requiredItem1;
         
+        if (!itemsUsed.Contains(requiredItem2) && HasItem(requiredItem2)) 
+            return requiredItem2;
+        
+        if (!itemsUsed.Contains(requiredItem3) && HasItem(requiredItem3)) 
+            return requiredItem3;
+        
+        if (!itemsUsed.Contains(requiredItem4) && HasItem(requiredItem4)) 
+            return requiredItem4;
+        
+        return null;
+    }
+
+    private bool HasItem(string itemName)
+    {
         if (inventory == null) return false;
         
-        // ✅ Verifica se tem os 3 itens
-        bool hasItem1 = HasItemInInventory(requiredItem1);
-        bool hasItem2 = HasItemInInventory(requiredItem2);
-        bool hasItem3 = HasItemInInventory(requiredItem3);
-        
-        Debug.Log($"[ClickAreaPanela] {requiredItem1}: {hasItem1} | {requiredItem2}: {hasItem2} | {requiredItem3}: {hasItem3}");
-        
-        return hasItem1 && hasItem2 && hasItem3;
+        foreach (var item in inventory.items)
+        {
+            if (item.itemName.Equals(itemName, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        return false;
     }
-    
-    private bool HasItemInInventory(string itemName)
+
+    // ✅ Remove item do inventário
+    private void RemoveItemFromInventory(string itemName)
     {
+        if (inventory == null) return;
+
+        Debug.Log($"[ClickAreaPanela] Removendo '{itemName}' do inventário");
+
+        ItemData itemToRemove = null;
         foreach (var item in inventory.items)
         {
             if (item.itemName.Equals(itemName, System.StringComparison.OrdinalIgnoreCase))
             {
-                return true;
+                itemToRemove = item;
+                break;
             }
         }
-        return false;
-    }
-    
-    private void RemoveItemsFromInventory(string item1, string item2, string item3)
-    {
-        if (inventory == null) return;
-        
-        Debug.Log($"[ClickAreaPanela] Removendo itens: {item1}, {item2}, {item3}");
-        
-        // Remove os 3 itens da lista
-        inventory.items.RemoveAll(i => 
-            i.itemName.Equals(item1, System.StringComparison.OrdinalIgnoreCase) ||
-            i.itemName.Equals(item2, System.StringComparison.OrdinalIgnoreCase) ||
-            i.itemName.Equals(item3, System.StringComparison.OrdinalIgnoreCase));
-        
-        // Desativa os slots visuais
-        int removedCount = 0;
-        for (int i = 0; i < inventory.slots.Count && removedCount < 3; i++)
+
+        if (itemToRemove == null)
+        {
+            Debug.LogWarning($"[ClickAreaPanela] Item '{itemName}' não encontrado no inventário!");
+            return;
+        }
+
+        inventory.items.Remove(itemToRemove);
+
+        for (int i = 0; i < inventory.slots.Count; i++)
         {
             Button slot = inventory.slots[i];
             if (!slot.gameObject.activeSelf) continue;
-            
+
             Image icon = slot.GetComponent<Image>();
-            if (icon != null && icon.sprite != null)
+            if (icon != null && icon.sprite == itemToRemove.icon)
             {
-                // Verifica se o slot contém um dos itens
-                if (IsSlotContainsItem(slot, item1) || 
-                    IsSlotContainsItem(slot, item2) || 
-                    IsSlotContainsItem(slot, item3))
-                {
-                    slot.gameObject.SetActive(false);
-                    slot.onClick.RemoveAllListeners();
-                    removedCount++;
-                    Debug.Log($"[ClickAreaPanela] Slot {i} removido");
-                }
+                slot.gameObject.SetActive(false);
+                slot.onClick.RemoveAllListeners();
+                Debug.Log($"[ClickAreaPanela] ✓ Item '{itemName}' removido do slot {i}");
+                return;
             }
         }
-        
-        Debug.Log($"[ClickAreaPanela] ✓ {removedCount} itens removidos do inventário");
+
+        Debug.LogWarning($"[ClickAreaPanela] Slot visual do item '{itemName}' não encontrado!");
     }
-    
-    private bool IsSlotContainsItem(Button slot, string itemName)
+
+    private void GiveArmaSanta()
     {
-        // Verifica o ícone ou tenta encontrar o item correspondente
-        // Esta é uma verificação simples - pode ser melhorada se necessário
-        return true; // Simplificado: assume que o slot é de um dos itens
+        ItemData armaSanta = Resources.Load<ItemData>("Items/ArmaSanta");
+        if (armaSanta != null)
+        {
+            bool added = inventory.AddItem(armaSanta);
+            if (added)
+                Debug.Log("[ClickAreaPanela] 🎁 ArmaSanta adicionada ao inventário!");
+            else
+                Debug.LogWarning("[ClickAreaPanela] Inventário cheio, não foi possível adicionar ArmaSanta!");
+        }
+        else
+        {
+            Debug.LogError("[ClickAreaPanela] ItemData 'ArmaSanta' não encontrado em Resources/Items!");
+        }
     }
 }
