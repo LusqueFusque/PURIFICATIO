@@ -21,6 +21,9 @@ public class ClickAreaPanela : MonoBehaviour, IPointerClickHandler
     private DynamicInventory inventory;
     private HashSet<string> itemsUsed = new HashSet<string>(); // Rastreia quais itens foram usados
 
+    [Header("Item a dar")]
+    public ItemData armaSantaData; // arraste o ArmaSanta.asset aqui
+
     void Start()
     {
         inventory = FindObjectOfType<DynamicInventory>();
@@ -148,18 +151,17 @@ public class ClickAreaPanela : MonoBehaviour, IPointerClickHandler
 
     private void GiveArmaSanta()
     {
-        ItemData armaSanta = Resources.Load<ItemData>("Items/ArmaSanta");
-        if (armaSanta != null)
+        if (armaSantaData != null)
         {
-            bool added = inventory.AddItem(armaSanta);
+            bool added = inventory.AddItem(armaSantaData);
             if (added)
                 Debug.Log("[ClickAreaPanela] 🎁 ArmaSanta adicionada ao inventário!");
             else
-                Debug.LogWarning("[ClickAreaPanela] Inventário cheio, não foi possível adicionar ArmaSanta!");
+                Debug.LogWarning("[ClickAreaPanela] Inventário cheio!");
         }
         else
         {
-            Debug.LogError("[ClickAreaPanela] ItemData 'ArmaSanta' não encontrado em Resources/Items!");
+            Debug.LogError("[ClickAreaPanela] ItemData 'ArmaSanta' não atribuído no Inspector!");
         }
     }
 }

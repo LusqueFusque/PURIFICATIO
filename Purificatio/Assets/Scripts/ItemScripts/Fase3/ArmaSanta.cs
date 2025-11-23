@@ -2,11 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
 /// <summary>
 /// ArmaSanta - Ativa, clica em MazzikinImage para exorcizar
 /// </summary>
 public class ArmaSantaItem : MonoBehaviour
+
 {
+    [Header("Item a dar")]
+    public ItemData armaSantaItem; // ← Arraste o ItemData aqui no Inspector
+    
     public static ArmaSantaItem Instance;
 
     [Header("Configuração")]
@@ -106,38 +111,28 @@ public class ArmaSantaItem : MonoBehaviour
 
         Deactivate();
     }
-}
-
-/// <summary>
-/// Handler de clique para MazzikinImage
-/// Ativado apenas quando ArmaSanta está equipada
-/// </summary>
-public class MazzikinClickHandler : MonoBehaviour, IPointerClickHandler
-{
-    private ArmaSantaItem armaSanta;
-
-    public void SetArmaSanta(ArmaSantaItem arma)
+    private void GiveArmaSanta()
     {
-        armaSanta = arma;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("[MazzikinClickHandler] Mazzi foi clicado!");
-
-        if (armaSanta == null)
+        if (armaSantaItem != null)
         {
-            Debug.LogWarning("[MazzikinClickHandler] ArmaSanta não configurada!");
-            return;
+            // pega a instância do inventário na cena
+            DynamicInventory inventory = FindObjectOfType<DynamicInventory>();
+            if (inventory != null)
+            {
+                bool added = inventory.AddItem(armaSantaItem);
+                if (added)
+                    Debug.Log("[ArmaSantaItem] 🎁 ArmaSanta adicionada ao inventário!");
+                else
+                    Debug.LogWarning("[ArmaSantaItem] Inventário cheio!");
+            }
+            else
+            {
+                Debug.LogError("[ArmaSantaItem] Nenhum DynamicInventory encontrado na cena!");
+            }
         }
-
-        if (!armaSanta.IsActive())
+        else
         {
-            Debug.Log("[MazzikinClickHandler] ArmaSanta não está ativa!");
-            return;
+            Debug.LogError("[ClickAreaPanela] ItemData 'ArmaSanta' não atribuído no Inspector!");
         }
-
-        // Exorciza o Mazzi
-        armaSanta.ExorcizeMazzi();
     }
 }

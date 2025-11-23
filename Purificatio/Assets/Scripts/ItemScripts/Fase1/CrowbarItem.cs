@@ -13,6 +13,9 @@ public class CrowbarItem : MonoBehaviour
 
     private float activationTime = 0f;
     private const float ACTIVATION_DELAY = 0.2f;
+    
+    [Header("Áudio")]
+    public AudioClip crowbarUseSound;
 
     void Awake()
     {
@@ -137,6 +140,10 @@ public class CrowbarItem : MonoBehaviour
 
             madeiraRemovida = true;
             Debug.Log("[CrowbarItem] ✓✓ Madeira removida! Crowbar permanece ativo.");
+
+            // 🔊 Som de uso
+            if (crowbarUseSound != null)
+                AudioSource.PlayClipAtPoint(crowbarUseSound, Camera.main.transform.position, 0.7f);
 
             // Desativa clickareas da madeira
             var clickables = GameObject.FindGameObjectsWithTag("WoodLoose");

@@ -12,6 +12,9 @@ public class StaplerItem : MonoBehaviour
     private float activationTime = 0f;
     private const float ACTIVATION_DELAY = 0.2f;
 
+    [Header("Áudio")]
+    public AudioClip staplerUseSound;
+    
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -137,12 +140,16 @@ public class StaplerItem : MonoBehaviour
         if (target.CompareTag("Boneca"))
         {
             Debug.Log("[StaplerItem] ✓ Tag 'Boneca' detectada!");
-            
+    
             if (bonecaImage != null && bonecaGrampeadaSprite != null)
             {
                 bonecaImage.sprite = bonecaGrampeadaSprite;
                 Debug.Log("[StaplerItem] ✓✓ Boneca grampeada com sucesso!");
-                
+
+                // 🔊 Som de uso
+                if (staplerUseSound != null)
+                    AudioSource.PlayClipAtPoint(staplerUseSound, Camera.main.transform.position, 0.7f);
+
                 // ✅ COMPLETA A MISSÃO findDoll
                 if (MissionManager.Instance != null)
                 {
@@ -153,7 +160,7 @@ public class StaplerItem : MonoBehaviour
                 {
                     Debug.LogError("[StaplerItem] ❌ MissionManager.Instance é NULL!");
                 }
-                
+        
                 Debug.Log("[StaplerItem] Grampeador permanece ativo. Use botão direito para desativar.");
             }
             else
@@ -162,6 +169,7 @@ public class StaplerItem : MonoBehaviour
                 Debug.LogError($"[StaplerItem] bonecaImage={bonecaImage}, bonecaGrampeadaSprite={bonecaGrampeadaSprite}");
             }
         }
+        
         else
         {
             Debug.Log($"[StaplerItem] Tag '{target.tag}' não é 'Boneca'. Nada a fazer.");

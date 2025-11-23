@@ -451,9 +451,10 @@
     {
       "id": "pos_poltergeist4",
       "character": "Sr. Florentino",
-      "sprite": "Flor_desespero",
+      "sprite": "Flor_raiva",
       "text": "Socorro! Socorro!",
-      "nextId": "timbu_bronca1"
+      "nextId": "timbu_bronca1",
+      "mission": "wait"
     },
     {
       "id": "timbu_bronca1",

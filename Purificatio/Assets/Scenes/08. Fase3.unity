@@ -2631,6 +2631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333722bc86f3b84aa93101e5ae89d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crescenteData: {fileID: 0}
 --- !u!114 &1106044490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,6 +2821,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1321922724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1321922725}
+  - component: {fileID: 1321922726}
+  m_Layer: 0
+  m_Name: ArmaSanta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1321922725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321922724}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1041.26, y: 497.34125, z: 4.591616}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1321922726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321922724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb112e36844bb74ebd17ec2886c3b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armaSantaItem: {fileID: 11400000, guid: bf2f01d58ec7734439eb834d1cc5b1e8, type: 2}
+  mazzikinImage: {fileID: 324727309}
+  activateSound: {fileID: 0}
+  exorcismSound: {fileID: 8300000, guid: 26f223843868f91468a8f361c9fd0cb2, type: 3}
 --- !u!1 &1342000223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +3253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d61d087e260404ca72b4595dde864b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CruzData: {fileID: 0}
 --- !u!114 &1472850243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3624,7 +3674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.9433727, a: 0.16470589}
+  m_Color: {r: 0, g: 1, b: 0.9433727, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3712,10 +3762,9 @@ MonoBehaviour:
   requiredItem2: Estrela
   requiredItem3: Crescente
   requiredItem4: AguaBenta
-  backgroundPanel: {fileID: 0}
-  newBackgroundSprite: {fileID: 0}
-  missionToComplete: 
   useSound: {fileID: 8300000, guid: 18fe8c45fc973a744a38a41dfa1f90e6, type: 3}
+  completeSound: {fileID: 0}
+  armaSantaData: {fileID: 11400000, guid: bf2f01d58ec7734439eb834d1cc5b1e8, type: 2}
 --- !u!114 &1554704460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3746,7 +3795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1602834506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4499,6 +4548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c21147b53feb0349873a3160ded258c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HolyWaterData: {fileID: 0}
 --- !u!114 &1788923654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5872,3 +5922,4 @@ SceneRoots:
   - {fileID: 1212793348}
   - {fileID: 1728117306}
   - {fileID: 234354235}
+  - {fileID: 1321922725}

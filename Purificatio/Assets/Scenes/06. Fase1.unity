@@ -1188,6 +1188,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
+  saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
+  audioSource2D: {fileID: 0}
 --- !u!114 &483120177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,6 +1237,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1496535422}
         m_TargetAssemblyTypeName: SaltItem, Assembly-CSharp
         m_MethodName: OnSaltButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 483120176}
+        m_TargetAssemblyTypeName: SaltItem, Assembly-CSharp
+        m_MethodName: OnSaltUseClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1757,9 +1771,10 @@ MonoBehaviour:
   panelHUD: {fileID: 1417386009}
   optionsContainer: {fileID: 27236661}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
-  defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
+  defaultSprite: {fileID: 0}
   continuePrompt: {fileID: 2080073228}
-  ghostCharacters: []
+  ghostCharacters:
+  - Eveline
 --- !u!4 &676286748
 Transform:
   m_ObjectHideFlags: 0
@@ -2430,6 +2445,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
+  phoneSpecialSound: {fileID: 8300000, guid: a95ff8aac9c93794d8c786b9e9e62c2e, type: 3}
+  specialRooms:
+  - Sala
+  audioSource2D: {fileID: 0}
 --- !u!114 &1098897914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2556,6 +2576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCursed: 1
+  isMazziItem: 0
 --- !u!58 &1133150034
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2740,6 +2761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonecaImage: {fileID: 750648812}
   bonecaGrampeadaSprite: {fileID: 922788936667924710, guid: 077a8c12369ec4b4b8b23f88fda15dce, type: 3}
+  staplerUseSound: {fileID: 8300000, guid: 334dfc751a22d844eababdebcc8f5c91, type: 3}
 --- !u!4 &1160323491
 Transform:
   m_ObjectHideFlags: 0
@@ -2787,6 +2809,7 @@ MonoBehaviour:
   salaPanel: {fileID: 580325837}
   madeiraRemovidaSprite: {fileID: 3532084628486684417, guid: d9defdd602d64994395cf7b3faa5d9e5, type: 3}
   bonecaImage: {fileID: 750648809}
+  crowbarUseSound: {fileID: 8300000, guid: 55d88f880428e7b4cb169ebae56c0cb8, type: 3}
 --- !u!4 &1193951864
 Transform:
   m_ObjectHideFlags: 0
@@ -3357,6 +3380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneDefaultSound: {fileID: 0}
+  phoneSpecialSound: {fileID: 0}
+  specialRooms: []
+  audioSource2D: {fileID: 0}
 --- !u!1 &1496535420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3433,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
+  saltUseSound: {fileID: 0}
+  audioSource2D: {fileID: 0}
 --- !u!1 &1500757606
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,8 +3467,10 @@ MonoBehaviour:
   evelineGhostSprite: {fileID: 2119037247}
   evelineUIImage: {fileID: 324727309}
   screamSound: {fileID: 8300000, guid: 8b3103d42e37d6249835ea9517c5c79d, type: 3}
-  poltergeistSound: {fileID: 0}
+  poltergeistSound: {fileID: 8300000, guid: 0d6f171b1d39f814a85f013bd5350564, type: 3}
   fadeDuration: 1.2
+  dialoguePanel: {fileID: 1602834505}
+  hudPanel: {fileID: 1417386009}
 --- !u!4 &1500757608
 Transform:
   m_ObjectHideFlags: 0

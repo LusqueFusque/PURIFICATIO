@@ -23,7 +23,10 @@ public class Fase1MissionHandler : MissionHandlerBase
     [Header("Efeitos")]
     [Tooltip("Duração dos fades (em segundos)")]
     public float fadeDuration = 2f;
-
+    
+    [Header("UI da Fase 1")]
+    public GameObject dialoguePanel;   // arraste o painel de diálogo no Inspector
+    public GameObject hudPanel;        // arraste o painel de HUD no Inspector
     void OnEnable()
     {
         // ✅ Registra listener para detectar quando findDoll é completada
@@ -105,6 +108,10 @@ public class Fase1MissionHandler : MissionHandlerBase
             case "FadeOut":
             case "fadeOut":
                 StartCoroutine(FadeOutSequence());
+                break;
+            
+            case "wait":
+                StartCoroutine(WaitSequence());
                 break;
 
             default:
@@ -291,6 +298,13 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         VisualEffectsManager vfx = GetEffectsManager();
 
+        // Fecha HUD e diálogo
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
+
+        if (hudPanel != null)
+            hudPanel.SetActive(false);
+
         AudioSource music = FindObjectOfType<AudioSource>();
         if (music != null && music.isPlaying)
         {
@@ -321,9 +335,13 @@ public class Fase1MissionHandler : MissionHandlerBase
         if (poltergeistSound != null)
         {
             AudioSource.PlayClipAtPoint(poltergeistSound, Camera.main.transform.position, 0.6f);
+            // espera a duração do áudio antes de reabrir HUD/diálogo
+            yield return new WaitForSeconds(poltergeistSound.length);
         }
-
-        yield return new WaitForSeconds(2f);
+        else
+        {
+            yield return new WaitForSeconds(2f);
+        }
 
         if (vfx != null)
         {
@@ -333,13 +351,16 @@ public class Fase1MissionHandler : MissionHandlerBase
         // ✅ Completa a missão
         CompleteMission("poltergeistTransformation");
         Debug.Log("[Fase1] Poltergeist criado!");
-        
-        // ✅ Aguarda 1 frame
+
+        // Reabre HUD e diálogo
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(true);
+
+        if (hudPanel != null)
+            hudPanel.SetActive(true);
+
         yield return null;
-        
-        // ✅ Continua o diálogo
-        Debug.Log("[Fase1] Poltergeist completo. Continuando diálogo...");
-        
+
         if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.ShowNextLine();
@@ -375,4 +396,23 @@ public class Fase1MissionHandler : MissionHandlerBase
             DialogueManager.Instance.ShowNextLine();
         }
     }
+    
+    private IEnumerator WaitSequence()
+    {
+        Debug.Log("[Fase1] Iniciando missão 'wait'...");
+
+        // espera 3 segundos
+        yield return new WaitForSeconds(3f);
+
+        // marca missão como concluída
+        CompleteMission("wait");
+        Debug.Log("[Fase1] Missão 'wait' concluída!");
+
+        // continua o diálogo
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.ShowNextLine();
+        }
+    }
+
 }
