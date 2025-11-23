@@ -105,22 +105,14 @@
       "sprite": "",
       "text": "",
       "nextId": "encontrou_tapete",
-      "mission": "RevealPentagram"
+      "mission": "SaltMazzi"
     },
     {
       "id": "encontrou_tapete",
-      "character": "Nambu",
-      "sprite": "Nambu_que",
-      "text": "Hm... O que temos aqui?",
-      "nextId": "pentagrama_missao"
-    },
-    {
-      "id": "pentagrama_missao",
       "character": "Sistema",
       "sprite": "",
       "text": "",
-      "nextId": "mazzi_aparece",
-      "mission": "SaltMazzi"
+      "nextId": "mazzi_aparece"
     },
     {
       "id": "mazzi_aparece",
@@ -278,41 +270,19 @@
       "options": [
         {
           "optionText": "Exorcizar",
-          "nextId": "rota_a1"
+          "nextId": "rota_aa1"
         },
         {
           "optionText": "Não exorcizar",
           "nextId": "rota_b1"
-        },
-        {
-          "optionText": "Decidir daqui a pouco"
-        }
-      ]
-    },
-    {
-      "id": "escolha_mazzi",
-      "character": "Nambu",
-      "sprite": "Nambu_dorme",
-      "text": "Hm... Deixa eu pensar sobre isso.",
-      "options": [
-        {
-          "optionText": "Exorcizar",
-          "nextId": "rota_a1"
-        },
-        {
-          "optionText": "Não exorcizar",
-          "nextId": "rota_b1"
-        },
-        {
-          "optionText": "Decidir daqui a pouco"
         }
       ]
     },
     {
       "id": "rota_aa1",
       "character": "Sistema",
-      "sprite": "Nambu_medo",
-      "text": "Minha nossa...",
+      "sprite": "",
+      "text": "",
       "nextId": "rota_a1",
       "mission": "exorcismo"
     },

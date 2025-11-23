@@ -25,14 +25,43 @@ public class Fase3MissionHandler : MissionHandlerBase
 
     void OnEnable()
     {
+        // Escuta eventos do MissionManager
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        
+        // Escuta eventos de purificação de itens amaldiçoados
+        CursedItem.OnItemPurified += OnItemPurifiedHandler;
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+        
+        CursedItem.OnItemPurified -= OnItemPurifiedHandler;
+    }
+
+    // ============================================================
+    // HANDLER DE PURIFICAÇÃO - RECEBE NOTIFICAÇÃO DO CURSEDITEM
+    // ============================================================
+    private void OnItemPurifiedHandler(CursedItem cursedItem)
+    {
+        Debug.Log($"[Fase3] Item purificado recebido: {cursedItem.name}, IsMazziItem: {cursedItem.isMazziItem}");
+
+        // Verifica se a missão SaltMazzi está ativa
+        bool isMazziMission = MissionManager.Instance != null && 
+                             MissionManager.Instance.IsActive("SaltMazzi");
+
+        if (isMazziMission && cursedItem.isMazziItem)
+        {
+            Debug.Log("[Fase3] ✓ Iniciando sequência do Mazzi!");
+            StartCoroutine(SaltMazziSequence());
+        }
+        else
+        {
+            Debug.Log("[Fase3] Iniciando sequência genérica de sal");
+            StartCoroutine(SaltSequence());
+        }
     }
 
     private void OnMissionCompletedHandler(string missionId)
@@ -43,14 +72,6 @@ public class Fase3MissionHandler : MissionHandlerBase
         {
             case "RevealPentagram":
                 StartCoroutine(RevealPentagramSequence());
-                break;
-
-            case "useSalt":
-                StartCoroutine(SaltSequence());
-                break;
-
-            case "SaltMazzi":
-                StartCoroutine(SaltMazziSequence());
                 break;
 
             case "SummonMazzi":
@@ -69,6 +90,7 @@ public class Fase3MissionHandler : MissionHandlerBase
 
             case "SaltMazzi":
                 MissionManager.Instance.StartMission("SaltMazzi");
+                Debug.Log("[Fase3] Missão SaltMazzi iniciada - aguardando uso do sal");
                 break;
 
             case "SummonMazzi":
@@ -147,13 +169,21 @@ public class Fase3MissionHandler : MissionHandlerBase
         if (tapeteAuraSprite != null)
             tapeteAuraSprite.SetActive(false);
 
-        yield return null;
+        // Completa missão genérica (se houver)
+        if (MissionManager.Instance != null && MissionManager.Instance.IsActive("useSalt"))
+        {
+            MissionManager.Instance.CompleteMission("useSalt");
+        }
 
-        DialogueManager.Instance.ShowNextLine();
+        yield return new WaitForSeconds(0.3f);
+
+        // Avança diálogo
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
     }
 
     // ============================================================
-    // SAL NO MAZZI - NOVA SEQUÊNCIA
+    // SAL NO MAZZI - SEQUÊNCIA ESPECIAL
     // ============================================================
     private IEnumerator SaltMazziSequence()
     {
@@ -169,6 +199,15 @@ public class Fase3MissionHandler : MissionHandlerBase
         if (tapeteAuraSprite != null)
             tapeteAuraSprite.SetActive(false);
 
+        // Completa a missão SaltMazzi
+        if (MissionManager.Instance != null && MissionManager.Instance.IsActive("SaltMazzi"))
+        {
+            Debug.Log("[Fase3] ✓ Completando missão SaltMazzi");
+            MissionManager.Instance.CompleteMission("SaltMazzi");
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
         // Fade in gradual do Mazzi
         if (mazzikinImage != null)
         {
@@ -182,8 +221,19 @@ public class Fase3MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(0.3f);
 
+        // Completa a missão SaltMazzi para retomar o diálogo
+        if (MissionManager.Instance != null && MissionManager.Instance.IsActive("SaltMazzi"))
+        {
+            Debug.Log("[Fase3] ✓ Completando missão SaltMazzi");
+            MissionManager.Instance.CompleteMission("SaltMazzi");
+        }
+        
         // Avança para próxima linha de diálogo
-        DialogueManager.Instance.ShowNextLine();
+        if (DialogueManager.Instance != null)
+        {
+            Debug.Log("[Fase3] Avançando para próxima linha de diálogo");
+            DialogueManager.Instance.ShowNextLine();
+        }
     }
 
     // ============================================================
@@ -215,6 +265,7 @@ public class Fase3MissionHandler : MissionHandlerBase
 
         // Garante que termina com alpha 1
         canvasGroup.alpha = 1f;
+        Debug.Log("[Fase3] Fade in do Mazzi completo");
     }
 
     // ============================================================
