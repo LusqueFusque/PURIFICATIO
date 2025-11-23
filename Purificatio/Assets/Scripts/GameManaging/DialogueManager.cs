@@ -70,7 +70,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"ID '{startDialogueId}' não encontrado no JSON. Verifique o campo 'Start Dialogue Id' no Inspector.");
+            Debug.LogError($"ID '{startDialogueId}' não encontrado no JSON. " +
+                           $"Verifique o campo 'Start Dialogue Id' no Inspector.");
         }
     }
     
@@ -97,7 +98,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (isPausedForMission || currentLine == null) return;
         
-        // Aguardando mudança de cena
         if (waitingForSceneChange)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -109,17 +109,14 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         
-        // Avança diálogo com Espaço
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Se texto está sendo digitado, pula a animação
             if (uiManager.IsTextTyping())
             {
                 uiManager.SkipTyping();
                 return;
             }
             
-            // Se não tem opções, avança para próximo diálogo
             if (currentLine.options == null || currentLine.options.Count == 0)
             {
                 ShowNextLine();
@@ -139,7 +136,8 @@ public class DialogueManager : MonoBehaviour
         
         if (!File.Exists(path))
         {
-            Debug.LogError($"Arquivo JSON não encontrado: {path}\nVerifique se o arquivo existe e está na pasta StreamingAssets/Dialogues/");
+            Debug.LogError($"Arquivo JSON não encontrado: {path}\n" +
+                           $"Verifique se o arquivo existe e está na pasta StreamingAssets/Dialogues/");
             return;
         }
 
@@ -169,24 +167,19 @@ public class DialogueManager : MonoBehaviour
     {
         currentLine = line;
         
-        // Mostra painel de diálogo
         uiManager.ShowDialogueHideHUD();
         
-        // Controla visibilidade de fantasmas
         HandleGhostVisibility(line.character);
         
-        // Atualiza UI
         uiManager.UpdateDialogueUI(line);
         uiManager.ClearOptions();
         
-        // Cria botões de opções
         if (line.options != null && line.options.Count > 0)
         {
             foreach (var option in line.options)
                 uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
         }
         
-        // Verifica se é ponto final (volta ao menu)
         if (goToMenuPoints.Contains(line.id))
         {
             Debug.Log($"[DialogueManager] Diálogo final detectado ('{line.id}'). Aguardando ESPAÇO para ir ao menu...");
@@ -196,7 +189,6 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         
-        // Se houver missão, pausa o diálogo
         if (!string.IsNullOrEmpty(line.mission))
         {
             StartMission(line.mission);
@@ -221,14 +213,11 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log($"[DialogueManager] Iniciando missão {missionId}");
         
-        // Registra listener para quando a missão for completada
         MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedInternal;
         MissionManager.Instance.OnMissionCompleted += OnMissionCompletedInternal;
         
-        // Inicia a missão
         MissionManager.Instance.StartMission(missionId);
         
-        // Chama o handler específico da fase
         if (missionHandler != null)
         {
             missionHandler.HandleMission(missionId);
@@ -270,7 +259,6 @@ public class DialogueManager : MonoBehaviour
 
     public void OnOptionSelected(string nextId)
     {
-        // Se a opção não tem nextId, fecha o diálogo
         if (string.IsNullOrEmpty(nextId))
         {
             Debug.Log("[DialogueManager] Opção sem nextId - fechando diálogo");
@@ -278,8 +266,7 @@ public class DialogueManager : MonoBehaviour
             currentLine = null;
             return;
         }
-    
-        // Vai para o próximo diálogo
+        
         if (dialogueDict.TryGetValue(nextId, out var nextLine))
             ShowLine(nextLine);
         else

@@ -1976,6 +1976,7 @@ GameObject:
   - component: {fileID: 987363857}
   - component: {fileID: 987363856}
   - component: {fileID: 987363855}
+  - component: {fileID: 987363860}
   m_Layer: 5
   m_Name: Estrelamage
   m_TagString: Untagged
@@ -2109,6 +2110,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987363853}
   m_CullTransparentMesh: 1
+--- !u!114 &987363860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987363853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 07c5dd752f1ca6144947ec12e62be808, type: 2}
+  inventory: {fileID: 1782408305}
 --- !u!1 &992353252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2452,7 @@ GameObject:
   - component: {fileID: 1106044484}
   - component: {fileID: 1106044489}
   - component: {fileID: 1106044488}
+  - component: {fileID: 1106044490}
   m_Layer: 5
   m_Name: CrescenteImage
   m_TagString: Untagged
@@ -2570,6 +2586,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333722bc86f3b84aa93101e5ae89d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1106044490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106044481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: e7c24de9c760b094abf69620584898af, type: 2}
+  inventory: {fileID: 1782408305}
 --- !u!1 &1149368887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,6 +3078,7 @@ GameObject:
   - component: {fileID: 1472850240}
   - component: {fileID: 1472850242}
   - component: {fileID: 1472850241}
+  - component: {fileID: 1472850243}
   m_Layer: 5
   m_Name: CruzImage
   m_TagString: Untagged
@@ -3181,6 +3212,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d61d087e260404ca72b4595dde864b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1472850243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472850235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: af5b51e7489071947909259c021d1416, type: 2}
+  inventory: {fileID: 1782408305}
 --- !u!1 &1495196046
 GameObject:
   m_ObjectHideFlags: 0
@@ -4409,6 +4454,7 @@ GameObject:
   - component: {fileID: 1788923654}
   - component: {fileID: 1788923653}
   - component: {fileID: 1788923652}
+  - component: {fileID: 1788923657}
   m_Layer: 5
   m_Name: AguaBentaImage
   m_TagString: Untagged
@@ -4542,6 +4588,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788923650}
   m_CullTransparentMesh: 1
+--- !u!114 &1788923657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788923650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 0}
+  inventory: {fileID: 1782408305}
 --- !u!1 &1797200442
 GameObject:
   m_ObjectHideFlags: 0
