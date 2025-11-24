@@ -436,6 +436,7 @@ public class AdvancedMapManager : MonoBehaviour
             return false;
         }
     }
+    
 
     // ==================== API PÚBLICA ====================
 
@@ -464,18 +465,25 @@ public class AdvancedMapManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retorna o nome da sala atual, conforme registrado no sistema.
+    /// </summary>
     public string GetCurrentRoomName()
     {
         return currentRoomName;
     }
 
+    /// <summary>
+    /// Retorna o nome da sala atual. (Mantido para compatibilidade, retorna o 'currentRoomName')
+    /// </summary>
     public string GetCurrentRoom()
     {
-        return minimap_currentRoom != null ? minimap_currentRoom.name : currentRoomName;
+        return currentRoomName;
     }
 
     public bool RoomExists(string roomName)
     {
         return roomDict.ContainsKey(roomName);
     }
+
 }

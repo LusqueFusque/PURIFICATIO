@@ -4,10 +4,10 @@ public class FitaItem : MonoBehaviour
 {
     public static FitaItem Instance;
 
-    private bool isActive = false;
-
     [Header("ItemData (ScriptableObject)")]
-    public ItemData FitaData;   // referência ao ScriptableObject da fita
+    public ItemData FitaData; // referência ao ScriptableObject da fita
+
+    private bool isActive = false;
 
     void Awake()
     {
@@ -21,15 +21,54 @@ public class FitaItem : MonoBehaviour
 
     void OnDestroy()
     {
-        if (Instance == this) Instance = null;
+        if (Instance == this) 
+            Instance = null;
     }
 
+    void Update()
+    {
+        // Clique direito para desativar
+        if (isActive && Input.GetMouseButtonDown(1))
+        {
+            Deactivate();
+        }
+    }
+
+    // ============================================
+    // CONTROLE DE ATIVAÇÃO
+    // ============================================
+    public void Activate()
+    {
+        Debug.Log("[FitaItem] Fita ATIVADA");
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        Debug.Log("[FitaItem] Fita DESATIVADA");
+        isActive = false;
+    }
+
+    public void Toggle()
+    {
+        if (isActive)
+            Deactivate();
+        else
+            Activate();
+    }
+
+    public bool IsActive() => isActive;
+
+    // ============================================
+    // COLETA DA FITA
+    // ============================================
     /// <summary>
     /// Chamado quando o jogador coleta a fita no cenário.
     /// </summary>
     public void OnFitaCollected()
     {
         Debug.Log("[FitaItem] Fita coletada!");
+
         var inv = FindObjectOfType<DynamicInventory>();
         if (inv != null && FitaData != null)
         {
@@ -40,28 +79,10 @@ public class FitaItem : MonoBehaviour
             Debug.LogError("[FitaItem] Inventory ou ItemData não configurados!");
         }
 
-        // desativa o objeto físico da cena
-        gameObject.SetActive(false);
-
-        // opcional: marcar missão concluída
+        // Opcional: marca missão concluída
         if (MissionManager.Instance != null)
+        {
             MissionManager.Instance.CompleteMission("findTape");
-    }
-
-    /// <summary>
-    /// Ativa o item no inventário para uso (ex: clicar no botão da fita).
-    /// </summary>
-    public void SetActive(bool active)
-    {
-        isActive = active;
-        Debug.Log("[FitaItem] Estado ativo = " + isActive);
-    }
-
-    /// <summary>
-    /// Verifica se a fita está ativa para uso.
-    /// </summary>
-    public bool IsActive()
-    {
-        return isActive;
+        }
     }
 }

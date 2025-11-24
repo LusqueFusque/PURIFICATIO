@@ -47,13 +47,13 @@
       "id": "philippa1",
       "character": "Nambú",
       "sprite": "Nambu_neutro",
-      "text": "….",
+      "text": "…",
       "nextId": "philippa2"
     },
     {
       "id": "philippa2",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "....",
       "nextId": "philippa3"
     },
@@ -67,7 +67,7 @@
     {
       "id": "philippa4",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_pensa",
       "text": "Quem quer saber?",
       "nextId": "philippa5"
     },
@@ -81,7 +81,7 @@
     {
       "id": "philippa6",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "Ah, sim, claro. Exorcista! Então, tem esse fantasma ele tá tentando me matar.",
       "nextId": "philippa7"
     },
@@ -89,13 +89,13 @@
       "id": "philippa7",
       "character": "Nambú",
       "sprite": "Nambu_que",
-      "text": "….",
+      "text": "…",
       "nextId": "philippa8"
     },
     {
       "id": "philippa8",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Ele apareceu hoje de manhã e já tentou me atropelar, me fazer cair, bater a cabeça, botar fogo em mim, quebrar meus ossos, me explodir, me afogar…",
       "nextId": "philippa9"
     },
@@ -109,14 +109,14 @@
     {
       "id": "philippa10",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "HAHAHAHAHAHAHAHHAHA!",
       "nextId": "philippa11"
     },
     {
       "id": "philippa11",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Eu te conto se tu fizer um favor pra mim antes.",
       "nextId": "philippa12"
     },
@@ -130,7 +130,7 @@
     {
       "id": "philippa13",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Eu só preciso que tu entre na sala das câmeras e pegue uma fita de vídeo. Eu tentei, mas o segurança é um idiota e não me deixou entrar.",
       "nextId": "philippa14"
     },
@@ -146,27 +146,8 @@
       "character": "Sistema",
       "sprite": "",
       "text": "",
-      "nextId": "escolha_inicial",
+      "nextId": "rota_entrega1",
       "mission": "findTape"
-    },
-    {
-      "id": "escolha_inicial",
-      "character": "Nambú",
-      "sprite": "Nambu_dorme",
-      "text": "(O que eu faço com essa fita?)",
-      "options": [
-        {
-          "optionText": "Entregar a fita pra Philippa",
-          "nextId": "rota_entrega1"
-        },
-        {
-          "optionText": "Assistir a fita primeiro",
-          "nextId": "rota_assistir1"
-        },
-        {
-          "optionText": "Decidir daqui a pouco"
-        }
-      ]
     },
     {
       "id": "rota_entrega1",
@@ -178,7 +159,7 @@
     {
       "id": "rota_entrega2",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "Valeu aí cara.",
       "nextId": "rota_entrega3"
     },
@@ -192,7 +173,7 @@
     {
       "id": "rota_entrega4",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Nada.",
       "nextId": "rota_entrega5"
     },
@@ -206,14 +187,14 @@
     {
       "id": "rota_entrega6",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Eu realmente não fiz nada. Ele só começou a me seguir e tentar tirar minha vida por nada.",
       "nextId": "rota_entrega7"
     },
     {
       "id": "rota_entrega7",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "Então… o exorcismo?",
       "nextId": "rota_entrega8"
     },
@@ -228,14 +209,14 @@
       "id": "rota_entrega9",
       "character": "Nambú",
       "sprite": "Nambu_que",
-      "text": "(Como eu faço isso se não tem nada aqui…)",
+      "text": "(Como eu faço isso se não tem nada aqui… Deveria pedir ajuda...)",
       "nextId": "ligar_timbu1"
     },
     {
       "id": "ligar_timbu1",
       "character": "Nambú",
       "sprite": "Nambu_sorriso",
-      "text": "Oi ♥",
+      "text": "Oiiiii",
       "nextId": "ligar_timbu2"
     },
     {
@@ -348,26 +329,26 @@
       "character": "Jarvis",
       "sprite": "Jarvistriste",
       "text": "Quando eu tentei parar, percebi que ela tinha cortado os freios. O bonde capotou e matou todo mundo. Menos ela.",
-      "nextId": "philippa_confessa1"
+      "nextId": "P_confessa1"
     },
     {
-      "id": "philippa_confessa1",
+      "id": "P_confessa1",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Olha, isso é mentira. Eu nunca cortei os freios… Mas eu amarrei a galera nos trilhos.",
-      "nextId": "philippa_confessa2"
+      "nextId": "P_confessa2"
     },
     {
-      "id": "philippa_confessa2",
+      "id": "P_confessa2",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "É a aplicação do dilema do bonde na prática, mas como não deu tempo de chamar quem puxasse a alavanca, o bondinho não pegou caminho nenhum e tombou.",
-      "nextId": "philippa_confessa3"
+      "nextId": "P_confessa3"
     },
     {
-      "id": "philippa_confessa3",
+      "id": "P_confessa3",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "Acho que, no fim das contas, isso é um resultado, hm? \"Todos morrem igualmente: a solução mais ética!\".",
       "nextId": "nambu_chocado1"
     },
@@ -383,19 +364,19 @@
       "character": "Nambú",
       "sprite": "Nambu_raiva",
       "text": "VOCÊ É DOIDA?",
-      "nextId": "philippa_responde1"
+      "nextId": "P_responde1"
     },
     {
-      "id": "philippa_responde1",
+      "id": "P_responde1",
       "character": "Philippa",
-      "sprite": "Philippa_neutro",
+      "sprite": "P_neutro",
       "text": "Vai dizer que tô mentindo?",
-      "nextId": "philippa_responde2"
+      "nextId": "P_responde2"
     },
     {
-      "id": "philippa_responde2",
+      "id": "P_responde2",
       "character": "Philippa",
-      "sprite": "Philippa_sorriso",
+      "sprite": "P_sorriso",
       "text": "Tu também não tem provas de nada disso, eu posso muito bem ter inventado.",
       "nextId": "nambu_revolta"
     },
@@ -562,16 +543,15 @@
     },
     {
       "id": "rota_assistir1",
-      "character": "Nambú",
-      "sprite": "Nambu_dorme",
-      "text": "(Vou dar uma olhada nessa fita antes…)",
-      "nextId": "rota_assistir2",
-      "mission": "watchTape"
+      "character": "",
+      "sprite": "",
+      "text": "",
+      "nextId": "rota_assistir2"
     },
     {
       "id": "rota_assistir2",
       "character": "Nambú",
-      "sprite": "Nambu_que",
+      "sprite": "Nambu_dorme",
       "text": "Eita.",
       "nextId": "escolha_apos_assistir"
     },
@@ -622,3 +602,5 @@
     }
   ]
 }
+
+

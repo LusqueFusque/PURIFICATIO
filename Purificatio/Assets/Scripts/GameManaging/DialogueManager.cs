@@ -48,6 +48,13 @@ public class DialogueManager : MonoBehaviour
     
     private bool waitingForSceneChange = false;
     private string sceneToLoad = "";
+    
+    [Header("Verificações de Condições (Fase 4)")]
+    [Tooltip("IDs de diálogos que precisam de verificação de sala")]
+    public string[] roomCheckDialogueIds = { "rota_entrega1" };
+
+    [Tooltip("IDs de diálogos que pausam e fecham a UI")]
+    public string[] pauseAndCloseIds = { "rota_entrega9" };
 
     private HashSet<string> goToMenuPoints = new HashSet<string>()
     {
@@ -166,20 +173,35 @@ public class DialogueManager : MonoBehaviour
     private void ShowLine(DialogueLine line)
     {
         currentLine = line;
-        
+    
+        // ✅ NOVO: Verifica se pode mostrar este diálogo
+        if (!CanShowDialogue(line.id))
+        {
+            Debug.Log($"[DialogueManager] Diálogo {line.id} bloqueado - condições não atendidas.");
+            // Não mostra nada, mantém o diálogo fechado
+            return;
+        }
+    
         uiManager.ShowDialogueHideHUD();
-        
         HandleGhostVisibility(line.character);
-        
         uiManager.UpdateDialogueUI(line);
         uiManager.ClearOptions();
-        
+
         if (line.options != null && line.options.Count > 0)
         {
             foreach (var option in line.options)
                 uiManager.CreateOptionButton(option.optionText, () => OnOptionSelected(option.nextId));
         }
-        
+
+        // ✅ NOVO: Verifica se deve pausar e fechar
+        if (ShouldPauseAndClose(line.id))
+        {
+            Debug.Log($"[DialogueManager] Diálogo {line.id} pausado - aguardando interação externa (telefone).");
+            uiManager.HideDialogueShowHUD();
+            isPausedForMission = true; // Pausa o diálogo
+            return;
+        }
+
         if (goToMenuPoints.Contains(line.id))
         {
             Debug.Log($"[DialogueManager] Diálogo final detectado ('{line.id}'). Aguardando ESPAÇO para ir ao menu...");
@@ -188,7 +210,7 @@ public class DialogueManager : MonoBehaviour
             uiManager.ShowContinuePrompt("Pressione ESPAÇO para continuar...");
             return;
         }
-        
+
         if (!string.IsNullOrEmpty(line.mission))
         {
             StartMission(line.mission);
@@ -343,4 +365,48 @@ public class DialogueManager : MonoBehaviour
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedInternal;
         }
     }
+    
+    private bool CanShowDialogue(string dialogueId)
+    {
+        // Verifica se este diálogo precisa de verificação de sala
+        bool needsRoomCheck = System.Array.Exists(roomCheckDialogueIds, id => id == dialogueId);
+    
+        if (needsRoomCheck)
+        {
+            // Verifica se o jogador está na sala "Estação"
+            if (AdvancedMapManager.Instance != null)
+            {
+                string currentRoom = AdvancedMapManager.Instance.GetCurrentRoom();
+                Debug.Log($"[DialogueManager] Verificando sala: {currentRoom}");
+            
+                if (currentRoom != "Estacao" && currentRoom != "Estação")
+                {
+                    Debug.LogWarning($"[DialogueManager] Jogador não está na Estação! Sala atual: {currentRoom}");
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[DialogueManager] AdvancedMapManager não encontrado!");
+            }
+        }
+    
+        return true;
+    }
+
+    private bool ShouldPauseAndClose(string dialogueId)
+    {
+        return System.Array.Exists(pauseAndCloseIds, id => id == dialogueId);
+    }
+    
+    /// <summary>
+    /// Desbloqueia o diálogo quando uma interação externa acontece (ex: telefone)
+    /// </summary>
+    public void UnpauseDialogue()
+    {
+        Debug.Log("[DialogueManager] Diálogo despausado!");
+        isPausedForMission = false;
+        uiManager.ShowDialogueHideHUD();
+    }
+    
 }

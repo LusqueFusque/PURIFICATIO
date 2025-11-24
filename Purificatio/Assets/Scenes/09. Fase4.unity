@@ -403,7 +403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &120400582
 Transform:
   m_ObjectHideFlags: 0
@@ -2384,6 +2384,7 @@ GameObject:
   - component: {fileID: 1098897915}
   - component: {fileID: 1098897914}
   - component: {fileID: 1098897913}
+  - component: {fileID: 1098897917}
   m_Layer: 5
   m_Name: SlotPhone
   m_TagString: Untagged
@@ -2422,7 +2423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phoneDefaultSound: {fileID: 0}
+  phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
   phoneSpecialSound: {fileID: 0}
   specialRooms: []
   audioSource2D: {fileID: 0}
@@ -2520,6 +2521,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098897911}
   m_CullTransparentMesh: 1
+--- !u!114 &1098897917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098897911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b67efc715214c4e9015681048296fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredDialogueId: rota_entrega9
+  phoneDialSound: {fileID: 0}
 --- !u!1 &1149368887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,8 +2893,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1766453535}
-  - {fileID: 1862584419}
   - {fileID: 1500838367}
+  - {fileID: 1862584419}
   - {fileID: 1534995225}
   - {fileID: 1693578769}
   - {fileID: 473605943}
@@ -3071,11 +3086,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ae468370432d44aa9cc93655542231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapeImage: {fileID: 1766453536}
-  telaClickArea: {fileID: 0}
   philippaSprite: {fileID: 0}
   jarvisGhost: {fileID: 0}
-  fitaItem: {fileID: 0}
+  ghostAttackSound: {fileID: 8300000, guid: 26f223843868f91468a8f361c9fd0cb2, type: 3}
+  ghostDisappearSound: {fileID: 0}
 --- !u!1 &1500838366
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1500838367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3362,7 +3376,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SalaDeEspera
+          m_StringArgument: SaladeEspera
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1552279241
@@ -3485,6 +3499,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602834505}
   m_CullTransparentMesh: 1
+--- !u!1 &1641862435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641862437}
+  - component: {fileID: 1641862436}
+  m_Layer: 0
+  m_Name: FitaItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1641862436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641862435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47326c78f98262546af71b47b63fa8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FitaData: {fileID: 11400000, guid: 868fa2c1c85cfd344ab1dfe005d1eb13, type: 2}
+--- !u!4 &1641862437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641862435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 990.5568, y: 484.20886, z: 7.0339913}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667000194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3651,7 +3710,6 @@ GameObject:
   - component: {fileID: 1766453539}
   - component: {fileID: 1766453540}
   - component: {fileID: 1766453541}
-  - component: {fileID: 1766453542}
   m_Layer: 5
   m_Name: FitaImage
   m_TagString: Untagged
@@ -3772,7 +3830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 868fa2c1c85cfd344ab1dfe005d1eb13, type: 2}
   inventory: {fileID: 1782408305}
 --- !u!114 &1766453541
 MonoBehaviour:
@@ -3787,19 +3845,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
---- !u!114 &1766453542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766453534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47326c78f98262546af71b47b63fa8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FitaData: {fileID: 11400000, guid: 868fa2c1c85cfd344ab1dfe005d1eb13, type: 2}
 --- !u!1 &1782408303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,7 +3909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1797200443
 Transform:
   m_ObjectHideFlags: 0
@@ -3935,7 +3980,6 @@ MonoBehaviour:
     roomObject: {fileID: 29587935}
     alwaysActiveObjects:
     - {fileID: 1766453534}
-    - {fileID: 1500838366}
     - {fileID: 1862584418}
     alwaysInactiveObjects: []
     conditionalObjects: []
@@ -4086,11 +4130,11 @@ GameObject:
   - component: {fileID: 1862584424}
   - component: {fileID: 1862584423}
   - component: {fileID: 1862584422}
-  - component: {fileID: 1862584421}
   - component: {fileID: 1862584420}
+  - component: {fileID: 1862584425}
   m_Layer: 5
   m_Name: TelaClickableArea
-  m_TagString: Untagged
+  m_TagString: TelaClickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4102,17 +4146,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862584418}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0287067, w: 0.9995879}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1417386010}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.29}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 238.1, y: 164.21991}
-  m_SizeDelta: {x: 245.4048, y: 253.5097}
+  m_AnchoredPosition: {x: 243, y: 167}
+  m_SizeDelta: {x: 258.7565, y: 237.4211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862584420
 MonoBehaviour:
@@ -4127,20 +4171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
---- !u!114 &1862584421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862584418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aaf5d35876503a4cb8b834292a8e0a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 0}
-  inventory: {fileID: 1782408305}
 --- !u!114 &1862584422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,6 +4253,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862584418}
   m_CullTransparentMesh: 1
+--- !u!114 &1862584425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862584418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002cf0f0f74eb4d40a3254b19f15364f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  telaImage: {fileID: 1500838369}
+  fitaAudio: {fileID: 8300000, guid: 334dfc751a22d844eababdebcc8f5c91, type: 3}
+  waitTime: 3
 --- !u!1 &1863752887
 GameObject:
   m_ObjectHideFlags: 0
@@ -4890,7 +4935,11 @@ MonoBehaviour:
   dialogueFileName: fase4.json
   startDialogueId: inicio1
   uiManager: {fileID: 676286747}
-  missionHandler: {fileID: 0}
+  missionHandler: {fileID: 1500757609}
+  roomCheckDialogueIds:
+  - rota_entrega1
+  pauseAndCloseIds:
+  - rota_entrega9
 --- !u!1 &2080073228
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,3 +5325,4 @@ SceneRoots:
   - {fileID: 43278355}
   - {fileID: 1212793348}
   - {fileID: 234354235}
+  - {fileID: 1641862437}

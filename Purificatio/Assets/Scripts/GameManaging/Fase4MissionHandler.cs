@@ -4,16 +4,13 @@ using UnityEngine.UI;
 
 public class Fase4MissionHandler : MissionHandlerBase
 {
-    [Header("UI da Fase 4")]
-    public Image tapeImage;
-    public Image telaClickArea;
-
     [Header("Sprites e Entidades")]
     public GameObject philippaSprite;
     public GameObject jarvisGhost;
 
-    [Header("Itens Especiais")]
-    public GameObject fitaItem; // referência ao coletável
+    [Header("Sons")]
+    public AudioClip ghostAttackSound;
+    public AudioClip ghostDisappearSound;
 
     void OnEnable()
     {
@@ -33,10 +30,13 @@ public class Fase4MissionHandler : MissionHandlerBase
 
         switch (missionId)
         {
-            case "findTape": StartCoroutine(FindTapeSequence()); break;
-            case "watchTape": StartCoroutine(WatchTapeSequence()); break;
-            case "ghostAttack": StartCoroutine(GhostAttackSequence()); break;
-            case "ghostDisappear": StartCoroutine(GhostDisappearSequence()); break;
+            case "ghostAttack":
+                StartCoroutine(GhostAttackSequence());
+                break;
+
+            case "ghostDisappear":
+                StartCoroutine(GhostDisappearSequence());
+                break;
         }
     }
 
@@ -53,20 +53,19 @@ public class Fase4MissionHandler : MissionHandlerBase
                 break;
 
             case "returnToMenu":
-                if (GameManager.Instance != null)
-                    GameManager.Instance.LoadScene("02. Menu");
-                else
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("02. Menu");
+                ReturnToMenu();
                 break;
 
             case "findTape":
+                // A missão é iniciada, mas a lógica está no CollectibleFita
                 MissionManager.Instance.StartMission("findTape");
                 Debug.Log("[Fase4] Missão findTape iniciada - jogador deve coletar a fita.");
                 break;
 
             case "watchTape":
+                // A missão é iniciada, mas a lógica está no TelaClickableArea
                 MissionManager.Instance.StartMission("watchTape");
-                Debug.Log("[Fase4] Missão watchTape iniciada - exibindo conteúdo da fita.");
+                Debug.Log("[Fase4] Missão watchTape iniciada - use a fita na tela.");
                 break;
 
             case "ghostAttack":
@@ -90,19 +89,24 @@ public class Fase4MissionHandler : MissionHandlerBase
     private IEnumerator FadeInSequence()
     {
         VisualEffectsManager vfx = GetEffectsManager();
-        if (vfx != null) yield return vfx.FadeFromBlack(2f);
-        else yield return new WaitForSeconds(2f);
+
+        if (vfx != null)
+            yield return vfx.FadeFromBlack(2f);
+        else
+            yield return new WaitForSeconds(2f);
 
         CompleteMission("fadeIn");
         yield return null;
 
-        DialogueManager.Instance.ShowNextLine();
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
     }
 
     private IEnumerator FadeOutSequence()
     {
         VisualEffectsManager vfx = GetEffectsManager();
         float fadeDuration = 1.2f;
+
         if (vfx != null)
             yield return StartCoroutine(vfx.FadeToBlack(fadeDuration));
         else
@@ -110,50 +114,78 @@ public class Fase4MissionHandler : MissionHandlerBase
 
         CompleteMission("fadeOut");
         yield return null;
-        // não chamar ShowNextLine aqui
-    }
 
-    private IEnumerator FindTapeSequence()
-    {
-        Debug.Log("[Fase4] Fita coletada.");
-        if (tapeImage != null) tapeImage.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(0.3f);
-
-        MissionManager.Instance.CompleteMission("findTape");
-        DialogueManager.Instance.ShowNextLine();
-    }
-
-    private IEnumerator WatchTapeSequence()
-    {
-        Debug.Log("[Fase4] Assistindo a fita…");
-        if (telaClickArea != null) telaClickArea.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(0.5f);
-
-        MissionManager.Instance.CompleteMission("watchTape");
-        DialogueManager.Instance.ShowNextLine();
+        // Avança diálogo após fade
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
     }
 
     private IEnumerator GhostAttackSequence()
     {
-        Debug.Log("[Fase4] Fantasma Jarvis ataca Philippa!");
-        if (jarvisGhost != null) jarvisGhost.SetActive(true);
+        Debug.Log("[Fase4] === FANTASMA JARVIS ATACA PHILIPPA ===");
+
+        // Som de ataque
+        if (ghostAttackSound != null)
+        {
+            AudioSource.PlayClipAtPoint(ghostAttackSound, Camera.main.transform.position, 0.7f);
+        }
+
+        // Ativa o fantasma
+        if (jarvisGhost != null)
+        {
+            jarvisGhost.SetActive(true);
+            Debug.Log("[Fase4] ✓ Fantasma Jarvis ativado");
+        }
+
+        // Esconde ou altera Philippa (opcional)
+        if (philippaSprite != null)
+        {
+            // Você pode adicionar uma animação de "morte" aqui
+            Debug.Log("[Fase4] Philippa sendo atacada...");
+        }
 
         yield return new WaitForSeconds(1f);
 
-        MissionManager.Instance.CompleteMission("ghostAttack");
-        DialogueManager.Instance.ShowNextLine();
+        // Avança diálogo
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
     }
 
     private IEnumerator GhostDisappearSequence()
     {
-        Debug.Log("[Fase4] Fantasma Jarvis desaparece.");
-        if (jarvisGhost != null) jarvisGhost.SetActive(false);
+        Debug.Log("[Fase4] === FANTASMA JARVIS DESAPARECE ===");
+
+        // Som de desaparecimento
+        if (ghostDisappearSound != null)
+        {
+            AudioSource.PlayClipAtPoint(ghostDisappearSound, Camera.main.transform.position, 0.5f);
+        }
+
+        // Desativa o fantasma
+        if (jarvisGhost != null)
+        {
+            jarvisGhost.SetActive(false);
+            Debug.Log("[Fase4] ✓ Fantasma Jarvis desativado");
+        }
 
         yield return new WaitForSeconds(0.5f);
 
-        MissionManager.Instance.CompleteMission("ghostDisappear");
-        DialogueManager.Instance.ShowNextLine();
+        // Avança diálogo
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
+    }
+
+    private void ReturnToMenu()
+    {
+        Debug.Log("[Fase4] Retornando ao menu...");
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadScene("02. Menu");
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("02. Menu");
+        }
     }
 }

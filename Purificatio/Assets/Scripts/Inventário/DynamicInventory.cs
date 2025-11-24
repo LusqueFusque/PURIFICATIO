@@ -190,7 +190,23 @@ public class DynamicInventory : MonoBehaviour
         }
         
         // ============================================
-        // OUTROS ITENS
+        // FASE 4
+
+        // FITA
+        else if (item.itemName == "Fita" || item.itemName == "Tape")
+        {
+            FitaItem fita = FindObjectOfType<FitaItem>();
+            if (fita != null)
+            {
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão Fita clicado!");
+                    fita.Toggle(); // ← IMPORTANTE: Chama Toggle()
+                });
+            }
+        }
+
+// ============================================
+// OUTROS ITENS
         else
         {
             Debug.Log($"[DynamicInventory] Configurando botão para {item.itemName} (ItemData.Use())");
