@@ -1,0 +1,624 @@
+{
+  "dialogue": [
+    {
+      "id": "inicio1",
+      "character": "Timbu",
+      "sprite": "Timbu_sorriso",
+      "text": "Muito bem, nossa contratante da vez se chama Philippa.",
+      "nextId": "inicio2"
+    },
+    {
+      "id": "inicio2",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "Certo. E o que mais?",
+      "nextId": "inicio3"
+    },
+    {
+      "id": "inicio3",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Mais nada.",
+      "nextId": "inicio4"
+    },
+    {
+      "id": "inicio4",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "É só isso?",
+      "nextId": "inicio5"
+    },
+    {
+      "id": "inicio5",
+      "character": "Timbu",
+      "sprite": "Timbu_palma",
+      "text": "É. Ela não deu mais nenhuma informação. Vai lá e descobre.",
+      "nextId": "fade_transition"
+    },
+    {
+      "id": "fade_transition",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "philippa1",
+      "mission": "fadeIn"
+    },
+    {
+      "id": "philippa1",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "….",
+      "nextId": "philippa2"
+    },
+    {
+      "id": "philippa2",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "....",
+      "nextId": "philippa3"
+    },
+    {
+      "id": "philippa3",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "É você que é a Philippa?",
+      "nextId": "philippa4"
+    },
+    {
+      "id": "philippa4",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Quem quer saber?",
+      "nextId": "philippa5"
+    },
+    {
+      "id": "philippa5",
+      "character": "Nambú",
+      "sprite": "Nambu_eheh",
+      "text": "Eeeh… o exorcista…? Que você contratou…",
+      "nextId": "philippa6"
+    },
+    {
+      "id": "philippa6",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "Ah, sim, claro. Exorcista! Então, tem esse fantasma ele tá tentando me matar.",
+      "nextId": "philippa7"
+    },
+    {
+      "id": "philippa7",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "….",
+      "nextId": "philippa8"
+    },
+    {
+      "id": "philippa8",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Ele apareceu hoje de manhã e já tentou me atropelar, me fazer cair, bater a cabeça, botar fogo em mim, quebrar meus ossos, me explodir, me afogar…",
+      "nextId": "philippa9"
+    },
+    {
+      "id": "philippa9",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Oxe, pera aí. O que danado tu fez pra um fantasma estar te caçando desse jeito? Eu não consigo trabalhar sem informação, minha flor.",
+      "nextId": "philippa10"
+    },
+    {
+      "id": "philippa10",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "HAHAHAHAHAHAHAHHAHA!",
+      "nextId": "philippa11"
+    },
+    {
+      "id": "philippa11",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Eu te conto se tu fizer um favor pra mim antes.",
+      "nextId": "philippa12"
+    },
+    {
+      "id": "philippa12",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "Hmm… Me parece furada, mas fazer o que né. Diz aí.",
+      "nextId": "philippa13"
+    },
+    {
+      "id": "philippa13",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Eu só preciso que tu entre na sala das câmeras e pegue uma fita de vídeo. Eu tentei, mas o segurança é um idiota e não me deixou entrar.",
+      "nextId": "philippa14"
+    },
+    {
+      "id": "philippa14",
+      "character": "Nambú",
+      "sprite": "Nambu_raiva",
+      "text": "As coisas que se faz por dinheiro, meu pai…",
+      "nextId": "missao_fita"
+    },
+    {
+      "id": "missao_fita",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "escolha_inicial",
+      "mission": "findTape"
+    },
+    {
+      "id": "escolha_inicial",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "(O que eu faço com essa fita?)",
+      "options": [
+        {
+          "optionText": "Entregar a fita pra Philippa",
+          "nextId": "rota_entrega1"
+        },
+        {
+          "optionText": "Assistir a fita primeiro",
+          "nextId": "rota_assistir1"
+        },
+        {
+          "optionText": "Decidir daqui a pouco"
+        }
+      ]
+    },
+    {
+      "id": "rota_entrega1",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "Aqui sua fita preciosa.",
+      "nextId": "rota_entrega2"
+    },
+    {
+      "id": "rota_entrega2",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "Valeu aí cara.",
+      "nextId": "rota_entrega3"
+    },
+    {
+      "id": "rota_entrega3",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "Agora fala. O que você fez pra ter um fantasma te seguindo?",
+      "nextId": "rota_entrega4"
+    },
+    {
+      "id": "rota_entrega4",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Nada.",
+      "nextId": "rota_entrega5"
+    },
+    {
+      "id": "rota_entrega5",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Como assim nada? Tem que ter um motivo.",
+      "nextId": "rota_entrega6"
+    },
+    {
+      "id": "rota_entrega6",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Eu realmente não fiz nada. Ele só começou a me seguir e tentar tirar minha vida por nada.",
+      "nextId": "rota_entrega7"
+    },
+    {
+      "id": "rota_entrega7",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "Então… o exorcismo?",
+      "nextId": "rota_entrega8"
+    },
+    {
+      "id": "rota_entrega8",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "Certo…",
+      "nextId": "rota_entrega9"
+    },
+    {
+      "id": "rota_entrega9",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "(Como eu faço isso se não tem nada aqui…)",
+      "nextId": "ligar_timbu1"
+    },
+    {
+      "id": "ligar_timbu1",
+      "character": "Nambú",
+      "sprite": "Nambu_sorriso",
+      "text": "Oi ♥",
+      "nextId": "ligar_timbu2"
+    },
+    {
+      "id": "ligar_timbu2",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Que que foi?",
+      "nextId": "ligar_timbu3"
+    },
+    {
+      "id": "ligar_timbu3",
+      "character": "Nambú",
+      "sprite": "Nambu_neutro",
+      "text": "Como eu faço pra exorcizar um fantasma que não tá ligado a nada?",
+      "nextId": "ligar_timbu4"
+    },
+    {
+      "id": "ligar_timbu4",
+      "character": "Timbu",
+      "sprite": "Timbu_hm",
+      "text": "Já tentou jogar sal nele?",
+      "nextId": "jarvis1"
+    },
+    {
+      "id": "jarvis1",
+      "character": "Jarvis",
+      "sprite": "Jarvis",
+      "text": "não.",
+      "nextId": "jarvis2"
+    },
+    {
+      "id": "jarvis2",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "…!",
+      "nextId": "jarvis3"
+    },
+    {
+      "id": "jarvis3",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "…",
+      "nextId": "jarvis4"
+    },
+    {
+      "id": "jarvis4",
+      "character": "Jarvis",
+      "sprite": "Jarvis",
+      "text": "não não não não não NÃO NÃO NÃO NÃO NÃO",
+      "nextId": "jarvis5"
+    },
+    {
+      "id": "jarvis5",
+      "character": "Nambú",
+      "sprite": "Nambu_eheh",
+      "text": "Ehh… Oi?",
+      "nextId": "jarvis6"
+    },
+    {
+      "id": "jarvis6",
+      "character": "Jarvis",
+      "sprite": "Jarvis",
+      "text": "Ela é uma mentirosa!",
+      "nextId": "jarvis7"
+    },
+    {
+      "id": "jarvis7",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "Quem tá falando… é o fantasma?",
+      "nextId": "jarvis8"
+    },
+    {
+      "id": "jarvis8",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Como assim ela é mentirosa?",
+      "nextId": "jarvis9"
+    },
+    {
+      "id": "jarvis9",
+      "character": "Jarvis",
+      "sprite": "Jarvis",
+      "text": "Não confie. Ela mente!",
+      "nextId": "jarvis10"
+    },
+    {
+      "id": "jarvis10",
+      "character": "Jarvis",
+      "sprite": "Jarvistriste",
+      "text": "Ela me matou. Agora ela deve morrer!",
+      "nextId": "jarvis11"
+    },
+    {
+      "id": "jarvis11",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Espera aí, ela matou alguém?",
+      "nextId": "jarvis12"
+    },
+    {
+      "id": "jarvis12",
+      "character": "Jarvis",
+      "sprite": "Jarvistriste",
+      "text": "Eu estava trabalhando como o piloto do bonde quando eu vi essa assassina amarrando pessoas no meio dos trilhos…",
+      "nextId": "jarvis13"
+    },
+    {
+      "id": "jarvis13",
+      "character": "Jarvis",
+      "sprite": "Jarvistriste",
+      "text": "Quando eu tentei parar, percebi que ela tinha cortado os freios. O bonde capotou e matou todo mundo. Menos ela.",
+      "nextId": "philippa_confessa1"
+    },
+    {
+      "id": "philippa_confessa1",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Olha, isso é mentira. Eu nunca cortei os freios… Mas eu amarrei a galera nos trilhos.",
+      "nextId": "philippa_confessa2"
+    },
+    {
+      "id": "philippa_confessa2",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "É a aplicação do dilema do bonde na prática, mas como não deu tempo de chamar quem puxasse a alavanca, o bondinho não pegou caminho nenhum e tombou.",
+      "nextId": "philippa_confessa3"
+    },
+    {
+      "id": "philippa_confessa3",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "Acho que, no fim das contas, isso é um resultado, hm? \"Todos morrem igualmente: a solução mais ética!\".",
+      "nextId": "nambu_chocado1"
+    },
+    {
+      "id": "nambu_chocado1",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "……….",
+      "nextId": "nambu_chocado2"
+    },
+    {
+      "id": "nambu_chocado2",
+      "character": "Nambú",
+      "sprite": "Nambu_raiva",
+      "text": "VOCÊ É DOIDA?",
+      "nextId": "philippa_responde1"
+    },
+    {
+      "id": "philippa_responde1",
+      "character": "Philippa",
+      "sprite": "Philippa_neutro",
+      "text": "Vai dizer que tô mentindo?",
+      "nextId": "philippa_responde2"
+    },
+    {
+      "id": "philippa_responde2",
+      "character": "Philippa",
+      "sprite": "Philippa_sorriso",
+      "text": "Tu também não tem provas de nada disso, eu posso muito bem ter inventado.",
+      "nextId": "nambu_revolta"
+    },
+    {
+      "id": "nambu_revolta",
+      "character": "Nambú",
+      "sprite": "Nambu_raiva",
+      "text": "Você… você… carambolas!!",
+      "nextId": "timbu_aviso"
+    },
+    {
+      "id": "timbu_aviso",
+      "character": "Timbu",
+      "sprite": "Timbu_aiai",
+      "text": "… Isso foi mais longe do que eu esperava. Resolve aí, cara, eu compro um terno pra você usar no tribunal ou no enterro, dependendo do desenrolar disso…",
+      "nextId": "escolha_final_entrega"
+    },
+    {
+      "id": "escolha_final_entrega",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "(O que eu faço agora?)",
+      "options": [
+        {
+          "optionText": "Entregar a fita mesmo assim",
+          "nextId": "final_entrega1"
+        },
+        {
+          "optionText": "Pedir ajuda (???)",
+          "nextId": "final_ajuda1"
+        }
+      ]
+    },
+    {
+      "id": "final_entrega1",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "final_entrega2",
+      "mission": "fadeOut"
+    },
+    {
+      "id": "final_entrega2",
+      "character": "Timbu",
+      "sprite": "Timbu_raiva",
+      "text": "Você entregou a fita? Sério??",
+      "nextId": "final_entrega3"
+    },
+    {
+      "id": "final_entrega3",
+      "character": "Timbu",
+      "sprite": "Timbu_nojo",
+      "text": "Ok… Ok… Eu só espero que a polícia não apareça pra lhe levar…",
+      "nextId": "final_entrega4"
+    },
+    {
+      "id": "final_entrega4",
+      "character": "Timbu",
+      "sprite": "Timbu_raiva",
+      "text": "POR QUE EU NÃO VOU LHE CONTRATAR DE NOVO QUANDO VOCÊ SAIR DA PRISÃO, SEU ANIMAL!!",
+      "nextId": "fim_entrega"
+    },
+    {
+      "id": "fim_entrega",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 4 - Entregou a fita",
+      "mission": "returnToMenu"
+    },
+    {
+      "id": "final_ajuda1",
+      "character": "Nambú",
+      "sprite": "Nambu_medo",
+      "text": "Socorro! Alguém! Ela é uma maníaca! Eu não quero morrer atropelado por um bonde!!",
+      "nextId": "final_ajuda2"
+    },
+    {
+      "id": "final_ajuda2",
+      "character": "Jarvis",
+      "sprite": "Jarvis",
+      "text": "Eu sei exatamente como resolver isso…",
+      "nextId": "final_ajuda3"
+    },
+    {
+      "id": "final_ajuda3",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "final_ajuda4",
+      "mission": "ghostAttack"
+    },
+    {
+      "id": "final_ajuda4",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "final_ajuda5",
+      "mission": "fadeIn"
+    },
+    {
+      "id": "final_ajuda5",
+      "character": "Jarvis",
+      "sprite": "Jarvis2",
+      "text": "Ahh… eu até me sinto mais leve…",
+      "nextId": "final_ajuda6"
+    },
+    {
+      "id": "final_ajuda6",
+      "character": "Jarvis",
+      "sprite": "Jarvis",
+      "text": "A vingança… é um prato que se come requentado…",
+      "nextId": "final_ajuda7",
+      "mission": "ghostDisappear"
+    },
+    {
+      "id": "final_ajuda7",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "…",
+      "nextId": "final_ajuda8"
+    },
+    {
+      "id": "final_ajuda8",
+      "character": "Nambú",
+      "sprite": "Nambu_medo",
+      "text": "Meu deus, eu virei testemunha de um crime entre planos da existência…",
+      "nextId": "final_ajuda9"
+    },
+    {
+      "id": "final_ajuda9",
+      "character": "Nambú",
+      "sprite": "Nambu_medao",
+      "text": "Ó céus, ó chãos.",
+      "nextId": "final_ajuda10"
+    },
+    {
+      "id": "final_ajuda10",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "final_ajuda11",
+      "mission": "fadeOut"
+    },
+    {
+      "id": "final_ajuda11",
+      "character": "Timbu",
+      "sprite": "Timbu_aiai",
+      "text": "Você deixou ela lá com o fantasma…",
+      "nextId": "final_ajuda11"
+    },
+    {
+      "id": "final_ajuda11",
+      "character": "Timbu",
+      "sprite": "Timbu_nojo",
+      "text": "Eu só espero que nossa cara não saia no jornal amanhã. Se a gente for preso, excomungado, ter a licença caçada ou qualquer outra coisa, a culpa é sua.",
+      "nextId": "fim_ajuda"
+    },
+    {
+      "id": "fim_ajuda",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 4 - Pediu ajuda ao fantasma",
+      "mission": "returnToMenu"
+    },
+    {
+      "id": "rota_assistir1",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "(Vou dar uma olhada nessa fita antes…)",
+      "nextId": "rota_assistir2",
+      "mission": "watchTape"
+    },
+    {
+      "id": "rota_assistir2",
+      "character": "Nambú",
+      "sprite": "Nambu_que",
+      "text": "Eita.",
+      "nextId": "escolha_apos_assistir"
+    },
+    {
+      "id": "escolha_apos_assistir",
+      "character": "Nambú",
+      "sprite": "Nambu_dorme",
+      "text": "(Agora que eu vi o que tem na fita…)",
+      "options": [
+        {
+          "optionText": "Vou me fazer de sonso",
+          "nextId": "rota_entrega1"
+        },
+        {
+          "optionText": "Vou sair de fininho e chamar a polícia",
+          "nextId": "rota_policia1"
+        }
+      ]
+    },
+    {
+      "id": "rota_policia1",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "rota_policia2",
+      "mission": "fadeOut"
+    },
+    {
+      "id": "rota_policia2",
+      "character": "Timbu",
+      "sprite": "Timbu_neutro",
+      "text": "A contratante fez o que? Polícia? Tribunal? Julgamento??",
+      "nextId": "rota_policia3"
+    },
+    {
+      "id": "rota_policia3",
+      "character": "Timbu",
+      "sprite": "Timbu_aiai",
+      "text": "Cara… Isso vai sair tão caro…",
+      "nextId": "fim_policia"
+    },
+    {
+      "id": "fim_policia",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "Fim da Fase 4 - Chamou a polícia",
+      "mission": "returnToMenu"
+    }
+  ]
+}

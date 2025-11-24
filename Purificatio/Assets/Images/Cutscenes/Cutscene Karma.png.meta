@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 95dd2b8471c45f94fb85f6d1917d9bf6
+guid: 104f8afe25f3a784ab6e64b46ecc9f93
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5960488284231648491
-    second: Fase 4 sala 4_0
+      213: 126401190520603715
+    second: Cutscene Karma_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fase 4 sala 4_0
+      name: Cutscene Karma_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be44185b388e7b250800000000000000
-      internalID: 5960488284231648491
+      spriteID: 344ca2c863111c100800000000000000
+      internalID: 126401190520603715
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Fase 4 sala 4_0: 5960488284231648491
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
