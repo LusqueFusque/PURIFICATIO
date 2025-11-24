@@ -360,7 +360,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543482906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -369,8 +369,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -431}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -0.007515, y: -465.82513}
+  m_SizeDelta: {x: 1920, y: 148.3498}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &543482908
 MonoBehaviour:
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Texto
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -419,8 +419,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 33.54
+  m_fontSizeBase: 33.54
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -550,6 +550,64 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1208316288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1208316290}
+  - component: {fileID: 1208316289}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1208316289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208316288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbd3f6c52015234d98eb15e2ddf6df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneImage: {fileID: 2055494391}
+  cutsceneText: {fileID: 543482908}
+  spriteIgual2: {fileID: -5989256721994214766, guid: d66867a95dcd92b449f1011def6e9dc9, type: 3}
+  spriteMaior2: {fileID: 126401190520603715, guid: 104f8afe25f3a784ab6e64b46ecc9f93, type: 3}
+  spriteMenor2: {fileID: -9145832551740954784, guid: 04872cf208c9a00489f3adb2119353b6, type: 3}
+  textoIgual2: "A empresa n\xE3o tem grandes progressos e segue estagnada. O sucesso
+    n\xE3o lhe aguarda, mas ao menos n\xE3o ir\xE3o perder tudo.\nParab\xE9ns pela
+    mediocridade :/"
+  textoMaior2: "Ap\xF3s fechar diversos contratos, a empresa \xE9 um sucesso e abre
+    novas filiais, mas sempre estar\xE3o perseguidos pelos fantasmas do passado.\nO
+    mercado de exorcismos \xE9 garantia de sucesso, pois os fantasmas sempre matam
+    a concorr\xEAncia."
+  textoMenor2: "Ap\xF3s recusar muitos contratos e receber uma onda de processos
+    de clientes insatisfeitos, a empresa foi \xE0 fal\xEAncia.\nQue tistre :("
+--- !u!4 &1208316290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208316288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 861.3254, y: 494.46927, z: 2.820326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -715,7 +773,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -9145832551740954784, guid: 04872cf208c9a00489f3adb2119353b6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -741,3 +799,4 @@ SceneRoots:
   - {fileID: 442273173}
   - {fileID: 619394802}
   - {fileID: 1855224093}
+  - {fileID: 1208316290}

@@ -18,18 +18,47 @@ public class Fase1MissionHandler : MissionHandlerBase
     [Header("UI da Fase 1")]
     public GameObject dialoguePanel;
     public GameObject hudPanel;
+    
+    [Header("Trilha Sonora")]
+    public AudioClip fase1Music;
+    private AudioSource musicSource;
+
 
     void OnEnable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        
+        // 🎵 Inicia trilha sonora em loop
+        if (fase1Music != null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.clip = fase1Music;
+            musicSource.loop = true;
+            musicSource.playOnAwake = false;
+            musicSource.volume = 0.6f;
+            musicSource.Play();
+            Debug.Log("[Fase1] 🎶 Trilha sonora iniciada.");
+        }
+        else
+        {
+            Debug.LogWarning("[Fase1] ⚠️ Nenhuma trilha atribuída ao fase1Music.");
+        }
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+            Destroy(musicSource);
+            Debug.Log("[Fase1] 🛑 Trilha sonora parada.");
+        }
     }
+
 
     private void OnMissionCompletedHandler(string completedMissionId)
     {
@@ -148,8 +177,9 @@ public class Fase1MissionHandler : MissionHandlerBase
     private IEnumerator ExorcismSequence()
     {
         VisualEffectsManager vfx = GetEffectsManager();
-        AudioSource music = FindObjectOfType<AudioSource>();
-        if (music != null && music.isPlaying) music.Stop();
+
+        // Para a trilha da fase
+        if (musicSource != null && musicSource.isPlaying) musicSource.Stop();
         if (vfx != null) vfx.RedScreenEffect(10f);
 
         yield return new WaitForSeconds(0.5f);
@@ -161,7 +191,9 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(0.5f);
         if (vfx != null) vfx.ClearRedScreen();
-        if (music != null) music.Play();
+
+        // Retoma a trilha da fase
+        if (musicSource != null) musicSource.Play();
 
         CompleteMission("exorcismoDaBoneca");
         yield return new WaitForSeconds(0.5f);
@@ -173,6 +205,7 @@ public class Fase1MissionHandler : MissionHandlerBase
         SaveSystem.Instance.Salvar();
     }
 
+
     // --- Poltergeist ---
     private IEnumerator PoltergeistSequence()
     {
@@ -180,8 +213,8 @@ public class Fase1MissionHandler : MissionHandlerBase
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
         if (hudPanel != null) hudPanel.SetActive(false);
 
-        AudioSource music = FindObjectOfType<AudioSource>();
-        if (music != null && music.isPlaying) music.Stop();
+        // Para a trilha da fase
+        if (musicSource != null && musicSource.isPlaying) musicSource.Stop();
         if (vfx != null) vfx.RedScreenEffect(2f);
 
         yield return new WaitForSeconds(0.5f);
@@ -207,6 +240,9 @@ public class Fase1MissionHandler : MissionHandlerBase
 
         yield return null;
         if (DialogueManager.Instance != null) DialogueManager.Instance.ShowNextLine();
+
+        // Retoma a trilha da fase
+        if (musicSource != null) musicSource.Play();
 
         SaveSystem.Instance.fase1_exorcizou = false;
         SaveSystem.Instance.Salvar();

@@ -10,16 +10,43 @@ public class TutorialMissionHandler : MissionHandlerBase
     [Header("Componente de Verificação")]
     public SaltMissionChecker saltChecker;
 
+    [Header("Trilha Sonora")]
+    public AudioClip tutorialMusic;
+    private AudioSource musicSource;
+
     void OnEnable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        
+        // 🎵 Inicia trilha sonora em loop
+        if (tutorialMusic != null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.clip = tutorialMusic;
+            musicSource.loop = true;
+            musicSource.playOnAwake = false;
+            musicSource.volume = 0.6f; // ajuste conforme necessário
+            musicSource.Play();
+            Debug.Log("[Tutorial] 🎶 Trilha sonora iniciada.");
+        }
+        else
+        {
+            Debug.LogWarning("[Tutorial] ⚠️ Nenhuma trilha atribuída ao tutorialMusic.");
+        }
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+            Destroy(musicSource);
+            Debug.Log("[Tutorial] 🛑 Trilha sonora parada.");
+        }
     }
 
     // Escuta todas as missões completadas

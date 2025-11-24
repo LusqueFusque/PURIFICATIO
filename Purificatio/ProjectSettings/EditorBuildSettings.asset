@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/New Folder/05. Tutorial 1.unity
     guid: 6c54e4b8c43db274c945df356ea0f5ac
+  - enabled: 1
+    path: Assets/Scenes/10. Cutscene.unity
+    guid: 59c5f978ebbc89042a825e8ed868604b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

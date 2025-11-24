@@ -12,11 +12,15 @@ public class Fase2MissionHandler : MissionHandlerBase
     public GameObject djinnGhostSprite;
     public Image djinnUIImage;
     
-    [Header("Áudio")]
+    [Header("Áudio de Efeitos")]
     public AudioClip djinnScreamSound;
     public AudioClip lampThrowSound;      // Som 1: Whoosh/arremesso
     public AudioClip glassShatterSound;   // Som 2: Vidro quebrando
     public AudioClip metalImpactSound;    // Som 3: Impacto metálico
+
+    [Header("Trilha Sonora da Fase 2")]
+    public AudioClip fase2Music;
+    private AudioSource musicSource;
     
     [Header("Efeitos")]
     public float fadeDuration = 2f;
@@ -28,12 +32,37 @@ public class Fase2MissionHandler : MissionHandlerBase
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        SaveSystem.Instance.fase2_exorcizou = false;
+        SaveSystem.Instance.Salvar();
+
+        // 🎵 Inicia trilha sonora em loop
+        if (fase2Music != null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.clip = fase2Music;
+            musicSource.loop = true;
+            musicSource.playOnAwake = false;
+            musicSource.volume = 0.6f;
+            musicSource.Play();
+            Debug.Log("[Fase2] 🎶 Trilha sonora iniciada.");
+        }
+        else
+        {
+            Debug.LogWarning("[Fase2] ⚠️ Nenhuma trilha atribuída ao fase2Music.");
+        }
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+            Destroy(musicSource);
+            Debug.Log("[Fase2] 🛑 Trilha sonora parada.");
+        }
     }
 
     private void OnMissionCompletedHandler(string completedMissionId)
@@ -80,7 +109,6 @@ public class Fase2MissionHandler : MissionHandlerBase
             case "throwLamp": StartCoroutine(ThrowLampSequence()); break;
             case "fadeOut": StartCoroutine(FadeOutSequence()); break;
 
-            // ✅ Só aqui voltamos ao menu, quando o JSON manda "returnToMenu"
             case "returnToMenu":
                 if (GameManager.Instance != null)
                     GameManager.Instance.LoadScene("02. Menu");
@@ -137,8 +165,8 @@ public class Fase2MissionHandler : MissionHandlerBase
     // ==================== JOGAR LÂMPADA ====================
     private IEnumerator ThrowLampSequence()
     {
-        AudioSource music = FindObjectOfType<AudioSource>();
-        if (music != null && music.isPlaying) music.Stop();
+        // Para a trilha da fase
+        if (musicSource != null && musicSource.isPlaying) musicSource.Stop();
 
         if (djinnScreamSound != null)
             AudioSource.PlayClipAtPoint(djinnScreamSound, Camera.main.transform.position, 0.7f);
@@ -162,7 +190,9 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (djinnUIImage != null) djinnUIImage.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(2f);
-        if (music != null) music.Play();
+
+        // Retoma a trilha da fase
+        if (musicSource != null) musicSource.Play();
 
         CompleteMission("throwLamp");
         yield return null;
@@ -170,8 +200,7 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.GoToNode("rota_a4");
 
-        // Ajuste para salvar decisão da Fase 2
-        SaveSystem.Instance.fase2_exorcizou = true; // ou false, conforme lógica
+        SaveSystem.Instance.fase2_exorcizou = true;
         SaveSystem.Instance.Salvar();
     }
 
@@ -184,15 +213,7 @@ public class Fase2MissionHandler : MissionHandlerBase
         else
             yield return new WaitForSeconds(fadeDuration);
 
-        // Marca missão concluída
         CompleteMission("fadeOut");
-
-        // Aguarda 1 frame
         yield return null;
-
-        // ❌ Não chamar ShowNextLine aqui
-        // O diálogo continua normalmente pelo DialogueManager
     }
-
 }
-

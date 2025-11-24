@@ -8,6 +8,9 @@ public class Fase4MissionHandler : MissionHandlerBase
     public GameObject philippaSprite;
     public GameObject jarvisGhost;
 
+    [Header("UI extra")]
+    public GameObject pImage;
+    
     [Header("Sons")]
     public AudioClip ghostAttackSound;
     public AudioClip ghostDisappearSound;
@@ -16,6 +19,8 @@ public class Fase4MissionHandler : MissionHandlerBase
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        SaveSystem.Instance.fase4_exorcizou = false;
+        SaveSystem.Instance.Salvar();
     }
 
     void OnDisable()
@@ -52,8 +57,8 @@ public class Fase4MissionHandler : MissionHandlerBase
                 StartCoroutine(FadeOutSequence());
                 break;
 
-            case "returnToMenu":
-                ReturnToMenu();
+            case "GotoCutscene":
+                GoToCutscene();
                 break;
 
             case "findTape":
@@ -98,6 +103,12 @@ public class Fase4MissionHandler : MissionHandlerBase
 
         CompleteMission("fadeIn");
         yield return null;
+        
+        if (pImage != null)
+        {
+            pImage.SetActive(false);
+            Debug.Log("[Fase4] pImage desativado após FadeIn.");
+        }
 
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
@@ -124,7 +135,13 @@ public class Fase4MissionHandler : MissionHandlerBase
     private IEnumerator GhostAttackSequence()
     {
         Debug.Log("[Fase4] === FANTASMA JARVIS ATACA PHILIPPA ===");
-
+        
+        if (pImage != null)
+        {
+            pImage.SetActive(false);
+            Debug.Log("[Fase4] pImage desativado no início do GhostAttackSequence.");
+        }
+        
         // 1. Põe tela preta (fadeIn)
         VisualEffectsManager vfx = GetEffectsManager();
         if (vfx != null)
@@ -171,6 +188,8 @@ public class Fase4MissionHandler : MissionHandlerBase
         {
             DialogueManager.Instance.ShowNextLine();
         }
+        SaveSystem.Instance.fase3_exorcizou = false;
+        SaveSystem.Instance.Salvar();
     }
 
     private IEnumerator GhostDisappearSequence()
@@ -208,21 +227,6 @@ public class Fase4MissionHandler : MissionHandlerBase
         // Avança diálogo
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
-    }
-    private void ReturnToMenu()
-    {
-        Debug.Log("[Fase4] Retornando ao menu...");
-        
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.LoadScene("02. Menu");
-        }
-        else
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("02. Menu");
-        }
-        
-        
     }
     
     private void GoToCutscene()

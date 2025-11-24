@@ -47,14 +47,17 @@ public class PhilippaClickableArea : MonoBehaviour, IPointerClickHandler
         {
             Debug.Log("[PhilippaClickableArea] ✅ Entregando fita para Philippa!");
             
-            // Desativa a fita
-            FitaItem.Instance.Deactivate();
-            
-            // Vai para o diálogo de entrega
+            // Vai para o diálogo de entrega primeiro
             if (DialogueManager.Instance != null)
             {
                 Debug.Log($"[PhilippaClickableArea] ✓ Indo para diálogo: {dialogueNodeId}");
                 DialogueManager.Instance.GoToNode(dialogueNodeId);
+
+                // Só depois desativa a fita e salva decisão
+                FitaItem.Instance.Deactivate();
+                SaveSystem.Instance.fase4_exorcizou = true;
+                SaveSystem.Instance.Salvar();
+                Debug.Log("[PhilippaClickableArea] ✓ Exorcismo da Fase 4 registrado.");
             }
             else
             {
@@ -64,9 +67,6 @@ public class PhilippaClickableArea : MonoBehaviour, IPointerClickHandler
         else
         {
             Debug.LogWarning("[PhilippaClickableArea] ❌ Fita não está ativa! Clique no botão da fita no inventário primeiro.");
-            
-            // Opcional: mostrar mensagem para o jogador
-            // Ex: "Não tenho nada para dar a ela agora."
         }
     }
 }

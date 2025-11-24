@@ -451,7 +451,7 @@
       "character": "Sistema",
       "sprite": "",
       "text": "Fim da Fase 4 - Entregou a fita",
-      "mission": "GoToCutscene"
+      "mission": "GotoCutscene"
     },
     {
       "id": "final_ajuda1",
@@ -538,7 +538,7 @@
       "character": "Sistema",
       "sprite": "",
       "text": "Fim da Fase 4 - Pediu ajuda ao fantasma",
-      "mission": "GoToCutscene"
+      "mission": "GotoCutscene"
     },
     {
       "id": "rota_assistir1",
@@ -603,7 +603,7 @@
       "character": "Sistema",
       "sprite": "",
       "text": "Fim da Fase 4 - Chamou a polícia",
-      "mission": "GoToCutscene"
+      "mission": "GotoCutscene"
     }
   ]
 }

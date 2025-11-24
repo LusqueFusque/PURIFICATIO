@@ -19,6 +19,9 @@ public class Fase3MissionHandler : MissionHandlerBase
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
+        SaveSystem.Instance.fase3_exorcizou = false;
+        SaveSystem.Instance.Salvar();
+
         
         CursedItem.OnItemPurified += OnItemPurifiedHandler;
     }
@@ -249,6 +252,11 @@ public class Fase3MissionHandler : MissionHandlerBase
         // segue diálogo
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
+        
+        SaveSystem.Instance.fase3_exorcizou = true;
+        SaveSystem.Instance.Salvar();
+
+        
     }
     
     
@@ -318,6 +326,10 @@ public class Fase3MissionHandler : MissionHandlerBase
 
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
+        
+        SaveSystem.Instance.fase3_exorcizou = false;
+        SaveSystem.Instance.Salvar();
+
     }
 
 }
