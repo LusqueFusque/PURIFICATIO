@@ -690,7 +690,7 @@ MonoBehaviour:
   panelHUD: {fileID: 1971503200}
   optionsContainer: {fileID: 920254261}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
-  defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
+  defaultSprite: {fileID: 4329407632164072968, guid: fe19654fb1f4d984bbb089e209e4ef95, type: 3}
   continuePrompt: {fileID: 1842642958}
   ghostCharacters:
   - Eveline

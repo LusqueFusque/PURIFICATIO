@@ -362,7 +362,8 @@
       "id": "fim_rota_a",
       "character": "Sistema",
       "sprite": "",
-      "text": "Fim da Fase 3 - Rota A: Exorcismo realizado"
+      "text": "Fim da Fase 3 - Rota A: Exorcismo realizado",
+      "mission": "returnToMenu"
     },
     {
       "id": "rota_b1",
@@ -503,7 +504,8 @@
       "id": "fim_rota_b_final",
       "character": "Sistema",
       "sprite": "",
-      "text": "Fim da Fase 3 - Rota B: Não exorcizou"
+      "text": "Fim da Fase 3 - Rota B: Não exorcizou",
+      "mission": "returnToMenu"
     }
   ]
 }

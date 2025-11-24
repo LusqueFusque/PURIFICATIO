@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Handler de missões da Fase 2
-/// Missões: fadeIn, FindLamp, rubLamp, throwLamp, fadeOut
+/// Missões: fadeIn, FindLamp, rubLamp, throwLamp, fadeOut, returnToMenu
 /// </summary>
 public class Fase2MissionHandler : MissionHandlerBase
 {
@@ -27,41 +27,32 @@ public class Fase2MissionHandler : MissionHandlerBase
     void OnEnable()
     {
         if (MissionManager.Instance != null)
-        {
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-        }
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
-        {
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
-        }
     }
 
     private void OnMissionCompletedHandler(string completedMissionId)
     {
         Debug.Log($"[Fase2MissionHandler] Missão completada: {completedMissionId}");
 
-        // Quando lâmpada é encontrada, dispara diálogo
         if (completedMissionId == "FindLamp")
         {
             Debug.Log("[Fase2] ✅ Lâmpada encontrada! Disparando diálogo 'nambulampada1'");
-            
             if (DialogueManager.Instance != null)
-            {
                 DialogueManager.Instance.GoToNode("nambulampada1");
-            }
         }
-        // Quando o vidro quebra, ativa a imagem da chave
+
         if (completedMissionId == "glassBreak")
         {
             Debug.Log("[Fase2] 🔑 Vidro quebrado! Ativando KeyImage...");
-        
             if (KeyImage != null)
             {
-                KeyImage.SetActive(true); // ← Agora funciona!
+                KeyImage.SetActive(true);
                 Debug.Log("[Fase2] ✓ KeyImage ativada com sucesso!");
             }
             else
@@ -69,7 +60,6 @@ public class Fase2MissionHandler : MissionHandlerBase
                 Debug.LogWarning("[Fase2] ⚠️ KeyImage não está atribuída no inspetor!");
             }
         }
-        
     }
 
     public override void HandleMission(string missionId)
@@ -78,29 +68,24 @@ public class Fase2MissionHandler : MissionHandlerBase
 
         switch (missionId)
         {
-            case "fadeIn":
-                StartCoroutine(FadeInSequence());
-                break;
-
+            case "fadeIn": StartCoroutine(FadeInSequence()); break;
             case "FindLamp":
-                // Missão inicia - aguarda jogador coletar lâmpada
                 if (MissionManager.Instance != null)
                 {
                     MissionManager.Instance.StartMission("FindLamp");
                     Debug.Log("[Fase2] Missão 'FindLamp' iniciada. Aguardando coleta...");
                 }
                 break;
+            case "rubLamp": StartCoroutine(RubLampSequence()); break;
+            case "throwLamp": StartCoroutine(ThrowLampSequence()); break;
+            case "fadeOut": StartCoroutine(FadeOutSequence()); break;
 
-            case "rubLamp":
-                StartCoroutine(RubLampSequence());
-                break;
-
-            case "throwLamp":
-                StartCoroutine(ThrowLampSequence());
-                break;
-
-            case "fadeOut":
-                StartCoroutine(FadeOutSequence());
+            // ✅ Só aqui voltamos ao menu, quando o JSON manda "returnToMenu"
+            case "returnToMenu":
+                if (GameManager.Instance != null)
+                    GameManager.Instance.LoadScene("02. Menu");
+                else
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("02. Menu");
                 break;
 
             default:
@@ -112,190 +97,102 @@ public class Fase2MissionHandler : MissionHandlerBase
     // ==================== FADE IN ====================
     private IEnumerator FadeInSequence()
     {
-        Debug.Log("🟢 [Fase2] FadeInSequence INICIOU!");
-
         VisualEffectsManager vfx = GetEffectsManager();
-        Debug.Log($"🟢 [Fase2] VFX Manager encontrado? {vfx != null}");
-    
-        if (vfx != null)
-        {
-            Debug.Log("🟢 [Fase2] Iniciando FadeFromBlack...");
-            yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
-            Debug.Log("🟢 [Fase2] FadeFromBlack CONCLUÍDO!");
-        }
-        else
-        {
-            Debug.Log("⚠️ [Fase2] VFX não encontrado, aguardando tempo...");
-            yield return new WaitForSeconds(fadeDuration);
-        }
+        if (vfx != null) yield return StartCoroutine(vfx.FadeFromBlack(fadeDuration));
+        else yield return new WaitForSeconds(fadeDuration);
 
-        Debug.Log("🟢 [Fase2] Completando missão fadeIn...");
         CompleteMission("fadeIn");
-    
-        Debug.Log("🟢 [Fase2] Aguardando 1 frame...");
         yield return null;
-    
-        Debug.Log("🟢 [Fase2] Chamando ShowNextLine...");
-    
+
         if (DialogueManager.Instance != null)
-        {
             DialogueManager.Instance.ShowNextLine();
-            Debug.Log("🟢 [Fase2] ShowNextLine chamado!");
-        }
-        else
-        {
-            Debug.LogError("❌ [Fase2] DialogueManager não encontrado!");
-        }
     }
 
-    // ==================== ESFREGAR LÂMPADA (INVOCAR DJINN) ====================
+    // ==================== ESFREGAR LÂMPADA ====================
     private IEnumerator RubLampSequence()
     {
-        Debug.Log("[Fase2] Iniciando sequência de esfregar lâmpada...");
         VisualEffectsManager vfx = GetEffectsManager();
-
-        // Efeito vermelho
-        if (vfx != null)
-        {
-            vfx.RedScreenEffect(1f);
-        }
+        if (vfx != null) vfx.RedScreenEffect(1f);
 
         yield return new WaitForSeconds(0.5f);
 
-        // Som de invocação
         if (djinnScreamSound != null)
-        {
             AudioSource.PlayClipAtPoint(djinnScreamSound, Camera.main.transform.position, 0.7f);
-        }
 
         yield return new WaitForSeconds(0.5f);
 
-        // Mostra Djinn
-        if (djinnGhostSprite != null)
-        {
-            djinnGhostSprite.SetActive(true);
-        }
-
-        if (djinnUIImage != null)
-        {
-            djinnUIImage.gameObject.SetActive(true);
-        }
+        if (djinnGhostSprite != null) djinnGhostSprite.SetActive(true);
+        if (djinnUIImage != null) djinnUIImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
-
-        if (vfx != null)
-        {
-            vfx.ClearRedScreen();
-        }
+        if (vfx != null) vfx.ClearRedScreen();
 
         CompleteMission("rubLamp");
-        Debug.Log("[Fase2] ✓ Djinn invocado!");
-
         yield return null;
 
         if (DialogueManager.Instance != null)
-        {
             DialogueManager.Instance.ShowNextLine();
-        }
     }
 
-    // ==================== JOGAR LÂMPADA PELA JANELA ====================
+    // ==================== JOGAR LÂMPADA ====================
     private IEnumerator ThrowLampSequence()
     {
-        Debug.Log("[Fase2] Iniciando sequência de jogar lâmpada...");
-
-        // Para música
         AudioSource music = FindObjectOfType<AudioSource>();
-        if (music != null && music.isPlaying)
-        {
-            music.Stop();
-        }
+        if (music != null && music.isPlaying) music.Stop();
 
-        // Grito do Djinn
         if (djinnScreamSound != null)
-        {
             AudioSource.PlayClipAtPoint(djinnScreamSound, Camera.main.transform.position, 0.7f);
-        }
 
         yield return new WaitForSeconds(0.5f);
 
-        // ✅ SOM 1: Algo sendo jogado (whoosh)
         if (lampThrowSound != null)
-        {
             AudioSource.PlayClipAtPoint(lampThrowSound, Camera.main.transform.position, 0.5f);
-        }
 
-        yield return new WaitForSeconds(0.4f); // Tempo de voo
+        yield return new WaitForSeconds(0.4f);
 
-        // ✅ SOM 2: Vidro estilhaçando
         if (glassShatterSound != null)
-        {
             AudioSource.PlayClipAtPoint(glassShatterSound, Camera.main.transform.position, 0.6f);
-        }
 
-        yield return new WaitForSeconds(0.2f); // Breve pausa
+        yield return new WaitForSeconds(0.2f);
 
-        // ✅ SOM 3: Impacto metálico
         if (metalImpactSound != null)
-        {
             AudioSource.PlayClipAtPoint(metalImpactSound, Camera.main.transform.position, 0.5f);
-        }
 
-        // Remove Djinn
-        if (djinnGhostSprite != null)
-        {
-            djinnGhostSprite.SetActive(false);
-        }
-
-        if (djinnUIImage != null)
-        {
-            djinnUIImage.gameObject.SetActive(false);
-        }
+        if (djinnGhostSprite != null) djinnGhostSprite.SetActive(false);
+        if (djinnUIImage != null) djinnUIImage.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
-
-        // Volta música
-        if (music != null)
-        {
-            music.Play();
-        }
+        if (music != null) music.Play();
 
         CompleteMission("throwLamp");
-        Debug.Log("[Fase2] ✓ Lâmpada jogada!");
-
         yield return null;
 
         if (DialogueManager.Instance != null)
-        {
             DialogueManager.Instance.ShowNextLine();
-        }
-        
-        SaveSystem.Instance.fase1_exorcizou = true; // ou false, se não exorcizou
-        SaveSystem.Instance.Salvar();
 
+        // Ajuste para salvar decisão da Fase 2
+        SaveSystem.Instance.fase2_exorcizou = true; // ou false, conforme lógica
+        SaveSystem.Instance.Salvar();
     }
 
     // ==================== FADE OUT ====================
     private IEnumerator FadeOutSequence()
     {
-        Debug.Log("[Fase2] Iniciando Fade Out...");
         VisualEffectsManager vfx = GetEffectsManager();
-
         if (vfx != null)
-        {
             yield return StartCoroutine(vfx.FadeToBlack(fadeDuration));
-        }
         else
-        {
             yield return new WaitForSeconds(fadeDuration);
-        }
 
+        // Marca missão concluída
         CompleteMission("fadeOut");
+
+        // Aguarda 1 frame
         yield return null;
 
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ShowNextLine();
-        }
+        // ❌ Não chamar ShowNextLine aqui
+        // O diálogo continua normalmente pelo DialogueManager
     }
+
 }
+

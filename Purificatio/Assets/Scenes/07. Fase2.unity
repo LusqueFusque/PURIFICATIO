@@ -1114,6 +1114,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
+  saltUseSound: {fileID: 0}
+  audioSource2D: {fileID: 0}
 --- !u!114 &483120177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1683,7 +1685,7 @@ MonoBehaviour:
   panelHUD: {fileID: 1417386009}
   optionsContainer: {fileID: 27236661}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
-  defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
+  defaultSprite: {fileID: 4329407632164072968, guid: fe19654fb1f4d984bbb089e209e4ef95, type: 3}
   continuePrompt: {fileID: 2080073228}
   ghostCharacters:
   - Eveline
@@ -2105,6 +2107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneDefaultSound: {fileID: 0}
+  phoneSpecialSound: {fileID: 0}
+  specialRooms: []
+  audioSource2D: {fileID: 0}
 --- !u!114 &1098897914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,6 +3258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneDefaultSound: {fileID: 0}
+  phoneSpecialSound: {fileID: 0}
+  specialRooms: []
+  audioSource2D: {fileID: 0}
 --- !u!1 &1496535420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3301,6 +3311,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
+  saltUseSound: {fileID: 0}
+  audioSource2D: {fileID: 0}
 --- !u!1 &1500757606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,8 +4722,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0099096, y: 0.0095215}
-  m_SizeDelta: {x: 579.3561, y: 718.0534}
+  m_AnchoredPosition: {x: -68, y: 0.0095215}
+  m_SizeDelta: {x: 1404, y: 929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842760500
 MonoBehaviour:
@@ -4733,7 +4745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8261308913886201206, guid: 8f7eb42547f479d44b2db0185f65deb8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

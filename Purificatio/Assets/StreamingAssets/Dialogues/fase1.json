@@ -282,7 +282,7 @@
     {
       "id": "Flor_silencio",
       "character": "Sr. Florentino",
-      "sprite": "Flor_chocado",
+      "sprite": "Flor_preocupado",
       "text": "...",
       "nextId": "Flor_gorjeta"
     },
@@ -333,7 +333,8 @@
       "id": "fim_fase1_exorcismo",
       "character": "Sistema",
       "sprite": "",
-      "text": "Fim da Fase 1 - Exorcismo realizado"
+      "text": "Fim da Fase 1 - Exorcismo realizado",
+      "mission": "returnToMenu"
     },
     {
       "id": "rota_honesto1",
@@ -488,7 +489,8 @@
       "id": "fim_fase1_poltergeist",
       "character": "Sistema",
       "sprite": "",
-      "text": "Fim da Fase 1 - Poltergeist criado"
+      "text": "Fim da Fase 1 - Poltergeist criado",
+      "mission": "returnToMenu"
     }
   ]
 }
