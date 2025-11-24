@@ -3359,6 +3359,7 @@ MonoBehaviour:
   lampThrowSound: {fileID: 8300000, guid: df2f4d35fa1d7b84f93d5dd2af82bc6e, type: 3}
   glassShatterSound: {fileID: 8300000, guid: 49250a66f21d3dc4eb7f608b11932338, type: 3}
   metalImpactSound: {fileID: 8300000, guid: f61c761ba3f51d8438f1b6e334f9526d, type: 3}
+  fase2Music: {fileID: 8300000, guid: 021ea87e29d119747ad124dc1e1955cd, type: 3}
   fadeDuration: 1.2
   KeyImage: {fileID: 1899857506}
 --- !u!1 &1552279238
@@ -5462,8 +5463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 20
   canSkipTyping: 1
-  typingSound: {fileID: 0}
-  soundEveryNChars: 1
+  typingSound: {fileID: 8300000, guid: 88899050070d2ce49844d73422a4fcd3, type: 3}
+  soundEveryNChars: 2
 --- !u!222 &2033976045
 CanvasRenderer:
   m_ObjectHideFlags: 0

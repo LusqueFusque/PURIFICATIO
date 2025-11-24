@@ -3556,6 +3556,7 @@ MonoBehaviour:
   tapeteAuraSprite: {fileID: 1728117302}
   demonMazzi: {fileID: 324727307}
   mazzikinItem: {fileID: 324727311}
+  fase3Music: {fileID: 8300000, guid: 2d012dfbf81c67243bf85b6baff72361, type: 3}
   exorcismSfx: {fileID: 8300000, guid: 26f223843868f91468a8f361c9fd0cb2, type: 3}
   exorcismHideDelay: 0.2
   mazziOutFadeDuration: 1.2
@@ -3866,7 +3867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1602834506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5463,8 +5464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 20
   canSkipTyping: 1
-  typingSound: {fileID: 0}
-  soundEveryNChars: 1
+  typingSound: {fileID: 8300000, guid: 88899050070d2ce49844d73422a4fcd3, type: 3}
+  soundEveryNChars: 2
 --- !u!222 &2033976045
 CanvasRenderer:
   m_ObjectHideFlags: 0

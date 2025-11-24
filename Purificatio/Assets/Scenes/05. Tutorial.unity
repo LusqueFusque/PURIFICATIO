@@ -1509,8 +1509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 20
   canSkipTyping: 1
-  typingSound: {fileID: 0}
-  soundEveryNChars: 1
+  typingSound: {fileID: 8300000, guid: 88899050070d2ce49844d73422a4fcd3, type: 3}
+  soundEveryNChars: 2
 --- !u!1 &788487528
 GameObject:
   m_ObjectHideFlags: 0

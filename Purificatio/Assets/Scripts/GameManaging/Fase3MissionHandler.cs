@@ -15,23 +15,42 @@ public class Fase3MissionHandler : MissionHandlerBase
     [Header("Itens Especiais")]
     public MazzikinItem mazzikinItem;   // referência ao script novo
 
+    [Header("Trilha Sonora da Fase 3")]
+    public AudioClip fase3Music;
+    private AudioSource musicSource;
+
     void OnEnable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-        SaveSystem.Instance.fase3_exorcizou = false;
-        SaveSystem.Instance.Salvar();
-
         
-        CursedItem.OnItemPurified += OnItemPurifiedHandler;
+        // 🎵 Inicia trilha sonora em loop
+        if (fase3Music != null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.clip = fase3Music;
+            musicSource.loop = true;
+            musicSource.playOnAwake = false;
+            musicSource.volume = 0.6f;
+            musicSource.Play();
+            Debug.Log("[Fase3] 🎶 Trilha sonora iniciada.");
+        }
+        else
+        {
+            Debug.LogWarning("[Fase3] ⚠️ Nenhuma trilha atribuída ao fase2Music.");
+        }
     }
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
-        
-        CursedItem.OnItemPurified -= OnItemPurifiedHandler;
+
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+            Debug.Log("[Fase3] 🛑 Trilha sonora parada no OnDisable.");
+        }
     }
 
    private void OnItemPurifiedHandler(CursedItem cursedItem)

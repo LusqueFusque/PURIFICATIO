@@ -15,19 +15,47 @@ public class Fase4MissionHandler : MissionHandlerBase
     public AudioClip ghostAttackSound;
     public AudioClip ghostDisappearSound;
 
+    [Header("Trilha Sonora da Fase 4")]
+    public AudioClip fase4Music;
+    private AudioSource musicSource;
+    
     void OnEnable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-        SaveSystem.Instance.fase4_exorcizou = false;
-        SaveSystem.Instance.Salvar();
+
+        // Música SEMPRE usa um AudioSource NOVO (como a Fase 3)
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.playOnAwake = false;
+        musicSource.loop = true;
+        musicSource.volume = 0.3f;
+        musicSource.spatialBlend = 0f;
+
+        if (fase4Music != null)
+        {
+            musicSource.clip = fase4Music;
+            musicSource.Play();
+            Debug.Log("[Fase4] 🎶 Música iniciada em loop.");
+        }
+        else
+        {
+            Debug.LogWarning("[Fase4] ⚠️ Nenhuma música atribuída em fase4Music.");
+        }
     }
+
 
     void OnDisable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted -= OnMissionCompletedHandler;
+
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+            Debug.Log("[Fase4] 🛑 Música parada no OnDisable.");
+        }
     }
+
 
     private void OnMissionCompletedHandler(string missionId)
     {

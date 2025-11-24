@@ -70,4 +70,11 @@ public class SaveSystem : MonoBehaviour
         if (fase4_exorcizou) total++;
         return total;
     }
+
+    // ✅ Reset automático ao sair do jogo
+    void OnApplicationQuit()
+    {
+        ResetarSave();
+        Debug.Log("[SaveSystem] Reset automático ao sair do jogo.");
+    }
 }

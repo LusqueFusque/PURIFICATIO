@@ -2,39 +2,33 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-/// <summary>
-/// Handler de missões da Fase 2
-/// Missões: fadeIn, FindLamp, rubLamp, throwLamp, fadeOut, returnToMenu
-/// </summary>
 public class Fase2MissionHandler : MissionHandlerBase
 {
     [Header("Referências da Fase 2")]
     public GameObject djinnGhostSprite;
     public Image djinnUIImage;
-    
+
     [Header("Áudio de Efeitos")]
     public AudioClip djinnScreamSound;
-    public AudioClip lampThrowSound;      // Som 1: Whoosh/arremesso
-    public AudioClip glassShatterSound;   // Som 2: Vidro quebrando
-    public AudioClip metalImpactSound;    // Som 3: Impacto metálico
+    public AudioClip lampThrowSound;
+    public AudioClip glassShatterSound;
+    public AudioClip metalImpactSound;
 
     [Header("Trilha Sonora da Fase 2")]
     public AudioClip fase2Music;
     private AudioSource musicSource;
-    
+
     [Header("Efeitos")]
     public float fadeDuration = 2f;
 
     [Header("Referências Extras")]
     public GameObject KeyImage;
-    
+
     void OnEnable()
     {
         if (MissionManager.Instance != null)
             MissionManager.Instance.OnMissionCompleted += OnMissionCompletedHandler;
-        SaveSystem.Instance.fase2_exorcizou = false;
-        SaveSystem.Instance.Salvar();
-
+        
         // 🎵 Inicia trilha sonora em loop
         if (fase2Music != null)
         {
@@ -60,8 +54,39 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (musicSource != null && musicSource.isPlaying)
         {
             musicSource.Stop();
-            Destroy(musicSource);
-            Debug.Log("[Fase2] 🛑 Trilha sonora parada.");
+            Debug.Log("[Fase2] 🛑 Trilha sonora parada no OnDisable.");
+        }
+    }
+
+    private void TryPlayMusic()
+    {
+        if (fase2Music == null)
+        {
+            Debug.LogWarning("[Fase2] ⚠️ Nenhuma trilha atribuída em 'fase2Music' no Inspector.");
+            return;
+        }
+
+        if (musicSource == null)
+        {
+            Debug.LogError("[Fase2] ❌ AudioSource não encontrado/instanciado.");
+            return;
+        }
+
+        // Evita reatribuir/replicar em caso de reinicialização
+        if (musicSource.clip != fase2Music)
+        {
+            musicSource.clip = fase2Music;
+            Debug.Log("[Fase2] Clip de música atribuído ao AudioSource.");
+        }
+
+        if (!musicSource.isPlaying)
+        {
+            musicSource.Play();
+            Debug.Log("[Fase2] 🎶 Trilha sonora tocando (loop ON).");
+        }
+        else
+        {
+            Debug.Log("[Fase2] ℹ️ Trilha já estava tocando.");
         }
     }
 
@@ -72,8 +97,7 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (completedMissionId == "FindLamp")
         {
             Debug.Log("[Fase2] ✅ Lâmpada encontrada! Disparando diálogo 'nambulampada1'");
-            if (DialogueManager.Instance != null)
-                DialogueManager.Instance.GoToNode("nambulampada1");
+            DialogueManager.Instance?.GoToNode("nambulampada1");
         }
 
         if (completedMissionId == "glassBreak")
@@ -99,11 +123,8 @@ public class Fase2MissionHandler : MissionHandlerBase
         {
             case "fadeIn": StartCoroutine(FadeInSequence()); break;
             case "FindLamp":
-                if (MissionManager.Instance != null)
-                {
-                    MissionManager.Instance.StartMission("FindLamp");
-                    Debug.Log("[Fase2] Missão 'FindLamp' iniciada. Aguardando coleta...");
-                }
+                MissionManager.Instance?.StartMission("FindLamp");
+                Debug.Log("[Fase2] Missão 'FindLamp' iniciada. Aguardando coleta...");
                 break;
             case "rubLamp": StartCoroutine(RubLampSequence()); break;
             case "throwLamp": StartCoroutine(ThrowLampSequence()); break;
@@ -122,7 +143,6 @@ public class Fase2MissionHandler : MissionHandlerBase
         }
     }
 
-    // ==================== FADE IN ====================
     private IEnumerator FadeInSequence()
     {
         VisualEffectsManager vfx = GetEffectsManager();
@@ -132,15 +152,13 @@ public class Fase2MissionHandler : MissionHandlerBase
         CompleteMission("fadeIn");
         yield return null;
 
-        if (DialogueManager.Instance != null)
-            DialogueManager.Instance.ShowNextLine();
+        DialogueManager.Instance?.ShowNextLine();
     }
 
-    // ==================== ESFREGAR LÂMPADA ====================
     private IEnumerator RubLampSequence()
     {
         VisualEffectsManager vfx = GetEffectsManager();
-        if (vfx != null) vfx.RedScreenEffect(1f);
+        vfx?.RedScreenEffect(1f);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -153,20 +171,16 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (djinnUIImage != null) djinnUIImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
-        if (vfx != null) vfx.ClearRedScreen();
+        vfx?.ClearRedScreen();
 
         CompleteMission("rubLamp");
         yield return null;
 
-        if (DialogueManager.Instance != null)
-            DialogueManager.Instance.ShowNextLine();
+        DialogueManager.Instance?.ShowNextLine();
     }
 
-    // ==================== JOGAR LÂMPADA ====================
     private IEnumerator ThrowLampSequence()
     {
-        // Para a trilha da fase
-        if (musicSource != null && musicSource.isPlaying) musicSource.Stop();
 
         if (djinnScreamSound != null)
             AudioSource.PlayClipAtPoint(djinnScreamSound, Camera.main.transform.position, 0.7f);
@@ -191,20 +205,15 @@ public class Fase2MissionHandler : MissionHandlerBase
 
         yield return new WaitForSeconds(2f);
 
-        // Retoma a trilha da fase
-        if (musicSource != null) musicSource.Play();
-
         CompleteMission("throwLamp");
         yield return null;
 
-        if (DialogueManager.Instance != null)
-            DialogueManager.Instance.GoToNode("rota_a4");
+        DialogueManager.Instance?.GoToNode("rota_a4");
 
         SaveSystem.Instance.fase2_exorcizou = true;
         SaveSystem.Instance.Salvar();
     }
 
-    // ==================== FADE OUT ====================
     private IEnumerator FadeOutSequence()
     {
         VisualEffectsManager vfx = GetEffectsManager();

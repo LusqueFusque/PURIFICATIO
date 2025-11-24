@@ -3091,6 +3091,7 @@ MonoBehaviour:
   pImage: {fileID: 1723454887}
   ghostAttackSound: {fileID: 8300000, guid: 26f223843868f91468a8f361c9fd0cb2, type: 3}
   ghostDisappearSound: {fileID: 0}
+  fase4Music: {fileID: 8300000, guid: 047d111be79af5d44aee67076d02ad9f, type: 3}
 --- !u!1 &1500838366
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,8 +4820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 20
   canSkipTyping: 1
-  typingSound: {fileID: 0}
-  soundEveryNChars: 1
+  typingSound: {fileID: 8300000, guid: 88899050070d2ce49844d73422a4fcd3, type: 3}
+  soundEveryNChars: 2
 --- !u!222 &2033976045
 CanvasRenderer:
   m_ObjectHideFlags: 0
