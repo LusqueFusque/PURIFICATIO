@@ -306,7 +306,7 @@
     {
       "id": "jarvis10",
       "character": "Jarvis",
-      "sprite": "Jarvistriste",
+      "sprite": "Jarvis",
       "text": "Ela me matou. Agora ela deve morrer!",
       "nextId": "jarvis11"
     },
@@ -320,14 +320,14 @@
     {
       "id": "jarvis12",
       "character": "Jarvis",
-      "sprite": "Jarvistriste",
+      "sprite": "Jarvis",
       "text": "Eu estava trabalhando como o piloto do bonde quando eu vi essa assassina amarrando pessoas no meio dos trilhos…",
       "nextId": "jarvis13"
     },
     {
       "id": "jarvis13",
       "character": "Jarvis",
-      "sprite": "Jarvistriste",
+      "sprite": "Jarvis",
       "text": "Quando eu tentei parar, percebi que ela tinha cortado os freios. O bonde capotou e matou todo mundo. Menos ela.",
       "nextId": "P_confessa1"
     },
@@ -415,8 +415,15 @@
       "character": "Sistema",
       "sprite": "",
       "text": "",
-      "nextId": "final_entrega2",
+      "nextId": "fading",
       "mission": "fadeOut"
+    },
+    {
+      "id": "fading",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "final_entrega2"
     },
     {
       "id": "final_entrega2",
@@ -444,7 +451,7 @@
       "character": "Sistema",
       "sprite": "",
       "text": "Fim da Fase 4 - Entregou a fita",
-      "mission": "returnToMenu"
+      "mission": "GoToCutscene"
     },
     {
       "id": "final_ajuda1",
@@ -465,16 +472,8 @@
       "character": "Sistema",
       "sprite": "",
       "text": "",
-      "nextId": "final_ajuda4",
-      "mission": "ghostAttack"
-    },
-    {
-      "id": "final_ajuda4",
-      "character": "Sistema",
-      "sprite": "",
-      "text": "",
       "nextId": "final_ajuda5",
-      "mission": "fadeIn"
+      "mission": "ghostAttack"
     },
     {
       "id": "final_ajuda5",
@@ -525,10 +524,10 @@
       "character": "Timbu",
       "sprite": "Timbu_aiai",
       "text": "Você deixou ela lá com o fantasma…",
-      "nextId": "final_ajuda11"
+      "nextId": "final_ajuda12"
     },
     {
-      "id": "final_ajuda11",
+      "id": "final_ajuda12",
       "character": "Timbu",
       "sprite": "Timbu_nojo",
       "text": "Eu só espero que nossa cara não saia no jornal amanhã. Se a gente for preso, excomungado, ter a licença caçada ou qualquer outra coisa, a culpa é sua.",
@@ -539,7 +538,7 @@
       "character": "Sistema",
       "sprite": "",
       "text": "Fim da Fase 4 - Pediu ajuda ao fantasma",
-      "mission": "returnToMenu"
+      "mission": "GoToCutscene"
     },
     {
       "id": "rota_assistir1",
@@ -604,7 +603,7 @@
       "character": "Sistema",
       "sprite": "",
       "text": "Fim da Fase 4 - Chamou a polícia",
-      "mission": "returnToMenu"
+      "mission": "GoToCutscene"
     }
   ]
 }

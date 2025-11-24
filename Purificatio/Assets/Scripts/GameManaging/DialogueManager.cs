@@ -379,7 +379,7 @@ public class DialogueManager : MonoBehaviour
                 string currentRoom = AdvancedMapManager.Instance.GetCurrentRoom();
                 Debug.Log($"[DialogueManager] Verificando sala: {currentRoom}");
             
-                if (currentRoom != "Estacao" && currentRoom != "Estação")
+                if (currentRoom != "Estacao" && currentRoom != "Estaçao")
                 {
                     Debug.LogWarning($"[DialogueManager] Jogador não está na Estação! Sala atual: {currentRoom}");
                     return false;

@@ -67,13 +67,16 @@ public class Fase4MissionHandler : MissionHandlerBase
                 break;
 
             case "ghostAttack":
+                // ✅ CORRIGIDO: Inicia a missão E executa a sequência
                 MissionManager.Instance.StartMission("ghostAttack");
                 Debug.Log("[Fase4] Missão ghostAttack iniciada - fantasma ataca Philippa.");
+                StartCoroutine(GhostAttackSequence());
                 break;
-
+            
             case "ghostDisappear":
                 MissionManager.Instance.StartMission("ghostDisappear");
                 Debug.Log("[Fase4] Missão ghostDisappear iniciada - fantasma desaparece.");
+                StartCoroutine(GhostDisappearSequence());
                 break;
 
             default:
@@ -122,31 +125,52 @@ public class Fase4MissionHandler : MissionHandlerBase
     {
         Debug.Log("[Fase4] === FANTASMA JARVIS ATACA PHILIPPA ===");
 
-        // Som de ataque
+        // 1. Põe tela preta (fadeIn)
+        VisualEffectsManager vfx = GetEffectsManager();
+        if (vfx != null)
+        {
+            Debug.Log("[Fase4] ✓ Iniciando fade para preto...");
+            yield return StartCoroutine(vfx.FadeToBlack(0.5f));
+        }
+        else
+        {
+            Debug.LogWarning("[Fase4] VisualEffectsManager não encontrado!");
+            yield return new WaitForSeconds(1f);
+        }
+
+        // 2. Toca áudio (grito)
         if (ghostAttackSound != null)
         {
             AudioSource.PlayClipAtPoint(ghostAttackSound, Camera.main.transform.position, 0.7f);
+            Debug.Log("[Fase4] ✓ Áudio de ataque tocando");
+        
+            // Espera um pouco para o áudio tocar
+            yield return new WaitForSeconds(5f);
         }
-
-        // Ativa o fantasma
-        if (jarvisGhost != null)
+        else
         {
-            jarvisGhost.SetActive(true);
-            Debug.Log("[Fase4] ✓ Fantasma Jarvis ativado");
+            Debug.LogWarning("[Fase4] ghostAttackSound não configurado!");
+            yield return new WaitForSeconds(1f);
         }
 
-        // Esconde ou altera Philippa (opcional)
-        if (philippaSprite != null)
+        // 3. Tira tela preta (fadeOut)
+        if (vfx != null)
         {
-            // Você pode adicionar uma animação de "morte" aqui
-            Debug.Log("[Fase4] Philippa sendo atacada...");
+            Debug.Log("[Fase4] ✓ Iniciando fade de volta...");
+            yield return StartCoroutine(vfx.FadeFromBlack(1f));
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
         }
 
-        yield return new WaitForSeconds(1f);
+        Debug.Log("[Fase4] === ATAQUE CONCLUÍDO ===");
 
-        // Avança diálogo
+        // 4. Continua diálogo
         if (DialogueManager.Instance != null)
+        {
             DialogueManager.Instance.ShowNextLine();
+        }
     }
 
     private IEnumerator GhostDisappearSequence()
@@ -197,5 +221,22 @@ public class Fase4MissionHandler : MissionHandlerBase
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("02. Menu");
         }
+        
+        
     }
+    
+    private void GoToCutscene()
+    {
+        Debug.Log("[Fase4] Indo para cutscene...");
+    
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadScene("10. Cutscene");
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("10. Cutscene");
+        }
+    }
+    
 }

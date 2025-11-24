@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b67efc715214c4e9015681048296fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredDialogueId: rota_entrega9
+  requiredDialogueId: ligar_timbu1
   phoneDialSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
 --- !u!1 &1149368887
 GameObject:
@@ -5046,7 +5046,7 @@ MonoBehaviour:
   roomCheckDialogueIds:
   - rota_entrega1
   pauseAndCloseIds:
-  - rota_entrega9
+  - ligar_timbu1
 --- !u!1 &2080073228
 GameObject:
   m_ObjectHideFlags: 0

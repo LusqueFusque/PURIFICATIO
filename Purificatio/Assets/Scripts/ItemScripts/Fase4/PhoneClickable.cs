@@ -9,7 +9,7 @@ public class PhoneClickable : MonoBehaviour, IPointerClickHandler
 {
     [Header("Configuração")]
     [Tooltip("ID do diálogo que este telefone desbloqueia")]
-    public string requiredDialogueId = "rota_entrega9";
+    public string requiredDialogueId = "ligar_timbu1";
     
     [Header("Áudio")]
     [Tooltip("Som de discar telefone (opcional)")]
