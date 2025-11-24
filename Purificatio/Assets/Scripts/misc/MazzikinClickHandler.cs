@@ -1,37 +1,34 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// Handler de clique para MazzikinImage
-/// Ativado apenas quando ArmaSanta está equipada
-/// </summary>
 public class MazzikinClickHandler : MonoBehaviour, IPointerClickHandler
 {
     private ArmaSantaItem armaSanta;
 
-    public void SetArmaSanta(ArmaSantaItem arma)
+    public void SetArmaSanta(ArmaSantaItem a)
     {
-        armaSanta = arma;
+        armaSanta = a;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("[MazzikinClickHandler] Mazzi foi clicado!");
+        Debug.Log("[MazziClick] Clique chegou!");
 
-        if (armaSanta == null)
+        Debug.Log("[MazziClick] armaSanta == null ? " + (armaSanta == null));
+    
+        if (armaSanta != null)
+            Debug.Log("[MazziClick] armaSanta.IsActive() = " + armaSanta.IsActive());
+        else
+            Debug.Log("[MazziClick] armaSanta está NULL!");
+
+        if (armaSanta == null || !armaSanta.IsActive())
         {
-            Debug.LogWarning("[MazzikinClickHandler] ArmaSanta não configurada!");
+            Debug.Log("[MazziClick] BLOQUEADO — ArmaSanta não ativa.");
             return;
         }
 
-        if (!armaSanta.IsActive())
-        {
-            Debug.Log("[MazzikinClickHandler] ArmaSanta não está ativa!");
-            return;
-        }
-
-        // Exorciza o Mazzi
+        Debug.Log("[MazziClick] Chamando exorcismo...");
         armaSanta.ExorcizeMazzi();
+        
     }
 }

@@ -177,5 +177,44 @@ public class Fase3MissionHandler : MissionHandlerBase
 
         yield return null;
         DialogueManager.Instance.ShowNextLine();
+    } 
+    
+    // =============================================
+// EXORCISMO DO MAZZIKIN (chamado pela ArmaSanta)
+// =============================================
+    [Header("Exorcismo")]
+    public AudioClip exorcismSfx;  // som configurável no Inspector
+    public float exorcismHideDelay = 0.2f;
+
+    public void ExorciseMazzi()
+    {
+        StartCoroutine(ExorcismSequence());
     }
+
+    private IEnumerator ExorcismSequence()
+    {
+        Debug.Log("[Fase3] Exorcismo iniciado.");
+
+        // Som
+        if (exorcismSfx != null)
+            AudioSource.PlayClipAtPoint(exorcismSfx, Camera.main.transform.position, 1f);
+
+        // pequeno delay dramático
+        yield return new WaitForSeconds(exorcismHideDelay);
+
+        // desaparece o demon Mazzi
+        if (demonMazzi != null)
+            demonMazzi.SetActive(false);
+
+        Debug.Log("[Fase3] Mazzi removido da cena.");
+
+        // completa missão
+        if (MissionManager.Instance != null)
+            MissionManager.Instance.CompleteMission("exorcismoMazzi");
+
+        // segue diálogo
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
+    }
+
 }

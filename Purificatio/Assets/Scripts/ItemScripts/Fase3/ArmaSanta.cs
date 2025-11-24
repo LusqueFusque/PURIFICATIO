@@ -47,6 +47,16 @@ public class ArmaSantaItem : MonoBehaviour
         }
     }
 
+    public void OnArmaSantaCollected()
+    {
+        Debug.Log("[ArmaSanta] Coletada!");
+        var inv = FindObjectOfType<DynamicInventory>();
+        if (inv != null)
+            inv.AddItem(armaSantaItem); // ← ItemData da Arma Santa
+        else
+            Debug.LogError("Inventário não encontrado!");
+    }
+    
     // ============================================
     // CONTROLE DE ATIVAÇÃO
     // ============================================
@@ -91,26 +101,24 @@ public class ArmaSantaItem : MonoBehaviour
     // ============================================
     public void ExorcizeMazzi()
     {
-        if (!isActive)
+        if (!IsActive())
         {
-            Debug.Log("[ArmaSantaItem] ArmaSanta não está ativa!");
+            Debug.Log("[ArmaSantaItem] Tentou exorcizar, mas ArmaSanta não está ativa.");
             return;
         }
 
-        Debug.Log("[ArmaSantaItem] Exorcizando Mazzi...");
+        Debug.Log("[ArmaSantaItem] Exorcizando Mazzi via Fase3...");
 
-        if (exorcismSound != null)
-            AudioSource.PlayClipAtPoint(exorcismSound, Camera.main.transform.position, 0.8f);
-
-        // Completa a missão de exorcismo
-        if (MissionManager.Instance != null)
-        {
-            MissionManager.Instance.CompleteMission("exorcismoMazzi");
-            Debug.Log("[ArmaSantaItem] ✓ Missão 'exorcismoMazzi' completada!");
-        }
+        // chama o Fase3
+        Fase3MissionHandler fase3 = FindObjectOfType<Fase3MissionHandler>();
+        if (fase3 != null)
+            fase3.ExorciseMazzi();
+        else
+            Debug.LogError("[ArmaSantaItem] Nenhum Fase3MissionHandler encontrado!");
 
         Deactivate();
     }
+
     private void GiveArmaSanta()
     {
         if (armaSantaItem != null)

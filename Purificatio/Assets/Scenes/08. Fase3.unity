@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 324727310}
   - component: {fileID: 324727309}
   - component: {fileID: 324727311}
+  - component: {fileID: 324727312}
   m_Layer: 5
   m_Name: mazzikinImage
   m_TagString: Untagged
@@ -760,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -798,7 +799,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazzikinImage: {fileID: 324727309}
   mazzikinRectTransform: {fileID: 324727308}
-  targetPosition: {x: -27, y: 89, z: 0.4646343}
+  targetPosition: {x: -27, y: 89, z: 0}
+--- !u!114 &324727312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324727307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58f645f93d35974ebfe4e2dbcf7d224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &408908361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,7 +3394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d61d087e260404ca72b4595dde864b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CruzData: {fileID: 0}
+  CruzData: {fileID: 11400000, guid: af5b51e7489071947909259c021d1416, type: 2}
 --- !u!114 &1472850243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3544,6 +3557,8 @@ MonoBehaviour:
   tapeteAuraSprite: {fileID: 1728117302}
   demonMazzi: {fileID: 324727307}
   mazzikinItem: {fileID: 324727311}
+  exorcismSfx: {fileID: 8300000, guid: 26f223843868f91468a8f361c9fd0cb2, type: 3}
+  exorcismHideDelay: 0.2
 --- !u!1 &1534995224
 GameObject:
   m_ObjectHideFlags: 0

@@ -298,8 +298,7 @@
       "character": "Nambu",
       "sprite": "Nambu_neutro",
       "text": "Tenho que começar a me acostumar com isso.",
-      "nextId": "rota_a3",
-      "mission": "exorcismoMazzi"
+      "nextId": "rota_a3"
     },
     {
       "id": "rota_a3",

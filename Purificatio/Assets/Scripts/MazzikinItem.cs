@@ -38,6 +38,19 @@ public class MazzikinItem : MonoBehaviour
         mazzikinRectTransform.SetAsLastSibling();
 
         Debug.Log("[MazzikinItem] Mazzi ativado e posicionado!");
+        
+        // Depois de ativar o GameObject, garanta o link
+        if (ArmaSantaItem.Instance != null)
+        {
+            var handler = mazzikinImage.GetComponent<MazzikinClickHandler>();
+            if (handler == null)
+                handler = mazzikinImage.gameObject.AddComponent<MazzikinClickHandler>();
+
+            handler.SetArmaSanta(ArmaSantaItem.Instance);
+
+            Debug.Log("[MazzikinItem] ArmaSanta vinculada ao Mazzikin após revelar.");
+        }
+        
     }
 
     public bool IsRevealed() => revealed;

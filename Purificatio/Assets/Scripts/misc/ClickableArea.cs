@@ -9,6 +9,7 @@ public class ClickableAreaUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+
         Debug.Log($"[ClickableAreaUI] Clique detectado em {gameObject.name} (tag={gameObject.tag})");
 
         // madeira solta -> Crowbar

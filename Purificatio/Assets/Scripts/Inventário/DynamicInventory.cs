@@ -170,6 +170,24 @@ public class DynamicInventory : MonoBehaviour
             }
         }
         
+        // ARMA SANTA
+        else if (item.itemName == "ArmaSanta" || item.itemName == "Arma Santa")
+        {
+            Debug.Log("[DynamicInventory] Configurando botão para ArmaSanta");
+            ArmaSantaItem arma = FindObjectOfType<ArmaSantaItem>();
+            if (arma != null)
+            {
+                slot.onClick.AddListener(() => {
+                    Debug.Log("[DynamicInventory] Botão ArmaSanta clicado!");
+                    arma.Toggle();
+                });
+            }
+            else
+            {
+                Debug.LogWarning("[DynamicInventory] ArmaSantaItem não encontrado!");
+            }
+        }
+        
         // ============================================
         // OUTROS ITENS
         else
