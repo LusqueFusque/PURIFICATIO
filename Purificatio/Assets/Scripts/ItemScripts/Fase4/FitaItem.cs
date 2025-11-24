@@ -3,21 +3,21 @@ using UnityEngine;
 public class FitaItem : MonoBehaviour
 {
     public static FitaItem Instance;
-
+    
     [Header("Dados do Item")]
     public ItemData fitaData;
-
+    
     private bool isActive = false;
 
     void Awake()
     {
-        // Singleton simples
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject); // ✅ Persiste entre cenas
     }
 
     void OnDestroy()
@@ -38,50 +38,23 @@ public class FitaItem : MonoBehaviour
     // ============================================
     // CONTROLE DE ATIVAÇÃO
     // ============================================
-    public void Activate()
+
+    public void Toggle()
     {
-        Debug.Log("[FitaItem] Fita ATIVADA");
-        isActive = true;
+        isActive = !isActive;
+        Debug.Log($"[FitaItem] Toggle: Fita {(isActive ? "ATIVADA" : "DESATIVADA")}");
+        
+        if (isActive)
+        {
+            Debug.Log("[FitaItem] ✅ Clique na tela para assistir a fita!");
+        }
     }
 
     public void Deactivate()
     {
-        Debug.Log("[FitaItem] Fita DESATIVADA");
         isActive = false;
-    }
-
-    public void Toggle()
-    {
-        if (isActive)
-            Deactivate();
-        else
-            Activate();
+        Debug.Log("[FitaItem] ❌ Fita desativada");
     }
 
     public bool IsActive() => isActive;
-
-    // ============================================
-    // COLETA DA FITA
-    // ============================================
-    public void OnFitaCollected()
-    {
-        Debug.Log("[FitaItem] Fita coletada!");
-
-        // Adiciona ao inventário
-        var inv = FindObjectOfType<DynamicInventory>();
-        if (inv != null && fitaData != null)
-        {
-            inv.AddItem(fitaData);
-        }
-        else
-        {
-            Debug.LogError("[FitaItem] Inventory ou ItemData não configurados!");
-        }
-
-        // Completa missão
-        if (MissionManager.Instance != null)
-        {
-            MissionManager.Instance.CompleteMission("findTape");
-        }
-    }
 }

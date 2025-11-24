@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 3ff720a7335f03148b8fc0315abfbda2
+guid: f98504a116b86b44e84f86ee471e8b9b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3085845785204933101
-    second: Eveline_0
+      213: -504671282291087767
+    second: Eve_0
+  - first:
+      213: 7578087202461137609
+    second: Eve_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eveline_0
+      name: Eve_0
       rect:
         serializedVersion: 2
-        x: 97
-        y: 30
-        width: 241
-        height: 732
+        x: 107
+        y: 167
+        width: 434
+        height: 913
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31e393d9b9fdc25d0800000000000000
-      internalID: -3085845785204933101
+      spriteID: 966e2b2842c0ff8f0800000000000000
+      internalID: -504671282291087767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Eve_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 614
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca31a30926ca2960800000000000000
+      internalID: 7578087202461137609
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Eveline_0: -3085845785204933101
+      Eve_0: -504671282291087767
+      Eve_1: 7578087202461137609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

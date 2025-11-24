@@ -2369,7 +2369,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 324727308}
-  - {fileID: 1723454888}
   m_Father: {fileID: 1855224093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098897911
@@ -2893,6 +2892,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1723454888}
   - {fileID: 1766453535}
   - {fileID: 1500838367}
   - {fileID: 1862584419}
@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47326c78f98262546af71b47b63fa8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FitaData: {fileID: 11400000, guid: 868fa2c1c85cfd344ab1dfe005d1eb13, type: 2}
+  fitaData: {fileID: 11400000, guid: 868fa2c1c85cfd344ab1dfe005d1eb13, type: 2}
 --- !u!4 &1641862437
 Transform:
   m_ObjectHideFlags: 0
@@ -3709,6 +3709,7 @@ GameObject:
   - component: {fileID: 1723454890}
   - component: {fileID: 1723454889}
   - component: {fileID: 1723454891}
+  - component: {fileID: 1723454892}
   m_Layer: 5
   m_Name: pImage
   m_TagString: Untagged
@@ -3723,16 +3724,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723454887}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4646343}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1072191151}
+  m_Father: {fileID: 1417386010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -504, y: -186}
+  m_AnchoredPosition: {x: -544.42566, y: -215.98846}
   m_SizeDelta: {x: 556.1317, y: 883.2682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1723454889
@@ -3782,9 +3783,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723454887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd30a19eb1dd014f9b83a5733e714aa, type: 3}
+  m_Script: {fileID: 11500000, guid: eab661cf5a5c3184c8c2e80b647ad365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueNodeId: rota_entrega1
+--- !u!114 &1723454892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723454887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44767875ba029f4f80a801ee07aa8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
 --- !u!1 &1766453534
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,7 +3814,6 @@ GameObject:
   - component: {fileID: 1766453539}
   - component: {fileID: 1766453540}
   - component: {fileID: 1766453541}
-  - component: {fileID: 1766453542}
   m_Layer: 5
   m_Name: FitaImage
   m_TagString: Untagged
@@ -3935,19 +3949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerCursor: {fileID: 2800000, guid: 51b3b228fd8afab4f916db63f0b8e21b, type: 3}
---- !u!114 &1766453542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766453534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47326c78f98262546af71b47b63fa8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FitaData: {fileID: 11400000, guid: 868fa2c1c85cfd344ab1dfe005d1eb13, type: 2}
 --- !u!1 &1782408303
 GameObject:
   m_ObjectHideFlags: 0

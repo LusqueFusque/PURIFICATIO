@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: dc90c59445870cd478269612d4f2f823
+guid: 00dfaa6ed5c890d46a4295cec7775977
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9187601782299968401
-    second: Djinn_0
+      213: -6233145469549400841
+    second: Djinnn_0
+  - first:
+      213: 3066771611991672822
+    second: Djinnn_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Djinn_0
+      name: Djinnn_0
       rect:
         serializedVersion: 2
-        x: 144
-        y: 307
-        width: 518
-        height: 629
+        x: 0
+        y: 289
+        width: 680
+        height: 791
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f6cb3446bd41f7080800000000000000
-      internalID: -9187601782299968401
+      spriteID: 7fc2c26583b6f79a0800000000000000
+      internalID: -6233145469549400841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Djinnn_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 614
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f7040c588c5f8a20800000000000000
+      internalID: 3066771611991672822
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Djinnn_0: -6233145469549400841
+      Djinnn_1: 3066771611991672822
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

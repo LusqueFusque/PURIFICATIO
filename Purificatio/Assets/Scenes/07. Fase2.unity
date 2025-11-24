@@ -1679,18 +1679,15 @@ MonoBehaviour:
   characterImage: {fileID: 311834593}
   dialogueBackground: {fileID: 831283035}
   gradientOverlay: {fileID: 831283035}
-  ghostArrowSprite: {fileID: -8449114180511628245, guid: b7e2c3ad91ad4f74c8ffd5a95c852202, type: 3}
+  ghostArrowSprite: {fileID: -9187601782299968401, guid: dc90c59445870cd478269612d4f2f823, type: 3}
   humanDialogueColor: {r: 1, g: 1, b: 1, a: 1}
   ghostDialogueColor: {r: 0.604, g: 0.173, b: 0.149, a: 1}
   panelHUD: {fileID: 1417386009}
   optionsContainer: {fileID: 27236661}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
-  defaultSprite: {fileID: 4329407632164072968, guid: fe19654fb1f4d984bbb089e209e4ef95, type: 3}
+  defaultSprite: {fileID: 8827698944539652212, guid: 243212f490db3244f81c85b21758cce6, type: 3}
   continuePrompt: {fileID: 2080073228}
-  ghostCharacters:
-  - Eveline
-  - Djinn
-  - Mazikkin
+  ghostCharacters: []
 --- !u!4 &676286748
 Transform:
   m_ObjectHideFlags: 0
@@ -5690,6 +5687,10 @@ MonoBehaviour:
   startDialogueId: inicio1
   uiManager: {fileID: 676286747}
   missionHandler: {fileID: 1500757609}
+  roomCheckDialogueIds:
+  - rota_entrega1
+  pauseAndCloseIds:
+  - rota_entrega9
 --- !u!1 &2080073228
 GameObject:
   m_ObjectHideFlags: 0

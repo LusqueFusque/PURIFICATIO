@@ -2,40 +2,59 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Componente para coletar a fita na cena
+/// Componente para o objeto físico coletável da fita na cena
 /// </summary>
 public class CollectibleFita : MonoBehaviour, IPointerClickHandler
 {
-    public ItemData fitaItemData;
-
-    private DynamicInventory inventory;
-
     void Start()
     {
-        inventory = FindObjectOfType<DynamicInventory>();
-        if (inventory == null)
-            Debug.LogError("[CollectibleFita] DynamicInventory não encontrado!");
-
-        if (fitaItemData == null)
-            Debug.LogError("[CollectibleFita] ItemData não configurado!");
+        // Verifica se FitaItem existe
+        if (FitaItem.Instance == null)
+        {
+            Debug.LogError("[CollectibleFita] FitaItem.Instance não encontrado! Crie um GameObject com FitaItem na cena.");
+        }
+        
+        if (FitaItem.Instance != null && FitaItem.Instance.fitaData == null)
+        {
+            Debug.LogError("[CollectibleFita] FitaData não configurado no FitaItem!");
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (fitaItemData == null || inventory == null) return;
-
-        if (inventory.AddItem(fitaItemData))
+        Debug.Log("[CollectibleFita] Fita clicada!");
+        
+        if (FitaItem.Instance == null || FitaItem.Instance.fitaData == null)
         {
-            // Notifica FitaItem
-            if (FitaItem.Instance != null)
-                FitaItem.Instance.OnFitaCollected();
+            Debug.LogError("[CollectibleFita] FitaItem não configurado corretamente!");
+            return;
+        }
 
-            // Destrói objeto na cena
-            Destroy(gameObject);
+        // Adiciona ao inventário
+        var inventory = FindObjectOfType<DynamicInventory>();
+        if (inventory != null)
+        {
+            if (inventory.AddItem(FitaItem.Instance.fitaData))
+            {
+                Debug.Log("[CollectibleFita] ✅ Fita adicionada ao inventário!");
+                
+                // Completa missão
+                if (MissionManager.Instance != null)
+                {
+                    MissionManager.Instance.CompleteMission("findTape");
+                }
+                
+                // Destrói objeto físico
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogWarning("[CollectibleFita] Inventário cheio!");
+            }
         }
         else
         {
-            Debug.Log("[CollectibleFita] Inventário cheio!");
+            Debug.LogError("[CollectibleFita] DynamicInventory não encontrado!");
         }
     }
 }

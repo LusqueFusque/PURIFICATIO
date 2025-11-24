@@ -148,12 +148,12 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (lampThrowSound != null)
             AudioSource.PlayClipAtPoint(lampThrowSound, Camera.main.transform.position, 0.5f);
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.7f);
 
         if (glassShatterSound != null)
             AudioSource.PlayClipAtPoint(glassShatterSound, Camera.main.transform.position, 0.6f);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         if (metalImpactSound != null)
             AudioSource.PlayClipAtPoint(metalImpactSound, Camera.main.transform.position, 0.5f);
@@ -161,14 +161,14 @@ public class Fase2MissionHandler : MissionHandlerBase
         if (djinnGhostSprite != null) djinnGhostSprite.SetActive(false);
         if (djinnUIImage != null) djinnUIImage.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         if (music != null) music.Play();
 
         CompleteMission("throwLamp");
         yield return null;
 
         if (DialogueManager.Instance != null)
-            DialogueManager.Instance.ShowNextLine();
+            DialogueManager.Instance.GoToNode("rota_a4");
 
         // Ajuste para salvar decisão da Fase 2
         SaveSystem.Instance.fase2_exorcizou = true; // ou false, conforme lógica

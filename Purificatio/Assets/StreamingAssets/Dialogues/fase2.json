@@ -94,7 +94,7 @@
     {
       "id": "djinn1",
       "character": "Djinn",
-      "sprite": "Djinn_raiva",
+      "sprite": "Djinn",
       "text": "QUEM OUSA ME INVOCAR!",
       "nextId": "djinn2"
     },
@@ -108,7 +108,7 @@
     {
       "id": "djinn3",
       "character": "Djinn",
-      "sprite": "Djinn_confuso",
+      "sprite": "Djinn",
       "text": "...o que em nome de Allah é você?",
       "nextId": "djinn4"
     },
@@ -122,14 +122,14 @@
     {
       "id": "djinn5",
       "character": "Djinn",
-      "sprite": "Djinn_raiva",
+      "sprite": "Djinn",
       "text": "O que é um... NÃO IMPORTA!",
       "nextId": "djinn6"
     },
     {
       "id": "djinn6",
       "character": "Djinn",
-      "sprite": "Djinn_furioso",
+      "sprite": "Djinn",
       "text": "DIGA-ME, POR QUE VÓS, MORTAL, ROUBASTES A MINHA LÂMPADA E TROUXE-A PARA ESTE LUGAR INFERNAL!?",
       "nextId": "djinn7"
     },
@@ -143,7 +143,7 @@
     {
       "id": "djinn8",
       "character": "Djinn",
-      "sprite": "Djinn_raiva",
+      "sprite": "Djinn",
       "text": "ENTÃO QUEM É O RESPONSÁVEL POR ESSA... RAPOSICE!?",
       "nextId": "djinn9"
     },
@@ -185,7 +185,7 @@
     {
       "id": "djinn14",
       "character": "Djinn",
-      "sprite": "Djinn_furioso",
+      "sprite": "Djinn",
       "text": "SER HUMANO FRACO DE ESPÍRITO! COVARDE, COMO TODOS OS OUTROS! VOCÊS TODOS IRÃO PAGAR!",
       "nextId": "djinn15"
     },
@@ -445,7 +445,7 @@
     {
       "id": "rota_a2",
       "character": "Djinn",
-      "sprite": "Djinn_raiva",
+      "sprite": "Djinn",
       "text": "O QUE VOCÊ ESTÁ FAZENDO? LARGUE A LÂMPADA AGORA!",
       "nextId": "rota_a3"
     },
@@ -454,8 +454,15 @@
       "character": "Nambu",
       "sprite": "Nambu_eheh",
       "text": "Pela janela! Voa, passarinho!",
-      "mission": "throwLamp",
-      "nextId": "rota_a4"
+      "nextId": "jogalampada"
+    },
+    {
+      "id": "jogalampada",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
+      "nextId": "",
+      "mission": "throwLamp"
     },
     {
       "id": "rota_a4",

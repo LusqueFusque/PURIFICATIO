@@ -565,7 +565,7 @@
           "optionText": "Vou me fazer de sonso"
         },
         {
-          "optionText": "Vou sair de fininho e chamar a polícia",
+          "optionText": "Sair de fininho e chamar a polícia",
           "nextId": "rota_policia1"
         }
       ]

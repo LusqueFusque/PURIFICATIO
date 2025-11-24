@@ -63,9 +63,7 @@ public class Fase4MissionHandler : MissionHandlerBase
                 break;
 
             case "watchTape":
-                // A missão é iniciada, mas a lógica está no TelaClickableArea
-                MissionManager.Instance.StartMission("watchTape");
-                Debug.Log("[Fase4] Missão watchTape iniciada - use a fita na tela.");
+                StartCoroutine(WatchTapeSequence());
                 break;
 
             case "ghostAttack":
@@ -174,7 +172,19 @@ public class Fase4MissionHandler : MissionHandlerBase
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
     }
-
+    private IEnumerator WatchTapeSequence()
+    {
+        Debug.Log("[Fase4] === ASSISTINDO A FITA ===");
+    
+        // A sequência real acontece no TelaClickableArea
+        // Aqui só confirmamos que a missão foi completada
+    
+        yield return new WaitForSeconds(0.5f);
+    
+        // Avança diálogo
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
+    }
     private void ReturnToMenu()
     {
         Debug.Log("[Fase4] Retornando ao menu...");
