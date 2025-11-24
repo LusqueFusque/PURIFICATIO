@@ -38,6 +38,22 @@ public class SaltItem : MonoBehaviour
             audioSource2D.volume = 1f;
         }
     }
+    private void Update()
+    {
+        if (!isActive) return;
+
+        // Clique esquerdo usa o sal
+        if (Input.GetMouseButtonDown(0))
+        {
+            TryUseSalt();
+        }
+
+        // Clique direito desativa
+        if (Input.GetMouseButtonDown(1))
+        {
+            Unequip();
+        }
+    }
 
     // Chamado pelo botão de inventário
     public void OnSaltButtonClicked()

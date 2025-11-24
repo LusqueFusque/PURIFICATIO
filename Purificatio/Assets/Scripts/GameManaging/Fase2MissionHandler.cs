@@ -269,6 +269,10 @@ public class Fase2MissionHandler : MissionHandlerBase
         {
             DialogueManager.Instance.ShowNextLine();
         }
+        
+        SaveSystem.Instance.fase1_exorcizou = true; // ou false, se não exorcizou
+        SaveSystem.Instance.Salvar();
+
     }
 
     // ==================== FADE OUT ====================

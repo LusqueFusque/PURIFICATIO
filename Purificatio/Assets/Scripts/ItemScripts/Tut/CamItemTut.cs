@@ -8,26 +8,21 @@ public class CamItemTut : MonoBehaviour
     // Evento para notificar quando a câmera é fechada
     public static System.Action OnCameraClosed;
 
+    public bool WasOpened { get; private set; }
+    public bool WasClosed { get; private set; }
+
     private void Start()
     {
         if (photoMask == null)
         {
-            Debug.LogError("[PhotoCameraItem] photoMask não foi atribuída no Inspector!");
+            Debug.LogError("[CamItemTut] photoMask não foi atribuída no Inspector!");
             enabled = false;
         }
     }
 
     public void OnCameraButtonClicked()
     {
-        if (photoMask == null)
-        {
-            Debug.LogError("[PhotoCameraItem] Não é possível ativar câmera sem photoMask!");
-            return;
-        }
-
-        isActive = true;
-        photoMask.SetActive(true);
-        Debug.Log("[PhotoCameraItem] Câmera ativada.");
+        ActivateCamera();
     }
 
     private void Update()
@@ -36,28 +31,38 @@ public class CamItemTut : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // botão direito desativa
         {
-            isActive = false;
-            photoMask.SetActive(false);
-
-            if (MissionManager.Instance != null)
-                MissionManager.Instance.CompleteMission("useCamera");
-
             CloseCamera();
+        }
+    }
+
+    private void ActivateCamera()
+    {
+        isActive = true;
+        photoMask.SetActive(true);
+        WasOpened = true;
+        WasClosed = false;
+        Debug.Log("[CamItemTut] 📷 Câmera ativada.");
+
+        // Se a missão useCamera estiver ativa, marca que foi aberta
+        if (MissionManager.Instance != null && MissionManager.Instance.IsActive("useCamera"))
+        {
+            Debug.Log("[CamItemTut] ✅ Câmera aberta durante missão 'useCamera'.");
         }
     }
 
     private void CloseCamera()
     {
         isActive = false;
-
-        if (photoMask != null)
-            photoMask.SetActive(false);
-
-        Debug.Log("[PhotoCameraItem] Câmera desativada.");
+        photoMask.SetActive(false);
+        WasClosed = true;
+        Debug.Log("[CamItemTut] 📷 Câmera desativada.");
 
         // Completa missão básica de usar câmera
-        if (MissionManager.Instance != null)
+        if (MissionManager.Instance != null && MissionManager.Instance.IsActive("useCamera"))
+        {
             MissionManager.Instance.CompleteMission("useCamera");
+            Debug.Log("[CamItemTut] 🎉 Missão 'useCamera' COMPLETA!");
+        }
 
         // Dispara evento para SaltMissionChecker escutar
         OnCameraClosed?.Invoke();

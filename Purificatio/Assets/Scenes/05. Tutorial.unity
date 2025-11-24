@@ -316,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 1995905330}
   hudPanel: {fileID: 1971503200}
+  saltChecker: {fileID: 79957089}
 --- !u!4 &124245181
 Transform:
   m_ObjectHideFlags: 0
@@ -2562,7 +2563,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 779517814}
-  saltUseSound: {fileID: 0}
+  saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!1 &1698011158
 GameObject:
@@ -2648,20 +2649,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 111732855}
-        m_TargetAssemblyTypeName: PhotoCameraController, Assembly-CSharp
-        m_MethodName: ActivateCamera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PhotoCameraItem, Assembly-CSharp
+      - m_Target: {fileID: 430496211}
+        m_TargetAssemblyTypeName: CamItemTut, Assembly-CSharp
         m_MethodName: OnCameraButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -3729,7 +3718,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 779517814}
-  saltUseSound: {fileID: 0}
+  saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!4 &2039061922
 Transform:

@@ -1,10 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class TutorialMissionHandler : MissionHandlerBase
 {
     [Header("UI do Tutorial")]
     public GameObject dialoguePanel;
     public GameObject hudPanel;
+
+    [Header("Componente de Verificação")]
+    public SaltMissionChecker saltChecker;
 
     void OnEnable()
     {
@@ -23,9 +27,11 @@ public class TutorialMissionHandler : MissionHandlerBase
     {
         Debug.Log($"[TutorialMissionHandler] Missão completada: {missionId}");
 
-        // Avança o diálogo apenas quando o jogador completar de verdade
+        // Retoma o diálogo após missão completada
         if (DialogueManager.Instance != null)
+        {
             DialogueManager.Instance.ShowNextLine();
+        }
     }
 
     public override void HandleMission(string missionId)
@@ -35,17 +41,37 @@ public class TutorialMissionHandler : MissionHandlerBase
         switch (missionId)
         {
             case "useCamera":
-            case "usePhone":
-            case "useSalt":
-                // Apenas registra que a missão está ativa
                 if (MissionManager.Instance != null)
                 {
-                    MissionManager.Instance.StartMission(missionId);
-                    Debug.Log($"[TutorialMissionHandler] Missão '{missionId}' registrada. Aguardando jogador usar item...");
+                    MissionManager.Instance.StartMission("useCamera");
+                    Debug.Log("[Tutorial] Aguardando jogador usar câmera...");
                 }
-                else
+                break;
+
+            case "usePhone":
+                if (MissionManager.Instance != null)
                 {
-                    Debug.LogError("[TutorialMissionHandler] MissionManager não encontrado!");
+                    MissionManager.Instance.StartMission("usePhone");
+                    Debug.Log("[Tutorial] Aguardando jogador usar telefone...");
+                }
+                break;
+
+            case "saltCursedObject":
+                if (MissionManager.Instance != null)
+                {
+                    MissionManager.Instance.StartMission("saltCursedObject");
+                    Debug.Log("[Tutorial] Aguardando jogador usar sal E depois verificar com câmera...");
+                    
+                    // ✅ Ativa o SaltMissionChecker para monitorar a missão
+                    if (saltChecker != null)
+                    {
+                        saltChecker.enabled = true;
+                        Debug.Log("[Tutorial] ✓ SaltMissionChecker ativado!");
+                    }
+                    else
+                    {
+                        Debug.LogError("[Tutorial] ❌ SaltMissionChecker não atribuído no Inspector!");
+                    }
                 }
                 break;
 

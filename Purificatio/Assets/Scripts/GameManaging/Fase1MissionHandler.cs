@@ -289,6 +289,9 @@ public class Fase1MissionHandler : MissionHandlerBase
             Debug.Log("[Fase1] Indo para diálogo 'exorcismo_completo'");
             DialogueManager.Instance.GoToNode("exorcismo_completo");
         }
+        
+        SaveSystem.Instance.fase1_exorcizou = true; // ou false, se não exorcizou
+        SaveSystem.Instance.Salvar();
     }
 
     // ==================== POLTERGEIST ====================
@@ -365,6 +368,10 @@ public class Fase1MissionHandler : MissionHandlerBase
         {
             DialogueManager.Instance.ShowNextLine();
         }
+        
+        SaveSystem.Instance.fase1_exorcizou = false; // ou false, se não exorcizou
+        SaveSystem.Instance.Salvar();
+
     }
 
     // ==================== FADE OUT ====================

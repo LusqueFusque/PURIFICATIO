@@ -69,7 +69,8 @@
       "id": "pula_tutorial",
       "character": "Timbu",
       "sprite": "Timbu_aiai",
-      "text": "Então vamos direto ao assunto…"
+      "text": "Então vamos direto ao assunto…",
+      "nextId": "contrato"
     },
     {
       "id": "tutorial1",
@@ -384,7 +385,8 @@
       "id": "rude1",
       "character": "Timbu",
       "sprite": "Timbu_deboche",
-      "text": "Uma pena. Eu não vou explicar TUDO ISSO de novo. Você vai pra a primeira cena IMEDIATAMENTE! Eu já fechei o contrato!"
+      "text": "Uma pena. Eu não vou explicar TUDO ISSO de novo. Você vai pra a primeira cena IMEDIATAMENTE! Eu já fechei o contrato!",
+      "nextId": "contrato"
     },
     {
       "id": "calmo1",
@@ -404,7 +406,14 @@
       "id": "calmo3",
       "character": "Timbu",
       "sprite": "Timbu_sorriso",
-      "text": "Contrato assinado. É crime abandonar. Boa sorte."
+      "text": "Contrato assinado. É crime abandonar. Boa sorte.",
+      "nextId": "contrato"
+    },
+    {
+      "id": "contrato",
+      "character": "Sistema",
+      "sprite": "",
+      "text": ""
     }
   ]
 }
