@@ -1,24 +1,61 @@
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
-    public string itemName;    
-    public Sprite icon;         
-    public MonoScript itemLogicScript; 
+    [Header("Dados do Item")]
+    public string itemName;
+    public Sprite icon;
 
+    [Header("Classe lógica do item (preenchida automaticamente)")]
+    public string logicClassName;
 
-    public virtual void Use()
+#if UNITY_EDITOR
+    [Header("Script de lógica (somente no editor)")]
+    public UnityEditor.MonoScript itemLogicScript;
+
+    private void OnValidate()
     {
         if (itemLogicScript != null)
         {
-            Debug.Log("Usando o script: " + itemLogicScript.name + " para o item: " + itemName);
+            var type = itemLogicScript.GetClass();
+            if (type != null)
+                logicClassName = type.FullName;
+        }
+    }
+#endif
 
-        }
-        else
+
+    // 🔥 O DynamicInventory precisa disso — por isso estava dando erro.
+    public virtual void Use()
+    {
+        if (string.IsNullOrEmpty(logicClassName))
         {
-            Debug.Log("Usando item: " + itemName);
+            Debug.LogWarning($"[ItemData] O item '{itemName}' não tem lógica definida.");
+            return;
         }
+
+        // Carrega o tipo da classe
+        System.Type t = System.Type.GetType(logicClassName);
+
+        if (t == null)
+        {
+            Debug.LogError($"[ItemData] Classe '{logicClassName}' não encontrada para o item '{itemName}'.");
+            return;
+        }
+
+        // Cria a instância
+        object instance = System.Activator.CreateInstance(t);
+
+        // Executa (espera que a classe tenha Execute())
+        var method = t.GetMethod("Execute");
+
+        if (method == null)
+        {
+            Debug.LogError($"[ItemData] Classe '{logicClassName}' não possui método Execute().");
+            return;
+        }
+
+        method.Invoke(instance, null);
     }
 }
