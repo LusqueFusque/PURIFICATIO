@@ -4693,7 +4693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c21147b53feb0349873a3160ded258c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HolyWaterData: {fileID: 0}
+  holyWaterData: {fileID: 11400000, guid: e004a8aac1b0f484395641f1ff2615df, type: 2}
+  mazzikinImage: {fileID: 324727309}
+  activateSound: {fileID: 0}
+  useSound: {fileID: 0}
 --- !u!114 &1788923654
 MonoBehaviour:
   m_ObjectHideFlags: 0

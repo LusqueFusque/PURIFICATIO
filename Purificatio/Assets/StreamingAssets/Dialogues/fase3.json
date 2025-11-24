@@ -383,36 +383,22 @@
       "character": "Nambu",
       "sprite": "Nambu_sorriso",
       "text": "Então... Aproveita.",
-      "nextId": "rota_b4"
-    },
-    {
-      "id": "rota_b4",
-      "character": "Mazzi",
-      "sprite": "Mazzi",
-      "text": "Me oculta.",
       "nextId": "rota_b5"
     },
     {
       "id": "rota_b5",
-      "character": "Nambu",
-      "sprite": "Nambu_que",
-      "text": "Que?",
+      "character": "Mazzi",
+      "sprite": "Mazzi",
+      "text": "Muito obrigado, meu camarada...",
       "nextId": "rota_b6"
     },
     {
       "id": "rota_b6",
-      "character": "Mazzi",
-      "sprite": "Mazzi",
-      "text": "Me oculta de novo. Joga água benta em mim.",
-      "nextId": "rota_b7"
-    },
-    {
-      "id": "rota_b7",
-      "character": "Mazzi",
-      "sprite": "Mazzi",
-      "text": "Eu não posso trabalhar estando visível né.",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "rota_b8",
-      "mission": "holyWaterMazzi"
+      "mission": "MazziOut"
     },
     {
       "id": "rota_b8",
@@ -431,7 +417,7 @@
     {
       "id": "rota_b10",
       "character": "Nambu",
-      "sprite": "Nambu_grito",
+      "sprite": "Nambu_eheh",
       "text": "Ô, do açúcar! Sacarose!",
       "nextId": "rota_b11"
     },
@@ -489,14 +475,21 @@
       "character": "Nambu",
       "sprite": "Nambu_sorriso",
       "text": "Sei lá, tipo, vai ver é algum fenômeno metafísico e... Tchauzinho, adorei a casa!",
+      "nextId": "fadeout"
+    },
+    {
+      "id": "fadeout",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "fim_rota_b",
       "mission": "fadeOut"
     },
     {
       "id": "fim_rota_b",
       "character": "Timbu",
-      "sprite": "Timbu_neutro",
-      "text": "Mais um contrato cancelado e pode falir antes do sucesso!!",
+      "sprite": "Timbu_nojo",
+      "text": "Mais um contrato cancelado e a gente pode falir antes do sucesso!!",
       "nextId": "fim_rota_b_final"
     },
     {

@@ -186,6 +186,7 @@ public class DynamicInventory : MonoBehaviour
             {
                 Debug.LogWarning("[DynamicInventory] ArmaSantaItem não encontrado!");
             }
+        
         }
         
         // ============================================

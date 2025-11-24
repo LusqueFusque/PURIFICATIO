@@ -112,6 +112,12 @@ public class Fase3MissionHandler : MissionHandlerBase
             case "SummonMazzi":
                 MissionManager.Instance.StartMission("SummonMazzi");
                 break;
+            
+            case "MazziOut":
+                MissionManager.Instance.StartMission("MazziOut");
+                HandleMazziOut();
+                break;
+
 
             case "fadeIn":  
                 StartCoroutine(FadeInSequence());
@@ -122,6 +128,10 @@ public class Fase3MissionHandler : MissionHandlerBase
                     GameManager.Instance.LoadScene("02. Menu");
                 else
                     UnityEngine.SceneManagement.SceneManager.LoadScene("02. Menu");
+                break;
+            
+            case "fadeOut":
+                StartCoroutine(FadeOutSequence());
                 break;
 
             default:
@@ -163,6 +173,30 @@ public class Fase3MissionHandler : MissionHandlerBase
             MissionManager.Instance.CompleteMission("useSalt");
 
         yield return new WaitForSeconds(0.3f);
+
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
+    }
+    
+    public void HolyWaterMazzi()
+    {
+        StartCoroutine(HolyWaterSequence());
+    }
+
+    private IEnumerator HolyWaterSequence()
+    {
+        Debug.Log("[Fase3] Água benta usada no Mazzi.");
+
+        // se quiser som separado:
+        // AudioSource.PlayClipAtPoint(holyWaterSfx, Camera.main.transform.position, 1f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (demonMazzi != null)
+            demonMazzi.SetActive(false);
+
+        if (MissionManager.Instance != null)
+            MissionManager.Instance.CompleteMission("holyWaterMazzi");
 
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
@@ -213,6 +247,75 @@ public class Fase3MissionHandler : MissionHandlerBase
             MissionManager.Instance.CompleteMission("exorcismoMazzi");
 
         // segue diálogo
+        if (DialogueManager.Instance != null)
+            DialogueManager.Instance.ShowNextLine();
+    }
+    
+    
+    // ==================== FADE OUT ====================
+    private IEnumerator FadeOutSequence()
+    {
+        VisualEffectsManager vfx = GetEffectsManager();
+        float fadeDuration = 1.2f;
+        if (vfx != null)
+            yield return StartCoroutine(vfx.FadeToBlack(fadeDuration));
+        else
+            yield return new WaitForSeconds(fadeDuration);
+
+        // Marca missão concluída
+        CompleteMission("fadeOut");
+
+        // Aguarda 1 frame
+        yield return null;
+
+        // ❌ Não chamar ShowNextLine aqui
+        // O diálogo continua normalmente pelo DialogueManager
+    }
+    
+    [Header("MazziOut")]
+    public float mazziOutFadeDuration = 1.2f;
+    public AudioClip mazziOutSfx;
+
+    public void HandleMazziOut()
+    {
+        StartCoroutine(MazziOutSequence());
+    }
+
+    private IEnumerator MazziOutSequence()
+    {
+        Debug.Log("[Fase3] Iniciando MazziOutSequence...");
+
+        if (mazziOutSfx != null && Camera.main != null)
+            AudioSource.PlayClipAtPoint(mazziOutSfx, Camera.main.transform.position, 1f);
+
+        if (demonMazzi != null)
+        {
+            Image img = demonMazzi.GetComponent<Image>();
+            SpriteRenderer sr = demonMazzi.GetComponent<SpriteRenderer>();
+            CanvasGroup cg = demonMazzi.GetComponent<CanvasGroup>();
+
+            if (cg == null) cg = demonMazzi.AddComponent<CanvasGroup>();
+            cg.interactable = false;
+            cg.blocksRaycasts = false;
+
+            float elapsed = 0f;
+            while (elapsed < mazziOutFadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float alpha = Mathf.Lerp(1f, 0f, elapsed / mazziOutFadeDuration);
+                cg.alpha = alpha;
+
+                if (img != null) { var c = img.color; c.a = alpha; img.color = c; }
+                if (sr != null) { var c = sr.color; c.a = alpha; sr.color = c; }
+
+                yield return null;
+            }
+
+            demonMazzi.SetActive(false);
+        }
+
+        CompleteMission("MazziOut");
+
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.ShowNextLine();
     }
