@@ -4,13 +4,14 @@ public class FitaItem : MonoBehaviour
 {
     public static FitaItem Instance;
 
-    [Header("ItemData (ScriptableObject)")]
-    public ItemData FitaData; // referência ao ScriptableObject da fita
+    [Header("Dados do Item")]
+    public ItemData fitaData;
 
     private bool isActive = false;
 
     void Awake()
     {
+        // Singleton simples
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -21,7 +22,7 @@ public class FitaItem : MonoBehaviour
 
     void OnDestroy()
     {
-        if (Instance == this) 
+        if (Instance == this)
             Instance = null;
     }
 
@@ -62,24 +63,22 @@ public class FitaItem : MonoBehaviour
     // ============================================
     // COLETA DA FITA
     // ============================================
-    /// <summary>
-    /// Chamado quando o jogador coleta a fita no cenário.
-    /// </summary>
     public void OnFitaCollected()
     {
         Debug.Log("[FitaItem] Fita coletada!");
 
+        // Adiciona ao inventário
         var inv = FindObjectOfType<DynamicInventory>();
-        if (inv != null && FitaData != null)
+        if (inv != null && fitaData != null)
         {
-            inv.AddItem(FitaData);
+            inv.AddItem(fitaData);
         }
         else
         {
             Debug.LogError("[FitaItem] Inventory ou ItemData não configurados!");
         }
 
-        // Opcional: marca missão concluída
+        // Completa missão
         if (MissionManager.Instance != null)
         {
             MissionManager.Instance.CompleteMission("findTape");

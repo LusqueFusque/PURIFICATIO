@@ -200,10 +200,11 @@ public class DynamicInventory : MonoBehaviour
             {
                 slot.onClick.AddListener(() => {
                     Debug.Log("[DynamicInventory] Botão Fita clicado!");
-                    fita.Toggle(); // ← IMPORTANTE: Chama Toggle()
+                    fita.Toggle(); // alterna ativo/inativo
                 });
             }
         }
+
 
 // ============================================
 // OUTROS ITENS
