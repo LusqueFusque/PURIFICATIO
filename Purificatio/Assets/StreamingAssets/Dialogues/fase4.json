@@ -562,8 +562,7 @@
       "text": "(Agora que eu vi o que tem na fita…)",
       "options": [
         {
-          "optionText": "Vou me fazer de sonso",
-          "nextId": "rota_entrega1"
+          "optionText": "Vou me fazer de sonso"
         },
         {
           "optionText": "Vou sair de fininho e chamar a polícia",
@@ -576,6 +575,13 @@
       "character": "Sistema",
       "sprite": "",
       "text": "",
+      "nextId": "fadepause"
+    },
+    {
+      "id": "fadepause",
+      "character": "Sistema",
+      "sprite": "",
+      "text": "",
       "nextId": "rota_policia2",
       "mission": "fadeOut"
     },
@@ -583,7 +589,7 @@
       "id": "rota_policia2",
       "character": "Timbu",
       "sprite": "Timbu_neutro",
-      "text": "A contratante fez o que? Polícia? Tribunal? Julgamento??",
+      "text": "A contratante fez o que? Hm? Polícia? Tribunal? Julgamento??",
       "nextId": "rota_policia3"
     },
     {
