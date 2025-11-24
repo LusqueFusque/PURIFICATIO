@@ -719,8 +719,9 @@ GameObject:
   - component: {fileID: 324727308}
   - component: {fileID: 324727310}
   - component: {fileID: 324727309}
+  - component: {fileID: 324727311}
   m_Layer: 5
-  m_Name: MazzikinImage
+  m_Name: mazzikinImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,15 +735,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324727307}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4646343}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1072191151}
+  m_Father: {fileID: 1417386010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1227, y: 89}
+  m_AnchoredPosition: {x: -1270, y: 79}
   m_SizeDelta: {x: 288, y: 457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324727309
@@ -759,7 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -783,6 +784,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324727307}
   m_CullTransparentMesh: 1
+--- !u!114 &324727311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324727307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e44db526ded5748bf52e2293cce029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazzikinImage: {fileID: 324727309}
+  mazzikinRectTransform: {fileID: 324727308}
+  targetPosition: {x: -27, y: 89, z: 0.4646343}
 --- !u!1 &408908361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1513,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580325835}
   m_CullTransparentMesh: 1
+--- !u!1 &592934059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592934060}
+  - component: {fileID: 592934062}
+  - component: {fileID: 592934061}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &592934060
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592934059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1855224093}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1198, y: -21.113525}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &592934061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592934059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &592934062
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592934059}
+  m_CullTransparentMesh: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1851,7 @@ MonoBehaviour:
   panelHUD: {fileID: 1417386009}
   optionsContainer: {fileID: 27236661}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
-  defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
+  defaultSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   continuePrompt: {fileID: 2080073228}
   ghostCharacters:
   - Eveline
@@ -2337,7 +2428,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1664892731}
-  - {fileID: 324727308}
   m_Father: {fileID: 1855224093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098897911
@@ -2951,6 +3041,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342000223}
   m_CullTransparentMesh: 1
+--- !u!1 &1381358669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381358670}
+  m_Layer: 0
+  m_Name: Mazzikin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381358670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381358669}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 784.4421, y: 556.3229, z: 4.176094}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404096574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,6 +3178,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 324727308}
   - {fileID: 1766453535}
   - {fileID: 1554704454}
   - {fileID: 1472850236}
@@ -3419,13 +3541,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pentagramImage: {fileID: 0}
   cursedItemGlow: {fileID: 0}
-  mazzikinImage: {fileID: 324727309}
   tapeteAuraSprite: {fileID: 1728117302}
   demonMazzi: {fileID: 324727307}
-  revealSound: {fileID: 0}
-  saltSound: {fileID: 0}
-  demonAppearSound: {fileID: 0}
-  mazziFadeDuration: 1.5
+  mazzikinItem: {fileID: 324727311}
 --- !u!1 &1534995224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3807,7 +3925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1602834506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4744,7 +4862,7 @@ MonoBehaviour:
     - {fileID: 1766453534}
     - {fileID: 1472850235}
     - {fileID: 987363853}
-    - {fileID: 0}
+    - {fileID: 324727307}
     alwaysInactiveObjects:
     - {fileID: 1106044481}
     - {fileID: 1788923650}
@@ -4762,7 +4880,7 @@ MonoBehaviour:
     - {fileID: 987363853}
     - {fileID: 1766453534}
     - {fileID: 1664892730}
-    - {fileID: 0}
+    - {fileID: 324727307}
     conditionalObjects: []
     objectExceptions: []
   startingRoomName: SalaAp
@@ -4811,6 +4929,7 @@ RectTransform:
   - {fileID: 1417386010}
   - {fileID: 1342000224}
   - {fileID: 2140966714}
+  - {fileID: 592934060}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5935,3 +6054,4 @@ SceneRoots:
   - {fileID: 1728117306}
   - {fileID: 234354235}
   - {fileID: 1321922725}
+  - {fileID: 1381358670}

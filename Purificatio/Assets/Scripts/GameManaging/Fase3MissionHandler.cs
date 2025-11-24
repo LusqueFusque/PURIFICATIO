@@ -7,21 +7,13 @@ public class Fase3MissionHandler : MissionHandlerBase
     [Header("UI da Fase 3")]
     public Image pentagramImage;
     public Image cursedItemGlow;
-    public Image mazzikinImage;
     
-    [Header("Sprite (única exceção)")]
+    [Header("Sprites e Entidades")]
     public GameObject tapeteAuraSprite;
-
-    [Header("Entidade")]
     public GameObject demonMazzi;
 
-    [Header("Sons")]
-    public AudioClip revealSound;
-    public AudioClip saltSound;
-    public AudioClip demonAppearSound;
-
-    [Header("Configurações de Fade")]
-    public float mazziFadeDuration = 1.5f;
+    [Header("Itens Especiais")]
+    public MazzikinItem mazzikinItem;   // referência ao script novo
 
     void OnEnable()
     {
@@ -39,18 +31,59 @@ public class Fase3MissionHandler : MissionHandlerBase
         CursedItem.OnItemPurified -= OnItemPurifiedHandler;
     }
 
-    private void OnItemPurifiedHandler(CursedItem cursedItem)
+   private void OnItemPurifiedHandler(CursedItem cursedItem)
+{
+    try
     {
-        Debug.Log($"[Fase3] Item purificado: {cursedItem.name}, IsMazziItem: {cursedItem.isMazziItem}");
+        // pega a instância localmente para evitar chamadas repetidas e null-conditional dentro de interpolação
+        var mm = MissionManager.Instance;
 
-        bool isMazziMission = MissionManager.Instance != null && 
-                              MissionManager.Instance.IsActive("SaltMazzi");
+        bool saltMazziActive = false;
+        bool useSaltActive = false;
+
+        if (mm != null)
+        {
+            // chama de forma segura
+            saltMazziActive = mm.IsActive("SaltMazzi");
+            useSaltActive = mm.IsActive("useSalt");
+        }
+
+        Debug.Log("[Fase3] Purificado: " + cursedItem.name + " | isMazziItem=" + cursedItem.isMazziItem + " | SaltMazzi ativa=" + saltMazziActive);
+        Debug.Log("[Fase3] useSalt ativa=" + useSaltActive);
+        Debug.Log("[Fase3] mazzikinItem é NULL? " + (mazzikinItem == null));
+
+        // Considera ambos os IDs possíveis
+        bool isMazziMission = mm != null && (saltMazziActive || useSaltActive);
+
+        // fallback: se é Mazzi e a missão não estava ativa, tenta ativar SaltMazzi automaticamente
+        if (cursedItem.isMazziItem && mm != null && !isMazziMission)
+        {
+            Debug.Log("[Fase3] Item é Mazzi mas missão não estava ativa — tentando StartMission(\"SaltMazzi\") como fallback.");
+            mm.StartMission("SaltMazzi");
+
+            // reavaliar flags
+            saltMazziActive = mm.IsActive("SaltMazzi");
+            useSaltActive = mm.IsActive("useSalt");
+            isMazziMission = saltMazziActive || useSaltActive;
+
+            Debug.Log("[Fase3] Após fallback, SaltMazzi ativa=" + saltMazziActive + ", useSalt ativa=" + useSaltActive);
+        }
 
         if (isMazziMission && cursedItem.isMazziItem)
-            StartCoroutine(SaltMazziSequence());
+        {
+            Debug.Log("[Fase3] Chamando RevealMazzikin()");
+            mazzikinItem?.RevealMazzikin();
+        }
         else
+        {
             StartCoroutine(SaltSequence());
+        }
     }
+    catch (System.Exception ex)
+    {
+        Debug.LogError("[Fase3] Erro em OnItemPurifiedHandler: " + ex.Message + "\n" + ex.StackTrace);
+    }
+}
 
     private void OnMissionCompletedHandler(string missionId)
     {
@@ -84,7 +117,6 @@ public class Fase3MissionHandler : MissionHandlerBase
                 StartCoroutine(FadeInSequence());
                 break;
 
-            // ✅ Só aqui voltamos ao menu, quando o JSON manda "returnToMenu"
             case "returnToMenu":
                 if (GameManager.Instance != null)
                     GameManager.Instance.LoadScene("02. Menu");
@@ -112,9 +144,6 @@ public class Fase3MissionHandler : MissionHandlerBase
 
     private IEnumerator RevealPentagramSequence()
     {
-        if (revealSound != null)
-            AudioSource.PlayClipAtPoint(revealSound, Camera.main.transform.position, 0.5f);
-
         if (pentagramImage != null) pentagramImage.gameObject.SetActive(true);
         if (cursedItemGlow != null) cursedItemGlow.gameObject.SetActive(true);
         if (tapeteAuraSprite != null) tapeteAuraSprite.SetActive(true);
@@ -125,9 +154,6 @@ public class Fase3MissionHandler : MissionHandlerBase
 
     private IEnumerator SaltSequence()
     {
-        if (saltSound != null)
-            AudioSource.PlayClipAtPoint(saltSound, Camera.main.transform.position, 0.5f);
-
         yield return new WaitForSeconds(0.2f);
 
         if (cursedItemGlow != null) cursedItemGlow.gameObject.SetActive(false);
@@ -142,71 +168,8 @@ public class Fase3MissionHandler : MissionHandlerBase
             DialogueManager.Instance.ShowNextLine();
     }
 
-    private IEnumerator SaltMazziSequence()
-    {
-        if (saltSound != null)
-            AudioSource.PlayClipAtPoint(saltSound, Camera.main.transform.position, 0.5f);
-
-        yield return new WaitForSeconds(0.2f);
-
-        if (cursedItemGlow != null)
-            cursedItemGlow.gameObject.SetActive(false);
-
-        if (tapeteAuraSprite != null)
-            tapeteAuraSprite.SetActive(false);
-
-        if (MissionManager.Instance != null && MissionManager.Instance.IsActive("SaltMazzi"))
-            MissionManager.Instance.CompleteMission("SaltMazzi");
-
-        yield return new WaitForSeconds(0.3f);
-
-        // ✅ Ativa e posiciona o Mazzi direto
-        if (mazzikinImage != null)
-        {
-            mazzikinImage.gameObject.SetActive(true);
-            RectTransform rt = mazzikinImage.GetComponent<RectTransform>();
-            if (rt != null)
-            {
-                rt.localPosition = new Vector3(-27f, 89f, 0.4646343f);
-                Debug.Log("[Fase3] Mazzi ativado e posicionado em (-27, 89, 0.4646343)");
-            }
-        }
-
-        if (demonAppearSound != null)
-            AudioSource.PlayClipAtPoint(demonAppearSound, Camera.main.transform.position, 0.6f);
-
-        yield return new WaitForSeconds(0.3f);
-
-        if (DialogueManager.Instance != null)
-            DialogueManager.Instance.ShowNextLine();
-    }
-    
-    private IEnumerator FadeInMazzi()
-    {
-        if (mazzikinImage == null) yield break;
-
-        CanvasGroup canvasGroup = mazzikinImage.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-            canvasGroup = mazzikinImage.gameObject.AddComponent<CanvasGroup>();
-
-        canvasGroup.alpha = 0f;
-        float elapsed = 0f;
-        
-        while (elapsed < mazziFadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / mazziFadeDuration);
-            yield return null;
-        }
-
-        canvasGroup.alpha = 1f;
-    }
-
     private IEnumerator SummonMazziSequence()
     {
-        if (demonAppearSound != null)
-            AudioSource.PlayClipAtPoint(demonAppearSound, Camera.main.transform.position, 0.8f);
-
         yield return new WaitForSeconds(0.4f);
 
         if (demonMazzi != null)
