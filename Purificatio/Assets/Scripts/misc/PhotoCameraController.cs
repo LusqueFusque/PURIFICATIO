@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PhotoCameraController : MonoBehaviour
 {
-    [Header("Referências")]
-    public GameObject camerafantarma; // O objeto que contém a câmera + Sprite Mask
+    [Header("Referencias")]
+    public GameObject camerafantarma; // O objeto que contem a camera + Sprite Mask
 
     private bool isActive = false;
 
@@ -12,14 +12,14 @@ public class PhotoCameraController : MonoBehaviour
         if (!isActive)
             return;
 
-        // Desativa a câmera com botão direito
+        // Desativa a camera com botao direito
         if (Input.GetMouseButtonDown(1))
         {
             DeactivateCamera();
         }
     }
 
-    // Chamado pelo botão de inventário para ativar a câmera
+    // Chamado pelo botao de inventario para ativar a camera
     public void ActivateCamera()
     {
         isActive = true;

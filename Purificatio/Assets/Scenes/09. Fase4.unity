@@ -624,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiddenItemsCamera: {fileID: 1212793345}
+  renderTextureImage: {fileID: 2140966715}
 --- !u!331 &234354233
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -1353,7 +1354,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
-  saltUseSound: {fileID: 0}
+  renderTextureImage: {fileID: 2140966715}
+  saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!114 &483120177
 MonoBehaviour:
@@ -1924,7 +1926,7 @@ MonoBehaviour:
   panelHUD: {fileID: 1417386009}
   optionsContainer: {fileID: 27236661}
   optionButtonPrefab: {fileID: 4958479098893618556, guid: 1800ddcb1bacb2347bec96faca317ffb, type: 3}
-  defaultSprite: {fileID: 3554248392506364905, guid: 530f356e9aa143a46a99962e10abb8d0, type: 3}
+  defaultSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   continuePrompt: {fileID: 2080073228}
   ghostCharacters:
   - Eveline
@@ -2988,8 +2990,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
-  phoneSpecialSound: {fileID: 0}
-  specialRooms: []
+  phoneSpecialSound: {fileID: 8300000, guid: a95ff8aac9c93794d8c786b9e9e62c2e, type: 3}
+  specialRooms:
+  - "Esta\xE7ao"
   audioSource2D: {fileID: 0}
 --- !u!1 &1496535420
 GameObject:
@@ -3040,7 +3043,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
-  saltUseSound: {fileID: 0}
+  renderTextureImage: {fileID: 2140966715}
+  saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!1 &1500757606
 GameObject:

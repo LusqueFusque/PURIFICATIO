@@ -2494,6 +2494,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 779517814}
+  renderTextureImage: {fileID: 813997292}
   saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!1 &1698011158
@@ -2940,8 +2941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phoneDefaultSound: {fileID: 0}
-  phoneSpecialSound: {fileID: 0}
+  phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
+  phoneSpecialSound: {fileID: 8300000, guid: a95ff8aac9c93794d8c786b9e9e62c2e, type: 3}
   specialRooms: []
   audioSource2D: {fileID: 0}
 --- !u!1 &1842642958
@@ -3237,6 +3238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiddenItemsCamera: {fileID: 779517814}
+  renderTextureImage: {fileID: 813997292}
 --- !u!1 &1940962867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,7 +3269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
-  phoneSpecialSound: {fileID: 0}
+  phoneSpecialSound: {fileID: 8300000, guid: a95ff8aac9c93794d8c786b9e9e62c2e, type: 3}
   specialRooms: []
   audioSource2D: {fileID: 0}
 --- !u!4 &1940962869
@@ -3382,7 +3384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00024414062, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1971503202
@@ -3648,6 +3650,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 779517814}
+  renderTextureImage: {fileID: 813997292}
   saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!4 &2039061922

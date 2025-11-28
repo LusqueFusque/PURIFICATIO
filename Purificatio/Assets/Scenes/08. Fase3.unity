@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiddenItemsCamera: {fileID: 1212793345}
+  renderTextureImage: {fileID: 2140966715}
 --- !u!331 &234354233
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -1218,7 +1219,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
-  saltUseSound: {fileID: 0}
+  renderTextureImage: {fileID: 2140966715}
+  saltUseSound: {fileID: 8300000, guid: 88899050070d2ce49844d73422a4fcd3, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!114 &483120177
 MonoBehaviour:
@@ -2494,9 +2496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phoneDefaultSound: {fileID: 0}
-  phoneSpecialSound: {fileID: 0}
-  specialRooms: []
+  phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
+  phoneSpecialSound: {fileID: 8300000, guid: a95ff8aac9c93794d8c786b9e9e62c2e, type: 3}
+  specialRooms:
+  - SalaAp
   audioSource2D: {fileID: 0}
 --- !u!114 &1098897914
 MonoBehaviour:
@@ -3452,9 +3455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16761cf87f4179a45bfbc97722125d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phoneDefaultSound: {fileID: 0}
-  phoneSpecialSound: {fileID: 0}
-  specialRooms: []
+  phoneDefaultSound: {fileID: 8300000, guid: 3c066643f670cb145a27a11380d427f2, type: 3}
+  phoneSpecialSound: {fileID: 8300000, guid: a95ff8aac9c93794d8c786b9e9e62c2e, type: 3}
+  specialRooms:
+  - SalaAp
   audioSource2D: {fileID: 0}
 --- !u!1 &1496535420
 GameObject:
@@ -3505,7 +3509,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
-  saltUseSound: {fileID: 0}
+  renderTextureImage: {fileID: 2140966715}
+  saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!1 &1500757606
 GameObject:
