@@ -297,13 +297,6 @@
       "character": "Timbu",
       "sprite": "Timbu_ladin",
       "text": "Enfim. Moral da história: não esfrega a lâmpada. Vai dar errado. Arranja outro jeito de se livrar dele.",
-      "nextId": "escolha_timbu"
-    },
-    {
-      "id": "ligar_timbu12",
-      "character": "Timbu",
-      "sprite": "Timbu_ladin",
-      "text": "Enfim. Moral da história: não esfrega a lâmpada. Vai dar errado. Arranja outro jeito de se livrar dele.",
       "nextId": "volta_lampada"
     },
     {
