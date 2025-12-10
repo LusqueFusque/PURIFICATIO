@@ -138,6 +138,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -484,7 +510,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Aura_FitaKct_0: -384423965678807255
+      Aura_FitaKct_1: 6486983542344507053
+      Aura_FitaKct_10: 5606311227629589500
+      Aura_FitaKct_11: -545733099603715916
+      Aura_FitaKct_12: -5587121762341640969
+      Aura_FitaKct_13: 5235488675035690768
+      Aura_FitaKct_14: 2718521282142334672
+      Aura_FitaKct_2: 4089244882149790079
+      Aura_FitaKct_3: -2229473329426948773
+      Aura_FitaKct_4: -2184323765422951184
+      Aura_FitaKct_5: 1496459986723296930
+      Aura_FitaKct_6: 8827698944539652212
+      Aura_FitaKct_7: 6267814093320707906
+      Aura_FitaKct_8: 8149714142981247922
+      Aura_FitaKct_9: 3755459117903254276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

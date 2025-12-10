@@ -1190,6 +1190,7 @@ MonoBehaviour:
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
   renderTextureImage: {fileID: 2140966715}
+  saltEffectPrefab: {fileID: 0}
   saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!114 &483120177
@@ -3510,6 +3511,7 @@ MonoBehaviour:
     m_Bits: 1024
   targetCamera: {fileID: 1212793345}
   renderTextureImage: {fileID: 2140966715}
+  saltEffectPrefab: {fileID: 0}
   saltUseSound: {fileID: 8300000, guid: 8631f130e947c964ab8fa0d6a8d401d1, type: 3}
   audioSource2D: {fileID: 0}
 --- !u!1 &1500757606
